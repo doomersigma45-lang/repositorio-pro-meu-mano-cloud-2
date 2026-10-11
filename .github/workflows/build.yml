@@ -31,3 +31,26 @@ jobs:
           name: NetheriteSupremo-${{ matrix.project }}
           path: ${{ matrix.project }}/build/libs/*.jar
           if-no-files-found: error
+
+  release:
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          pattern: NetheriteSupremo-*
+          merge-multiple: true
+
+      - name: Publicar release com os jars
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ls -la dist
+          gh release create "build-${{ github.run_number }}" dist/*.jar \
+            --repo "${{ github.repository }}" \
+            --title "Netherite Supremo (build ${{ github.run_number }})" \
+            --notes "Jars compilados para Forge 1.19.2 e 1.20.1."
