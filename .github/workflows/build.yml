@@ -24,7 +24,13 @@ jobs:
         working-directory: ${{ matrix.project }}
         run: |
           chmod +x gradlew
-          ./gradlew build --no-daemon --stacktrace
+          set -o pipefail
+          if ! ./gradlew build --no-daemon 2>&1 | tee build.log; then
+            # Resume os erros numa anotacao (visivel pela API de check-runs)
+            msg=$(grep -E "error:|What went wrong|Could not|FAILED" -A3 build.log | head -60 | sed 's/%/%25/g' | sed ':a;N;$!ba;s/\n/%0A/g')
+            echo "::error title=Erros de compilacao (${{ matrix.project }})::${msg}"
+            exit 1
+          fi
 
       - uses: actions/upload-artifact@v4
         with:
