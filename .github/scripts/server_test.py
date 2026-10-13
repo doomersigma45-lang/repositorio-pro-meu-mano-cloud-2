@@ -96,10 +96,12 @@ def main():
             r = Rcon()
             tests = [
                 "summon netheritesupremo:netherite_knight 0 100 0",
-                "summon netheritesupremo:netherite_golem 10 100 10",
+                "summon netheritesupremo:netherite_golem 90 100 90",
                 "data get entity @e[type=netheritesupremo:netherite_knight,limit=1] ArmorItems",
                 "data get entity @e[type=netheritesupremo:netherite_knight,limit=1] HandItems",
                 "attribute @e[type=netheritesupremo:netherite_golem,limit=1] minecraft:generic.max_health get",
+                "attribute @e[type=netheritesupremo:netherite_knight,limit=1] minecraft:generic.max_health get",
+                "attribute @e[type=netheritesupremo:netherite_knight,limit=1] minecraft:generic.armor get",
                 "attribute @e[type=netheritesupremo:netherite_golem,limit=1] minecraft:generic.attack_damage get",
                 "loot spawn 0 100 0 loot netheritesupremo:entities/netherite_golem",
             ]
