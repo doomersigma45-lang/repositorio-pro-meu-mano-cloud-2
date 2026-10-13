@@ -1,12 +1,9 @@
 {
   "type": "forge:add_spawns",
-  "structures": [
-    "minecraft:fortress",
-    "minecraft:bastion_remnant"
-  ],
+  "biomes": "#minecraft:is_nether",
   "spawners": {
     "type": "netheritesupremo:netherite_knight",
-    "weight": 10,
+    "weight": 8,
     "minCount": 1,
     "maxCount": 1
   }

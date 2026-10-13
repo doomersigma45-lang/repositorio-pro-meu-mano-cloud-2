@@ -49,7 +49,7 @@ O Forge 1.19.2 continua na versão 1.1.0, sem os mobs.
   só a skin (a espada na mão aparece).
 - **Atributos:** 20 de vida e 1 de dano de mão, como um jogador. O dano real vem da espada.
 - **Ataca** o jogador e qualquer criatura hostil (menos outros cavaleiros).
-- **Spawn:** natural em fortalezas do Nether e bastiões.
+- **Spawn:** natural dentro da área de fortalezas do Nether e bastiões (modificador de bioma do Nether + checagem de estrutura no código). Dentro dos corredores da fortaleza o jogo usa a lista de mobs própria dela, então ele aparece mais no entorno e nos bastiões.
 - **Único:** existe no máximo um cavaleiro de netherite por mundo, que não some por distância.
   Quando ele morre, outro pode nascer de novo. Para nunca mais nascer, mude
   `knightRespawnsAfterDeath` para `false` no `config/netheritesupremo-common.toml`.

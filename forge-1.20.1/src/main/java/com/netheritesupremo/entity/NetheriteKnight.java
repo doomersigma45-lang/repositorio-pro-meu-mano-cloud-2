@@ -2,8 +2,11 @@ package com.netheritesupremo.entity;
 
 import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
@@ -30,6 +33,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.levelgen.structure.BuiltinStructures;
+import net.minecraft.world.level.levelgen.structure.Structure;
 
 /**
  * Cavaleiro de netherite: vida e dano base de um jogador (20 de vida, 1 de dano de mao).
@@ -55,7 +60,10 @@ public class NetheriteKnight extends Monster {
                 .add(Attributes.FOLLOW_RANGE, 32.0D);
     }
 
-    /** Regra de spawn natural: em qualquer luz, e so se ainda nao existir um cavaleiro. */
+    /**
+     * Regra de spawn natural: em qualquer luz, so dentro da area de uma fortaleza do Nether ou de um
+     * bastiao, e so se ainda nao existir um cavaleiro.
+     */
     public static boolean checkKnightSpawnRules(EntityType<NetheriteKnight> type, ServerLevelAccessor level,
                                                 MobSpawnType reason, BlockPos pos, RandomSource random) {
         if (reason == MobSpawnType.NATURAL) {
@@ -63,8 +71,18 @@ public class NetheriteKnight extends Monster {
             if (server == null || !KnightSpawnData.get(server).canSpawnNaturally()) {
                 return false;
             }
+            ServerLevel serverLevel = level.getLevel();
+            if (!isInsideStructure(serverLevel, pos, BuiltinStructures.FORTRESS)
+                    && !isInsideStructure(serverLevel, pos, BuiltinStructures.BASTION_REMNANT)) {
+                return false;
+            }
         }
         return Monster.checkAnyLightMonsterSpawnRules(type, level, reason, pos, random);
+    }
+
+    private static boolean isInsideStructure(ServerLevel level, BlockPos pos, ResourceKey<Structure> key) {
+        Structure structure = level.registryAccess().registryOrThrow(Registries.STRUCTURE).get(key);
+        return structure != null && level.structureManager().getStructureAt(pos, structure).isValid();
     }
 
     @Override
