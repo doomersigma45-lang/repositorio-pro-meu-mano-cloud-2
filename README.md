@@ -28,7 +28,9 @@ continuam impossíveis de quebrar no modo survival, porque isso é fixo no jogo.
 
 Os valores e durações dos efeitos da espada ficam no topo de `SupremoEvents.java`.
 
-## Mobs novos
+## Mobs novos (somente Forge 1.20.1)
+
+O Forge 1.19.2 continua na versão 1.1.0, sem os mobs.
 
 ### Golem de Netherite (neutro)
 - **Invocação:** 4 blocos de netherite em T (dois braços, corpo e pé) e uma abóbora talhada ou
