@@ -6,25 +6,34 @@ Mod que deixa a netherite OP e remove o limite de armadura do jogo.
 |---|---|
 | Armadura | capacete 14, peitoral 20, calças 17, botas 13 |
 | Teto de armadura | removido (vanilla limita o total a 30; aqui o máximo vira 1024) |
-| Espada / machado | 80 / 100 de dano total |
-| Fire Aspect | nível II em espada e machado (qualquer atacante) |
-| Inquebrável | armadura, espada e machado de netherite |
+| Queda e explosão | dano zero com o conjunto |
+| Qualquer outro dano | reduzido em 90% com o conjunto |
+| Voo | voa como no criativo com o conjunto (duplo pulo para ligar) |
 | Escudo | flechas quicam e não dão dano, com o som do escudo |
 | Efeitos | Resistência ao Fogo e Força II |
-| Mobs | tudo vale para jogador e mobs que usarem o equipamento |
+| Espada / machado | 80 / 100 de dano total, Fire Aspect II |
+| Espada (efeitos no alvo) | Fraqueza II, Wither II e Lentidão III por 10 segundos |
+| Picareta | quebra qualquer bloco instantaneamente |
+| Inquebrável | armadura, espada, machado, picareta e pá de netherite |
+| Mobs | tudo vale também para mobs que usarem o equipamento (exceto o voo) |
 
-Os efeitos e o escudo ativam com o conjunto completo (4 peças). Para ativar com qualquer
-peça, mude `requireFullSet` para `false` no arquivo `config/netheritesupremo-common.toml`.
+Os efeitos da armadura (voo, escudo, imunidades, -90% e efeitos) ativam com o conjunto
+completo (4 peças). Para ativar com qualquer peça, mude `requireFullSet` para `false` no
+arquivo `config/netheritesupremo-common.toml`.
 
 Com a Força II o dano sobe +6: espada 86 e machado 106 quando o conjunto está vestido.
+
+Limite da picareta: blocos que o jogo marca como indestrutíveis (bedrock, barreira, etc.)
+continuam impossíveis de quebrar no modo survival, porque isso é fixo no jogo.
+
+Os valores e durações dos efeitos da espada ficam no topo de `SupremoEvents.java`.
 
 ## Compilar
 
 ### Opção 1: GitHub Actions (sem instalar nada)
-1. Crie um repositório no GitHub e envie esta pasta inteira.
-2. Abra a aba **Actions**, escolha **Build mods** e aguarde terminar.
-3. Em cada execução, baixe os artefatos `NetheriteSupremo-forge-1.19.2` e
-   `NetheriteSupremo-forge-1.20.1`. Dentro de cada um está o `.jar`.
+1. A cada push na branch `main`, o workflow **Build mods** compila as duas versões.
+2. Quando termina, ele publica uma **Release** (aba Releases) com os dois `.jar`:
+   `netherite-supremo-forge-1.19.2-<versão>.jar` e `netherite-supremo-forge-1.20.1-<versão>.jar`.
 
 ### Opção 2: no seu computador
 Precisa do JDK 17. Dentro de `forge-1.20.1` ou `forge-1.19.2`:

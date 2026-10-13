@@ -1,7 +1,11 @@
 package com.netheritesupremo;
 
 import java.util.UUID;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -19,9 +23,12 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class SupremoEvents {
@@ -34,6 +41,20 @@ public class SupremoEvents {
     // Dano total (inclui o 1 de dano base da mao)
     public static final double SWORD_DAMAGE = 80.0D;
     public static final double AXE_DAMAGE = 100.0D;
+
+    // Armadura: todo dano que nao seja queda/explosao fica com 10% (reduz 90%)
+    public static final float DAMAGE_MULTIPLIER = 0.1F;
+
+    // Espada: efeitos aplicados no alvo (duracao em ticks; amplificador 0 = nivel I)
+    public static final int SWORD_EFFECT_TICKS = 200; // 10 segundos
+    public static final int WEAKNESS_AMP = 1;         // Fraqueza II
+    public static final int WITHER_AMP = 1;           // Wither II
+    public static final int SLOWNESS_AMP = 2;         // Lentidao III
+
+    // Picareta: velocidade de quebra enorme = quebra instantanea
+    public static final float PICKAXE_SPEED = 1.0E6F;
+
+    private static final String FLY_TAG = "netheritesupremo_fly";
 
     // Mesmos UUIDs que o jogo usa para armadura por slot e dano base de ataque
     private static final UUID HEAD_ID = UUID.fromString("2AD3F246-FEE1-4E67-B886-69FD380BB150");
@@ -111,18 +132,77 @@ public class SupremoEvents {
                 || item == Items.NETHERITE_LEGGINGS
                 || item == Items.NETHERITE_BOOTS
                 || item == Items.NETHERITE_SWORD
-                || item == Items.NETHERITE_AXE;
+                || item == Items.NETHERITE_AXE
+                || item == Items.NETHERITE_PICKAXE
+                || item == Items.NETHERITE_SHOVEL;
     }
 
-    // ------------------------------------------------------- Fire Aspect II
+    // ------------------------------------------------------------------- voo
+    @SubscribeEvent
+    public void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END || !(event.player instanceof ServerPlayer player)) {
+            return;
+        }
+        // Criativo e espectador ja voam por conta propria; nao mexemos neles.
+        if (player.isCreative() || player.isSpectator()) {
+            return;
+        }
+        CompoundTag data = player.getPersistentData();
+        if (hasSetBonus(player)) {
+            if (!player.getAbilities().mayfly) {
+                player.getAbilities().mayfly = true;
+                player.onUpdateAbilities();
+                data.putBoolean(FLY_TAG, true);
+            }
+        } else if (data.getBoolean(FLY_TAG)) {
+            data.remove(FLY_TAG);
+            player.getAbilities().mayfly = false;
+            player.getAbilities().flying = false;
+            player.onUpdateAbilities();
+        }
+    }
+
+    // ------------------------------------------- queda/explosao: dano zero
+    @SubscribeEvent
+    public void onAttacked(LivingAttackEvent event) {
+        if (hasSetBonus(event.getEntity()) && isFallOrExplosion(event.getSource())) {
+            event.setCanceled(true);
+        }
+    }
+
+    private static boolean isFallOrExplosion(DamageSource source) {
+        return source.is(DamageTypeTags.IS_FALL) || source.is(DamageTypeTags.IS_EXPLOSION);
+    }
+
+    // ------------------------------------- dano -90% (armadura) e efeitos (espada)
     @SubscribeEvent
     public void onHurt(LivingHurtEvent event) {
+        LivingEntity victim = event.getEntity();
+
+        // Quem veste o conjunto recebe so 10% de qualquer dano
+        if (hasSetBonus(victim)) {
+            event.setAmount(event.getAmount() * DAMAGE_MULTIPLIER);
+        }
+
         Entity direct = event.getSource().getDirectEntity();
         if (direct instanceof LivingEntity attacker) {
             Item held = attacker.getMainHandItem().getItem();
             if (held == Items.NETHERITE_SWORD || held == Items.NETHERITE_AXE) {
-                event.getEntity().setSecondsOnFire(8); // Fire Aspect II = 4s x 2
+                victim.setSecondsOnFire(8); // Fire Aspect II = 4s x 2
             }
+            if (held == Items.NETHERITE_SWORD) {
+                victim.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, SWORD_EFFECT_TICKS, WEAKNESS_AMP), attacker);
+                victim.addEffect(new MobEffectInstance(MobEffects.WITHER, SWORD_EFFECT_TICKS, WITHER_AMP), attacker);
+                victim.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, SWORD_EFFECT_TICKS, SLOWNESS_AMP), attacker);
+            }
+        }
+    }
+
+    // ------------------------------------------------ picareta: quebra instantanea
+    @SubscribeEvent
+    public void onBreakSpeed(PlayerEvent.BreakSpeed event) {
+        if (event.getEntity().getMainHandItem().is(Items.NETHERITE_PICKAXE)) {
+            event.setNewSpeed(PICKAXE_SPEED);
         }
     }
 
