@@ -104,6 +104,14 @@ def main():
                 "attribute @e[type=netheritesupremo:netherite_knight,limit=1] minecraft:generic.armor get",
                 "attribute @e[type=netheritesupremo:netherite_golem,limit=1] minecraft:generic.attack_damage get",
                 "loot spawn 0 100 0 loot netheritesupremo:entities/netherite_golem",
+                "summon netheritesupremo:nether_spider 20 100 20",
+                "attribute @e[type=netheritesupremo:nether_spider,limit=1] minecraft:generic.max_health get",
+                "attribute @e[type=netheritesupremo:nether_spider,limit=1] minecraft:generic.movement_speed get",
+                "damage @e[type=netheritesupremo:nether_spider,limit=1] 20 minecraft:explosion",
+                "damage @e[type=netheritesupremo:nether_spider,limit=1] 20 minecraft:in_fire",
+                "data get entity @e[type=netheritesupremo:nether_spider,limit=1] Health",
+                "summon netheritesupremo:nether_spider 20 100 25 {Baby:1b}",
+                "data get entity @e[type=netheritesupremo:nether_spider,nbt={Baby:1b},limit=1] Baby",
                 "summon netheritesupremo:necromancer 0 110 20",
                 "attribute @e[type=netheritesupremo:necromancer,limit=1] minecraft:generic.max_health get",
                 "attribute @e[type=netheritesupremo:necromancer,limit=1] minecraft:generic.attack_damage get",
@@ -122,6 +130,7 @@ def main():
                       "data get entity @e[type=netheritesupremo:netherite_knight,limit=1] Health",
                       "execute if entity @e[type=minecraft:skeleton,tag=netheritesupremo_minion]",
                       "kill @e[type=netheritesupremo:necromancer]",
+                      "kill @e[type=netheritesupremo:nether_spider]",
                       "list", "kill @e[type=netheritesupremo:netherite_knight]",
                       "kill @e[type=netheritesupremo:netherite_golem]"):
                 results.append(f"> {t}\n  {r.cmd(t)}")

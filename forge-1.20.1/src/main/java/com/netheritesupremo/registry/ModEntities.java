@@ -2,6 +2,7 @@ package com.netheritesupremo.registry;
 
 import com.netheritesupremo.NetheriteSupremo;
 import com.netheritesupremo.entity.Necromancer;
+import com.netheritesupremo.entity.NetherSpider;
 import com.netheritesupremo.entity.NetheriteGolem;
 import com.netheritesupremo.entity.NetheriteKnight;
 import net.minecraft.world.entity.EntityType;
@@ -38,6 +39,14 @@ public final class ModEntities {
                     .clientTrackingRange(10)
                     .updateInterval(2)
                     .build("necromancer"));
+
+    public static final RegistryObject<EntityType<NetherSpider>> NETHER_SPIDER = ENTITIES.register(
+            "nether_spider",
+            () -> EntityType.Builder.of(NetherSpider::new, MobCategory.MONSTER)
+                    .sized(1.82F, 1.17F) // aranha comum (1.4 x 0.9) + 30%
+                    .fireImmune()
+                    .clientTrackingRange(8)
+                    .build("nether_spider"));
 
     private ModEntities() {
     }

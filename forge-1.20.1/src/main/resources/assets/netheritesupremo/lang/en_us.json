@@ -4,5 +4,7 @@
   "item.netheritesupremo.netherite_golem_spawn_egg": "Netherite Golem Spawn Egg",
   "item.netheritesupremo.netherite_knight_spawn_egg": "Netherite Knight Spawn Egg",
   "entity.netheritesupremo.necromancer": "Necromancer",
-  "item.netheritesupremo.necromancer_spawn_egg": "Necromancer Spawn Egg"
+  "item.netheritesupremo.necromancer_spawn_egg": "Necromancer Spawn Egg",
+  "entity.netheritesupremo.nether_spider": "Nether Spider",
+  "item.netheritesupremo.nether_spider_spawn_egg": "Nether Spider Spawn Egg"
 }

@@ -66,7 +66,17 @@ O Forge 1.19.2 continua na versão 1.1.0, sem os mobs.
 - **Cabeças de wither** como projétil (55,5 de dano + Wither II); não destroem blocos.
 - **Spawn:** por enquanto só pelo ovo de geração ou `/summon netheritesupremo:necromancer`.
 
-Os três mobs têm ovo de geração na aba de ovos do modo criativo.
+### Aranha do Nether
+- **Modelo de aranha** com a textura `textures/entity/nether_spider.png`, 30% maior (hitbox e tamanho). Filhote tem metade do tamanho.
+- **Atributos:** 65 de vida, dano de 6 a 12 (sorteado a cada ataque), velocidade 0,45 (cavalos chegam a 0,34).
+- **Imune a fogo e explosões.** Escala paredes. Solta bolas de fogo (6 a 12 de dano, não acendem blocos) entre 5 e 18 blocos.
+- **Hostil:** ataca jogadores e piglins. Spawna no Nether (modificador de bioma, peso 10, grupos de 1 a 2).
+- **Domar:** botão direito com barra de ouro (1 chance em 3 por barra). Domada, não ataca mais jogadores (continua atacando piglins). Barra de ouro também cura 10 de vida.
+- **Montaria:** o dono clica com a mão vazia para montar (agachar desmonta). Anda e escala paredes montada.
+- **Reprodução:** o dono dá fungo carmesim ou distorcido a uma aranha domada adulta; ela procura outra aranha do nether apaixonada ou qualquer outra aranha (comum, das cavernas...) e gera um **filhote passivo** (já domado, cresce em 20 min). Intervalo de 5 min.
+- **Drops:** linha e pepitas de ouro.
+
+Os quatro mobs têm ovo de geração na aba de ovos do modo criativo.
 
 ## Compilar
 
