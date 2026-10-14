@@ -104,11 +104,25 @@ def main():
                 "attribute @e[type=netheritesupremo:netherite_knight,limit=1] minecraft:generic.armor get",
                 "attribute @e[type=netheritesupremo:netherite_golem,limit=1] minecraft:generic.attack_damage get",
                 "loot spawn 0 100 0 loot netheritesupremo:entities/netherite_golem",
+                "summon netheritesupremo:necromancer 0 110 20",
+                "attribute @e[type=netheritesupremo:necromancer,limit=1] minecraft:generic.max_health get",
+                "attribute @e[type=netheritesupremo:necromancer,limit=1] minecraft:generic.attack_damage get",
+                "effect give @e[type=netheritesupremo:netherite_golem,limit=1] minecraft:wither 30 2",
+                "damage @e[type=netheritesupremo:netherite_golem,limit=1] 50 minecraft:explosion",
+                "damage @e[type=netheritesupremo:netherite_golem,limit=1] 50 minecraft:arrow",
+                "data get entity @e[type=netheritesupremo:netherite_golem,limit=1] Health",
+                "data get entity @e[type=netheritesupremo:netherite_golem,limit=1] ActiveEffects",
+                "damage @e[type=netheritesupremo:necromancer,limit=1] 1 minecraft:mob_attack by @e[type=netheritesupremo:netherite_knight,limit=1]",
             ]
             for t in tests:
                 results.append(f"> {t}\n  {r.cmd(t)}")
             time.sleep(15)  # deixa os mobs rodarem alguns segundos (IA, bolas de fogo, aura)
-            for t in ("list", "kill @e[type=netheritesupremo:netherite_knight]",
+            for t in ("data get entity @e[type=netheritesupremo:necromancer,limit=1] Health",
+                      "data get entity @e[type=netheritesupremo:netherite_golem,limit=1] Health",
+                      "data get entity @e[type=netheritesupremo:netherite_knight,limit=1] Health",
+                      "execute if entity @e[type=minecraft:skeleton,tag=netheritesupremo_minion]",
+                      "kill @e[type=netheritesupremo:necromancer]",
+                      "list", "kill @e[type=netheritesupremo:netherite_knight]",
                       "kill @e[type=netheritesupremo:netherite_golem]"):
                 results.append(f"> {t}\n  {r.cmd(t)}")
             time.sleep(3)

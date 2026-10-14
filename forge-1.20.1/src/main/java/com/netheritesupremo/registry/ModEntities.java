@@ -1,6 +1,7 @@
 package com.netheritesupremo.registry;
 
 import com.netheritesupremo.NetheriteSupremo;
+import com.netheritesupremo.entity.Necromancer;
 import com.netheritesupremo.entity.NetheriteGolem;
 import com.netheritesupremo.entity.NetheriteKnight;
 import net.minecraft.world.entity.EntityType;
@@ -28,6 +29,15 @@ public final class ModEntities {
                     .fireImmune()
                     .clientTrackingRange(8)
                     .build("netherite_knight"));
+
+    public static final RegistryObject<EntityType<Necromancer>> NECROMANCER = ENTITIES.register(
+            "necromancer",
+            () -> EntityType.Builder.of(Necromancer::new, MobCategory.MONSTER)
+                    .sized(0.72F, 2.4F)
+                    .fireImmune()
+                    .clientTrackingRange(10)
+                    .updateInterval(2)
+                    .build("necromancer"));
 
     private ModEntities() {
     }

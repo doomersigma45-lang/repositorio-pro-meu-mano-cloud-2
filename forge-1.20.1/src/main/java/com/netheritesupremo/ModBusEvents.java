@@ -1,5 +1,6 @@
 package com.netheritesupremo;
 
+import com.netheritesupremo.entity.Necromancer;
 import com.netheritesupremo.entity.NetheriteGolem;
 import com.netheritesupremo.entity.NetheriteKnight;
 import com.netheritesupremo.registry.ModEntities;
@@ -19,6 +20,7 @@ public final class ModBusEvents {
     public static void onAttributes(EntityAttributeCreationEvent event) {
         event.put(ModEntities.NETHERITE_GOLEM.get(), NetheriteGolem.createGolemAttributes().build());
         event.put(ModEntities.NETHERITE_KNIGHT.get(), NetheriteKnight.createKnightAttributes().build());
+        event.put(ModEntities.NECROMANCER.get(), Necromancer.createNecromancerAttributes().build());
     }
 
     @SubscribeEvent

@@ -19,6 +19,10 @@ public final class ModItems {
             "netherite_knight_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.NETHERITE_KNIGHT, 0x1E1B1D, 0xB04A1A, new Item.Properties()));
 
+    public static final RegistryObject<Item> NECROMANCER_SPAWN_EGG = ITEMS.register(
+            "necromancer_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.NECROMANCER, 0x14121C, 0x7B4FBF, new Item.Properties()));
+
     private ModItems() {
     }
 }

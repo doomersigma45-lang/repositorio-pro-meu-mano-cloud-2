@@ -26,6 +26,8 @@ import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.entity.ai.navigation.WallClimberNavigation;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
@@ -37,14 +39,15 @@ import net.minecraft.world.level.levelgen.structure.BuiltinStructures;
 import net.minecraft.world.level.levelgen.structure.Structure;
 
 /**
- * Cavaleiro de netherite: vida e dano base de um jogador (20 de vida, 1 de dano de mao).
+ * Cavaleiro de netherite: 35 de vida e 1 de dano de mao. E neutro com jogadores (so revida se for
+ * atacado), ataca criaturas hostis e escala paredes como uma aranha.
  * Veste o conjunto completo de netherite e empunha uma espada de netherite, mas o render nao
  * desenha a armadura (so a skin).
  *
  * So existe um por vez no mundo (spawn natural): ver {@link KnightSpawnData}.
  */
 public class NetheriteKnight extends Monster {
-    public static final double MAX_HEALTH = 20.0D;
+    public static final double MAX_HEALTH = 35.0D;
     public static final double ATTACK_DAMAGE = 1.0D;
 
     public NetheriteKnight(EntityType<? extends Monster> type, Level level) {
@@ -94,10 +97,21 @@ public class NetheriteKnight extends Monster {
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
 
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-        // Ataca o jogador e qualquer criatura hostil (menos outros cavaleiros)
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+        // Neutro com jogadores (so revida via HurtByTargetGoal); ataca criaturas hostis, menos outros cavaleiros
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Mob.class, 10, true, false,
                 other -> other instanceof Enemy && !(other instanceof NetheriteKnight)));
+    }
+
+    // ------------------------------------------------------------ escalada
+    @Override
+    protected PathNavigation createNavigation(Level level) {
+        return new WallClimberNavigation(this, level);
+    }
+
+    /** Escala qualquer bloco contra o qual esteja empurrando (como a aranha). */
+    @Override
+    public boolean onClimbable() {
+        return this.horizontalCollision && !this.isSpectator();
     }
 
     @Nullable

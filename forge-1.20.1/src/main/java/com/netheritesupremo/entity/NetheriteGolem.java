@@ -3,12 +3,18 @@ package com.netheritesupremo.entity;
 import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.List;
+import javax.annotation.Nullable;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -30,6 +36,8 @@ public class NetheriteGolem extends IronGolem {
     // Atributos (o golem de ferro tem 100 de vida e 15 de dano)
     public static final double MAX_HEALTH = 1800.0D;
     public static final double ATTACK_DAMAGE = 500.0D;
+    // Velocidade de movimento (o golem de ferro anda a 0.25, um zumbi a 0.23): corre rapido
+    public static final double MOVEMENT_SPEED = 0.45D;
 
     // Cura do proprio golem (itens usados com o botao direito)
     public static final float GOLD_INGOT_HEAL = 150.0F;
@@ -53,8 +61,42 @@ public class NetheriteGolem extends IronGolem {
         return IronGolem.createAttributes()
                 .add(Attributes.MAX_HEALTH, MAX_HEALTH)
                 .add(Attributes.ATTACK_DAMAGE, ATTACK_DAMAGE)
+                .add(Attributes.MOVEMENT_SPEED, MOVEMENT_SPEED)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
                 .add(Attributes.FOLLOW_RANGE, 32.0D);
+    }
+
+    // ------------------------------------------------ imunidades: wither e projeteis
+    /** Imune a projeteis (flechas, bolas de fogo, caveiras...), explosoes e ao dano do Wither. */
+    @Override
+    public boolean isInvulnerableTo(DamageSource source) {
+        return source.is(DamageTypeTags.IS_PROJECTILE)
+                || source.is(DamageTypeTags.IS_EXPLOSION)
+                || source.is(DamageTypes.WITHER)
+                || super.isInvulnerableTo(source);
+    }
+
+    /** Imune ao efeito Wither. */
+    @Override
+    public boolean canBeAffected(MobEffectInstance effect) {
+        if (effect.getEffect() == MobEffects.WITHER) {
+            return false;
+        }
+        return super.canBeAffected(effect);
+    }
+
+    /** Nunca escolhe um cavaleiro de netherite como alvo (nem por vingança). */
+    @Override
+    public void setTarget(@Nullable LivingEntity target) {
+        if (target instanceof NetheriteKnight) {
+            return;
+        }
+        super.setTarget(target);
+    }
+
+    @Override
+    public boolean canAttack(LivingEntity target) {
+        return !(target instanceof NetheriteKnight) && super.canAttack(target);
     }
 
     @Override

@@ -27,6 +27,7 @@ public class NetheriteSupremo {
         MinecraftForge.EVENT_BUS.register(new SupremoEvents());
         MinecraftForge.EVENT_BUS.register(new GolemSummoning());
         MinecraftForge.EVENT_BUS.register(new KnightEvents());
+        MinecraftForge.EVENT_BUS.register(new NecromancerEvents());
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -38,6 +39,7 @@ public class NetheriteSupremo {
         if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
             event.accept(ModItems.NETHERITE_GOLEM_SPAWN_EGG);
             event.accept(ModItems.NETHERITE_KNIGHT_SPAWN_EGG);
+            event.accept(ModItems.NECROMANCER_SPAWN_EGG);
         }
     }
 }

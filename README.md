@@ -35,10 +35,12 @@ O Forge 1.19.2 continua na versão 1.1.0, sem os mobs.
 ### Golem de Netherite (neutro)
 - **Invocação:** 4 blocos de netherite em T (dois braços, corpo e pé) e uma abóbora talhada ou
   jack-o'-lantern por cima, colocada por último, igual ao golem de ferro. Vale colocando a abóbora à mão.
-- **Atributos:** 1800 de vida e 500 de dano (valores no topo de `NetheriteGolem.java`).
+- **Atributos:** 1800 de vida, 500 de dano e velocidade 0,45 (corre rápido). Valores no topo de `NetheriteGolem.java`.
+- **Imunidades:** efeito e dano de Wither, projéteis (flechas, bolas de fogo, caveiras) e explosões.
+- **Não ataca cavaleiros de netherite.**
 - **Neutro:** só ataca o jogador se for atacado. Protege aldeões e ataca monstros hostis.
 - **Aura de fogo:** partículas de fogo e incendeia monstros hostis (e quem ele está atacando) num raio de 4 blocos.
-- **Bolas de fogo:** lança salvas de 5 bolas de fogo (40 de dano cada) em alvos entre 6 e 24 blocos.
+- **Bolas de fogo:** lança salvas de 5 bolas de fogo (120 de dano cada, mais Wither III por 30 s e Lentidão III por 45 s) em alvos entre 6 e 24 blocos.
   As bolas de fogo não acendem blocos, então não queimam aldeias.
 - **Cura golens de ferro feridos** que estiverem por perto.
 - **Curar o próprio golem:** botão direito com barra de ouro (+150) ou de netherite (+450).
@@ -47,8 +49,9 @@ O Forge 1.19.2 continua na versão 1.1.0, sem os mobs.
 ### Cavaleiro de Netherite
 - **Equipamento:** conjunto completo de netherite e espada de netherite. A armadura não aparece no corpo dele,
   só a skin (a espada na mão aparece).
-- **Atributos:** 20 de vida e 1 de dano de mão, como um jogador. O dano real vem da espada.
-- **Ataca** o jogador e qualquer criatura hostil (menos outros cavaleiros).
+- **Atributos:** 35 de vida e 1 de dano de mão. O dano real vem da espada.
+- **Neutro com jogadores:** só revida se for atacado. Ataca qualquer criatura hostil (menos outros cavaleiros).
+- **Escala blocos** como uma aranha.
 - **Spawn:** natural dentro da área de fortalezas do Nether e bastiões (modificador de bioma do Nether + checagem de estrutura no código). Dentro dos corredores da fortaleza o jogo usa a lista de mobs própria dela, então ele aparece mais no entorno e nos bastiões.
 - **Único:** existe no máximo um cavaleiro de netherite por mundo, que não some por distância.
   Quando ele morre, outro pode nascer de novo. Para nunca mais nascer, mude
@@ -56,7 +59,14 @@ O Forge 1.19.2 continua na versão 1.1.0, sem os mobs.
   Ovos de geração e `/summon` não têm essa trava.
 - **Skin:** `assets/netheritesupremo/textures/entity/netherite_knight.png` (modelo clássico, braços de 4 pixels).
 
-Os dois mobs têm ovo de geração na aba de ovos do modo criativo.
+### Necromante (boss)
+- **Atributos:** 195 de vida e 55,5 de dano. Barra de boss roxa.
+- **Voa e atravessa paredes**, usando o modelo de esqueleto com a textura `textures/entity/necromancer.png`.
+- **Invoca esqueletos** com armadura de diamante encantada e arco ou espada de diamante encantados (somem após 90 s ou quando ele morre).
+- **Cabeças de wither** como projétil (55,5 de dano + Wither II); não destroem blocos.
+- **Spawn:** por enquanto só pelo ovo de geração ou `/summon netheritesupremo:necromancer`.
+
+Os três mobs têm ovo de geração na aba de ovos do modo criativo.
 
 ## Compilar
 
