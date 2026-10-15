@@ -1,6 +1,7 @@
 package com.netheritesupremo.registry;
 
 import com.netheritesupremo.NetheriteSupremo;
+import com.netheritesupremo.entity.GoldenZombie;
 import com.netheritesupremo.entity.Necromancer;
 import com.netheritesupremo.entity.NetherSpider;
 import com.netheritesupremo.entity.NetheriteGolem;
@@ -47,6 +48,13 @@ public final class ModEntities {
                     .fireImmune()
                     .clientTrackingRange(8)
                     .build("nether_spider"));
+
+    public static final RegistryObject<EntityType<GoldenZombie>> GOLDEN_ZOMBIE = ENTITIES.register(
+            "golden_zombie",
+            () -> EntityType.Builder.of(GoldenZombie::new, MobCategory.MONSTER)
+                    .sized(0.6F, 1.95F)
+                    .clientTrackingRange(8)
+                    .build("golden_zombie"));
 
     private ModEntities() {
     }

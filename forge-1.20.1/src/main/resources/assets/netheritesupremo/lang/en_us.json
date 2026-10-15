@@ -6,5 +6,7 @@
   "entity.netheritesupremo.necromancer": "Necromancer",
   "item.netheritesupremo.necromancer_spawn_egg": "Necromancer Spawn Egg",
   "entity.netheritesupremo.nether_spider": "Nether Spider",
-  "item.netheritesupremo.nether_spider_spawn_egg": "Nether Spider Spawn Egg"
+  "item.netheritesupremo.nether_spider_spawn_egg": "Nether Spider Spawn Egg",
+  "entity.netheritesupremo.golden_zombie": "Golden Zombie",
+  "item.netheritesupremo.golden_zombie_spawn_egg": "Golden Zombie Spawn Egg"
 }

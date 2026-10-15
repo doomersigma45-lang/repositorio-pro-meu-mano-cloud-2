@@ -77,7 +77,13 @@ O Forge 1.19.2 continua na versão 1.1.0, sem os mobs.
 - **Reprodução:** o dono dá fungo carmesim ou distorcido a uma aranha domada adulta; ela procura outra aranha do nether apaixonada ou qualquer outra aranha (comum, das cavernas...) e gera um **filhote passivo** (já domado, cresce em 20 min). Intervalo de 5 min.
 - **Drops:** linha e pepitas de ouro.
 
-Os quatro mobs têm ovo de geração na aba de ovos do modo criativo.
+### Zumbi Dourado
+- Modelo de zumbi com a textura `textures/entity/golden_zombie.png`. Mesma IA do zumbi comum (queima ao sol, chama reforços, infecta aldeões).
+- **Atributos:** 27 de vida, 8 de dano e velocidade 0,30 (zumbi comum: 0,23). Não vira afogado na água.
+- **Drop:** 1 a 2 blocos de ouro.
+- **Spawn:** por enquanto só pelo ovo de geração ou `/summon netheritesupremo:golden_zombie`.
+
+Os cinco mobs têm ovo de geração na aba de ovos do modo criativo.
 
 ## Compilar
 

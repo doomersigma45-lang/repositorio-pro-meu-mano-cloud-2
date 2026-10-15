@@ -1,5 +1,6 @@
 package com.netheritesupremo;
 
+import com.netheritesupremo.entity.GoldenZombie;
 import com.netheritesupremo.entity.Necromancer;
 import com.netheritesupremo.entity.NetherSpider;
 import com.netheritesupremo.entity.NetheriteGolem;
@@ -24,6 +25,7 @@ public final class ModBusEvents {
         event.put(ModEntities.NETHERITE_KNIGHT.get(), NetheriteKnight.createKnightAttributes().build());
         event.put(ModEntities.NETHER_SPIDER.get(), NetherSpider.createNetherSpiderAttributes().build());
         event.put(ModEntities.NECROMANCER.get(), Necromancer.createNecromancerAttributes().build());
+        event.put(ModEntities.GOLDEN_ZOMBIE.get(), GoldenZombie.createGoldenZombieAttributes().build());
     }
 
     @SubscribeEvent

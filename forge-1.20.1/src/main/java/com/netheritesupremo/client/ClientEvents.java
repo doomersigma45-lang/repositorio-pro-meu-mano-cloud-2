@@ -18,6 +18,7 @@ public final class ClientEvents {
         event.registerEntityRenderer(ModEntities.NETHERITE_GOLEM.get(), NetheriteGolemRenderer::new);
         event.registerEntityRenderer(ModEntities.NETHERITE_KNIGHT.get(), NetheriteKnightRenderer::new);
         event.registerEntityRenderer(ModEntities.NETHER_SPIDER.get(), NetherSpiderRenderer::new);
+        event.registerEntityRenderer(ModEntities.GOLDEN_ZOMBIE.get(), GoldenZombieRenderer::new);
         event.registerEntityRenderer(ModEntities.NECROMANCER.get(), NecromancerRenderer::new);
     }
 

@@ -27,6 +27,10 @@ public final class ModItems {
             "nether_spider_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.NETHER_SPIDER, 0x3B0F0F, 0xFF7A1A, new Item.Properties()));
 
+    public static final RegistryObject<Item> GOLDEN_ZOMBIE_SPAWN_EGG = ITEMS.register(
+            "golden_zombie_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.GOLDEN_ZOMBIE, 0xF2C230, 0x8A5A00, new Item.Properties()));
+
     private ModItems() {
     }
 }

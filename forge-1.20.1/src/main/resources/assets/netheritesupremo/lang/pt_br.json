@@ -6,5 +6,7 @@
   "entity.netheritesupremo.necromancer": "Necromante",
   "item.netheritesupremo.necromancer_spawn_egg": "Ovo de Invocação: Necromante",
   "entity.netheritesupremo.nether_spider": "Aranha do Nether",
-  "item.netheritesupremo.nether_spider_spawn_egg": "Ovo de Geração da Aranha do Nether"
+  "item.netheritesupremo.nether_spider_spawn_egg": "Ovo de Geração da Aranha do Nether",
+  "entity.netheritesupremo.golden_zombie": "Zumbi Dourado",
+  "item.netheritesupremo.golden_zombie_spawn_egg": "Ovo de Geração do Zumbi Dourado"
 }
