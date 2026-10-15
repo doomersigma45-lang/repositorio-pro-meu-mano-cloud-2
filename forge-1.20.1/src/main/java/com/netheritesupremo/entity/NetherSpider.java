@@ -397,7 +397,7 @@ public class NetherSpider extends Spider {
             if (!(spider.level() instanceof ServerLevel level)) {
                 return;
             }
-            NetherSpider baby = spider.getType().create(level);
+            NetherSpider baby = com.netheritesupremo.registry.ModEntities.NETHER_SPIDER.get().create(level);
             if (baby != null) {
                 baby.setBaby(true);
                 baby.moveTo(spider.getX(), spider.getY(), spider.getZ(), 0.0F, 0.0F);
