@@ -6,6 +6,7 @@ public final class SupremoConfig {
     public static final ForgeConfigSpec SPEC;
     public static final ForgeConfigSpec.BooleanValue REQUIRE_FULL_SET;
     public static final ForgeConfigSpec.BooleanValue KNIGHT_RESPAWNS_AFTER_DEATH;
+    public static final ForgeConfigSpec.BooleanValue LETHAL_HIT_PROTECTION;
 
     static {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
@@ -18,6 +19,10 @@ public final class SupremoConfig {
                         "true = depois que ele morre, outro pode nascer naturalmente de novo.",
                         "false = depois que ele morre, nunca mais nasce outro naturalmente.")
                 .define("knightRespawnsAfterDeath", true);
+        LETHAL_HIT_PROTECTION = builder
+                .comment("true = jogador com a armadura de netherite completa tem anulado qualquer golpe unico que o mataria",
+                        "(dano final >= vida atual e >= metade da vida maxima). Nao vale para vazio nem /kill.")
+                .define("lethalHitProtection", true);
         SPEC = builder.build();
     }
 

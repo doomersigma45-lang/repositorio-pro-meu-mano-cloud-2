@@ -85,6 +85,11 @@ O Forge 1.19.2 continua na versão 1.1.0, sem os mobs.
 
 Os cinco mobs têm ovo de geração na aba de ovos do modo criativo.
 
+## Proteção contra golpe fatal (jogadores)
+Com a armadura de netherite completa, um único golpe que mataria o jogador de uma vez (dano final, já depois da armadura,
+maior ou igual à vida atual **e** à metade da vida máxima) é **anulado**, com som de escudo e aviso na barra de ação.
+Não vale para mobs, nem para vazio e `/kill`. Desligue com `lethalHitProtection = false` em `config/netheritesupremo-common.toml`.
+
 ## Encantamentos multiplicadores (somente Forge 1.20.1)
 - **Multiplicador 2x / 4x / 8x** (`netheritesupremo:multiplier_2x`, `_4x`, `_8x`): multiplicam os atributos do item
   (armadura, resistência da armadura, dano de ataque, resistência a repulsão...) e a velocidade de mineração.

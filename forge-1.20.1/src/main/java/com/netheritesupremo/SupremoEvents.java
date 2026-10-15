@@ -26,6 +26,7 @@ import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -172,6 +173,31 @@ public class SupremoEvents {
 
     private static boolean isFallOrExplosion(DamageSource source) {
         return source.is(DamageTypeTags.IS_FALL) || source.is(DamageTypeTags.IS_EXPLOSION);
+    }
+
+    // ------------------------------- golpe fatal de uma vez so: anulado (so jogadores)
+    /**
+     * Roda depois da armadura/absorcao (o valor e o dano que realmente seria aplicado). Se um unico
+     * golpe mataria o jogador de uma vez, a armadura de netherite o anula. Mobs nao tem essa protecao.
+     */
+    @SubscribeEvent(priority = net.minecraftforge.eventbus.api.EventPriority.LOWEST)
+    public void onDamageFinal(LivingDamageEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player) || !SupremoConfig.LETHAL_HIT_PROTECTION.get()
+                || !hasSetBonus(player) || player.isCreative() || player.isSpectator()) {
+            return;
+        }
+        DamageSource source = event.getSource();
+        if (source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) { // vazio, /kill
+            return;
+        }
+        float amount = event.getAmount();
+        if (amount >= player.getHealth() && amount >= player.getMaxHealth() * 0.5F) {
+            event.setAmount(0.0F);
+            player.level().playSound(null, player.blockPosition(), SoundEvents.SHIELD_BLOCK,
+                    net.minecraft.sounds.SoundSource.PLAYERS, 1.0F, 0.6F);
+            player.displayClientMessage(net.minecraft.network.chat.Component.literal(
+                    "Armadura de netherite anulou um golpe fatal!"), true);
+        }
     }
 
     // ------------------------------------- dano -90% (armadura) e efeitos (espada)
