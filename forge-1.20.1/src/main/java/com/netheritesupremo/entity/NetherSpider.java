@@ -36,7 +36,9 @@ import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.Spider;
+import net.minecraft.world.entity.monster.Zoglin;
 import net.minecraft.world.entity.monster.piglin.AbstractPiglin;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -212,8 +214,21 @@ public class NetherSpider extends Spider {
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false,
                 other -> !this.isTame() && !this.isBaby()));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractPiglin.class, 10, true, false,
-                other -> !this.isBaby()));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Mob.class, 10, true, false,
+                other -> !this.isBaby() && (other instanceof AbstractPiglin || other instanceof Zoglin)));
+    }
+
+    /** Escala paredes tambem com o dono montado (la o movimento e calculado no cliente do jogador). */
+    @Override
+    public boolean onClimbable() {
+        return super.onClimbable()
+                || (this.horizontalCollision && this.getControllingPassenger() != null && !this.isSpectator());
+    }
+
+    /** Aparece em bandos de ate 4. */
+    @Override
+    public int getMaxSpawnClusterSize() {
+        return 4;
     }
 
     // ------------------------------------------------------------------ montaria
@@ -432,6 +447,7 @@ public class NetherSpider extends Spider {
     static class FireballGoal extends Goal {
         private final NetherSpider spider;
         private int cooldown = 30;
+        private LivingEntity current;
 
         FireballGoal(NetherSpider spider) {
             this.spider = spider;
@@ -448,12 +464,36 @@ public class NetherSpider extends Spider {
             return validTarget();
         }
 
+        /** Alvo proprio da aranha; montada, usa o ultimo mob atacado pelo dono ou o hostil mais proximo. */
+        private LivingEntity pickTarget() {
+            LivingEntity own = spider.getTarget();
+            if (own != null && own.isAlive()) {
+                return own;
+            }
+            LivingEntity rider = spider.getControllingPassenger();
+            if (rider == null) {
+                return null;
+            }
+            LivingEntity hit = rider.getLastHurtMob();
+            if (hit != null && hit.isAlive() && hit != spider && !(hit instanceof Player)
+                    && !(hit instanceof NetherSpider) && rider.tickCount - rider.getLastHurtMobTimestamp() < 100) {
+                return hit;
+            }
+            return spider.level().getEntitiesOfClass(LivingEntity.class,
+                            spider.getBoundingBox().inflate(FIREBALL_MAX_DISTANCE),
+                            e -> e != spider && e != rider && e.isAlive() && !(e instanceof NetherSpider)
+                                    && (e instanceof Enemy || e instanceof AbstractPiglin || e instanceof Zoglin)
+                                    && spider.hasLineOfSight(e))
+                    .stream().min(Comparator.comparingDouble(spider::distanceToSqr)).orElse(null);
+        }
+
         private boolean validTarget() {
-            LivingEntity target = spider.getTarget();
-            if (target == null || !target.isAlive() || spider.isBaby() || spider.isVehicle()
-                    || !spider.hasLineOfSight(target)) {
+            LivingEntity target = pickTarget();
+            if (target == null || !target.isAlive() || spider.isBaby() || !spider.hasLineOfSight(target)) {
+                current = null;
                 return false;
             }
+            current = target;
             double distSqr = spider.distanceToSqr(target);
             return distSqr >= FIREBALL_MIN_DISTANCE * FIREBALL_MIN_DISTANCE
                     && distSqr <= FIREBALL_MAX_DISTANCE * FIREBALL_MAX_DISTANCE;
@@ -466,8 +506,8 @@ public class NetherSpider extends Spider {
 
         @Override
         public void tick() {
-            LivingEntity target = spider.getTarget();
-            if (target == null) {
+            LivingEntity target = current;
+            if (target == null || !target.isAlive()) {
                 return;
             }
             spider.getLookControl().setLookAt(target, 30.0F, 30.0F);
