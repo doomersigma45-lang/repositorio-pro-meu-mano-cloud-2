@@ -41,6 +41,7 @@ public class NetheriteSupremo {
             event.accept(ModItems.NETHERITE_KNIGHT_SPAWN_EGG);
             event.accept(ModItems.NECROMANCER_SPAWN_EGG);
             event.accept(ModItems.NETHER_SPIDER_SPAWN_EGG);
+            event.accept(ModItems.NETHER_SPIDER_SPAWN_EGG);
         }
     }
 }

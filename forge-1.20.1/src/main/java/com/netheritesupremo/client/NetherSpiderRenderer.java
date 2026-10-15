@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
-/** Modelo de aranha com a textura enviada pelo usuario, 30% maior (o filhote e metade disso). */
+/** Modelo de aranha com a textura enviada, 30% maior (filhote: metade disso). */
 public class NetherSpiderRenderer extends MobRenderer<NetherSpider, SpiderModel<NetherSpider>> {
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(NetheriteSupremo.MODID, "textures/entity/nether_spider.png");

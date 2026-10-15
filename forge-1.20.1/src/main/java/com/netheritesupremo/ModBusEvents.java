@@ -2,6 +2,7 @@ package com.netheritesupremo;
 
 import com.netheritesupremo.entity.Necromancer;
 import com.netheritesupremo.entity.NetherSpider;
+import com.netheritesupremo.entity.NetherSpider;
 import com.netheritesupremo.entity.NetheriteGolem;
 import net.minecraft.world.entity.monster.Monster;
 import com.netheritesupremo.entity.NetheriteKnight;
@@ -24,6 +25,7 @@ public final class ModBusEvents {
         event.put(ModEntities.NETHERITE_KNIGHT.get(), NetheriteKnight.createKnightAttributes().build());
         event.put(ModEntities.NETHER_SPIDER.get(), NetherSpider.createNetherSpiderAttributes().build());
         event.put(ModEntities.NECROMANCER.get(), Necromancer.createNecromancerAttributes().build());
+        event.put(ModEntities.NETHER_SPIDER.get(), NetherSpider.createSpiderAttributes().build());
     }
 
     @SubscribeEvent
@@ -33,6 +35,9 @@ public final class ModBusEvents {
                 SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.NETHER_SPIDER.get(), SpawnPlacements.Type.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules,
+                SpawnPlacementRegisterEvent.Operation.OR);
+        event.register(ModEntities.NETHER_SPIDER.get(), SpawnPlacements.Type.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, NetherSpider::checkSpiderSpawnRules,
                 SpawnPlacementRegisterEvent.Operation.OR);
     }
 }
