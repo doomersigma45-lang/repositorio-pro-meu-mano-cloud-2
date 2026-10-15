@@ -94,6 +94,9 @@ def main():
     if started:
         try:
             r = Rcon()
+            # Sem jogador, so os chunks forcados ficam carregados: garante a area dos testes
+            results.append("> forceload\n  " + r.cmd("forceload add -16 -16 112 112"))
+            time.sleep(20)
             tests = [
                 "summon netheritesupremo:netherite_knight 0 100 0",
                 "summon netheritesupremo:netherite_golem 90 100 90",
