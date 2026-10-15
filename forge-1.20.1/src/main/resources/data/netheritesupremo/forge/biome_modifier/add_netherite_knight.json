@@ -4,7 +4,7 @@
   "spawners": {
     "type": "netheritesupremo:netherite_knight",
     "weight": 8,
-    "minCount": 1,
-    "maxCount": 1
+    "minCount": 10,
+    "maxCount": 10
   }
 }

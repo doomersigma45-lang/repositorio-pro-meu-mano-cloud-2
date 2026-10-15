@@ -15,9 +15,9 @@ public final class SupremoConfig {
                         "false = qualquer peca de netherite vestida ativa esses efeitos.")
                 .define("requireFullSet", true);
         KNIGHT_RESPAWNS_AFTER_DEATH = builder
-                .comment("Existe no maximo UM cavaleiro de netherite por mundo (spawn natural).",
-                        "true = depois que ele morre, outro pode nascer naturalmente de novo.",
-                        "false = depois que ele morre, nunca mais nasce outro naturalmente.")
+                .comment("Existe no maximo UM grupo (10) de cavaleiros de netherite selvagens por mundo (spawn natural).",
+                        "true = depois que todos morrem, outro grupo pode nascer naturalmente de novo.",
+                        "false = depois que todos morrem, nunca mais nasce outro grupo naturalmente.")
                 .define("knightRespawnsAfterDeath", true);
         LETHAL_HIT_PROTECTION = builder
                 .comment("true = jogador com a armadura de netherite completa tem anulado qualquer golpe unico que o mataria",

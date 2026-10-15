@@ -53,10 +53,12 @@ O Forge 1.19.2 continua na versão 1.1.0, sem os mobs.
 - **Neutro com jogadores:** só revida se for atacado. Ataca qualquer criatura hostil (menos outros cavaleiros).
 - **Escala blocos** como uma aranha.
 - **Spawn:** natural dentro da área de fortalezas do Nether e bastiões (modificador de bioma do Nether + checagem de estrutura no código). Dentro dos corredores da fortaleza o jogo usa a lista de mobs própria dela, então ele aparece mais no entorno e nos bastiões.
-- **Único:** existe no máximo um cavaleiro de netherite por mundo, que não some por distância.
-  Quando ele morre, outro pode nascer de novo. Para nunca mais nascer, mude
-  `knightRespawnsAfterDeath` para `false` no `config/netheritesupremo-common.toml`.
-  Ovos de geração e `/summon` não têm essa trava.
+- **Grupos de dez:** nasce em grupo de 10 e os selvagens ficam perto uns dos outros. Se um deles for atacado (por mob ou jogador),
+  o grupo inteiro por perto ataca o agressor. Existe no máximo um grupo selvagem por mundo; não somem por distância.
+  Quando todos morrem, outro grupo pode nascer. Para nunca mais nascer, mude `knightRespawnsAfterDeath` para `false`
+  em `config/netheritesupremo-common.toml`. Ovos de geração e `/summon` não têm essa trava.
+- **Domesticar:** botão direito com **bloco de esmeralda ou de ferro** (gasta 1, sempre funciona). Domesticado, nunca ataca jogadores,
+  segue o dono, defende o dono de mobs e deixa de contar como parte do grupo selvagem.
 - **Skin:** `assets/netheritesupremo/textures/entity/netherite_knight.png` (modelo clássico, braços de 4 pixels).
 
 ### Necromante (boss)
