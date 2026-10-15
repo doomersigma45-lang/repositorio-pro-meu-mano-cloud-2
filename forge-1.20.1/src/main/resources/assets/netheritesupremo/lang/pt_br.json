@@ -8,5 +8,8 @@
   "entity.netheritesupremo.nether_spider": "Aranha do Nether",
   "item.netheritesupremo.nether_spider_spawn_egg": "Ovo de Geração da Aranha do Nether",
   "entity.netheritesupremo.golden_zombie": "Zumbi Dourado",
-  "item.netheritesupremo.golden_zombie_spawn_egg": "Ovo de Geração do Zumbi Dourado"
+  "item.netheritesupremo.golden_zombie_spawn_egg": "Ovo de Geração do Zumbi Dourado",
+  "enchantment.netheritesupremo.multiplier_2x": "Multiplicador 2x",
+  "enchantment.netheritesupremo.multiplier_4x": "Multiplicador 4x",
+  "enchantment.netheritesupremo.multiplier_8x": "Multiplicador 8x"
 }

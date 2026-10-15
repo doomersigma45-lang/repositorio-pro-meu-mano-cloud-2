@@ -85,6 +85,15 @@ O Forge 1.19.2 continua na versão 1.1.0, sem os mobs.
 
 Os cinco mobs têm ovo de geração na aba de ovos do modo criativo.
 
+## Encantamentos multiplicadores (somente Forge 1.20.1)
+- **Multiplicador 2x / 4x / 8x** (`netheritesupremo:multiplier_2x`, `_4x`, `_8x`): multiplicam os atributos do item
+  (armadura, resistência da armadura, dano de ataque, resistência a repulsão...) e a velocidade de mineração.
+  Valem em armaduras, ferramentas e armas. A velocidade de ataque não é multiplicada (ficaria negativa).
+- **Como obter:** o **Necromante** dropa um livro com o 2x. Na bigorna, **2x + 2x = 4x** e **4x + 4x = 8x** (livro com livro,
+  ou item encantado + livro; custa 10 e 20 níveis). Não aparecem na mesa de encantamento nem em baús.
+- Só um multiplicador por item. Para pegar pelo criativo: `/give @s enchanted_book{StoredEnchantments:[{id:"netheritesupremo:multiplier_8x",lvl:1s}]}`.
+- Os tetos de armadura e de resistência da armadura foram removidos para os valores multiplicados valerem.
+
 ## Compilar
 
 ### Opção 1: GitHub Actions (sem instalar nada)

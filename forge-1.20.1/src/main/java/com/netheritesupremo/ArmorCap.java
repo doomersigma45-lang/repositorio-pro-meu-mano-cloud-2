@@ -24,6 +24,7 @@ public final class ArmorCap {
 
     public static void raise() {
         raise(Attributes.ARMOR, "armadura", 30.0D, ARMOR_MAX);
+        raise(Attributes.ARMOR_TOUGHNESS, "resistencia da armadura", 20.0D, ARMOR_MAX);
         raise(Attributes.MAX_HEALTH, "vida maxima", 1024.0D, HEALTH_MAX);
     }
 

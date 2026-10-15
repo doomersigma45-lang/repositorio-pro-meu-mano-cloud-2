@@ -8,5 +8,8 @@
   "entity.netheritesupremo.nether_spider": "Nether Spider",
   "item.netheritesupremo.nether_spider_spawn_egg": "Nether Spider Spawn Egg",
   "entity.netheritesupremo.golden_zombie": "Golden Zombie",
-  "item.netheritesupremo.golden_zombie_spawn_egg": "Golden Zombie Spawn Egg"
+  "item.netheritesupremo.golden_zombie_spawn_egg": "Golden Zombie Spawn Egg",
+  "enchantment.netheritesupremo.multiplier_2x": "Multiplier 2x",
+  "enchantment.netheritesupremo.multiplier_4x": "Multiplier 4x",
+  "enchantment.netheritesupremo.multiplier_8x": "Multiplier 8x"
 }

@@ -1,5 +1,7 @@
 package com.netheritesupremo;
 
+import com.netheritesupremo.enchant.ModEnchantments;
+import com.netheritesupremo.enchant.MultiplierEvents;
 import com.netheritesupremo.registry.ModEntities;
 import com.netheritesupremo.registry.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -20,6 +22,7 @@ public class NetheriteSupremo {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         ModEntities.ENTITIES.register(modBus);
         ModItems.ITEMS.register(modBus);
+        ModEnchantments.ENCHANTMENTS.register(modBus);
         modBus.addListener(this::commonSetup);
         modBus.addListener(this::addCreativeTabItems);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SupremoConfig.SPEC);
@@ -28,6 +31,7 @@ public class NetheriteSupremo {
         MinecraftForge.EVENT_BUS.register(new GolemSummoning());
         MinecraftForge.EVENT_BUS.register(new KnightEvents());
         MinecraftForge.EVENT_BUS.register(new NecromancerEvents());
+        MinecraftForge.EVENT_BUS.register(new MultiplierEvents());
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
