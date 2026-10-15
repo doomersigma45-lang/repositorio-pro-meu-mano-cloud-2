@@ -27,10 +27,6 @@ public final class ModItems {
             "nether_spider_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.NETHER_SPIDER, 0x3B0F0F, 0xFF7A1A, new Item.Properties()));
 
-    public static final RegistryObject<Item> NETHER_SPIDER_SPAWN_EGG = ITEMS.register(
-            "nether_spider_spawn_egg",
-            () -> new ForgeSpawnEggItem(ModEntities.NETHER_SPIDER, 0x3B0E0E, 0xFF7A1A, new Item.Properties()));
-
     private ModItems() {
     }
 }

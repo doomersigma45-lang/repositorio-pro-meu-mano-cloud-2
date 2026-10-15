@@ -3,293 +3,223 @@ package com.netheritesupremo.entity;
 import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import javax.annotation.Nullable;
-import com.netheritesupremo.registry.ModEntities;
-import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.Pose;
-import net.minecraft.world.entity.TamableAnimal;
-import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.BreedGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.FollowOwnerGoal;
-import net.minecraft.world.entity.ai.goal.FollowParentGoal;
 import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.LeapAtTargetGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.OwnerHurtByTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.OwnerHurtTargetGoal;
-import net.minecraft.world.entity.ai.navigation.PathNavigation;
-import net.minecraft.world.entity.ai.navigation.WallClimberNavigation;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Spider;
-import net.minecraft.world.entity.monster.piglin.Piglin;
-import net.minecraft.world.entity.monster.piglin.PiglinBrute;
+import net.minecraft.world.entity.monster.piglin.AbstractPiglin;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.SmallFireball;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
 /**
- * Aranha do Nether. Hostil com jogadores e piglins; domavel com barras de ouro (domada, nao ataca
- * jogadores); montaria rapida; escala paredes; solta bolas de fogo; imune a fogo e explosoes;
- * reproduz com fungos do Nether (com outra aranha do Nether ou com qualquer aranha) gerando um
+ * Aranha do nether. Estende a aranha (modelo, escalada de paredes, sons). Hostil a jogadores e
+ * piglins; domavel com barras de ouro (domada nao ataca jogadores); serve de montaria; solta bolas de
+ * fogo; reproduz com fungos do nether (com outra aranha do nether ou qualquer outra aranha) gerando um
  * filhote passivo.
  */
-public class NetherSpider extends TamableAnimal {
+public class NetherSpider extends Spider {
     public static final double MAX_HEALTH = 65.0D;
-    public static final double MIN_DAMAGE = 6.0D;
-    public static final double MAX_DAMAGE = 12.0D;
-    public static final double MOVEMENT_SPEED = 0.35D;
-    /** Velocidade montada. Um cavalo no maximo chega a 0.3375. */
-    public static final float RIDDEN_SPEED = 0.45F;
-    public static final double FIREBALL_MIN_DISTANCE = 4.0D;
-    public static final double FIREBALL_MAX_DISTANCE = 24.0D;
-    public static final float TAME_HEAL = 10.0F;
+    public static final double MOVEMENT_SPEED = 0.45D; // cavalos chegam a no maximo 0.3375
+    public static final float MIN_DAMAGE = 6.0F;
+    public static final float MAX_DAMAGE = 12.0F;
 
-    public NetherSpider(EntityType<? extends NetherSpider> type, Level level) {
+    public static final int TAME_ONE_IN = 3;
+    public static final float GOLD_INGOT_HEAL = 10.0F;
+    public static final int LOVE_TICKS = 600;
+    public static final int BREED_COOLDOWN = 6000;
+    public static final int GROW_TICKS = 24000;
+
+    public static final double FIREBALL_MIN_DISTANCE = 5.0D;
+    public static final double FIREBALL_MAX_DISTANCE = 18.0D;
+
+    private static final EntityDataAccessor<Boolean> DATA_TAMED =
+            SynchedEntityData.defineId(NetherSpider.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> DATA_BABY =
+            SynchedEntityData.defineId(NetherSpider.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Optional<UUID>> DATA_OWNER =
+            SynchedEntityData.defineId(NetherSpider.class, EntityDataSerializers.OPTIONAL_UUID);
+
+    private int inLove;
+    private int breedCooldown;
+    private int babyAge;
+
+    public NetherSpider(EntityType<? extends Spider> type, Level level) {
         super(type, level);
-        this.xpReward = 12;
     }
 
-    public static AttributeSupplier.Builder createSpiderAttributes() {
-        return Monster.createMonsterAttributes()
+    public static AttributeSupplier.Builder createNetherSpiderAttributes() {
+        return Spider.createAttributes()
                 .add(Attributes.MAX_HEALTH, MAX_HEALTH)
-                .add(Attributes.ATTACK_DAMAGE, MIN_DAMAGE)
+                .add(Attributes.ATTACK_DAMAGE, MAX_DAMAGE)
                 .add(Attributes.MOVEMENT_SPEED, MOVEMENT_SPEED)
                 .add(Attributes.FOLLOW_RANGE, 24.0D);
     }
 
-    /** Spawn natural: no chao, fora do modo pacifico. */
-    public static boolean checkSpiderSpawnRules(EntityType<NetherSpider> type, ServerLevelAccessor level,
-                                                MobSpawnType reason, BlockPos pos, RandomSource random) {
-        return level.getDifficulty() != Difficulty.PEACEFUL && Mob.checkMobSpawnRules(type, level, reason, pos, random);
-    }
-
-    // ------------------------------------------------------------------ IA
     @Override
-    protected void registerGoals() {
-        this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new FireballGoal(this));
-        this.goalSelector.addGoal(2, new FollowOwnerGoal(this, 1.3D, 10.0F, 2.0F, false));
-        this.goalSelector.addGoal(3, new BreedGoal(this, 1.0D));
-        this.goalSelector.addGoal(4, new MateWithOtherSpiderGoal(this));
-        this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.2D, false));
-        this.goalSelector.addGoal(6, new FollowParentGoal(this, 1.1D));
-        this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 0.8D));
-        this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
-        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-
-        this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
-        this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
-        this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
-        // Selvagem: ataca jogadores (menos quem segura uma barra de ouro na mao)
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false,
-                player -> !isHoldingGold((Player) player)) {
-            @Override
-            public boolean canUse() {
-                return !NetherSpider.this.isTame() && super.canUse();
-            }
-
-            @Override
-            public boolean canContinueToUse() {
-                return !NetherSpider.this.isTame() && super.canContinueToUse();
-            }
-        });
-        // Ataca piglins (domada ou nao)
-        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Mob.class, 10, true, false,
-                other -> other instanceof Piglin || other instanceof PiglinBrute));
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(DATA_TAMED, false);
+        this.entityData.define(DATA_BABY, false);
+        this.entityData.define(DATA_OWNER, Optional.empty());
     }
 
-    private static boolean isHoldingGold(Player player) {
-        return player.getMainHandItem().is(Items.GOLD_INGOT) || player.getOffhandItem().is(Items.GOLD_INGOT);
+    // ------------------------------------------------------------------ estado
+    public boolean isTame() {
+        return this.entityData.get(DATA_TAMED);
     }
 
-    /** Filhote e passivo; domada nunca ataca jogadores. */
     @Override
-    public boolean canAttack(LivingEntity target) {
-        if (this.isBaby()) {
-            return false;
-        }
-        if (this.isTame() && target instanceof Player) {
-            return false;
-        }
-        return super.canAttack(target);
+    public boolean isBaby() {
+        return this.entityData.get(DATA_BABY);
     }
 
-    /** Dano corpo a corpo sorteado entre 6 e 12. */
+    public void setBaby(boolean baby) {
+        this.entityData.set(DATA_BABY, baby);
+        this.babyAge = 0;
+    }
+
+    @Nullable
+    public UUID getOwnerUUID() {
+        return this.entityData.get(DATA_OWNER).orElse(null);
+    }
+
+    public void tameBy(@Nullable UUID owner) {
+        this.entityData.set(DATA_TAMED, true);
+        this.entityData.set(DATA_OWNER, Optional.ofNullable(owner));
+        this.setTarget(null);
+        this.setPersistenceRequired();
+    }
+
+    public boolean isOwnedBy(LivingEntity entity) {
+        return this.isTame() && entity.getUUID().equals(this.getOwnerUUID());
+    }
+
     @Override
-    public boolean doHurtTarget(Entity target) {
-        AttributeInstance damage = this.getAttribute(Attributes.ATTACK_DAMAGE);
-        if (damage != null) {
-            damage.setBaseValue(MIN_DAMAGE + this.random.nextDouble() * (MAX_DAMAGE - MIN_DAMAGE));
+    public void onSyncedDataUpdated(EntityDataAccessor<?> key) {
+        if (DATA_BABY.equals(key)) {
+            this.refreshDimensions();
         }
-        return super.doHurtTarget(target);
+        super.onSyncedDataUpdated(key);
     }
 
-    // ----------------------------------------------------- imunidades / aranha
+    @Override
+    public EntityDimensions getDimensions(Pose pose) {
+        EntityDimensions dimensions = super.getDimensions(pose);
+        return this.isBaby() ? dimensions.scale(0.5F) : dimensions;
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        tag.putBoolean("Tame", this.isTame());
+        tag.putBoolean("Baby", this.isBaby());
+        tag.putInt("BabyAge", this.babyAge);
+        tag.putInt("BreedCooldown", this.breedCooldown);
+        if (this.getOwnerUUID() != null) {
+            tag.putUUID("Owner", this.getOwnerUUID());
+        }
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        this.entityData.set(DATA_TAMED, tag.getBoolean("Tame"));
+        this.entityData.set(DATA_BABY, tag.getBoolean("Baby"));
+        this.babyAge = tag.getInt("BabyAge");
+        this.breedCooldown = tag.getInt("BreedCooldown");
+        this.entityData.set(DATA_OWNER, tag.hasUUID("Owner") ? Optional.of(tag.getUUID("Owner")) : Optional.empty());
+        if (this.isTame()) {
+            this.setPersistenceRequired();
+        }
+    }
+
+    // ------------------------------------------------------------------ combate
+    /** Imune a fogo (pelo tipo da entidade) e a explosoes. */
     @Override
     public boolean isInvulnerableTo(DamageSource source) {
         return source.is(DamageTypeTags.IS_EXPLOSION) || super.isInvulnerableTo(source);
     }
 
+    /** Dano corpo a corpo sorteado entre 6 e 12. */
     @Override
-    public boolean canBeAffected(MobEffectInstance effect) {
-        if (effect.getEffect() == MobEffects.POISON) {
-            return false;
+    public boolean doHurtTarget(Entity target) {
+        this.getAttribute(Attributes.ATTACK_DAMAGE)
+                .setBaseValue(MIN_DAMAGE + this.random.nextFloat() * (MAX_DAMAGE - MIN_DAMAGE));
+        return super.doHurtTarget(target);
+    }
+
+    /** Filhote e aranha domada nunca escolhem jogadores como alvo. */
+    @Override
+    public void setTarget(@Nullable LivingEntity target) {
+        if (target != null && (this.isBaby() || (this.isTame() && target instanceof Player))) {
+            super.setTarget(null);
+            return;
         }
-        return super.canBeAffected(effect);
+        super.setTarget(target);
     }
 
     @Override
-    public void makeStuckInBlock(BlockState state, Vec3 motionMultiplier) {
-        if (!state.is(Blocks.COBWEB)) {
-            super.makeStuckInBlock(state, motionMultiplier);
-        }
+    protected boolean shouldDespawnInPeaceful() {
+        return !this.isTame();
     }
 
     @Override
-    protected PathNavigation createNavigation(Level level) {
-        return new WallClimberNavigation(this, level);
+    protected void registerGoals() {
+        this.goalSelector.addGoal(1, new FloatGoal(this));
+        this.goalSelector.addGoal(2, new SpiderBreedGoal(this));
+        this.goalSelector.addGoal(3, new FireballGoal(this));
+        this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.4F));
+        this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.2D, true));
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 0.8D));
+        this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
+
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false,
+                other -> !this.isTame() && !this.isBaby()));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractPiglin.class, 10, true, false,
+                other -> !this.isBaby()));
     }
 
-    /** Escala qualquer bloco contra o qual esteja empurrando (como a aranha). */
-    @Override
-    public boolean onClimbable() {
-        return this.horizontalCollision && !this.isSpectator();
-    }
-
-    @Override
-    protected float getStandingEyeHeight(Pose pose, EntityDimensions dimensions) {
-        return 0.85F;
-    }
-
-    @Override
-    public int getMaxSpawnClusterSize() {
-        return 2;
-    }
-
-    /** So some por distancia se for selvagem. */
-    @Override
-    public boolean removeWhenFarAway(double distanceSqr) {
-        return !this.isTame() && !this.hasCustomName();
-    }
-
-    // -------------------------------------------------------- reproducao
-    @Override
-    public boolean isFood(ItemStack stack) {
-        return stack.is(Items.CRIMSON_FUNGUS) || stack.is(Items.WARPED_FUNGUS);
-    }
-
-    @Nullable
-    @Override
-    public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob partner) {
-        NetherSpider baby = ModEntities.NETHER_SPIDER.get().create(level);
-        if (baby != null) {
-            copyOwnerTo(baby);
-        }
-        return baby;
-    }
-
-    void copyOwnerTo(NetherSpider baby) {
-        if (this.isTame() && this.getOwnerUUID() != null) {
-            baby.setOwnerUUID(this.getOwnerUUID());
-            baby.setTame(true);
-        }
-    }
-
-    // ----------------------------------------------- interacao (domar / montar)
-    @Override
-    public InteractionResult mobInteract(Player player, InteractionHand hand) {
-        ItemStack stack = player.getItemInHand(hand);
-        if (!this.isTame()) {
-            if (stack.is(Items.GOLD_INGOT) && !this.isBaby()) {
-                if (!this.level().isClientSide) {
-                    if (!player.getAbilities().instabuild) {
-                        stack.shrink(1);
-                    }
-                    if (this.random.nextInt(3) == 0) {
-                        this.tame(player);
-                        this.navigation.stop();
-                        this.setTarget(null);
-                        this.level().broadcastEntityEvent(this, (byte) 7);
-                    } else {
-                        this.level().broadcastEntityEvent(this, (byte) 6);
-                    }
-                }
-                return InteractionResult.sidedSuccess(this.level().isClientSide);
-            }
-            return super.mobInteract(player, hand);
-        }
-        if (this.isFood(stack)) {
-            return super.mobInteract(player, hand);
-        }
-        if (stack.is(Items.GOLD_INGOT) && this.getHealth() < this.getMaxHealth()) {
-            this.heal(TAME_HEAL);
-            if (!player.getAbilities().instabuild) {
-                stack.shrink(1);
-            }
-            return InteractionResult.sidedSuccess(this.level().isClientSide);
-        }
-        if (this.isOwnedBy(player) && !this.isBaby() && !player.isSecondaryUseActive() && !this.isVehicle()) {
-            if (!this.level().isClientSide) {
-                player.startRiding(this);
-            }
-            return InteractionResult.sidedSuccess(this.level().isClientSide);
-        }
-        return super.mobInteract(player, hand);
-    }
-
-    // ---------------------------------------------------------- montaria
+    // ------------------------------------------------------------------ montaria
     @Nullable
     @Override
     public LivingEntity getControllingPassenger() {
-        Entity passenger = this.getFirstPassenger();
-        if (passenger instanceof Player player && this.isTame() && this.isOwnedBy(player)) {
-            return player;
-        }
-        return null;
-    }
-
-    @Override
-    protected boolean canAddPassenger(Entity passenger) {
-        return this.getPassengers().isEmpty() && this.isTame() && !this.isBaby();
-    }
-
-    @Override
-    public double getPassengersRidingOffset() {
-        return this.getBbHeight() * 0.9D;
+        Entity first = this.getFirstPassenger();
+        return first instanceof Player player && this.isOwnedBy(player) ? player : null;
     }
 
     @Override
@@ -308,45 +238,198 @@ public class NetherSpider extends TamableAnimal {
                 forward *= 0.25F;
             }
             if (this.isControlledByLocalInstance()) {
-                this.setSpeed(RIDDEN_SPEED);
+                this.setSpeed((float) this.getAttributeValue(Attributes.MOVEMENT_SPEED));
                 super.travel(new Vec3(strafe, travelVector.y, forward));
             } else {
                 this.setDeltaMovement(Vec3.ZERO);
             }
+            this.calculateEntityAnimation(false);
         } else {
             super.travel(travelVector);
         }
     }
 
-    // ------------------------------------------------------------------ sons
-    @Override
-    protected SoundEvent getAmbientSound() {
-        return SoundEvents.SPIDER_AMBIENT;
+    // ------------------------------------------------------- interacao (domar, montar, reproduzir)
+    private static boolean isFungus(ItemStack stack) {
+        return stack.is(Items.CRIMSON_FUNGUS) || stack.is(Items.WARPED_FUNGUS);
     }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource source) {
-        return SoundEvents.SPIDER_HURT;
+    public InteractionResult mobInteract(Player player, InteractionHand hand) {
+        ItemStack stack = player.getItemInHand(hand);
+        boolean client = this.level().isClientSide;
+
+        if (!this.isTame()) {
+            if (stack.is(Items.GOLD_INGOT) && !this.isBaby()) {
+                if (!client) {
+                    if (!player.getAbilities().instabuild) {
+                        stack.shrink(1);
+                    }
+                    if (this.random.nextInt(TAME_ONE_IN) == 0) {
+                        this.tameBy(player.getUUID());
+                        this.level().broadcastEntityEvent(this, (byte) 7);
+                    } else {
+                        this.level().broadcastEntityEvent(this, (byte) 6);
+                    }
+                }
+                return InteractionResult.sidedSuccess(client);
+            }
+            return super.mobInteract(player, hand);
+        }
+
+        if (stack.is(Items.GOLD_INGOT) && this.getHealth() < this.getMaxHealth()) {
+            if (!client) {
+                this.heal(GOLD_INGOT_HEAL);
+                if (!player.getAbilities().instabuild) {
+                    stack.shrink(1);
+                }
+                this.playSound(SoundEvents.GENERIC_EAT, 1.0F, 1.0F);
+            }
+            return InteractionResult.sidedSuccess(client);
+        }
+        if (!this.isOwnedBy(player)) {
+            return InteractionResult.PASS;
+        }
+        if (isFungus(stack) && !this.isBaby() && this.inLove <= 0 && this.breedCooldown <= 0) {
+            if (!client) {
+                if (!player.getAbilities().instabuild) {
+                    stack.shrink(1);
+                }
+                this.inLove = LOVE_TICKS;
+                this.level().broadcastEntityEvent(this, (byte) 7);
+            }
+            return InteractionResult.sidedSuccess(client);
+        }
+        if (!this.isBaby() && !this.isVehicle() && !player.isSecondaryUseActive() && stack.isEmpty()) {
+            if (!client) {
+                player.startRiding(this);
+            }
+            return InteractionResult.sidedSuccess(client);
+        }
+        return InteractionResult.PASS;
     }
 
     @Override
-    protected SoundEvent getDeathSound() {
-        return SoundEvents.SPIDER_DEATH;
+    public void handleEntityEvent(byte id) {
+        if (id == 6 || id == 7) {
+            ParticleOptions particle = id == 7 ? ParticleTypes.HEART : ParticleTypes.SMOKE;
+            for (int i = 0; i < 7; i++) {
+                this.level().addParticle(particle, this.getRandomX(1.0D), this.getRandomY() + 0.5D,
+                        this.getRandomZ(1.0D), this.random.nextGaussian() * 0.02D, this.random.nextGaussian() * 0.02D,
+                        this.random.nextGaussian() * 0.02D);
+            }
+        } else {
+            super.handleEntityEvent(id);
+        }
     }
 
     @Override
-    protected void playStepSound(BlockPos pos, BlockState state) {
-        this.playSound(SoundEvents.SPIDER_STEP, 0.15F, 1.0F);
+    public void aiStep() {
+        super.aiStep();
+        if (!this.level().isClientSide) {
+            if (this.inLove > 0) {
+                this.inLove--;
+            }
+            if (this.breedCooldown > 0) {
+                this.breedCooldown--;
+            }
+            if (this.isBaby() && ++this.babyAge >= GROW_TICKS) {
+                this.setBaby(false);
+            }
+        }
     }
 
-    // ------------------------------------------------------- bolas de fogo
+    // ------------------------------------------------------------------ reproducao
+    /** Procura parceiro (outra aranha do nether apaixonada ou qualquer outra aranha adulta), anda ate ele e gera um filhote. */
+    static class SpiderBreedGoal extends Goal {
+        private final NetherSpider spider;
+        private Spider partner;
+
+        SpiderBreedGoal(NetherSpider spider) {
+            this.spider = spider;
+            this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
+        }
+
+        @Override
+        public boolean canUse() {
+            if (spider.inLove <= 0 || spider.isBaby() || spider.breedCooldown > 0 || spider.isVehicle()) {
+                return false;
+            }
+            List<Spider> candidates = spider.level().getEntitiesOfClass(Spider.class,
+                    spider.getBoundingBox().inflate(16.0D), this::isPartner);
+            partner = candidates.stream().min(Comparator.comparingDouble(spider::distanceToSqr)).orElse(null);
+            return partner != null;
+        }
+
+        private boolean isPartner(Spider other) {
+            if (other == spider || !other.isAlive() || other.isBaby()) {
+                return false;
+            }
+            if (other instanceof NetherSpider nether) {
+                return nether.inLove > 0 && nether.breedCooldown <= 0;
+            }
+            return true; // aranha comum, aranha das cavernas, etc.
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            return partner != null && partner.isAlive() && spider.inLove > 0 && !spider.isVehicle();
+        }
+
+        @Override
+        public void stop() {
+            partner = null;
+        }
+
+        @Override
+        public boolean requiresUpdateEveryTick() {
+            return true;
+        }
+
+        @Override
+        public void tick() {
+            spider.getLookControl().setLookAt(partner, 10.0F, spider.getMaxHeadXRot());
+            spider.getNavigation().moveTo(partner, 1.0D);
+            double reach = (spider.getBbWidth() + partner.getBbWidth()) * 0.5D + 0.8D;
+            if (spider.distanceToSqr(partner) > reach * reach) {
+                return;
+            }
+            if (!(spider.level() instanceof ServerLevel level)) {
+                return;
+            }
+            NetherSpider baby = spider.getType().create(level);
+            if (baby != null) {
+                baby.setBaby(true);
+                baby.moveTo(spider.getX(), spider.getY(), spider.getZ(), 0.0F, 0.0F);
+                if (spider.getOwnerUUID() != null) {
+                    baby.tameBy(spider.getOwnerUUID());
+                }
+                level.addFreshEntity(baby);
+                level.sendParticles(ParticleTypes.HEART, spider.getX(), spider.getY(0.8D), spider.getZ(),
+                        7, 0.5D, 0.5D, 0.5D, 0.02D);
+                if (level.getGameRules().getBoolean(net.minecraft.world.level.GameRules.RULE_DOMOBLOOT)) {
+                    level.addFreshEntity(new ExperienceOrb(level, spider.getX(), spider.getY(), spider.getZ(),
+                            spider.getRandom().nextInt(7) + 1));
+                }
+            }
+            spider.inLove = 0;
+            spider.breedCooldown = BREED_COOLDOWN;
+            if (partner instanceof NetherSpider other) {
+                other.inLove = 0;
+                other.breedCooldown = BREED_COOLDOWN;
+            }
+            partner = null;
+        }
+    }
+
+    // ------------------------------------------------------------ bolas de fogo
     static class FireballGoal extends Goal {
         private final NetherSpider spider;
-        private int cooldown = 40;
+        private int cooldown = 30;
 
         FireballGoal(NetherSpider spider) {
             this.spider = spider;
-            this.setFlags(EnumSet.noneOf(Flag.class));
+            this.setFlags(EnumSet.noneOf(Flag.class)); // roda junto com o resto
         }
 
         @Override
@@ -361,7 +444,7 @@ public class NetherSpider extends TamableAnimal {
 
         private boolean validTarget() {
             LivingEntity target = spider.getTarget();
-            if (spider.isBaby() || spider.isVehicle() || target == null || !target.isAlive()
+            if (target == null || !target.isAlive() || spider.isBaby() || spider.isVehicle()
                     || !spider.hasLineOfSight(target)) {
                 return false;
             }
@@ -385,101 +468,19 @@ public class NetherSpider extends TamableAnimal {
             if (--cooldown > 0) {
                 return;
             }
-            cooldown = 50 + spider.getRandom().nextInt(30);
+            cooldown = 40 + spider.getRandom().nextInt(30);
             Level level = spider.level();
             double sx = spider.getX();
-            double sy = spider.getY(0.6D);
+            double sy = spider.getY(0.7D);
             double sz = spider.getZ();
             double dx = target.getX() - sx;
             double dy = target.getY(0.5D) - sy;
             double dz = target.getZ() - sz;
-            SmallFireball fireball = new SmallFireball(level, spider, dx, dy, dz);
+            float damage = MIN_DAMAGE + spider.getRandom().nextFloat() * (MAX_DAMAGE - MIN_DAMAGE);
+            NetherSpiderFireball fireball = new NetherSpiderFireball(level, spider, dx, dy, dz, damage);
             fireball.setPos(sx, sy, sz);
             level.addFreshEntity(fireball);
             level.playSound(null, spider.blockPosition(), SoundEvents.BLAZE_SHOOT, SoundSource.HOSTILE, 1.0F, 1.0F);
-        }
-    }
-
-    // ------------------------- reproducao com outros tipos de aranha (vanilla/mods)
-    static class MateWithOtherSpiderGoal extends Goal {
-        private static final double SEARCH_RADIUS = 16.0D;
-
-        private final NetherSpider spider;
-        private Spider partner;
-        private int loveTime;
-
-        MateWithOtherSpiderGoal(NetherSpider spider) {
-            this.spider = spider;
-            this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
-        }
-
-        @Override
-        public boolean canUse() {
-            if (!spider.isInLove() || spider.isBaby()) {
-                return false;
-            }
-            // Se existe outra aranha do Nether apaixonada, quem cuida e o BreedGoal normal.
-            List<NetherSpider> mates = spider.level().getEntitiesOfClass(NetherSpider.class,
-                    spider.getBoundingBox().inflate(SEARCH_RADIUS),
-                    other -> other != spider && other.isInLove() && !other.isBaby());
-            if (!mates.isEmpty()) {
-                return false;
-            }
-            List<Spider> spiders = spider.level().getEntitiesOfClass(Spider.class,
-                    spider.getBoundingBox().inflate(SEARCH_RADIUS), Entity::isAlive);
-            partner = spiders.stream().min(Comparator.comparingDouble(spider::distanceToSqr)).orElse(null);
-            return partner != null;
-        }
-
-        @Override
-        public boolean canContinueToUse() {
-            return partner != null && partner.isAlive() && spider.isInLove();
-        }
-
-        @Override
-        public void start() {
-            loveTime = 0;
-        }
-
-        @Override
-        public void stop() {
-            partner = null;
-            loveTime = 0;
-        }
-
-        @Override
-        public boolean requiresUpdateEveryTick() {
-            return true;
-        }
-
-        @Override
-        public void tick() {
-            spider.getLookControl().setLookAt(partner, 10.0F, spider.getMaxHeadXRot());
-            spider.getNavigation().moveTo(partner, 1.0D);
-            if (spider.distanceToSqr(partner) < 6.25D && ++loveTime >= 40) {
-                breed();
-            }
-        }
-
-        private void breed() {
-            if (!(spider.level() instanceof ServerLevel server)) {
-                return;
-            }
-            NetherSpider baby = ModEntities.NETHER_SPIDER.get().create(server);
-            if (baby != null) {
-                baby.setBaby(true);
-                baby.moveTo(spider.getX(), spider.getY(), spider.getZ(), 0.0F, 0.0F);
-                spider.copyOwnerTo(baby);
-                server.addFreshEntityWithPassengers(baby);
-                if (server.getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
-                    server.addFreshEntity(new ExperienceOrb(server, spider.getX(), spider.getY(), spider.getZ(),
-                            spider.getRandom().nextInt(7) + 1));
-                }
-            }
-            spider.setAge(6000);
-            spider.resetLove();
-            server.broadcastEntityEvent(spider, (byte) 18);
-            partner = null;
         }
     }
 }
