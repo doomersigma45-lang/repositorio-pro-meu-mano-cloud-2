@@ -7,7 +7,7 @@ Mod que deixa a netherite OP e remove o limite de armadura do jogo.
 | Armadura | capacete 14, peitoral 20, calças 17, botas 13 |
 | Teto de armadura | removido (vanilla limita o total a 30; aqui o máximo vira 1024) |
 | Queda e explosão | dano zero com o conjunto |
-| Qualquer outro dano | reduzido em 90% com o conjunto |
+| Qualquer outro dano | reduzido em 97% com o conjunto |
 | Voo | voa como no criativo com o conjunto (duplo pulo para ligar), em velocidade ~3x a da aranha do nether montada (~58 blocos/s; correr no ar dobra). Valor em `NETHERITE_FLYING_SPEED` |
 | Escudo | flechas quicam e não dão dano, com o som do escudo |
 | Efeitos | Resistência ao Fogo e Força II |
@@ -17,7 +17,7 @@ Mod que deixa a netherite OP e remove o limite de armadura do jogo.
 | Inquebrável | armadura, espada, machado, picareta e pá de netherite |
 | Mobs | tudo vale também para mobs que usarem o equipamento (exceto o voo) |
 
-Os efeitos da armadura (voo, escudo, imunidades, -90% e efeitos) ativam com o conjunto
+Os efeitos da armadura (voo, escudo, imunidades, -97% e efeitos) ativam com o conjunto
 completo (4 peças). Para ativar com qualquer peça, mude `requireFullSet` para `false` no
 arquivo `config/netheritesupremo-common.toml`.
 

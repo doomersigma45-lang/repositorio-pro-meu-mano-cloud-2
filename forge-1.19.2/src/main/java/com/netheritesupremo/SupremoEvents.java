@@ -41,8 +41,8 @@ public class SupremoEvents {
     public static final double SWORD_DAMAGE = 80.0D;
     public static final double AXE_DAMAGE = 100.0D;
 
-    // Armadura: todo dano que nao seja queda/explosao fica com 10% (reduz 90%)
-    public static final float DAMAGE_MULTIPLIER = 0.1F;
+    // Armadura: todo dano que nao seja queda/explosao fica com 3% (reduz 97%)
+    public static final float DAMAGE_MULTIPLIER = 0.03F;
 
     // Espada: efeitos aplicados no alvo (duracao em ticks; amplificador 0 = nivel I)
     public static final int SWORD_EFFECT_TICKS = 200; // 10 segundos
@@ -173,12 +173,12 @@ public class SupremoEvents {
         return source.isFall() || source.isExplosion();
     }
 
-    // ------------------------------------- dano -90% (armadura) e efeitos (espada)
+    // ------------------------------------- dano -97% (armadura) e efeitos (espada)
     @SubscribeEvent
     public void onHurt(LivingHurtEvent event) {
         LivingEntity victim = event.getEntity();
 
-        // Quem veste o conjunto recebe so 10% de qualquer dano
+        // Quem veste o conjunto recebe so 3% de qualquer dano
         if (hasSetBonus(victim)) {
             event.setAmount(event.getAmount() * DAMAGE_MULTIPLIER);
         }
