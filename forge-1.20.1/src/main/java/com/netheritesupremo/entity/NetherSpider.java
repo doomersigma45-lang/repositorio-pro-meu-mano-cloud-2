@@ -390,6 +390,10 @@ public class NetherSpider extends Spider {
 
         @Override
         public void tick() {
+            // O goal so reavalia canContinueToUse a cada 2 ticks: apos gerar o filhote o parceiro ja e null
+            if (partner == null) {
+                return;
+            }
             spider.getLookControl().setLookAt(partner, 10.0F, spider.getMaxHeadXRot());
             spider.getNavigation().moveTo(partner, 1.0D);
             double reach = (spider.getBbWidth() + partner.getBbWidth()) * 0.5D + 0.8D;
