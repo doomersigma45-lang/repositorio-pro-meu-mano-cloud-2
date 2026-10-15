@@ -8,7 +8,7 @@ Mod que deixa a netherite OP e remove o limite de armadura do jogo.
 | Teto de armadura | removido (vanilla limita o total a 30; aqui o máximo vira 1024) |
 | Queda e explosão | dano zero com o conjunto |
 | Qualquer outro dano | reduzido em 90% com o conjunto |
-| Voo | voa como no criativo com o conjunto (duplo pulo para ligar) |
+| Voo | voa como no criativo com o conjunto (duplo pulo para ligar), em velocidade ~6x a da aranha do nether montada (~116 blocos/s; correr no ar dobra). Valor em `NETHERITE_FLYING_SPEED` |
 | Escudo | flechas quicam e não dão dano, com o som do escudo |
 | Efeitos | Resistência ao Fogo e Força II |
 | Espada / machado | 80 / 100 de dano total, Fire Aspect II |

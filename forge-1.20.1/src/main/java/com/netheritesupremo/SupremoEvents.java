@@ -57,6 +57,11 @@ public class SupremoEvents {
 
     private static final String FLY_TAG = "netheritesupremo_fly";
 
+    // Voo: o voo do criativo anda ~10,9 blocos/s com flyingSpeed 0.05. A aranha do nether montada anda
+    // 0.45 * 43,17 = ~19,4 blocos/s; seis vezes isso (~116 blocos/s) pede flyingSpeed ~0.535.
+    public static final float DEFAULT_FLYING_SPEED = 0.05F;
+    public static final float NETHERITE_FLYING_SPEED = 0.535F;
+
     // Mesmos UUIDs que o jogo usa para armadura por slot e dano base de ataque
     private static final UUID HEAD_ID = UUID.fromString("2AD3F246-FEE1-4E67-B886-69FD380BB150");
     private static final UUID CHEST_ID = UUID.fromString("9F3D476D-C118-4544-8365-64846904B48E");
@@ -150,15 +155,24 @@ public class SupremoEvents {
         }
         CompoundTag data = player.getPersistentData();
         if (hasSetBonus(player)) {
+            boolean changed = false;
             if (!player.getAbilities().mayfly) {
                 player.getAbilities().mayfly = true;
-                player.onUpdateAbilities();
                 data.putBoolean(FLY_TAG, true);
+                changed = true;
+            }
+            if (player.getAbilities().getFlyingSpeed() != NETHERITE_FLYING_SPEED) {
+                player.getAbilities().setFlyingSpeed(NETHERITE_FLYING_SPEED);
+                changed = true;
+            }
+            if (changed) {
+                player.onUpdateAbilities();
             }
         } else if (data.getBoolean(FLY_TAG)) {
             data.remove(FLY_TAG);
             player.getAbilities().mayfly = false;
             player.getAbilities().flying = false;
+            player.getAbilities().setFlyingSpeed(DEFAULT_FLYING_SPEED);
             player.onUpdateAbilities();
         }
     }
