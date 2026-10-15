@@ -58,9 +58,9 @@ public class SupremoEvents {
     private static final String FLY_TAG = "netheritesupremo_fly";
 
     // Voo: o voo do criativo anda ~10,9 blocos/s com flyingSpeed 0.05. A aranha do nether montada anda
-    // 0.45 * 43,17 = ~19,4 blocos/s; seis vezes isso (~116 blocos/s) pede flyingSpeed ~0.535.
+    // 0.45 * 43,17 = ~19,4 blocos/s; tres vezes isso (~58 blocos/s) pede flyingSpeed ~0.2675.
     public static final float DEFAULT_FLYING_SPEED = 0.05F;
-    public static final float NETHERITE_FLYING_SPEED = 0.535F;
+    public static final float NETHERITE_FLYING_SPEED = 0.2675F;
 
     // Mesmos UUIDs que o jogo usa para armadura por slot e dano base de ataque
     private static final UUID HEAD_ID = UUID.fromString("2AD3F246-FEE1-4E67-B886-69FD380BB150");
