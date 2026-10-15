@@ -148,6 +148,7 @@ public class NetherSpider extends Spider {
         tag.putBoolean("Baby", this.isBaby());
         tag.putInt("BabyAge", this.babyAge);
         tag.putInt("BreedCooldown", this.breedCooldown);
+        tag.putInt("InLove", this.inLove);
         if (this.getOwnerUUID() != null) {
             tag.putUUID("Owner", this.getOwnerUUID());
         }
@@ -160,6 +161,7 @@ public class NetherSpider extends Spider {
         this.entityData.set(DATA_BABY, tag.getBoolean("Baby"));
         this.babyAge = tag.getInt("BabyAge");
         this.breedCooldown = tag.getInt("BreedCooldown");
+        this.inLove = tag.getInt("InLove");
         this.entityData.set(DATA_OWNER, tag.hasUUID("Owner") ? Optional.of(tag.getUUID("Owner")) : Optional.empty());
         if (this.isTame()) {
             this.setPersistenceRequired();

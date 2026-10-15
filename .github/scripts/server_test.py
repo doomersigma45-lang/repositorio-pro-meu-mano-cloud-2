@@ -127,6 +127,17 @@ def main():
             ]
             for t in tests:
                 results.append(f"> {t}\n  {r.cmd(t)}")
+            # Reproducao: aranha apaixonada perto de uma aranha comum e de outra aranha do nether apaixonada
+            for t in ("summon netheritesupremo:nether_spider 60 70 60 {InLove:600}",
+                      "summon minecraft:spider 63 70 60",
+                      "summon netheritesupremo:nether_spider 70 70 60 {InLove:600}",
+                      "summon netheritesupremo:nether_spider 73 70 60 {InLove:600}"):
+                results.append(f"> {t}\n  {r.cmd(t)}")
+            time.sleep(25)
+            for t in ("execute if entity @e[type=netheritesupremo:nether_spider,nbt={Baby:1b}]",
+                      "data get entity @e[type=netheritesupremo:nether_spider,nbt={Baby:1b},limit=1] BabyAge",
+                      "execute as @e[type=netheritesupremo:nether_spider] run data get entity @s InLove"):
+                results.append(f"> {t}\n  {r.cmd(t)}")
             time.sleep(15)  # deixa os mobs rodarem alguns segundos (IA, bolas de fogo, aura)
             for t in ("data get entity @e[type=netheritesupremo:necromancer,limit=1] Health",
                       "data get entity @e[type=netheritesupremo:netherite_golem,limit=1] Health",
