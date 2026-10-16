@@ -14,6 +14,8 @@ import net.minecraft.world.entity.ai.goal.target.TargetGoal;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import com.netheritesupremo.registry.ModEntities;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -101,6 +103,7 @@ public class NetheriteKnight extends Monster {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new KnightSitGoal(this));
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.1D, false));
         this.goalSelector.addGoal(5, new FollowTamerGoal(this));
         this.goalSelector.addGoal(6, new StayWithGroupGoal(this));
@@ -113,7 +116,11 @@ public class NetheriteKnight extends Monster {
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setAlertOthers());
         // Neutro com jogadores (so revida via HurtByTargetGoal); ataca criaturas hostis, menos outros cavaleiros
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Mob.class, 10, true, false,
-                other -> other instanceof Enemy && !(other instanceof NetheriteKnight)));
+                other -> other instanceof Enemy && !(other instanceof NetheriteKnight)
+                        && !(other instanceof NetherSpider)));
+        // Rivalidade: cavaleiros domesticados e selvagens atacam uns aos outros
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, NetheriteKnight.class, 10, true, false,
+                other -> other instanceof NetheriteKnight rival && rival.tame != this.tame));
     }
 
     // ------------------------------------------------------------ escalada
@@ -136,16 +143,37 @@ public class NetheriteKnight extends Monster {
         SpawnGroupData result = super.finalizeSpawn(level, difficulty, reason, data, tag);
         this.populateDefaultEquipmentSlots(level.getRandom(), difficulty);
 
-        // O cavaleiro que nasce naturalmente e o unico: fica registrado no mundo e nao despawna.
+        // Os cavaleiros que nascem naturalmente formam o grupo selvagem: ficam registrados e nao despawnam.
         if (reason == MobSpawnType.NATURAL || reason == MobSpawnType.STRUCTURE
                 || reason == MobSpawnType.CHUNK_GENERATION) {
             this.setPersistenceRequired();
+            // Parte deles nasce montada numa aranha do nether selvagem (criada no primeiro tick)
+            this.mountPending = level.getRandom().nextFloat() < MOUNTED_CHANCE;
             MinecraftServer server = level.getServer();
             if (server != null) {
                 KnightSpawnData.get(server).register(this.getUUID(), level.getLevel().getGameTime());
             }
         }
         return result;
+    }
+
+    public static final float MOUNTED_CHANCE = 0.25F;
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (this.mountPending && !this.level().isClientSide && this.tickCount > 0) {
+            this.mountPending = false;
+            if (!this.isPassenger() && this.level() instanceof ServerLevel serverLevel) {
+                NetherSpider spider = ModEntities.NETHER_SPIDER.get().create(serverLevel);
+                if (spider != null) {
+                    spider.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), 0.0F);
+                    spider.setPersistenceRequired();
+                    serverLevel.addFreshEntity(spider);
+                    this.startRiding(spider, true);
+                }
+            }
+        }
     }
 
     /** Vive em grupos de dez. */
@@ -159,8 +187,29 @@ public class NetheriteKnight extends Monster {
     @Nullable
     private UUID owner;
 
+    private boolean sitting;
+    private boolean mountPending;
+
     public boolean isTame() {
         return this.tame;
+    }
+
+    public boolean isSitting() {
+        return this.sitting;
+    }
+
+    @Nullable
+    public UUID getOwnerId() {
+        return this.owner;
+    }
+
+    public boolean isOwnedBy(Player player) {
+        return this.tame && player.getUUID().equals(this.owner);
+    }
+
+    @Override
+    public boolean isPushable() {
+        return !this.sitting && super.isPushable();
     }
 
     @Nullable
@@ -197,21 +246,70 @@ public class NetheriteKnight extends Monster {
             }
             return InteractionResult.sidedSuccess(this.level().isClientSide);
         }
+        if (this.tame && this.isOwnedBy(player) && hand == InteractionHand.MAIN_HAND && stack.isEmpty()) {
+            if (!this.level().isClientSide) {
+                if (player.isSecondaryUseActive()) {
+                    this.toggleMount(player);
+                } else if (!this.isPassenger()) {
+                    this.sitting = !this.sitting;
+                    this.getNavigation().stop();
+                    player.displayClientMessage(Component.literal(this.sitting
+                            ? "Cavaleiro de netherite parado." : "Cavaleiro de netherite seguindo voce."), true);
+                }
+            }
+            return InteractionResult.sidedSuccess(this.level().isClientSide);
+        }
         return super.mobInteract(player, hand);
+    }
+
+    /** Dono agachado + mao vazia: monta na aranha do nether domesticada mais proxima, ou desmonta. */
+    private void toggleMount(Player player) {
+        if (this.isPassenger()) {
+            this.stopRiding();
+            player.displayClientMessage(Component.literal("Cavaleiro de netherite desmontou."), true);
+            return;
+        }
+        NetherSpider spider = findSpiderFor(player, this);
+        if (spider == null) {
+            player.displayClientMessage(Component.literal(
+                    "Nenhuma aranha do nether domesticada sua livre por perto."), true);
+            return;
+        }
+        this.sitting = false;
+        this.startRiding(spider, true);
+    }
+
+    /** Aranha do nether domesticada pelo jogador, livre e adulta, num raio de 12 blocos. */
+    @Nullable
+    static NetherSpider findSpiderFor(Player player, NetheriteKnight knight) {
+        return knight.level().getEntitiesOfClass(NetherSpider.class, knight.getBoundingBox().inflate(12.0D),
+                        s -> s.isAlive() && s.isOwnedBy(player) && !s.isVehicle() && !s.isBaby())
+                .stream().min(Comparator.comparingDouble(knight::distanceToSqr)).orElse(null);
     }
 
     /** Domesticado, nunca ataca jogadores. */
     @Override
     public boolean canAttack(LivingEntity target) {
-        if (this.tame && target instanceof Player) {
+        if (this.isForbiddenTarget(target)) {
             return false;
         }
         return super.canAttack(target);
     }
 
+    /** Nunca ataca aranhas do nether, nem (domesticado) jogadores, nem cavaleiros do mesmo lado. */
+    private boolean isForbiddenTarget(@Nullable LivingEntity target) {
+        if (target instanceof NetherSpider) {
+            return true;
+        }
+        if (this.tame && target instanceof Player) {
+            return true;
+        }
+        return target instanceof NetheriteKnight other && other.tame == this.tame;
+    }
+
     @Override
     public void setTarget(@Nullable LivingEntity target) {
-        if (this.tame && target instanceof Player) {
+        if (this.isForbiddenTarget(target)) {
             super.setTarget(null);
             return;
         }
@@ -222,6 +320,7 @@ public class NetheriteKnight extends Monster {
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
         tag.putBoolean("Tame", this.tame);
+        tag.putBoolean("Sitting", this.sitting);
         if (this.owner != null) {
             tag.putUUID("Owner", this.owner);
         }
@@ -231,6 +330,7 @@ public class NetheriteKnight extends Monster {
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
         this.tame = tag.getBoolean("Tame");
+        this.sitting = tag.getBoolean("Sitting");
         this.owner = tag.hasUUID("Owner") ? tag.getUUID("Owner") : null;
         if (this.tame) {
             this.setPersistenceRequired();
@@ -238,6 +338,26 @@ public class NetheriteKnight extends Monster {
     }
 
     // ------------------------------------------------------------ goals do grupo/dono
+    /** Domesticado "parado": nao se move (como um lobo sentado). */
+    static class KnightSitGoal extends Goal {
+        private final NetheriteKnight knight;
+
+        KnightSitGoal(NetheriteKnight knight) {
+            this.knight = knight;
+            this.setFlags(EnumSet.of(Flag.MOVE, Flag.JUMP));
+        }
+
+        @Override
+        public boolean canUse() {
+            return knight.sitting && knight.tame && !knight.isPassenger();
+        }
+
+        @Override
+        public void start() {
+            knight.getNavigation().stop();
+        }
+    }
+
     /** Domesticado: defende o dono do ultimo mob que o atacou ou que ele atacou. */
     static class DefendOwnerGoal extends TargetGoal {
         private final NetheriteKnight knight;
@@ -295,7 +415,7 @@ public class NetheriteKnight extends Monster {
 
         @Override
         public boolean canUse() {
-            if (!knight.tame || knight.getTarget() != null) {
+            if (!knight.tame || knight.sitting || knight.isPassenger() || knight.getTarget() != null) {
                 return false;
             }
             Player found = knight.getOwner();

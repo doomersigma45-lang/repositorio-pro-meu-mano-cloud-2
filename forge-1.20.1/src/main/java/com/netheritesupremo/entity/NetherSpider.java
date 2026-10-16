@@ -205,6 +205,7 @@ public class NetherSpider extends Spider {
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(2, new SpiderBreedGoal(this));
+        this.goalSelector.addGoal(2, new FollowOwnerWithKnightGoal(this));
         this.goalSelector.addGoal(3, new FireballGoal(this));
         this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.4F));
         this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.2D, true));
@@ -307,6 +308,23 @@ public class NetherSpider extends Spider {
         }
         if (!this.isOwnedBy(player)) {
             return InteractionResult.PASS;
+        }
+        // Dono agachado + mao vazia: um cavaleiro de netherite domesticado dele monta nesta aranha
+        if (player.isSecondaryUseActive() && stack.isEmpty() && hand == InteractionHand.MAIN_HAND
+                && !this.isBaby() && !this.isVehicle()) {
+            if (!client) {
+                NetheriteKnight knight = this.level().getEntitiesOfClass(NetheriteKnight.class,
+                                this.getBoundingBox().inflate(12.0D),
+                                k -> k.isAlive() && k.isOwnedBy(player) && !k.isPassenger())
+                        .stream().min(Comparator.comparingDouble(this::distanceToSqr)).orElse(null);
+                if (knight == null) {
+                    player.displayClientMessage(net.minecraft.network.chat.Component.literal(
+                            "Nenhum cavaleiro de netherite domesticado seu por perto."), true);
+                } else {
+                    knight.startRiding(this, true);
+                }
+            }
+            return InteractionResult.sidedSuccess(client);
         }
         if (isFungus(stack) && !this.isBaby() && this.inLove <= 0 && this.breedCooldown <= 0) {
             if (!client) {
@@ -441,6 +459,69 @@ public class NetherSpider extends Spider {
                 other.breedCooldown = BREED_COOLDOWN;
             }
             partner = null;
+        }
+    }
+
+    /** Domesticada, carregando um cavaleiro de netherite: segue o dono. */
+    static class FollowOwnerWithKnightGoal extends Goal {
+        private final NetherSpider spider;
+        private Player owner;
+        private int recalc;
+
+        FollowOwnerWithKnightGoal(NetherSpider spider) {
+            this.spider = spider;
+            this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
+        }
+
+        @Override
+        public boolean canUse() {
+            if (!spider.isTame() || spider.getTarget() != null || spider.getOwnerUUID() == null
+                    || !(spider.getFirstPassenger() instanceof NetheriteKnight)) {
+                return false;
+            }
+            Player found = spider.level().getPlayerByUUID(spider.getOwnerUUID());
+            if (found == null || found.isSpectator() || spider.distanceToSqr(found) < 100.0D) {
+                return false;
+            }
+            owner = found;
+            return true;
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            return spider.isTame() && spider.getTarget() == null && owner != null && owner.isAlive()
+                    && spider.getFirstPassenger() instanceof NetheriteKnight
+                    && spider.distanceToSqr(owner) > 16.0D;
+        }
+
+        @Override
+        public void start() {
+            recalc = 0;
+        }
+
+        @Override
+        public void stop() {
+            spider.getNavigation().stop();
+            owner = null;
+        }
+
+        @Override
+        public boolean requiresUpdateEveryTick() {
+            return true;
+        }
+
+        @Override
+        public void tick() {
+            spider.getLookControl().setLookAt(owner, 10.0F, spider.getMaxHeadXRot());
+            if (--recalc <= 0) {
+                recalc = 10;
+                if (spider.distanceToSqr(owner) > 1024.0D) {
+                    spider.moveTo(owner.getX(), owner.getY(), owner.getZ(), spider.getYRot(), spider.getXRot());
+                    spider.getNavigation().stop();
+                } else {
+                    spider.getNavigation().moveTo(owner, 1.2D);
+                }
+            }
         }
     }
 

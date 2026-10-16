@@ -59,6 +59,12 @@ O Forge 1.19.2 continua na versão 1.1.0, sem os mobs.
   em `config/netheritesupremo-common.toml`. Ovos de geração e `/summon` não têm essa trava.
 - **Domesticar:** botão direito com **bloco de esmeralda ou de ferro** (gasta 1, sempre funciona). Domesticado, nunca ataca jogadores,
   segue o dono, defende o dono de mobs e deixa de contar como parte do grupo selvagem.
+- **Rivalidade:** cavaleiros domesticados e selvagens atacam uns aos outros (mas nunca outro do mesmo lado).
+- **Parado/seguindo:** dono com a mão vazia clica no cavaleiro domesticado para alternar entre **parado** (não anda nem ataca, como um lobo sentado) e seguindo.
+- **Aranhas do nether:** cavaleiros nunca atacam aranhas do nether. Cerca de 1 em cada 4 cavaleiros selvagens já nasce montado
+  numa aranha do nether selvagem. Com os dois domesticados, o dono **agachado + mão vazia** clica no cavaleiro (ele monta na aranha
+  domesticada mais próxima, ou desmonta se já estiver montado) ou na aranha (o cavaleiro mais próximo monta nela).
+  A aranha domesticada que carrega um cavaleiro segue o dono.
 - **Skin:** `assets/netheritesupremo/textures/entity/netherite_knight.png` (modelo clássico, braços de 4 pixels).
 
 ### Necromante (boss)
