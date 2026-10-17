@@ -49,7 +49,6 @@ public class NetheriteSupremo {
             event.accept(ModItems.NETHER_SPIDER_SPAWN_EGG);
             event.accept(ModItems.GOLDEN_ZOMBIE_SPAWN_EGG);
             event.accept(ModItems.UMBRAL_MERCHANT_SPAWN_EGG);
-            event.accept(ModItems.ROBOT_SPAWN_EGG);
         }
     }
 }

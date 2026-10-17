@@ -148,4 +148,4 @@ Estruturas do datapack "Vila Umbral" agora geram naturalmente (vila + castelo ju
 - 150 de vida, ataque 25 (golem de ferro: 15), imune a projéteis e a dano de queda, **voa** e dispara **lasers** (raio que atravessa e fere inimigos na linha, 12 de dano, alcance 28).
 - Neutro como o golem de ferro: protege quem o construiu, ataca monstros hostis (menos creepers e cavaleiros de netherite) e revida se for atacado.
 - **Invocação:** bloco de ferro no chão, sinalizador em cima, dois blocos de diamante nos lados do sinalizador (em T) e uma abóbora talhada por último na cabeça.
-- Três skins (sorteadas ao nascer). Dropa ferro e diamante. Ovo de geração na aba de ovos.
+- Três skins (sorteadas ao nascer). Dropa ferro e diamante. **Só nasce pela construção** (sem ovo de geração e sem spawn natural).
