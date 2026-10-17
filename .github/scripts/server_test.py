@@ -119,6 +119,8 @@ def main():
                 "summon netheritesupremo:netherite_knight 12 70 10",
                 "summon minecraft:zombie 13 70 10",
                 "damage @e[type=netheritesupremo:netherite_knight,limit=1,sort=furthest] 1 minecraft:mob_attack by @e[type=minecraft:zombie,limit=1]",
+                "place structure netheritesupremo:umbral_plains 200 70 200",
+                "place structure netheritesupremo:umbral_nether 600 70 600",
                 "summon netheritesupremo:golden_zombie 30 70 30",
                 "attribute @e[type=netheritesupremo:golden_zombie,limit=1] minecraft:generic.max_health get",
                 "attribute @e[type=netheritesupremo:golden_zombie,limit=1] minecraft:generic.attack_damage get",

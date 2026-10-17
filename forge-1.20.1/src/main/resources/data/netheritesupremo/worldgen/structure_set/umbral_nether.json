@@ -1,0 +1,4 @@
+{
+  "structures": [{"structure": "netheritesupremo:umbral_nether", "weight": 1}],
+  "placement": {"type": "minecraft:random_spread", "spacing": 60, "separation": 30, "salt": 1707042}
+}

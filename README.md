@@ -130,3 +130,10 @@ datapack anterior, remova-o: o mod faz o mesmo trabalho e mais.
 ## Versões usadas
 - 1.20.1: Forge 47.1.0, ForgeGradle 6, Gradle 8.1.1
 - 1.19.2: Forge 43.2.0, ForgeGradle 5, Gradle 7.6.4
+
+## Estruturas: Vila Umbral e Castelo Umbral (1.20.1)
+
+Estruturas do datapack "Vila Umbral" agora geram naturalmente (vila + castelo juntos, 118 blocos de distância, como no datapack original):
+- **Planícies** (`plains`, `sunflower_plains`): muito raras (spacing 100 / separation 50 chunks).
+- **Nether** (qualquer bioma do Nether): raras (spacing 60 / separation 30 chunks).
+- Teste manual: `/place structure netheritesupremo:umbral_plains` ou `netheritesupremo:umbral_nether`.
