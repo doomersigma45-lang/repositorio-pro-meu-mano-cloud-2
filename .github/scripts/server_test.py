@@ -99,6 +99,11 @@ def main():
             results.append(r.cmd("forceload add 190 190 400 270"))
             time.sleep(40)
             tests = [
+                "summon minecraft:wandering_trader 50 70 50",
+                "data get entity @e[type=minecraft:wandering_trader,limit=1] Offers.Recipes[-1].sell",
+                "place structure netheritesupremo:umbral_plains 200 70 200",
+                "place structure netheritesupremo:umbral_nether 300 70 200",
+                "data get entity @e[type=netheritesupremo:netherite_knight,limit=1] Health",
                 "summon netheritesupremo:netherite_knight 0 100 0",
                 "summon netheritesupremo:netherite_golem 90 100 90",
                 "data get entity @e[type=netheritesupremo:netherite_knight,limit=1] ArmorItems",
@@ -123,10 +128,6 @@ def main():
                 "summon netheritesupremo:umbral_merchant 40 70 40",
                 "data get entity @e[type=netheritesupremo:umbral_merchant,limit=1] Offers.Recipes[0].sell",
                 "data get entity @e[type=netheritesupremo:umbral_merchant,limit=1] Offers.Recipes[-1].sell",
-                "summon minecraft:wandering_trader 50 70 50",
-                "data get entity @e[type=minecraft:wandering_trader,limit=1] Offers.Recipes[-1]",
-                "place structure netheritesupremo:umbral_plains 200 70 200",
-                "place structure netheritesupremo:umbral_nether 300 70 200",
                 "summon netheritesupremo:golden_zombie 30 70 30",
                 "attribute @e[type=netheritesupremo:golden_zombie,limit=1] minecraft:generic.max_health get",
                 "attribute @e[type=netheritesupremo:golden_zombie,limit=1] minecraft:generic.attack_damage get",
