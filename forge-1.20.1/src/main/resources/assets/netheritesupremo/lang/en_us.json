@@ -15,5 +15,9 @@
   "entity.netheritesupremo.umbral_merchant": "Umbral Merchant",
   "item.netheritesupremo.umbral_merchant_spawn_egg": "Umbral Merchant Spawn Egg",
   "item.netheritesupremo.umbral_map": "Umbral Map",
-  "entity.netheritesupremo.robot": "Robot"
+  "entity.netheritesupremo.robot": "Robot",
+  "entity.netheritesupremo.netherite_bomb_robot": "Netherite Bomb-Robot",
+  "entity.netheritesupremo.netherbot": "Netherbot",
+  "item.netheritesupremo.netherite_bomb_robot_spawn_egg": "Netherite Bomb-Robot Spawn Egg",
+  "item.netheritesupremo.netherbot_spawn_egg": "Netherbot Spawn Egg"
 }

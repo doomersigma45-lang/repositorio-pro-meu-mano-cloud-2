@@ -6,6 +6,8 @@ import com.netheritesupremo.entity.NetherSpider;
 import com.netheritesupremo.entity.NetheriteGolem;
 import net.minecraft.world.entity.monster.Monster;
 import com.netheritesupremo.entity.NetheriteKnight;
+import com.netheritesupremo.entity.Netherbot;
+import com.netheritesupremo.entity.NetheriteBombRobot;
 import com.netheritesupremo.entity.Robot;
 import com.netheritesupremo.entity.UmbralMerchant;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -31,6 +33,8 @@ public final class ModBusEvents {
         event.put(ModEntities.NECROMANCER.get(), Necromancer.createNecromancerAttributes().build());
         event.put(ModEntities.UMBRAL_MERCHANT.get(),
                 Villager.createAttributes().add(Attributes.MAX_HEALTH, 40.0D).build());
+        event.put(ModEntities.BOMB_ROBOT.get(), NetheriteBombRobot.createBombRobotAttributes().build());
+        event.put(ModEntities.NETHERBOT.get(), Netherbot.createNetherbotAttributes().build());
         event.put(ModEntities.ROBOT.get(), Robot.createRobotAttributes().build());
         event.put(ModEntities.GOLDEN_ZOMBIE.get(), GoldenZombie.createGoldenZombieAttributes().build());
     }
@@ -39,6 +43,12 @@ public final class ModBusEvents {
     public static void onSpawnPlacements(SpawnPlacementRegisterEvent event) {
         event.register(ModEntities.NETHERITE_KNIGHT.get(), SpawnPlacements.Type.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, NetheriteKnight::checkKnightSpawnRules,
+                SpawnPlacementRegisterEvent.Operation.OR);
+        event.register(ModEntities.BOMB_ROBOT.get(), SpawnPlacements.Type.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules,
+                SpawnPlacementRegisterEvent.Operation.OR);
+        event.register(ModEntities.NETHERBOT.get(), SpawnPlacements.Type.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules,
                 SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.NETHER_SPIDER.get(), SpawnPlacements.Type.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules,
