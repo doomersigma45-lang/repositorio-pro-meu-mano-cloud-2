@@ -4,10 +4,7 @@ import com.netheritesupremo.NetheriteSupremo;
 import com.netheritesupremo.registry.ModEntities;
 import com.netheritesupremo.entity.Netherbot;
 import com.netheritesupremo.entity.NetheriteBombRobot;
-import com.netheritesupremo.entity.Netherbot;
-import com.netheritesupremo.entity.NetheriteBombRobot;
 import net.minecraft.client.renderer.entity.WanderingTraderRenderer;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -27,10 +24,6 @@ public final class ClientEvents {
         event.registerEntityRenderer(ModEntities.NETHER_SPIDER.get(), NetherSpiderRenderer::new);
         event.registerEntityRenderer(ModEntities.GOLDEN_ZOMBIE.get(), GoldenZombieRenderer::new);
         event.registerEntityRenderer(ModEntities.NECROMANCER.get(), NecromancerRenderer::new);
-        event.registerEntityRenderer(ModEntities.BOMB_ROBOT.get(), ctx -> new PlayerRobotRenderer<NetheriteBombRobot>(ctx,
-                new ResourceLocation(NetheriteSupremo.MODID, "textures/entity/bomb_robot.png"), 1.0F));
-        event.registerEntityRenderer(ModEntities.NETHERBOT.get(), ctx -> new PlayerRobotRenderer<Netherbot>(ctx,
-                new ResourceLocation(NetheriteSupremo.MODID, "textures/entity/netherbot.png"), 1.6F));
         event.registerEntityRenderer(ModEntities.BOMB_ROBOT.get(), ctx -> new PlayerRobotRenderer<NetheriteBombRobot>(ctx,
                 new ResourceLocation(NetheriteSupremo.MODID, "textures/entity/bomb_robot.png"), 1.0F));
         event.registerEntityRenderer(ModEntities.NETHERBOT.get(), ctx -> new PlayerRobotRenderer<Netherbot>(ctx,

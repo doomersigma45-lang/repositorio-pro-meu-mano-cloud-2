@@ -151,11 +151,6 @@ Estruturas do datapack "Vila Umbral" agora geram naturalmente (vila + castelo ju
 - Três skins (sorteadas ao nascer). Dropa ferro e diamante. **Só nasce pela construção** (sem ovo de geração e sem spawn natural).
 
 ## Netherite Bomb-Robot e Netherbot (1.20.1, hostis, Nether)
-- **Netherite Bomb-Robot**: 45 de vida, 15 de dano, muito rápido, voa (chama azul nas costas ao voar), solta projéteis explosivos e, **ao morrer, explode com força 30** (10x um creeper). Configurável em `bombRobotDestroysBlocks` (false = só dano, sem destruir blocos). Spawn natural no Nether.
-- **Netherbot (mini boss)**: 666 de vida, 66 de dano, lasers de 45, voa (aura de fogo normal), invoca bomb-robots durante a luta e tem um **totem da imortalidade**: na primeira morte recupera toda a vida e fica mais forte (+50% dano, +20% velocidade, lasers 67) e mais resistente (armadura e Resistência II). Imune a explosões. Muito raro no Nether; dropa netherite, diamantes, estrela do Nether e totem.
-- Ambos têm ovo de geração na aba de ovos.
-
-## Netherite Bomb-Robot e Netherbot (1.20.1, hostis, Nether)
 Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 - **Netherite Bomb-Robot**: 45 de vida, 15 de dano, muito rápido, voa (chama azul nas costas ao voar), solta projéteis explosivos e, **ao morrer, explode com força 30** (10x um creeper). Configurável em `bombRobotDestroysBlocks` (false = só dano, sem destruir blocos). Spawn natural no Nether.
 - **Netherbot (mini boss)**: 666 de vida, 66 de dano, lasers de 45, voa (aura de fogo normal), invoca bomb-robots durante a luta e tem um **totem da imortalidade**: na primeira morte recupera toda a vida e fica mais forte (+50% dano, +20% velocidade, lasers 67) e mais resistente (armadura e Resistência II). Muito raro no Nether; dropa netherite, diamantes, estrela do Nether e totem.

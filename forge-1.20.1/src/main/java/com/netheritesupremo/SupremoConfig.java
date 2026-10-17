@@ -8,7 +8,6 @@ public final class SupremoConfig {
     public static final ForgeConfigSpec.BooleanValue KNIGHT_RESPAWNS_AFTER_DEATH;
     public static final ForgeConfigSpec.BooleanValue LETHAL_HIT_PROTECTION;
     public static final ForgeConfigSpec.BooleanValue BOMB_ROBOT_DESTROYS_BLOCKS;
-    public static final ForgeConfigSpec.BooleanValue BOMB_ROBOT_DESTROYS_BLOCKS;
 
     static {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
@@ -25,10 +24,6 @@ public final class SupremoConfig {
                 .comment("true = jogador com a armadura de netherite completa tem anulado qualquer golpe unico que o mataria",
                         "(dano final >= vida atual e >= metade da vida maxima). Nao vale para vazio nem /kill.")
                 .define("lethalHitProtection", true);
-        BOMB_ROBOT_DESTROYS_BLOCKS = builder
-                .comment("true = a explosao de morte do bomb-robot (forca 30, 10x a de um creeper) destroi blocos",
-                        "(respeitando a regra mobGriefing). false = so causa dano, sem destruir blocos.")
-                .define("bombRobotDestroysBlocks", true);
         BOMB_ROBOT_DESTROYS_BLOCKS = builder
                 .comment("true = a explosao de morte do bomb-robot (forca 30, 10x a de um creeper) destroi blocos",
                         "(respeitando a regra mobGriefing). false = so causa dano, sem destruir blocos.")

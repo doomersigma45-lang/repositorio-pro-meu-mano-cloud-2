@@ -7,8 +7,6 @@ import com.netheritesupremo.entity.NetherSpider;
 import com.netheritesupremo.entity.NetheriteGolem;
 import com.netheritesupremo.entity.NetheriteBombRobot;
 import com.netheritesupremo.entity.Netherbot;
-import com.netheritesupremo.entity.NetheriteBombRobot;
-import com.netheritesupremo.entity.Netherbot;
 import com.netheritesupremo.entity.NetheriteKnight;
 import com.netheritesupremo.entity.Robot;
 import com.netheritesupremo.entity.UmbralMerchant;
@@ -76,24 +74,6 @@ public final class ModEntities {
                     .clientTrackingRange(10)
                     .updateInterval(2)
                     .build("robot"));
-
-    public static final RegistryObject<EntityType<NetheriteBombRobot>> BOMB_ROBOT = ENTITIES.register(
-            "netherite_bomb_robot",
-            () -> EntityType.Builder.of(NetheriteBombRobot::new, MobCategory.MONSTER)
-                    .sized(0.6F, 1.8F)
-                    .fireImmune()
-                    .clientTrackingRange(10)
-                    .updateInterval(2)
-                    .build("netherite_bomb_robot"));
-
-    public static final RegistryObject<EntityType<Netherbot>> NETHERBOT = ENTITIES.register(
-            "netherbot",
-            () -> EntityType.Builder.of(Netherbot::new, MobCategory.MONSTER)
-                    .sized(0.96F, 2.9F)
-                    .fireImmune()
-                    .clientTrackingRange(12)
-                    .updateInterval(2)
-                    .build("netherbot"));
 
     public static final RegistryObject<EntityType<NetheriteBombRobot>> BOMB_ROBOT = ENTITIES.register(
             "netherite_bomb_robot",

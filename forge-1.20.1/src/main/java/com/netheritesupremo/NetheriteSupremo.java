@@ -51,8 +51,6 @@ public class NetheriteSupremo {
             event.accept(ModItems.UMBRAL_MERCHANT_SPAWN_EGG);
             event.accept(ModItems.BOMB_ROBOT_SPAWN_EGG);
             event.accept(ModItems.NETHERBOT_SPAWN_EGG);
-            event.accept(ModItems.BOMB_ROBOT_SPAWN_EGG);
-            event.accept(ModItems.NETHERBOT_SPAWN_EGG);
         }
     }
 }

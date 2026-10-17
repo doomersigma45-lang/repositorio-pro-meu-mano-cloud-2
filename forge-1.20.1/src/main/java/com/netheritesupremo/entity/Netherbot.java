@@ -89,13 +89,13 @@ public class Netherbot extends FlyingRobot {
     @Override
     public void die(DamageSource source) {
         if (!this.level().isClientSide && !this.revived && !source.is(DamageTypes.GENERIC_KILL)) {
-            this.revive();
+            this.useTotem();
             return;
         }
         super.die(source);
     }
 
-    private void revive() {
+    private void useTotem() {
         this.revived = true;
         this.setHealth(this.getMaxHealth());
         this.removeAllEffects();
