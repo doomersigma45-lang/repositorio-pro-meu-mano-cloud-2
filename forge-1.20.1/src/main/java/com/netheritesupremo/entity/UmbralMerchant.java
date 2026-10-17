@@ -22,7 +22,6 @@ import net.minecraft.world.level.Level;
 public class UmbralMerchant extends WanderingTrader {
     public UmbralMerchant(EntityType<? extends WanderingTrader> type, Level level) {
         super(type, level);
-        this.forcedLoading = false;
     }
 
     @Override
