@@ -43,6 +43,14 @@ public final class ModItems {
             "netherbot_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.NETHERBOT, 0x2B2B2F, 0xFF8A1A, new Item.Properties()));
 
+    public static final RegistryObject<Item> BOMB_ROBOT_SPAWN_EGG = ITEMS.register(
+            "netherite_bomb_robot_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.BOMB_ROBOT, 0x1A1A1A, 0xE01B1B, new Item.Properties()));
+
+    public static final RegistryObject<Item> NETHERBOT_SPAWN_EGG = ITEMS.register(
+            "netherbot_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.NETHERBOT, 0x2B2B2F, 0xFF8A1A, new Item.Properties()));
+
     private ModItems() {
     }
 }

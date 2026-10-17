@@ -6,7 +6,6 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -24,8 +23,8 @@ import net.minecraft.world.entity.projectile.LargeFireball;
 import net.minecraft.world.level.Level;
 
 /**
- * Bomb-robot de netherite: hostil, muito rapido e voador, solta projeteis explosivos e,
- * ao morrer, explode com forca 30 (10x a de um creeper, que e 3).
+ * Bomb-robot de netherite: hostil, muito rapido e voador, imune a fogo, explosoes e projeteis,
+ * solta projeteis explosivos e, ao morrer, explode com forca 30 (10x a de um creeper, que e 3).
  */
 public class NetheriteBombRobot extends FlyingRobot {
     public static final double MAX_HEALTH = 45.0D;
@@ -122,10 +121,5 @@ public class NetheriteBombRobot extends FlyingRobot {
             this.robot.level().addFreshEntity(bomb);
             this.robot.playSound(SoundEvents.BLAZE_SHOOT, 1.0F, 0.8F);
         }
-    }
-
-    @Override
-    public boolean isInvulnerableTo(DamageSource source) {
-        return source.is(DamageTypes.FALL) || super.isInvulnerableTo(source);
     }
 }

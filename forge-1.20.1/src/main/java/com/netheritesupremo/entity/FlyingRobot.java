@@ -2,6 +2,7 @@ package com.netheritesupremo.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
@@ -12,7 +13,10 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-/** Base dos robos hostis voadores: movimento aereo, sem dano de queda e chama nas costas ao voar. */
+/**
+ * Base dos robos hostis voadores: movimento aereo, imunes a fogo, explosoes, projeteis e queda,
+ * e chama nas costas ao voar.
+ */
 public abstract class FlyingRobot extends Monster {
     protected FlyingRobot(EntityType<? extends Monster> type, Level level) {
         super(type, level);
@@ -22,6 +26,15 @@ public abstract class FlyingRobot extends Monster {
 
     /** Particula da chama que sai das costas enquanto voa. */
     protected abstract ParticleOptions backFlame();
+
+    @Override
+    public boolean isInvulnerableTo(DamageSource source) {
+        return source.is(DamageTypeTags.IS_FIRE)
+                || source.is(DamageTypeTags.IS_EXPLOSION)
+                || source.is(DamageTypeTags.IS_PROJECTILE)
+                || source.is(DamageTypeTags.IS_FALL)
+                || super.isInvulnerableTo(source);
+    }
 
     @Override
     protected PathNavigation createNavigation(Level level) {

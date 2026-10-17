@@ -9,12 +9,11 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerBossEvent;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -22,6 +21,8 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -38,8 +39,9 @@ import net.minecraft.world.level.Level;
 import org.joml.Vector3f;
 
 /**
- * Netherbot: mini boss voador. 666 de vida, 66 de dano, lasers de 45, invoca bomb-robots e tem
- * um totem da imortalidade: na primeira "morte" recupera toda a vida e fica mais forte e resistente.
+ * Netherbot: mini boss voador, imune a fogo, explosoes e projeteis. 666 de vida, 66 de dano,
+ * lasers de 45, invoca bomb-robots e tem um totem da imortalidade: na primeira "morte"
+ * recupera toda a vida e fica mais forte e resistente.
  */
 public class Netherbot extends FlyingRobot {
     public static final double MAX_HEALTH = 666.0D;
@@ -83,12 +85,6 @@ public class Netherbot extends FlyingRobot {
         return ParticleTypes.FLAME; // aura de fogo normal
     }
 
-    // ----------------------------------------------------------------- imunidades
-    @Override
-    public boolean isInvulnerableTo(DamageSource source) {
-        return source.is(DamageTypeTags.IS_EXPLOSION) || source.is(DamageTypes.FALL) || super.isInvulnerableTo(source);
-    }
-
     // ---------------------------------------------------------------- totem
     @Override
     public void die(DamageSource source) {
@@ -103,7 +99,6 @@ public class Netherbot extends FlyingRobot {
         this.revived = true;
         this.setHealth(this.getMaxHealth());
         this.removeAllEffects();
-        this.setSecondsOnFire(0);
         this.applyPhaseTwo();
         if (this.level() instanceof ServerLevel level) {
             level.sendParticles(ParticleTypes.TOTEM_OF_UNDYING, this.getX(), this.getY(0.5D), this.getZ(),
@@ -121,9 +116,8 @@ public class Netherbot extends FlyingRobot {
         this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, MobEffectInstance.INFINITE_DURATION, 1, false, true));
     }
 
-    private void addPhaseModifier(net.minecraft.world.entity.ai.attributes.Attribute attribute, UUID id, double amount,
-            AttributeModifier.Operation operation) {
-        var instance = this.getAttribute(attribute);
+    private void addPhaseModifier(Attribute attribute, UUID id, double amount, AttributeModifier.Operation operation) {
+        AttributeInstance instance = this.getAttribute(attribute);
         if (instance != null && instance.getModifier(id) == null) {
             instance.addPermanentModifier(new AttributeModifier(id, "Netherbot totem", amount, operation));
         }
@@ -205,7 +199,7 @@ public class Netherbot extends FlyingRobot {
             }
             this.boss.getLookControl().setLookAt(target, 30.0F, 30.0F);
             if (this.boss.level() instanceof ServerLevel level) {
-                level.sendParticles(net.minecraft.core.particles.ParticleTypes.FLAME, this.boss.getX(),
+                level.sendParticles(ParticleTypes.FLAME, this.boss.getX(),
                         this.boss.getEyeY() - 0.2D, this.boss.getZ(), 3, 0.3D, 0.3D, 0.3D, 0.02D);
             }
             if (--this.charge <= 0) {
