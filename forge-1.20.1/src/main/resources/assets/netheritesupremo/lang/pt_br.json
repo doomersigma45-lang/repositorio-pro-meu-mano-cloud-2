@@ -11,5 +11,8 @@
   "item.netheritesupremo.golden_zombie_spawn_egg": "Ovo de Geração do Zumbi Dourado",
   "enchantment.netheritesupremo.multiplier_2x": "Multiplicador 2x",
   "enchantment.netheritesupremo.multiplier_4x": "Multiplicador 4x",
-  "enchantment.netheritesupremo.multiplier_8x": "Multiplicador 8x"
+  "enchantment.netheritesupremo.multiplier_8x": "Multiplicador 8x",
+  "entity.netheritesupremo.umbral_merchant": "Mercador Umbral",
+  "item.netheritesupremo.umbral_merchant_spawn_egg": "Ovo de Geração: Mercador Umbral",
+  "item.netheritesupremo.umbral_map": "Mapa Umbral"
 }

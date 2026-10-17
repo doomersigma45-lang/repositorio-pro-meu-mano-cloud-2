@@ -6,6 +6,9 @@ import com.netheritesupremo.entity.NetherSpider;
 import com.netheritesupremo.entity.NetheriteGolem;
 import net.minecraft.world.entity.monster.Monster;
 import com.netheritesupremo.entity.NetheriteKnight;
+import com.netheritesupremo.entity.UmbralMerchant;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.npc.Villager;
 import com.netheritesupremo.registry.ModEntities;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -25,6 +28,8 @@ public final class ModBusEvents {
         event.put(ModEntities.NETHERITE_KNIGHT.get(), NetheriteKnight.createKnightAttributes().build());
         event.put(ModEntities.NETHER_SPIDER.get(), NetherSpider.createNetherSpiderAttributes().build());
         event.put(ModEntities.NECROMANCER.get(), Necromancer.createNecromancerAttributes().build());
+        event.put(ModEntities.UMBRAL_MERCHANT.get(),
+                Villager.createAttributes().add(Attributes.MAX_HEALTH, 40.0D).build());
         event.put(ModEntities.GOLDEN_ZOMBIE.get(), GoldenZombie.createGoldenZombieAttributes().build());
     }
 

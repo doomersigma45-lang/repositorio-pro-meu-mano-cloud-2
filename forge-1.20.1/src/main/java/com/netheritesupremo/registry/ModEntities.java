@@ -6,6 +6,7 @@ import com.netheritesupremo.entity.Necromancer;
 import com.netheritesupremo.entity.NetherSpider;
 import com.netheritesupremo.entity.NetheriteGolem;
 import com.netheritesupremo.entity.NetheriteKnight;
+import com.netheritesupremo.entity.UmbralMerchant;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.registries.DeferredRegister;
@@ -55,6 +56,13 @@ public final class ModEntities {
                     .sized(0.6F, 1.95F)
                     .clientTrackingRange(8)
                     .build("golden_zombie"));
+
+    public static final RegistryObject<EntityType<UmbralMerchant>> UMBRAL_MERCHANT = ENTITIES.register(
+            "umbral_merchant",
+            () -> EntityType.Builder.of(UmbralMerchant::new, MobCategory.MISC)
+                    .sized(0.6F, 1.95F)
+                    .clientTrackingRange(10)
+                    .build("umbral_merchant"));
 
     private ModEntities() {
     }

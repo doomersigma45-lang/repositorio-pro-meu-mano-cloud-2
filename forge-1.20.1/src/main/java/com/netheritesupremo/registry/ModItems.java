@@ -31,6 +31,10 @@ public final class ModItems {
             "golden_zombie_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.GOLDEN_ZOMBIE, 0xF2C230, 0x8A5A00, new Item.Properties()));
 
+    public static final RegistryObject<Item> UMBRAL_MERCHANT_SPAWN_EGG = ITEMS.register(
+            "umbral_merchant_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.UMBRAL_MERCHANT, 0x2A1B4D, 0xC9A227, new Item.Properties()));
+
     private ModItems() {
     }
 }

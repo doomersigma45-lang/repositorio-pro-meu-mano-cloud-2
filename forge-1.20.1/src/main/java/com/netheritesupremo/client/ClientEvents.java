@@ -2,6 +2,7 @@ package com.netheritesupremo.client;
 
 import com.netheritesupremo.NetheriteSupremo;
 import com.netheritesupremo.registry.ModEntities;
+import net.minecraft.client.renderer.entity.WanderingTraderRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
@@ -20,6 +21,7 @@ public final class ClientEvents {
         event.registerEntityRenderer(ModEntities.NETHER_SPIDER.get(), NetherSpiderRenderer::new);
         event.registerEntityRenderer(ModEntities.GOLDEN_ZOMBIE.get(), GoldenZombieRenderer::new);
         event.registerEntityRenderer(ModEntities.NECROMANCER.get(), NecromancerRenderer::new);
+        event.registerEntityRenderer(ModEntities.UMBRAL_MERCHANT.get(), WanderingTraderRenderer::new);
     }
 
     @SubscribeEvent

@@ -162,6 +162,12 @@ public class NetheriteKnight extends Monster {
     @Override
     public void tick() {
         super.tick();
+        // Cavaleiros colocados por estruturas (NBT) nao passam por finalizeSpawn: equipa no primeiro tick
+        if (!this.level().isClientSide && this.getItemBySlot(EquipmentSlot.CHEST).isEmpty()
+                && this.getMainHandItem().isEmpty()) {
+            this.populateDefaultEquipmentSlots(this.random, this.level().getCurrentDifficultyAt(this.blockPosition()));
+            this.setPersistenceRequired();
+        }
         if (this.mountPending && !this.level().isClientSide && this.tickCount > 0) {
             this.mountPending = false;
             if (!this.isPassenger() && this.level() instanceof ServerLevel serverLevel) {

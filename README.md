@@ -137,3 +137,9 @@ Estruturas do datapack "Vila Umbral" agora geram naturalmente (vila + castelo ju
 - **Planícies** (`plains`, `sunflower_plains`): muito raras (spacing 100 / separation 50 chunks).
 - **Nether** (qualquer bioma do Nether): raras (spacing 60 / separation 30 chunks).
 - Teste manual: `/place structure netheritesupremo:umbral_plains` ou `netheritesupremo:umbral_nether`.
+
+### Moradores da Vila Umbral e mercadores (1.20.1)
+- A estrutura nasce com **3 golens de netherite**, **10 cavaleiros de netherite** e **2 Mercadores Umbral**.
+- **Mercador Umbral**: mesma aparência do mercador viajante, não desaparece, fica perto de onde nasceu e vende as melhores trocas (livros e equipamentos de diamante totalmente encantados, maçã dourada encantada, totem, elytra, sinalizador...). Único item de netherite à venda: o **peitoral** (encantado). Ovo de geração na aba de ovos.
+- **Mercador viajante melhorado**: preços das trocas normais pela metade, trocas extras boas e o **Mapa Umbral** (64 esmeraldas), que aponta para a Vila Umbral mais próxima (a busca é feita ao aparecer o mercador).
+- Planícies agora usam spacing 64 / separation 32 (antes 100/50) para o mapa conseguir achar uma vila.

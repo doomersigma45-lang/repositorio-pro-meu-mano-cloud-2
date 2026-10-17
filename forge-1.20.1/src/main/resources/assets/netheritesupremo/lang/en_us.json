@@ -11,5 +11,8 @@
   "item.netheritesupremo.golden_zombie_spawn_egg": "Golden Zombie Spawn Egg",
   "enchantment.netheritesupremo.multiplier_2x": "Multiplier 2x",
   "enchantment.netheritesupremo.multiplier_4x": "Multiplier 4x",
-  "enchantment.netheritesupremo.multiplier_8x": "Multiplier 8x"
+  "enchantment.netheritesupremo.multiplier_8x": "Multiplier 8x",
+  "entity.netheritesupremo.umbral_merchant": "Umbral Merchant",
+  "item.netheritesupremo.umbral_merchant_spawn_egg": "Umbral Merchant Spawn Egg",
+  "item.netheritesupremo.umbral_map": "Umbral Map"
 }
