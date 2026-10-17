@@ -99,6 +99,15 @@ def main():
             results.append(r.cmd("forceload add 190 190 400 270"))
             time.sleep(40)
             tests = [
+                "summon netheritesupremo:robot 60 100 60",
+                "attribute @e[type=netheritesupremo:robot,limit=1] minecraft:generic.max_health get",
+                "attribute @e[type=netheritesupremo:robot,limit=1] minecraft:generic.attack_damage get",
+                "damage @e[type=netheritesupremo:robot,limit=1] 20 minecraft:arrow",
+                "data get entity @e[type=netheritesupremo:robot,limit=1] Health",
+                "damage @e[type=netheritesupremo:robot,limit=1] 20 minecraft:generic",
+                "data get entity @e[type=netheritesupremo:robot,limit=1] Health",
+                "data get entity @e[type=netheritesupremo:robot,limit=1] Variant",
+                "loot spawn 0 100 0 loot netheritesupremo:entities/robot",
                 "summon minecraft:wandering_trader 50 70 50",
                 "data get entity @e[type=minecraft:wandering_trader,limit=1] Offers.Recipes[-1].sell",
                 "place structure netheritesupremo:umbral_plains 200 70 200",

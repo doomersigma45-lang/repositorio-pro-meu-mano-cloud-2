@@ -6,6 +6,7 @@ import com.netheritesupremo.entity.NetherSpider;
 import com.netheritesupremo.entity.NetheriteGolem;
 import net.minecraft.world.entity.monster.Monster;
 import com.netheritesupremo.entity.NetheriteKnight;
+import com.netheritesupremo.entity.Robot;
 import com.netheritesupremo.entity.UmbralMerchant;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.npc.Villager;
@@ -30,6 +31,7 @@ public final class ModBusEvents {
         event.put(ModEntities.NECROMANCER.get(), Necromancer.createNecromancerAttributes().build());
         event.put(ModEntities.UMBRAL_MERCHANT.get(),
                 Villager.createAttributes().add(Attributes.MAX_HEALTH, 40.0D).build());
+        event.put(ModEntities.ROBOT.get(), Robot.createRobotAttributes().build());
         event.put(ModEntities.GOLDEN_ZOMBIE.get(), GoldenZombie.createGoldenZombieAttributes().build());
     }
 

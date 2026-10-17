@@ -143,3 +143,9 @@ Estruturas do datapack "Vila Umbral" agora geram naturalmente (vila + castelo ju
 - **Mercador Umbral**: mesma aparência do mercador viajante, não desaparece, fica perto de onde nasceu e vende as melhores trocas (livros e equipamentos de diamante totalmente encantados, maçã dourada encantada, totem, elytra, sinalizador...). Único item de netherite à venda: o **peitoral** (encantado). Ovo de geração na aba de ovos.
 - **Mercador viajante melhorado**: preços das trocas normais pela metade, trocas extras boas e o **Mapa Umbral** (64 esmeraldas), que aponta para a Vila Umbral mais próxima (a busca é feita ao aparecer o mercador).
 - Planícies agora usam spacing 64 / separation 32 (antes 100/50) para o mapa conseguir achar uma vila.
+
+## Robô (1.20.1)
+- 150 de vida, ataque 25 (golem de ferro: 15), imune a projéteis e a dano de queda, **voa** e dispara **lasers** (raio que atravessa e fere inimigos na linha, 12 de dano, alcance 28).
+- Neutro como o golem de ferro: protege quem o construiu, ataca monstros hostis (menos creepers e cavaleiros de netherite) e revida se for atacado.
+- **Invocação:** bloco de ferro no chão, sinalizador em cima, dois blocos de diamante nos lados do sinalizador (em T) e uma abóbora talhada por último na cabeça.
+- Três skins (sorteadas ao nascer). Dropa ferro e diamante. Ovo de geração na aba de ovos.

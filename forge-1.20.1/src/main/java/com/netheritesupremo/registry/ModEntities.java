@@ -6,6 +6,7 @@ import com.netheritesupremo.entity.Necromancer;
 import com.netheritesupremo.entity.NetherSpider;
 import com.netheritesupremo.entity.NetheriteGolem;
 import com.netheritesupremo.entity.NetheriteKnight;
+import com.netheritesupremo.entity.Robot;
 import com.netheritesupremo.entity.UmbralMerchant;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -63,6 +64,14 @@ public final class ModEntities {
                     .sized(0.6F, 1.95F)
                     .clientTrackingRange(10)
                     .build("umbral_merchant"));
+
+    public static final RegistryObject<EntityType<Robot>> ROBOT = ENTITIES.register(
+            "robot",
+            () -> EntityType.Builder.of(Robot::new, MobCategory.MISC)
+                    .sized(0.72F, 2.16F)
+                    .clientTrackingRange(10)
+                    .updateInterval(2)
+                    .build("robot"));
 
     private ModEntities() {
     }

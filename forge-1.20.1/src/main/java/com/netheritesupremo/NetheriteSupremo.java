@@ -33,6 +33,7 @@ public class NetheriteSupremo {
         MinecraftForge.EVENT_BUS.register(new NecromancerEvents());
         MinecraftForge.EVENT_BUS.register(new MultiplierEvents());
         MinecraftForge.EVENT_BUS.register(new TradeEvents());
+        MinecraftForge.EVENT_BUS.register(new RobotSummoning());
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -48,6 +49,7 @@ public class NetheriteSupremo {
             event.accept(ModItems.NETHER_SPIDER_SPAWN_EGG);
             event.accept(ModItems.GOLDEN_ZOMBIE_SPAWN_EGG);
             event.accept(ModItems.UMBRAL_MERCHANT_SPAWN_EGG);
+            event.accept(ModItems.ROBOT_SPAWN_EGG);
         }
     }
 }
