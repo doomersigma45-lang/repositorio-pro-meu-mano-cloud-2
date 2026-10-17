@@ -96,7 +96,8 @@ def main():
             r = Rcon()
             # Sem jogador, so os chunks forcados ficam carregados: garante a area dos testes
             results.append("> forceload\n  " + r.cmd("forceload add -16 -16 112 112"))
-            time.sleep(20)
+            results.append(r.cmd("forceload add 190 190 400 270"))
+            time.sleep(40)
             tests = [
                 "summon netheritesupremo:netherite_knight 0 100 0",
                 "summon netheritesupremo:netherite_golem 90 100 90",
@@ -120,7 +121,7 @@ def main():
                 "summon minecraft:zombie 13 70 10",
                 "damage @e[type=netheritesupremo:netherite_knight,limit=1,sort=furthest] 1 minecraft:mob_attack by @e[type=minecraft:zombie,limit=1]",
                 "place structure netheritesupremo:umbral_plains 200 70 200",
-                "place structure netheritesupremo:umbral_nether 600 70 600",
+                "place structure netheritesupremo:umbral_nether 300 70 200",
                 "summon netheritesupremo:golden_zombie 30 70 30",
                 "attribute @e[type=netheritesupremo:golden_zombie,limit=1] minecraft:generic.max_health get",
                 "attribute @e[type=netheritesupremo:golden_zombie,limit=1] minecraft:generic.attack_damage get",
