@@ -8,6 +8,8 @@ public final class SupremoConfig {
     public static final ForgeConfigSpec.BooleanValue KNIGHT_RESPAWNS_AFTER_DEATH;
     public static final ForgeConfigSpec.BooleanValue LETHAL_HIT_PROTECTION;
     public static final ForgeConfigSpec.BooleanValue BOMB_ROBOT_DESTROYS_BLOCKS;
+    public static final ForgeConfigSpec.DoubleValue RAINBOW_EXPLOSION_POWER;
+    public static final ForgeConfigSpec.BooleanValue RAINBOW_DESTROYS_BLOCKS;
 
     static {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
@@ -28,6 +30,14 @@ public final class SupremoConfig {
                 .comment("true = a explosao de morte do bomb-robot (forca 30, 10x a de um creeper) destroi blocos",
                         "(respeitando a regra mobGriefing). false = so causa dano, sem destruir blocos.")
                 .define("bombRobotDestroysBlocks", true);
+        RAINBOW_EXPLOSION_POWER = builder
+                .comment("Forca das explosoes do boss Rainbow e da joia colorida. Padrao 225 = 75x a de um creeper (3).",
+                        "Explosoes desse tamanho destroem uma area enorme e podem causar travadas: diminua se precisar.")
+                .defineInRange("rainbowExplosionPower", 225.0D, 1.0D, 500.0D);
+        RAINBOW_DESTROYS_BLOCKS = builder
+                .comment("true = as explosoes do boss Rainbow (respeitando mobGriefing) e da joia colorida destroem blocos.",
+                        "false = so causam dano.")
+                .define("rainbowDestroysBlocks", true);
         SPEC = builder.build();
     }
 

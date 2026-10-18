@@ -8,6 +8,7 @@ import net.minecraft.world.entity.monster.Monster;
 import com.netheritesupremo.entity.NetheriteKnight;
 import com.netheritesupremo.entity.Netherbot;
 import com.netheritesupremo.entity.NetheriteBombRobot;
+import com.netheritesupremo.entity.NetheriteRobotRainbowBoss;
 import com.netheritesupremo.entity.Robot;
 import com.netheritesupremo.entity.UmbralMerchant;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -35,6 +36,7 @@ public final class ModBusEvents {
                 Villager.createAttributes().add(Attributes.MAX_HEALTH, 40.0D).build());
         event.put(ModEntities.BOMB_ROBOT.get(), NetheriteBombRobot.createBombRobotAttributes().build());
         event.put(ModEntities.NETHERBOT.get(), Netherbot.createNetherbotAttributes().build());
+        event.put(ModEntities.RAINBOW_BOSS.get(), NetheriteRobotRainbowBoss.createBossAttributes().build());
         event.put(ModEntities.ROBOT.get(), Robot.createRobotAttributes().build());
         event.put(ModEntities.GOLDEN_ZOMBIE.get(), GoldenZombie.createGoldenZombieAttributes().build());
     }

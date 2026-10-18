@@ -8,6 +8,7 @@ import com.netheritesupremo.entity.NetheriteGolem;
 import com.netheritesupremo.entity.NetheriteBombRobot;
 import com.netheritesupremo.entity.Netherbot;
 import com.netheritesupremo.entity.NetheriteKnight;
+import com.netheritesupremo.entity.NetheriteRobotRainbowBoss;
 import com.netheritesupremo.entity.Robot;
 import com.netheritesupremo.entity.UmbralMerchant;
 import net.minecraft.world.entity.EntityType;
@@ -92,6 +93,15 @@ public final class ModEntities {
                     .clientTrackingRange(12)
                     .updateInterval(2)
                     .build("netherbot"));
+
+    public static final RegistryObject<EntityType<NetheriteRobotRainbowBoss>> RAINBOW_BOSS = ENTITIES.register(
+            "netherite_robot_rainbow_boss",
+            () -> EntityType.Builder.of(NetheriteRobotRainbowBoss::new, MobCategory.MONSTER)
+                    .sized(1.4F, 4.2F)
+                    .fireImmune()
+                    .clientTrackingRange(16)
+                    .updateInterval(2)
+                    .build("netherite_robot_rainbow_boss"));
 
     private ModEntities() {
     }

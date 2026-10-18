@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "netheritesupremo:item/rainbow_gem"
+  }
+}

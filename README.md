@@ -155,3 +155,9 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 - **Netherite Bomb-Robot**: 45 de vida, 15 de dano, muito rápido, voa (chama azul nas costas ao voar), solta projéteis explosivos e, **ao morrer, explode com força 30** (10x um creeper). Configurável em `bombRobotDestroysBlocks` (false = só dano, sem destruir blocos). Spawn natural no Nether.
 - **Netherbot (mini boss)**: 666 de vida, 66 de dano, lasers de 45, voa (aura de fogo normal), invoca bomb-robots durante a luta e tem um **totem da imortalidade**: na primeira morte recupera toda a vida e fica mais forte (+50% dano, +20% velocidade, lasers 67) e mais resistente (armadura e Resistência II). Muito raro no Nether; dropa netherite, diamantes, estrela do Nether e totem.
 - Ambos têm ovo de geração na aba de ovos.
+
+## Netherite Robot Rainbow Boss e Joia Colorida (1.20.1)
+- **Boss** (`netherite_robot_rainbow_boss`, ovo de geração na aba de ovos; sem spawn natural): 4500 de vida, 150 de dano, **imune a projéteis, fogo e explosões**, voa (aura de fogo), lasers de 150, bolas de fogo explosivas, **explosão de força 225 (75x um creeper)** carregada por 3 s a cada ~30 s, quebra blocos, **agarra quem ataca e desfere vários golpes** antes de arremessar, invoca **2 netherbots + 10 bomb-robots** (uma onda no início e outra depois do totem) e tem um **totem da imortalidade** (cura total + Força III + Resistência II).
+- Drops: 2 estrelas do Nether, 4 totens, 7 maçãs douradas encantadas e a **Joia Colorida**.
+- **Joia Colorida**: segurando dá Resistência 5 e Visão Noturna; botão direito solta uma explosão 75x creeper onde você mira (até 100 blocos, recarga 30 s). Com Resistência 5 o usuário fica imune à própria explosão.
+- Config: `rainbowExplosionPower` (padrão 225) e `rainbowDestroysBlocks`. Explosões desse tamanho destroem uma área enorme e podem travar o jogo; diminua a força se precisar.

@@ -34,6 +34,7 @@ public class NetheriteSupremo {
         MinecraftForge.EVENT_BUS.register(new MultiplierEvents());
         MinecraftForge.EVENT_BUS.register(new TradeEvents());
         MinecraftForge.EVENT_BUS.register(new RobotSummoning());
+        MinecraftForge.EVENT_BUS.register(new GemEvents());
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -51,6 +52,9 @@ public class NetheriteSupremo {
             event.accept(ModItems.UMBRAL_MERCHANT_SPAWN_EGG);
             event.accept(ModItems.BOMB_ROBOT_SPAWN_EGG);
             event.accept(ModItems.NETHERBOT_SPAWN_EGG);
+            event.accept(ModItems.RAINBOW_BOSS_SPAWN_EGG);
+        } else if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(ModItems.RAINBOW_GEM);
         }
     }
 }

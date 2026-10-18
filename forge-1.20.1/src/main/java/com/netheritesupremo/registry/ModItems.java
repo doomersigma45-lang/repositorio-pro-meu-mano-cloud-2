@@ -43,6 +43,15 @@ public final class ModItems {
             "netherbot_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.NETHERBOT, 0x2B2B2F, 0xFF8A1A, new Item.Properties()));
 
+    public static final RegistryObject<Item> RAINBOW_BOSS_SPAWN_EGG = ITEMS.register(
+            "netherite_robot_rainbow_boss_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.RAINBOW_BOSS, 0xFF3B3B, 0x3BD9FF, new Item.Properties()));
+
+    public static final RegistryObject<Item> RAINBOW_GEM = ITEMS.register(
+            "rainbow_gem",
+            () -> new com.netheritesupremo.item.RainbowGemItem(new Item.Properties().stacksTo(1).fireResistant()
+                    .rarity(net.minecraft.world.item.Rarity.EPIC)));
+
     private ModItems() {
     }
 }

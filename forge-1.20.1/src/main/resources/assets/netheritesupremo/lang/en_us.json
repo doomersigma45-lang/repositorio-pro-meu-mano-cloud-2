@@ -19,5 +19,8 @@
   "entity.netheritesupremo.netherite_bomb_robot": "Netherite Bomb-Robot",
   "entity.netheritesupremo.netherbot": "Netherbot",
   "item.netheritesupremo.netherite_bomb_robot_spawn_egg": "Netherite Bomb-Robot Spawn Egg",
-  "item.netheritesupremo.netherbot_spawn_egg": "Netherbot Spawn Egg"
+  "item.netheritesupremo.netherbot_spawn_egg": "Netherbot Spawn Egg",
+  "entity.netheritesupremo.netherite_robot_rainbow_boss": "Netherite Robot Rainbow Boss",
+  "item.netheritesupremo.netherite_robot_rainbow_boss_spawn_egg": "Netherite Robot Rainbow Boss Spawn Egg",
+  "item.netheritesupremo.rainbow_gem": "Rainbow Gem"
 }

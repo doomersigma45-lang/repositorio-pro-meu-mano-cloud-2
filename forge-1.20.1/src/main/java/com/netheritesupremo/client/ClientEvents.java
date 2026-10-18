@@ -3,6 +3,7 @@ package com.netheritesupremo.client;
 import com.netheritesupremo.NetheriteSupremo;
 import com.netheritesupremo.registry.ModEntities;
 import com.netheritesupremo.entity.Netherbot;
+import com.netheritesupremo.entity.NetheriteRobotRainbowBoss;
 import com.netheritesupremo.entity.NetheriteBombRobot;
 import net.minecraft.client.renderer.entity.WanderingTraderRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -28,6 +29,8 @@ public final class ClientEvents {
                 new ResourceLocation(NetheriteSupremo.MODID, "textures/entity/bomb_robot.png"), 1.0F));
         event.registerEntityRenderer(ModEntities.NETHERBOT.get(), ctx -> new PlayerRobotRenderer<Netherbot>(ctx,
                 new ResourceLocation(NetheriteSupremo.MODID, "textures/entity/netherbot.png"), 1.6F));
+        event.registerEntityRenderer(ModEntities.RAINBOW_BOSS.get(), ctx -> new PlayerRobotRenderer<NetheriteRobotRainbowBoss>(ctx,
+                new ResourceLocation(NetheriteSupremo.MODID, "textures/entity/netherite_robot_rainbow_boss.png"), 2.3F));
         event.registerEntityRenderer(ModEntities.ROBOT.get(), RobotRenderer::new);
         event.registerEntityRenderer(ModEntities.UMBRAL_MERCHANT.get(), WanderingTraderRenderer::new);
     }
