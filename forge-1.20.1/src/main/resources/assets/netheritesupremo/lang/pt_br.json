@@ -22,5 +22,7 @@
   "item.netheritesupremo.netherbot_spawn_egg": "Ovo de Geração: Netherbot",
   "entity.netheritesupremo.netherite_robot_rainbow_boss": "Robô Arco-Íris de Netherite (Boss)",
   "item.netheritesupremo.netherite_robot_rainbow_boss_spawn_egg": "Ovo de Geração: Robô Arco-Íris de Netherite",
-  "item.netheritesupremo.rainbow_gem": "Joia Colorida"
+  "item.netheritesupremo.rainbow_gem": "Joia Colorida",
+  "entity.netheritesupremo.precursor": "Precursor",
+  "item.netheritesupremo.precursor_spawn_egg": "Ovo de Geração: Precursor"
 }

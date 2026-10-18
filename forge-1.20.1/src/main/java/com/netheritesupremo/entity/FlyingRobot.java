@@ -27,9 +27,14 @@ public abstract class FlyingRobot extends Monster {
     /** Particula da chama que sai das costas enquanto voa. */
     protected abstract ParticleOptions backFlame();
 
+    /** Por padrao os robos sao imunes a fogo; o Precursor sobrescreve. */
+    protected boolean immuneToFire() {
+        return true;
+    }
+
     @Override
     public boolean isInvulnerableTo(DamageSource source) {
-        return source.is(DamageTypeTags.IS_FIRE)
+        return (this.immuneToFire() && source.is(DamageTypeTags.IS_FIRE))
                 || source.is(DamageTypeTags.IS_EXPLOSION)
                 || source.is(DamageTypeTags.IS_PROJECTILE)
                 || source.is(DamageTypeTags.IS_FALL)

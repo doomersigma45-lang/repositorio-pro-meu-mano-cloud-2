@@ -19,11 +19,17 @@ public final class RobotLaser {
     }
 
     public static void fire(LivingEntity shooter, LivingEntity target, double range, float damage, Vector3f color) {
+        fireTowards(shooter, target, target.getBoundingBox().getCenter(), range, damage, color);
+    }
+
+    /** Dispara na direcao de um ponto qualquer; so fere o alvo e inimigos que estiverem na linha. */
+    public static void fireTowards(LivingEntity shooter, LivingEntity target, Vec3 aim, double range, float damage,
+            Vector3f color) {
         if (!(shooter.level() instanceof ServerLevel level)) {
             return;
         }
         Vec3 from = shooter.getEyePosition().add(0.0D, -0.2D, 0.0D);
-        Vec3 dir = target.getBoundingBox().getCenter().subtract(from).normalize();
+        Vec3 dir = aim.subtract(from).normalize();
         Vec3 end = from.add(dir.scale(range));
         HitResult block = level.clip(new ClipContext(from, end, ClipContext.Block.COLLIDER,
                 ClipContext.Fluid.NONE, shooter));
@@ -33,6 +39,7 @@ public final class RobotLaser {
         final Vec3 beamEnd = end;
         List<LivingEntity> hit = level.getEntitiesOfClass(LivingEntity.class, new AABB(from, beamEnd).inflate(1.0D),
                 e -> e != shooter && e.isAlive() && !(e instanceof FlyingRobot) && !(e instanceof NetheriteKnight)
+                        && !(e instanceof net.minecraft.world.entity.monster.Guardian)
                         && (e == target || e instanceof Enemy)
                         && e.getBoundingBox().inflate(0.3D).clip(from, beamEnd).isPresent());
         for (LivingEntity victim : hit) {

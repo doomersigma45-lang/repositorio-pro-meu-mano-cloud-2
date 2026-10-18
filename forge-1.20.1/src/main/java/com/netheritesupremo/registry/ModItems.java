@@ -52,6 +52,10 @@ public final class ModItems {
             () -> new com.netheritesupremo.item.RainbowGemItem(new Item.Properties().stacksTo(1).fireResistant()
                     .rarity(net.minecraft.world.item.Rarity.EPIC)));
 
+    public static final RegistryObject<Item> PRECURSOR_SPAWN_EGG = ITEMS.register(
+            "precursor_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.PRECURSOR, 0x2A1F5C, 0x35E0D0, new Item.Properties()));
+
     private ModItems() {
     }
 }

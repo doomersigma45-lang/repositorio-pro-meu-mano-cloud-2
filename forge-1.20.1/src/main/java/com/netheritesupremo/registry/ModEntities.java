@@ -8,6 +8,7 @@ import com.netheritesupremo.entity.NetheriteGolem;
 import com.netheritesupremo.entity.NetheriteBombRobot;
 import com.netheritesupremo.entity.Netherbot;
 import com.netheritesupremo.entity.NetheriteKnight;
+import com.netheritesupremo.entity.Precursor;
 import com.netheritesupremo.entity.NetheriteRobotRainbowBoss;
 import com.netheritesupremo.entity.Robot;
 import com.netheritesupremo.entity.UmbralMerchant;
@@ -102,6 +103,14 @@ public final class ModEntities {
                     .clientTrackingRange(16)
                     .updateInterval(2)
                     .build("netherite_robot_rainbow_boss"));
+
+    public static final RegistryObject<EntityType<Precursor>> PRECURSOR = ENTITIES.register(
+            "precursor",
+            () -> EntityType.Builder.of(Precursor::new, MobCategory.MONSTER)
+                    .sized(1.6F, 4.8F)
+                    .clientTrackingRange(16)
+                    .updateInterval(2)
+                    .build("precursor"));
 
     private ModEntities() {
     }

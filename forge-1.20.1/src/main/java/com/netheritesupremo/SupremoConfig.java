@@ -10,6 +10,7 @@ public final class SupremoConfig {
     public static final ForgeConfigSpec.BooleanValue BOMB_ROBOT_DESTROYS_BLOCKS;
     public static final ForgeConfigSpec.DoubleValue RAINBOW_EXPLOSION_POWER;
     public static final ForgeConfigSpec.BooleanValue RAINBOW_DESTROYS_BLOCKS;
+    public static final ForgeConfigSpec.BooleanValue PRECURSOR_DESTROYS_BLOCKS;
 
     static {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
@@ -38,6 +39,10 @@ public final class SupremoConfig {
                 .comment("true = as explosoes do boss Rainbow (respeitando mobGriefing) e da joia colorida destroem blocos.",
                         "false = so causam dano.")
                 .define("rainbowDestroysBlocks", true);
+        PRECURSOR_DESTROYS_BLOCKS = builder
+                .comment("true = o Precursor quebra qualquer bloco por onde passa e suas explosoes destroem blocos.",
+                        "false = so causa dano.")
+                .define("precursorDestroysBlocks", true);
         SPEC = builder.build();
     }
 

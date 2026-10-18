@@ -22,5 +22,7 @@
   "item.netheritesupremo.netherbot_spawn_egg": "Netherbot Spawn Egg",
   "entity.netheritesupremo.netherite_robot_rainbow_boss": "Netherite Robot Rainbow Boss",
   "item.netheritesupremo.netherite_robot_rainbow_boss_spawn_egg": "Netherite Robot Rainbow Boss Spawn Egg",
-  "item.netheritesupremo.rainbow_gem": "Rainbow Gem"
+  "item.netheritesupremo.rainbow_gem": "Rainbow Gem",
+  "entity.netheritesupremo.precursor": "Precursor",
+  "item.netheritesupremo.precursor_spawn_egg": "Precursor Spawn Egg"
 }

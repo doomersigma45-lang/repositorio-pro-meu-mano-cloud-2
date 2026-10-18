@@ -161,3 +161,10 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 - Drops: 2 estrelas do Nether, 4 totens, 7 maçãs douradas encantadas e a **Joia Colorida**.
 - **Joia Colorida**: segurando dá Resistência 5 e Visão Noturna; botão direito solta uma explosão 75x creeper onde você mira (até 100 blocos, recarga 30 s). Com Resistência 5 o usuário fica imune à própria explosão.
 - Config: `rainbowExplosionPower` (padrão 225) e `rainbowDestroysBlocks`. Explosões desse tamanho destroem uma área enorme e podem travar o jogo; diminua a força se precisar.
+
+## Precursor (boss, 1.20.1)
+- 20.000 de vida, 1.500 de dano, **voa, nada e atravessa paredes**, quebra qualquer bloco (até bedrock, sem drops), **imune a explosões e projéteis** (também a queda e sufocamento; fogo o fere).
+- Ataques: salva de lasers (500 de dano cada, um no alvo, vários espalhados e um em cada outro jogador), 3 explosões fortes (força 10) sobre o alvo, **maldição dos guardiões** (Fraqueza II + Fadiga de Mineração III e o efeito do guardião ancião) e invocação de guardiões e guardiões anciões.
+- **Cinco totens da imortalidade**: cada um recupera toda a vida (6 "vidas" no total).
+- Dropa 4 estrelas do Nether, 5 totens e 16 lingotes de netherite. Só nasce por ovo de geração ou `/summon netheritesupremo:precursor`.
+- Config: `precursorDestroysBlocks` (false = só dano, sem destruir blocos).
