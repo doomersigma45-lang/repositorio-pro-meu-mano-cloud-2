@@ -7,7 +7,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-/** Joia colorida na mao: Resistencia 5 e Visao Noturna enquanto estiver segurando. */
+/** Segurando a joia colorida (em qualquer mao): Resistencia V e Visao Noturna. */
 public class GemEvents {
     private static final String KEY = "netheritesupremo_gem_effects";
 
@@ -24,14 +24,14 @@ public class GemEvents {
             player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 260, 0, true, false, true));
             player.getPersistentData().putBoolean(KEY, true);
         } else if (player.getPersistentData().getBoolean(KEY)) {
-            // Parou de segurar: tira so os efeitos que vieram da joia (marcados como "ambient")
+            // Largou a joia: tira so os efeitos dela (marcados como "ambient")
             player.getPersistentData().putBoolean(KEY, false);
-            MobEffectInstance resistance = player.getEffect(MobEffects.DAMAGE_RESISTANCE);
-            if (resistance != null && resistance.isAmbient() && resistance.getAmplifier() == 4) {
+            MobEffectInstance res = player.getEffect(MobEffects.DAMAGE_RESISTANCE);
+            if (res != null && res.isAmbient() && res.getAmplifier() == 4) {
                 player.removeEffect(MobEffects.DAMAGE_RESISTANCE);
             }
-            MobEffectInstance vision = player.getEffect(MobEffects.NIGHT_VISION);
-            if (vision != null && vision.isAmbient()) {
+            MobEffectInstance nv = player.getEffect(MobEffects.NIGHT_VISION);
+            if (nv != null && nv.isAmbient()) {
                 player.removeEffect(MobEffects.NIGHT_VISION);
             }
         }

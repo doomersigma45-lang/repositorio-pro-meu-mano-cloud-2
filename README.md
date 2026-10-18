@@ -161,3 +161,9 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 - Drops: 2 estrelas do Nether, 4 totens, 7 maçãs douradas encantadas e a **Joia Colorida**.
 - **Joia Colorida**: segurando dá Resistência 5 e Visão Noturna; botão direito solta uma explosão 75x creeper onde você mira (até 100 blocos, recarga 30 s). Com Resistência 5 o usuário fica imune à própria explosão.
 - Config: `rainbowExplosionPower` (padrão 225) e `rainbowDestroysBlocks`. Explosões desse tamanho destroem uma área enorme e podem travar o jogo; diminua a força se precisar.
+
+## Netherite Robot Rainbow Boss e Joia Colorida (1.20.1)
+- **Boss**: 4500 de vida, 150 de dano, voa (aura de fogo), **imune a fogo, explosões e projéteis**, quebra blocos, solta lasers de 150, projéteis explosivos e explosões **75x a de um creeper** (força 225), invoca 2 netherbots + 10 bomb-robots (uma onda no início e outra depois do totem), agarra o alvo e desfere vários golpes antes de arremessá-lo, e tem um **totem da imortalidade** (cura total + Força III + Resistência II). Barra de boss arco-íris. Só nasce por ovo de geração ou `/summon netheritesupremo:netherite_robot_rainbow_boss`.
+- **Drops**: 2 estrelas do Nether, 4 totens, 7 maçãs douradas encantadas e a Joia Colorida.
+- **Joia Colorida**: segurando (qualquer mão) dá Resistência V e Visão Noturna; botão direito solta uma explosão 75x a de um creeper onde você olha (alcance 100, recarga 30 s; a Resistência V te protege).
+- Config: `rainbowExplosionPower` (padrão 225; diminua se o servidor travar) e `rainbowDestroysBlocks`.

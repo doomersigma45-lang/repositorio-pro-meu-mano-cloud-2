@@ -3,10 +3,8 @@ package com.netheritesupremo.entity;
 import com.netheritesupremo.SupremoConfig;
 import com.netheritesupremo.registry.ModEntities;
 import java.util.EnumSet;
-import java.util.List;
 import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -46,9 +44,10 @@ import net.minecraftforge.event.ForgeEventFactory;
 import org.joml.Vector3f;
 
 /**
- * Netherite Robot Rainbow Boss: 4500 de vida, 150 de dano, voa (aura de fogo), imune a projeteis,
- * fogo e explosoes. Lasers de 150, bolas explosivas, explosao gigante (75x creeper), quebra blocos,
- * agarra e golpeia quem ataca, invoca 2 netherbots + 10 bomb-robots e tem um totem da imortalidade.
+ * Netherite Robot Rainbow Boss. 4500 de vida, 150 de dano, voa (aura de fogo), quebra blocos,
+ * lasers de 150, projeteis explosivos, explosoes 75x a de um creeper, invoca 2 netherbots + 10
+ * bomb-robots, agarra e golpeia o alvo e tem um totem da imortalidade (Forca III + Resistencia II).
+ * Imune a fogo, explosoes e projeteis (herdado de {@link FlyingRobot}).
  */
 public class NetheriteRobotRainbowBoss extends FlyingRobot {
     public static final double MAX_HEALTH = 4500.0D;
@@ -56,8 +55,6 @@ public class NetheriteRobotRainbowBoss extends FlyingRobot {
     public static final float LASER_DAMAGE = 150.0F;
     public static final double LASER_RANGE = 48.0D;
     public static final int PROJECTILE_EXPLOSION_POWER = 6;
-    public static final int MINION_NETHERBOTS = 2;
-    public static final int MINION_BOMB_ROBOTS = 10;
 
     private static final BossEvent.BossBarColor[] RAINBOW = {
             BossEvent.BossBarColor.RED, BossEvent.BossBarColor.YELLOW, BossEvent.BossBarColor.GREEN,
@@ -85,18 +82,27 @@ public class NetheriteRobotRainbowBoss extends FlyingRobot {
                 .add(Attributes.FOLLOW_RANGE, 64.0D);
     }
 
-    @Override
-    protected ParticleOptions backFlame() {
-        return ParticleTypes.FLAME; // aura de fogo
+    public boolean isRevived() {
+        return this.revived;
     }
 
-    /** Alem de fogo, explosoes, projeteis e queda (base), nao sufoca dentro de blocos. */
+    @Override
+    protected ParticleOptions backFlame() {
+        return ParticleTypes.FLAME; // aura de fogo ao voar
+    }
+
+    /** Alem de fogo, explosoes, projeteis e queda, nao sufoca nos blocos que ele quebra. */
     @Override
     public boolean isInvulnerableTo(DamageSource source) {
         return source.is(DamageTypes.IN_WALL) || super.isInvulnerableTo(source);
     }
 
-    // ---------------------------------------------------------------- totem
+    private Level.ExplosionInteraction explosionMode() {
+        return SupremoConfig.RAINBOW_DESTROYS_BLOCKS.get()
+                ? Level.ExplosionInteraction.MOB : Level.ExplosionInteraction.NONE;
+    }
+
+    // ------------------------------------------------------------------- totem
     @Override
     public void die(DamageSource source) {
         if (!this.level().isClientSide && !this.revived && !source.is(DamageTypes.GENERIC_KILL)) {
@@ -106,7 +112,6 @@ public class NetheriteRobotRainbowBoss extends FlyingRobot {
         super.die(source);
     }
 
-    /** Regenera toda a vida e ganha Forca III e Resistencia II. */
     private void useTotem() {
         this.revived = true;
         this.setHealth(this.getMaxHealth());
@@ -116,7 +121,7 @@ public class NetheriteRobotRainbowBoss extends FlyingRobot {
         if (this.level() instanceof ServerLevel level) {
             level.sendParticles(ParticleTypes.TOTEM_OF_UNDYING, this.getX(), this.getY(0.5D), this.getZ(),
                     150, 1.0D, 2.0D, 1.0D, 0.6D);
-            level.playSound(null, this.blockPosition(), SoundEvents.TOTEM_USE, SoundSource.HOSTILE, 3.0F, 1.0F);
+            level.playSound(null, this.blockPosition(), SoundEvents.TOTEM_USE, SoundSource.HOSTILE, 3.0F, 0.8F);
         }
     }
 
@@ -137,13 +142,11 @@ public class NetheriteRobotRainbowBoss extends FlyingRobot {
         }
     }
 
-    // ------------------------------------------------------- quebra blocos + barra
+    // --------------------------------------------------------- quebrar blocos
     @Override
-    protected void customServerAiStep() {
-        super.customServerAiStep();
-        this.bossEvent.setProgress(this.getHealth() / this.getMaxHealth());
-        this.bossEvent.setColor(RAINBOW[(this.tickCount / 10) % RAINBOW.length]);
-        if (this.tickCount % 4 == 0 && this.getTarget() != null) {
+    public void aiStep() {
+        super.aiStep();
+        if (!this.level().isClientSide && this.tickCount % 4 == 0 && this.getTarget() != null) {
             this.breakBlocks();
         }
     }
@@ -163,30 +166,11 @@ public class NetheriteRobotRainbowBoss extends FlyingRobot {
         }
     }
 
-    @Override
-    public void startSeenByPlayer(ServerPlayer player) {
-        super.startSeenByPlayer(player);
-        this.bossEvent.addPlayer(player);
-    }
-
-    @Override
-    public void stopSeenByPlayer(ServerPlayer player) {
-        super.stopSeenByPlayer(player);
-        this.bossEvent.removePlayer(player);
-    }
-
-    @Override
-    public void setCustomName(@Nullable Component name) {
-        super.setCustomName(name);
-        this.bossEvent.setName(this.getDisplayName());
-    }
-
-    // ----------------------------------------------- quem esta agarrado fica na frente
+    // ------------------------------------------------- alvo agarrado (passageiro)
     @Override
     protected void positionRider(Entity passenger, Entity.MoveFunction move) {
-        float yaw = this.getYRot() * ((float) Math.PI / 180.0F);
-        move.accept(passenger, this.getX() - Mth.sin(yaw) * 1.8D, this.getY() + this.getBbHeight() * 0.45D,
-                this.getZ() + Mth.cos(yaw) * 1.8D);
+        Vec3 front = Vec3.directionFromRotation(0.0F, this.getYRot()).scale(1.6D);
+        move.accept(passenger, this.getX() + front.x, this.getY() + this.getBbHeight() * 0.45D, this.getZ() + front.z);
     }
 
     // ------------------------------------------------------------------ objetivos
@@ -205,12 +189,195 @@ public class NetheriteRobotRainbowBoss extends FlyingRobot {
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }
 
-    private Vector3f rainbowColor() {
-        int rgb = Mth.hsvToRgb((this.tickCount % 60) / 60.0F, 1.0F, 1.0F);
-        return new Vector3f((rgb >> 16 & 255) / 255.0F, (rgb >> 8 & 255) / 255.0F, (rgb & 255) / 255.0F);
+    /** Explosao com 75x a forca de um creeper (3 x 75 = 225). */
+    static class RainbowBlastGoal extends Goal {
+        private final NetheriteRobotRainbowBoss boss;
+        private int charge;
+        private int cooldown = 300;
+
+        RainbowBlastGoal(NetheriteRobotRainbowBoss boss) {
+            this.boss = boss;
+            this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
+        }
+
+        @Override
+        public boolean canUse() {
+            if (this.cooldown > 0) {
+                this.cooldown--;
+                return false;
+            }
+            LivingEntity target = this.boss.getTarget();
+            return target != null && target.isAlive() && this.boss.distanceTo(target) < 64.0D;
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            LivingEntity target = this.boss.getTarget();
+            return target != null && target.isAlive() && this.charge > 0;
+        }
+
+        @Override
+        public void start() {
+            this.charge = 60;
+            this.boss.playSound(SoundEvents.WITHER_SPAWN, 3.0F, 1.5F);
+        }
+
+        @Override
+        public void tick() {
+            LivingEntity target = this.boss.getTarget();
+            if (target != null) {
+                this.boss.getLookControl().setLookAt(target, 30.0F, 30.0F);
+            }
+            this.boss.getNavigation().stop();
+            if (this.boss.level() instanceof ServerLevel level) {
+                float hue = (this.boss.tickCount % 40) / 40.0F;
+                level.sendParticles(rainbowDust(hue, 2.0F), this.boss.getX(), this.boss.getY(0.5D), this.boss.getZ(),
+                        12, 1.5D, 2.0D, 1.5D, 0.0D);
+            }
+            if (--this.charge <= 0) {
+                this.boss.level().explode(this.boss, this.boss.getX(), this.boss.getY(0.5D), this.boss.getZ(),
+                        SupremoConfig.RAINBOW_EXPLOSION_POWER.get().floatValue(), this.boss.explosionMode());
+            }
+        }
+
+        @Override
+        public void stop() {
+            this.charge = 0;
+            this.cooldown = this.boss.revived ? 600 : 900;
+        }
     }
 
-    /** Laser de 150 de dano (arco-iris). */
+    /** Invoca 2 netherbots e 10 bomb-robots: uma onda no inicio e outra depois do totem. */
+    static class SummonMinionsGoal extends Goal {
+        private final NetheriteRobotRainbowBoss boss;
+        private int cooldown = 40;
+
+        SummonMinionsGoal(NetheriteRobotRainbowBoss boss) {
+            this.boss = boss;
+        }
+
+        @Override
+        public boolean canUse() {
+            if (this.cooldown > 0) {
+                this.cooldown--;
+                return false;
+            }
+            LivingEntity target = this.boss.getTarget();
+            return target != null && target.isAlive() && this.boss.waves < (this.boss.revived ? 2 : 1);
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            return false;
+        }
+
+        @Override
+        public void start() {
+            this.boss.waves++;
+            this.cooldown = 100;
+            if (!(this.boss.level() instanceof ServerLevel level)) {
+                return;
+            }
+            for (int i = 0; i < 2; i++) {
+                Netherbot bot = ModEntities.NETHERBOT.get().create(level);
+                this.place(level, bot);
+            }
+            for (int i = 0; i < 10; i++) {
+                NetheriteBombRobot bot = ModEntities.BOMB_ROBOT.get().create(level);
+                this.place(level, bot);
+            }
+            level.playSound(null, this.boss.blockPosition(), SoundEvents.EVOKER_PREPARE_SUMMON, SoundSource.HOSTILE,
+                    3.0F, 0.6F);
+        }
+
+        private void place(ServerLevel level, @Nullable Monster minion) {
+            if (minion == null) {
+                return;
+            }
+            minion.moveTo(this.boss.getX() + (this.boss.getRandom().nextDouble() - 0.5D) * 14.0D,
+                    this.boss.getY() + 1.0D + this.boss.getRandom().nextDouble() * 3.0D,
+                    this.boss.getZ() + (this.boss.getRandom().nextDouble() - 0.5D) * 14.0D,
+                    this.boss.getYRot(), 0.0F);
+            minion.setTarget(this.boss.getTarget());
+            minion.setPersistenceRequired();
+            level.addFreshEntity(minion);
+        }
+    }
+
+    /** Agarra o alvo (como passageiro) e desfere varios golpes, depois o arremessa. */
+    static class GrabGoal extends Goal {
+        private static final int DURATION = 45;
+        private final NetheriteRobotRainbowBoss boss;
+        private LivingEntity victim;
+        private int ticks;
+        private int cooldown = 100;
+
+        GrabGoal(NetheriteRobotRainbowBoss boss) {
+            this.boss = boss;
+            this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
+        }
+
+        @Override
+        public boolean canUse() {
+            if (this.cooldown > 0) {
+                this.cooldown--;
+                return false;
+            }
+            LivingEntity target = this.boss.getTarget();
+            return target != null && target.isAlive() && !(target instanceof FlyingRobot)
+                    && !this.boss.isVehicle() && this.boss.distanceToSqr(target) < 25.0D
+                    && this.boss.getRandom().nextInt(3) == 0;
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            return this.victim != null && this.victim.isAlive() && this.ticks < DURATION;
+        }
+
+        @Override
+        public void start() {
+            this.victim = this.boss.getTarget();
+            this.ticks = 0;
+            if (this.victim == null || !this.victim.startRiding(this.boss, true)) {
+                this.victim = null;
+            }
+        }
+
+        @Override
+        public void tick() {
+            if (this.victim == null) {
+                return;
+            }
+            this.ticks++;
+            if (this.victim.getVehicle() != this.boss) {
+                this.victim.startRiding(this.boss, true); // se tentar descer, e agarrado de novo
+            }
+            this.boss.getNavigation().stop();
+            if (this.ticks % 5 == 0) {
+                this.victim.hurt(this.boss.damageSources().mobAttack(this.boss),
+                        (float) (this.boss.getAttributeValue(Attributes.ATTACK_DAMAGE) * 0.5D));
+                this.boss.playSound(SoundEvents.PLAYER_ATTACK_STRONG, 2.0F, 0.7F);
+                if (this.boss.level() instanceof ServerLevel level) {
+                    level.sendParticles(ParticleTypes.CRIT, this.victim.getX(), this.victim.getY(0.5D),
+                            this.victim.getZ(), 15, 0.4D, 0.4D, 0.4D, 0.3D);
+                }
+            }
+        }
+
+        @Override
+        public void stop() {
+            if (this.victim != null) {
+                this.victim.stopRiding();
+                Vec3 push = Vec3.directionFromRotation(0.0F, this.boss.getYRot()).scale(1.6D);
+                this.victim.setDeltaMovement(push.x, 0.7D, push.z);
+                this.victim.hurtMarked = true;
+                this.victim = null;
+            }
+            this.ticks = 0;
+            this.cooldown = 160;
+        }
+    }
+
     static class LaserGoal extends Goal {
         private final NetheriteRobotRainbowBoss boss;
         private int charge;
@@ -244,7 +411,7 @@ public class NetheriteRobotRainbowBoss extends FlyingRobot {
         @Override
         public void start() {
             this.charge = 20;
-            this.boss.playSound(SoundEvents.BEACON_POWER_SELECT, 3.0F, 0.7F);
+            this.boss.playSound(SoundEvents.BEACON_POWER_SELECT, 3.0F, 0.6F);
         }
 
         @Override
@@ -255,18 +422,20 @@ public class NetheriteRobotRainbowBoss extends FlyingRobot {
             }
             this.boss.getLookControl().setLookAt(target, 30.0F, 30.0F);
             if (--this.charge <= 0) {
-                RobotLaser.fire(this.boss, target, LASER_RANGE, LASER_DAMAGE, this.boss.rainbowColor());
+                int rgb = Mth.hsvToRgb((this.boss.tickCount % 60) / 60.0F, 1.0F, 1.0F);
+                Vector3f color = new Vector3f((rgb >> 16 & 255) / 255.0F, (rgb >> 8 & 255) / 255.0F, (rgb & 255) / 255.0F);
+                RobotLaser.fire(this.boss, target, LASER_RANGE, LASER_DAMAGE, color);
             }
         }
 
         @Override
         public void stop() {
             this.charge = 0;
-            this.cooldown = (this.boss.revived ? 25 : 40) + this.boss.getRandom().nextInt(30);
+            this.cooldown = (this.boss.revived ? 40 : 60) + this.boss.getRandom().nextInt(40);
         }
     }
 
-    /** Bolas de fogo explosivas. */
+    /** Projeteis explosivos. */
     static class BombShootGoal extends Goal {
         private final NetheriteRobotRainbowBoss boss;
         private int cooldown = 40;
@@ -312,197 +481,35 @@ public class NetheriteRobotRainbowBoss extends FlyingRobot {
         }
     }
 
-    /** Explosao gigante (75x a de um creeper), com carga de 3 segundos. */
-    static class RainbowBlastGoal extends Goal {
-        private final NetheriteRobotRainbowBoss boss;
-        private int charge;
-        private int cooldown = 300;
-
-        RainbowBlastGoal(NetheriteRobotRainbowBoss boss) {
-            this.boss = boss;
-            this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
-        }
-
-        @Override
-        public boolean canUse() {
-            if (this.cooldown > 0) {
-                this.cooldown--;
-                return false;
-            }
-            LivingEntity target = this.boss.getTarget();
-            return target != null && target.isAlive() && this.boss.distanceTo(target) < 64.0D;
-        }
-
-        @Override
-        public boolean canContinueToUse() {
-            return this.boss.getTarget() != null && this.charge > 0;
-        }
-
-        @Override
-        public void start() {
-            this.charge = 60;
-            this.boss.getNavigation().stop();
-            this.boss.playSound(SoundEvents.WITHER_SPAWN, 4.0F, 1.5F);
-        }
-
-        @Override
-        public void tick() {
-            LivingEntity target = this.boss.getTarget();
-            if (target != null) {
-                this.boss.getLookControl().setLookAt(target, 30.0F, 30.0F);
-            }
-            if (this.boss.level() instanceof ServerLevel level && this.charge % 3 == 0) {
-                DustParticleOptions dust = new DustParticleOptions(this.boss.rainbowColor(), 2.0F);
-                level.sendParticles(dust, this.boss.getX(), this.boss.getY(0.5D), this.boss.getZ(), 25,
-                        2.5D, 2.5D, 2.5D, 0.0D);
-            }
-            if (--this.charge <= 0) {
-                Level.ExplosionInteraction mode = SupremoConfig.RAINBOW_DESTROYS_BLOCKS.get()
-                        ? Level.ExplosionInteraction.MOB : Level.ExplosionInteraction.NONE;
-                this.boss.level().explode(this.boss, this.boss.getX(), this.boss.getY(0.5D), this.boss.getZ(),
-                        SupremoConfig.RAINBOW_EXPLOSION_POWER.get().floatValue(), false, mode);
-            }
-        }
-
-        @Override
-        public void stop() {
-            this.charge = 0;
-            this.cooldown = this.boss.revived ? 300 : 450;
-        }
+    private static net.minecraft.core.particles.DustParticleOptions rainbowDust(float hue, float size) {
+        int rgb = Mth.hsvToRgb(hue, 1.0F, 1.0F);
+        return new net.minecraft.core.particles.DustParticleOptions(
+                new Vector3f((rgb >> 16 & 255) / 255.0F, (rgb >> 8 & 255) / 255.0F, (rgb & 255) / 255.0F), size);
     }
 
-    /** Invoca 2 netherbots e 10 bomb-robots: uma onda no inicio da luta e outra depois do totem. */
-    static class SummonMinionsGoal extends Goal {
-        private final NetheriteRobotRainbowBoss boss;
-        private int cooldown = 40;
-
-        SummonMinionsGoal(NetheriteRobotRainbowBoss boss) {
-            this.boss = boss;
-        }
-
-        @Override
-        public boolean canUse() {
-            if (this.cooldown > 0) {
-                this.cooldown--;
-                return false;
-            }
-            LivingEntity target = this.boss.getTarget();
-            return target != null && target.isAlive() && this.boss.waves < (this.boss.revived ? 2 : 1);
-        }
-
-        @Override
-        public boolean canContinueToUse() {
-            return false;
-        }
-
-        @Override
-        public void start() {
-            this.boss.waves++;
-            if (!(this.boss.level() instanceof ServerLevel level)) {
-                return;
-            }
-            LivingEntity target = this.boss.getTarget();
-            for (int i = 0; i < MINION_NETHERBOTS; i++) {
-                Netherbot bot = ModEntities.NETHERBOT.get().create(level);
-                this.place(level, bot, target);
-            }
-            for (int i = 0; i < MINION_BOMB_ROBOTS; i++) {
-                NetheriteBombRobot bot = ModEntities.BOMB_ROBOT.get().create(level);
-                this.place(level, bot, target);
-            }
-            level.playSound(null, this.boss.blockPosition(), SoundEvents.EVOKER_PREPARE_SUMMON, SoundSource.HOSTILE,
-                    4.0F, 0.6F);
-        }
-
-        private void place(ServerLevel level, net.minecraft.world.entity.Mob minion, LivingEntity target) {
-            if (minion == null) {
-                return;
-            }
-            minion.moveTo(this.boss.getX() + (this.boss.getRandom().nextDouble() - 0.5D) * 12.0D,
-                    this.boss.getY() + this.boss.getRandom().nextDouble() * 4.0D,
-                    this.boss.getZ() + (this.boss.getRandom().nextDouble() - 0.5D) * 12.0D,
-                    this.boss.getYRot(), 0.0F);
-            minion.setTarget(target);
-            minion.setPersistenceRequired();
-            level.addFreshEntity(minion);
-        }
-
-        @Override
-        public void stop() {
-            this.cooldown = 40;
-        }
+    // --------------------------------------------------------------- barra de boss
+    @Override
+    protected void customServerAiStep() {
+        super.customServerAiStep();
+        this.bossEvent.setProgress(this.getHealth() / this.getMaxHealth());
+        this.bossEvent.setColor(RAINBOW[(this.tickCount / 20) % RAINBOW.length]);
     }
 
-    /** Agarra quem esta atacando e desfere varios golpes, depois o arremessa. */
-    static class GrabGoal extends Goal {
-        private static final int GRAB_TICKS = 45;
-        private final NetheriteRobotRainbowBoss boss;
-        private LivingEntity victim;
-        private int ticks;
-        private int cooldown = 60;
+    @Override
+    public void startSeenByPlayer(ServerPlayer player) {
+        super.startSeenByPlayer(player);
+        this.bossEvent.addPlayer(player);
+    }
 
-        GrabGoal(NetheriteRobotRainbowBoss boss) {
-            this.boss = boss;
-            this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
-        }
+    @Override
+    public void stopSeenByPlayer(ServerPlayer player) {
+        super.stopSeenByPlayer(player);
+        this.bossEvent.removePlayer(player);
+    }
 
-        @Override
-        public boolean canUse() {
-            if (this.cooldown > 0) {
-                this.cooldown--;
-                return false;
-            }
-            LivingEntity target = this.boss.getTarget();
-            return target != null && target.isAlive() && !(target instanceof FlyingRobot)
-                    && this.boss.distanceToSqr(target) < 25.0D && this.boss.getPassengers().isEmpty();
-        }
-
-        @Override
-        public boolean canContinueToUse() {
-            return this.victim != null && this.victim.isAlive() && this.ticks < GRAB_TICKS;
-        }
-
-        @Override
-        public void start() {
-            LivingEntity target = this.boss.getTarget();
-            this.ticks = 0;
-            this.victim = null;
-            if (target != null && target.startRiding(this.boss, true)) {
-                this.victim = target;
-                this.boss.playSound(SoundEvents.IRON_GOLEM_ATTACK, 3.0F, 0.6F);
-            }
-        }
-
-        @Override
-        public void tick() {
-            if (this.victim == null) {
-                return;
-            }
-            this.ticks++;
-            if (this.victim.getVehicle() != this.boss) {
-                this.victim.startRiding(this.boss, true);
-            }
-            if (this.ticks % 5 == 0) {
-                float damage = (float) (this.boss.getAttributeValue(Attributes.ATTACK_DAMAGE) * 0.5D);
-                this.victim.hurt(this.boss.damageSources().mobAttack(this.boss), damage);
-                if (this.boss.level() instanceof ServerLevel level) {
-                    level.sendParticles(ParticleTypes.CRIT, this.victim.getX(), this.victim.getY(0.5D),
-                            this.victim.getZ(), 12, 0.4D, 0.4D, 0.4D, 0.3D);
-                }
-                this.boss.playSound(SoundEvents.PLAYER_ATTACK_STRONG, 2.0F, 0.7F);
-            }
-        }
-
-        @Override
-        public void stop() {
-            if (this.victim != null) {
-                this.victim.stopRiding();
-                Vec3 look = this.boss.getLookAngle();
-                this.victim.setDeltaMovement(look.x * 1.8D, 0.7D, look.z * 1.8D);
-                this.victim.hurtMarked = true;
-                this.victim = null;
-            }
-            this.cooldown = 120;
-        }
+    @Override
+    public void setCustomName(@Nullable Component name) {
+        super.setCustomName(name);
+        this.bossEvent.setName(this.getDisplayName());
     }
 }
