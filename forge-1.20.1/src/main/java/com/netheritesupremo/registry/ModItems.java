@@ -56,6 +56,11 @@ public final class ModItems {
             "precursor_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.PRECURSOR, 0x2A1F5C, 0x35E0D0, new Item.Properties()));
 
+    public static final RegistryObject<Item> PRECURSOR_CORE = ITEMS.register(
+            "precursor_core",
+            () -> new com.netheritesupremo.item.PrecursorCoreItem(new Item.Properties().stacksTo(1).fireResistant()
+                    .rarity(net.minecraft.world.item.Rarity.EPIC)));
+
     private ModItems() {
     }
 }

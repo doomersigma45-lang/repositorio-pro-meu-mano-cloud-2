@@ -19,6 +19,9 @@ public final class ModEnchantments {
     public static final RegistryObject<Enchantment> MULTIPLIER_8X =
             ENCHANTMENTS.register("multiplier_8x", () -> new MultiplierEnchantment(8));
 
+    public static final RegistryObject<Enchantment> MULTIPLIER_16X =
+            ENCHANTMENTS.register("multiplier_16x", () -> new MultiplierEnchantment(16));
+
     private ModEnchantments() {
     }
 
@@ -26,6 +29,9 @@ public final class ModEnchantments {
     public static int multiplierOf(ItemStack stack) {
         if (stack.isEmpty() || !stack.isEnchanted()) {
             return 1;
+        }
+        if (EnchantmentHelper.getItemEnchantmentLevel(MULTIPLIER_16X.get(), stack) > 0) {
+            return 16;
         }
         if (EnchantmentHelper.getItemEnchantmentLevel(MULTIPLIER_8X.get(), stack) > 0) {
             return 8;
@@ -44,6 +50,7 @@ public final class ModEnchantments {
             case 2 -> MULTIPLIER_2X.get();
             case 4 -> MULTIPLIER_4X.get();
             case 8 -> MULTIPLIER_8X.get();
+            case 16 -> MULTIPLIER_16X.get();
             default -> null;
         };
     }

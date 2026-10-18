@@ -23,6 +23,7 @@ public class NetheriteSupremo {
         ModEntities.ENTITIES.register(modBus);
         ModItems.ITEMS.register(modBus);
         ModEnchantments.ENCHANTMENTS.register(modBus);
+        com.netheritesupremo.network.ModNetwork.register();
         modBus.addListener(this::commonSetup);
         modBus.addListener(this::addCreativeTabItems);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SupremoConfig.SPEC);
@@ -35,6 +36,7 @@ public class NetheriteSupremo {
         MinecraftForge.EVENT_BUS.register(new TradeEvents());
         MinecraftForge.EVENT_BUS.register(new RobotSummoning());
         MinecraftForge.EVENT_BUS.register(new GemEvents());
+        MinecraftForge.EVENT_BUS.register(new CoreEvents());
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -56,6 +58,7 @@ public class NetheriteSupremo {
             event.accept(ModItems.PRECURSOR_SPAWN_EGG);
         } else if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(ModItems.RAINBOW_GEM);
+            event.accept(ModItems.PRECURSOR_CORE);
         }
     }
 }

@@ -282,7 +282,7 @@ public class SupremoEvents {
         return count;
     }
 
-    private static boolean hasSetBonus(LivingEntity entity) {
+    static boolean hasSetBonus(LivingEntity entity) {
         int worn = wornPieces(entity);
         return SupremoConfig.REQUIRE_FULL_SET.get() ? worn == 4 : worn > 0;
     }

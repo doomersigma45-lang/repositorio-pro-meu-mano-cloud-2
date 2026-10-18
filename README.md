@@ -99,11 +99,11 @@ maior ou igual à vida atual **e** à metade da vida máxima) é **anulado**, co
 Não vale para mobs, nem para vazio e `/kill`. Desligue com `lethalHitProtection = false` em `config/netheritesupremo-common.toml`.
 
 ## Encantamentos multiplicadores (somente Forge 1.20.1)
-- **Multiplicador 2x / 4x / 8x** (`netheritesupremo:multiplier_2x`, `_4x`, `_8x`): multiplicam os atributos do item
+- **Multiplicador 2x / 4x / 8x / 16x** (`netheritesupremo:multiplier_2x`, `_4x`, `_8x`, `_16x`): multiplicam os atributos do item
   (armadura, resistência da armadura, dano de ataque, resistência a repulsão...) e a velocidade de mineração.
   Valem em armaduras, ferramentas e armas. A velocidade de ataque não é multiplicada (ficaria negativa).
-- **Como obter:** o **Necromante** dropa um livro com o 2x. Na bigorna, **2x + 2x = 4x** e **4x + 4x = 8x** (livro com livro,
-  ou item encantado + livro; custa 10 e 20 níveis). Não aparecem na mesa de encantamento nem em baús.
+- **Como obter:** o **Necromante** dropa um livro com o 2x. Na bigorna, **2x + 2x = 4x** e **4x + 4x = 8x** e **8x + 8x = 16x** (livro com livro,
+  ou item encantado + livro; custa 10, 20 e 39 níveis). Não aparecem na mesa de encantamento nem em baús.
 - Só um multiplicador por item. Para pegar pelo criativo: `/give @s enchanted_book{StoredEnchantments:[{id:"netheritesupremo:multiplier_8x",lvl:1s}]}`.
 - Os tetos de armadura e de resistência da armadura foram removidos para os valores multiplicados valerem.
 
@@ -168,3 +168,9 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 - **Cinco totens da imortalidade**: cada um recupera toda a vida (6 "vidas" no total).
 - Dropa 4 estrelas do Nether, 5 totens e 16 lingotes de netherite. Só nasce por ovo de geração ou `/summon netheritesupremo:precursor`.
 - Config: `precursorDestroysBlocks` (false = só dano, sem destruir blocos).
+
+## Núcleo do Precursor (1.20.1)
+- Só é obtido matando o **Precursor** (drop garantido). Item `netheritesupremo:precursor_core`.
+- **Segurando** (qualquer mão): Força VI e Health Boost 40 (+160 de vida extra).
+- **Tecla K** (configurável em Controles > Netherite Supremo) com o item na mão: liga/desliga **atravessar paredes** (sem colisão e voando; ao desligar dentro de um bloco você continua sem colisão até sair, para não sufocar).
+- O boss Rainbow dropa a Joia Colorida (já estava no loot; agora coberto por teste).

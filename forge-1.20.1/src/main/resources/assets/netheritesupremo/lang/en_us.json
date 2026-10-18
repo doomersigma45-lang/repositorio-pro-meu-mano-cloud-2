@@ -24,5 +24,13 @@
   "item.netheritesupremo.netherite_robot_rainbow_boss_spawn_egg": "Netherite Robot Rainbow Boss Spawn Egg",
   "item.netheritesupremo.rainbow_gem": "Rainbow Gem",
   "entity.netheritesupremo.precursor": "Precursor",
-  "item.netheritesupremo.precursor_spawn_egg": "Precursor Spawn Egg"
+  "item.netheritesupremo.precursor_spawn_egg": "Precursor Spawn Egg",
+  "enchantment.netheritesupremo.multiplier_16x": "Multiplier 16x",
+  "item.netheritesupremo.precursor_core": "Precursor Core",
+  "item.netheritesupremo.precursor_core.desc1": "Holding: Strength VI and Health Boost 40",
+  "item.netheritesupremo.precursor_core.desc2": "Press K to walk through walls",
+  "key.netheritesupremo.phase": "Walk through walls (Precursor Core)",
+  "key.categories.netheritesupremo": "Netherite Supremo",
+  "message.netheritesupremo.phase_on": "Walk through walls: ON",
+  "message.netheritesupremo.phase_off": "Walk through walls: OFF"
 }

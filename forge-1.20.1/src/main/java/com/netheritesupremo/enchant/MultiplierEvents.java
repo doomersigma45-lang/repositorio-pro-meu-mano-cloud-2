@@ -21,7 +21,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-/** Efeito dos encantamentos multiplicadores e a fusao deles na bigorna (2x + 2x = 4x, 4x + 4x = 8x). */
+/** Efeito dos encantamentos multiplicadores e a fusao deles na bigorna (2x + 2x = 4x, 4x + 4x = 8x, 8x + 8x = 16x). */
 public class MultiplierEvents {
     /** Niveis de experiencia cobrados por fusao: 4x custa 10, 8x custa 20. */
     private static final int COST_PER_STEP = 5;
@@ -71,7 +71,7 @@ public class MultiplierEvents {
         }
         Map<Enchantment, Integer> rightMap = EnchantmentHelper.getEnchantments(right);
         Map<Enchantment, Integer> leftMap = EnchantmentHelper.getEnchantments(left);
-        for (int multiplier : new int[] {2, 4}) {
+        for (int multiplier : new int[] {2, 4, 8}) {
             Enchantment from = ModEnchantments.forMultiplier(multiplier);
             Enchantment to = ModEnchantments.forMultiplier(multiplier * 2);
             if (!leftMap.containsKey(from) || !rightMap.containsKey(from)) {
@@ -89,7 +89,7 @@ public class MultiplierEvents {
                 EnchantmentHelper.setEnchantments(leftMap, output);
             }
             event.setOutput(output);
-            event.setCost(COST_PER_STEP * multiplier);
+            event.setCost(Math.min(COST_PER_STEP * multiplier, 39)); // 40+ a bigorna recusa ("caro demais")
             event.setMaterialCost(1);
             return;
         }
