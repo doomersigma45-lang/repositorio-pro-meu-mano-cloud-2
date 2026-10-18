@@ -110,7 +110,7 @@ def main():
                 "damage @e[type=netheritesupremo:netherite_robot_rainbow_boss,limit=1] 5000 minecraft:generic",
                 "data get entity @e[type=netheritesupremo:netherite_robot_rainbow_boss,limit=1] Health",
                 "data get entity @e[type=netheritesupremo:netherite_robot_rainbow_boss,limit=1] Revived",
-                "data get entity @e[type=netheritesupremo:netherite_robot_rainbow_boss,limit=1] active_effects",
+                "data get entity @e[type=netheritesupremo:netherite_robot_rainbow_boss,limit=1] ActiveEffects",
                 "damage @e[type=netheritesupremo:netherite_robot_rainbow_boss,limit=1] 99999 minecraft:generic",
                 "data get entity @e[type=netheritesupremo:netherite_robot_rainbow_boss,limit=1] Health",
                 "loot spawn 0 100 0 loot netheritesupremo:entities/netherite_robot_rainbow_boss",
