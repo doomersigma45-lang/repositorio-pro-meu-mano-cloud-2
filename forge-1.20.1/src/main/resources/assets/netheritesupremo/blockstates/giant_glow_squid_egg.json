@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "age=0,waterlogged=false": {
+      "model": "netheritesupremo:block/giant_glow_squid_egg_0"
+    },
+    "age=0,waterlogged=true": {
+      "model": "netheritesupremo:block/giant_glow_squid_egg_0"
+    },
+    "age=1,waterlogged=false": {
+      "model": "netheritesupremo:block/giant_glow_squid_egg_1"
+    },
+    "age=1,waterlogged=true": {
+      "model": "netheritesupremo:block/giant_glow_squid_egg_1"
+    },
+    "age=2,waterlogged=false": {
+      "model": "netheritesupremo:block/giant_glow_squid_egg_2"
+    },
+    "age=2,waterlogged=true": {
+      "model": "netheritesupremo:block/giant_glow_squid_egg_2"
+    }
+  }
+}

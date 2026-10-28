@@ -99,6 +99,15 @@ def main():
             results.append(r.cmd("forceload add 190 190 400 270"))
             time.sleep(40)
             tests = [
+                "summon netheritesupremo:giant_glow_squid 70 110 40",
+                "attribute @e[type=netheritesupremo:giant_glow_squid,limit=1] minecraft:generic.max_health get",
+                "attribute @e[type=netheritesupremo:giant_glow_squid,limit=1] minecraft:generic.attack_damage get",
+                "loot spawn 0 100 0 loot netheritesupremo:entities/giant_glow_squid",
+                "summon netheritesupremo:giant_glow_squid_baby 70 110 44",
+                "attribute @e[type=netheritesupremo:giant_glow_squid_baby,limit=1] minecraft:generic.max_health get",
+                "setblock 74 110 40 netheritesupremo:giant_glow_squid_egg[age=2,waterlogged=true]",
+                "data get block 74 110 40 Items",
+                "kill @e[type=netheritesupremo:giant_glow_squid_baby,limit=1]",
                 "loot spawn 0 100 0 loot netheritesupremo:entities/precursor",
                 "give @a netheritesupremo:precursor_core",
                 "give @a minecraft:enchanted_book{StoredEnchantments:[{id:\"netheritesupremo:multiplier_16x\",lvl:1s}]}",

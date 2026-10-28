@@ -39,6 +39,8 @@ public final class ModBusEvents {
         event.put(ModEntities.NETHERBOT.get(), Netherbot.createNetherbotAttributes().build());
         event.put(ModEntities.RAINBOW_BOSS.get(), NetheriteRobotRainbowBoss.createBossAttributes().build());
         event.put(ModEntities.PRECURSOR.get(), Precursor.createPrecursorAttributes().build());
+        event.put(ModEntities.GIANT_GLOW_SQUID.get(), com.netheritesupremo.entity.GiantGlowSquid.createBossAttributes().build());
+        event.put(ModEntities.GIANT_GLOW_SQUID_BABY.get(), com.netheritesupremo.entity.GiantGlowSquidBaby.createBabyAttributes().build());
         event.put(ModEntities.ROBOT.get(), Robot.createRobotAttributes().build());
         event.put(ModEntities.GOLDEN_ZOMBIE.get(), GoldenZombie.createGoldenZombieAttributes().build());
     }
@@ -53,6 +55,9 @@ public final class ModBusEvents {
                 SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.NETHERBOT.get(), SpawnPlacements.Type.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules,
+                SpawnPlacementRegisterEvent.Operation.OR);
+        event.register(ModEntities.GIANT_GLOW_SQUID.get(), SpawnPlacements.Type.IN_WATER,
+                Heightmap.Types.OCEAN_FLOOR, com.netheritesupremo.entity.GiantGlowSquid::checkSpawnRules,
                 SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.NETHER_SPIDER.get(), SpawnPlacements.Type.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules,

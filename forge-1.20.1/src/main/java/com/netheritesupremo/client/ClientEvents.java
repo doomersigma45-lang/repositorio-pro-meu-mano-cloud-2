@@ -34,6 +34,10 @@ public final class ClientEvents {
                 new ResourceLocation(NetheriteSupremo.MODID, "textures/entity/netherite_robot_rainbow_boss.png"), 2.3F));
         event.registerEntityRenderer(ModEntities.PRECURSOR.get(), ctx -> new PlayerRobotRenderer<Precursor>(ctx,
                 new ResourceLocation(NetheriteSupremo.MODID, "textures/entity/precursor.png"), 2.6F));
+        event.registerEntityRenderer(ModEntities.GIANT_GLOW_SQUID.get(), ctx -> new GiantGlowSquidRenderer(ctx, 4.5F));
+        event.registerEntityRenderer(ModEntities.GIANT_GLOW_SQUID_BABY.get(), ctx -> new GiantGlowSquidRenderer(ctx, 2.0F));
+        event.registerEntityRenderer(ModEntities.GLOW_INK_BALL.get(),
+                ctx -> new net.minecraft.client.renderer.entity.ThrownItemRenderer<>(ctx, 2.0F, true));
         event.registerEntityRenderer(ModEntities.ROBOT.get(), RobotRenderer::new);
         event.registerEntityRenderer(ModEntities.UMBRAL_MERCHANT.get(), WanderingTraderRenderer::new);
     }

@@ -21,6 +21,7 @@ public class NetheriteSupremo {
     public NetheriteSupremo() {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         ModEntities.ENTITIES.register(modBus);
+        com.netheritesupremo.registry.ModBlocks.BLOCKS.register(modBus);
         ModItems.ITEMS.register(modBus);
         ModEnchantments.ENCHANTMENTS.register(modBus);
         com.netheritesupremo.network.ModNetwork.register();
@@ -56,9 +57,11 @@ public class NetheriteSupremo {
             event.accept(ModItems.NETHERBOT_SPAWN_EGG);
             event.accept(ModItems.RAINBOW_BOSS_SPAWN_EGG);
             event.accept(ModItems.PRECURSOR_SPAWN_EGG);
+            event.accept(ModItems.GIANT_GLOW_SQUID_SPAWN_EGG);
         } else if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(ModItems.RAINBOW_GEM);
             event.accept(ModItems.PRECURSOR_CORE);
+            event.accept(ModItems.GIANT_GLOW_SQUID_EGG);
         }
     }
 }

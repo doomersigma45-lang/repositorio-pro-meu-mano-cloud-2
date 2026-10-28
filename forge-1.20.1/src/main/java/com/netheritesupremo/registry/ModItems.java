@@ -61,6 +61,15 @@ public final class ModItems {
             () -> new com.netheritesupremo.item.PrecursorCoreItem(new Item.Properties().stacksTo(1).fireResistant()
                     .rarity(net.minecraft.world.item.Rarity.EPIC)));
 
+    public static final RegistryObject<Item> GIANT_GLOW_SQUID_SPAWN_EGG = ITEMS.register(
+            "giant_glow_squid_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.GIANT_GLOW_SQUID, 0x0B3B4A, 0x7CF5E0, new Item.Properties()));
+
+    public static final RegistryObject<Item> GIANT_GLOW_SQUID_EGG = ITEMS.register(
+            "giant_glow_squid_egg",
+            () -> new net.minecraft.world.item.BlockItem(ModBlocks.GIANT_GLOW_SQUID_EGG.get(),
+                    new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC)));
+
     private ModItems() {
     }
 }

@@ -8,6 +8,9 @@ import com.netheritesupremo.entity.NetheriteGolem;
 import com.netheritesupremo.entity.NetheriteBombRobot;
 import com.netheritesupremo.entity.Netherbot;
 import com.netheritesupremo.entity.NetheriteKnight;
+import com.netheritesupremo.entity.GiantGlowSquid;
+import com.netheritesupremo.entity.GiantGlowSquidBaby;
+import com.netheritesupremo.entity.GlowInkBall;
 import com.netheritesupremo.entity.Precursor;
 import com.netheritesupremo.entity.NetheriteRobotRainbowBoss;
 import com.netheritesupremo.entity.Robot;
@@ -111,6 +114,28 @@ public final class ModEntities {
                     .clientTrackingRange(16)
                     .updateInterval(2)
                     .build("precursor"));
+
+    public static final RegistryObject<EntityType<GiantGlowSquid>> GIANT_GLOW_SQUID = ENTITIES.register(
+            "giant_glow_squid",
+            () -> EntityType.Builder.of(GiantGlowSquid::new, MobCategory.WATER_CREATURE)
+                    .sized(3.6F, 3.6F)
+                    .clientTrackingRange(10)
+                    .build("giant_glow_squid"));
+
+    public static final RegistryObject<EntityType<GiantGlowSquidBaby>> GIANT_GLOW_SQUID_BABY = ENTITIES.register(
+            "giant_glow_squid_baby",
+            () -> EntityType.Builder.of(GiantGlowSquidBaby::new, MobCategory.WATER_CREATURE)
+                    .sized(1.6F, 1.6F)
+                    .clientTrackingRange(10)
+                    .build("giant_glow_squid_baby"));
+
+    public static final RegistryObject<EntityType<GlowInkBall>> GLOW_INK_BALL = ENTITIES.register(
+            "glow_ink_ball",
+            () -> EntityType.Builder.<GlowInkBall>of(GlowInkBall::new, MobCategory.MISC)
+                    .sized(0.5F, 0.5F)
+                    .clientTrackingRange(4)
+                    .updateInterval(2)
+                    .build("glow_ink_ball"));
 
     private ModEntities() {
     }

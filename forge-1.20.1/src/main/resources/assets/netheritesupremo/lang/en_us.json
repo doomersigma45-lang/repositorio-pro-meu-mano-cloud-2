@@ -32,5 +32,10 @@
   "key.netheritesupremo.phase": "Walk through walls (Precursor Core)",
   "key.categories.netheritesupremo": "Netherite Supremo",
   "message.netheritesupremo.phase_on": "Walk through walls: ON",
-  "message.netheritesupremo.phase_off": "Walk through walls: OFF"
+  "message.netheritesupremo.phase_off": "Walk through walls: OFF",
+  "entity.netheritesupremo.giant_glow_squid": "Giant Glow Squid (Boss)",
+  "entity.netheritesupremo.giant_glow_squid_baby": "Giant Glow Squid Hatchling",
+  "entity.netheritesupremo.glow_ink_ball": "Glow Ink",
+  "item.netheritesupremo.giant_glow_squid_spawn_egg": "Giant Glow Squid Spawn Egg",
+  "block.netheritesupremo.giant_glow_squid_egg": "Giant Glow Squid Egg"
 }
