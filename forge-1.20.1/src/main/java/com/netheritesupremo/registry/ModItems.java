@@ -70,6 +70,10 @@ public final class ModItems {
             () -> new net.minecraft.world.item.BlockItem(ModBlocks.GIANT_GLOW_SQUID_EGG.get(),
                     new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC)));
 
+    public static final RegistryObject<Item> ROBOT_SPAWN_EGG = ITEMS.register(
+            "robot_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.ROBOT, 0x1C2A33, 0x2BD9FF, new Item.Properties()));
+
     private ModItems() {
     }
 }

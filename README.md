@@ -177,7 +177,9 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 
 ## Lula Brilhante Gigante (boss, 1.20.1)
 - Lula brilhante enorme (modelo e textura da lula brilhante do jogo, ~4,5x), 700 de vida. Lança **tinta brilhante** (projétil de 10,7 de dano, Brilho + Cegueira rápida) e, a cada 6 tiros, uma rajada de 5. De perto bate com os tentáculos.
-- **Spawn:** só em oceano fundo e cavernas subaquáticas grandes (bolsão de água ~7x7x7, bem abaixo do nível do mar), bem raro. Também por ovo de geração ou `/summon netheritesupremo:giant_glow_squid`.
+- **Spawn:** só em oceano fundo e cavernas subaquáticas grandes (bolsão de água ~7x7x7, bem abaixo do nível do mar), bem raro. **Só existe um por vez** (não nasce outro enquanto houver um carregado na dimensão). Também por ovo de geração ou `/summon netheritesupremo:giant_glow_squid`.
 - **Drops:** 8–16 blocos de diamante, 64–128 tinta brilhante e o **Ovo de Lula Brilhante Gigante**.
 - **Ovo:** coloque dentro d'água; amadurece (3 etapas) e choca um **filhote domesticado** do jogador mais próximo (até 32 blocos). Fora da água não amadurece.
 - **Filhote:** triplo das estatísticas do boss (2100 de vida, 32,1 de dano de tinta, 60 de dano corpo a corpo), segue o dono, ataca monstros e é **montaria** (clique direito; W/S para nadar para onde você olha; Shift desce). Filhote sem dono pode ser domesticado com tinta brilhante.
+
+- **Robô:** além da construção (bloco de ferro + sinalizador + diamante + abóbora), voltou o ovo de geração (aba de ovos).

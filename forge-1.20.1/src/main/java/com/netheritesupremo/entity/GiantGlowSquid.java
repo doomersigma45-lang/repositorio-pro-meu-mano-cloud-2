@@ -64,6 +64,15 @@ public class GiantGlowSquid extends AbstractGiantSquid {
         if (pos.getY() > level.getSeaLevel() - 10 || !level.getFluidState(pos).is(FluidTags.WATER)) {
             return false;
         }
+        // Apenas um boss por vez: nao nasce outro enquanto houver um carregado nesta dimensao
+        for (net.minecraft.world.entity.Entity e : level.getLevel().getAllEntities()) {
+            if (e instanceof GiantGlowSquid && e.isAlive()) {
+                return false;
+            }
+        }
+        if (random.nextInt(4) != 0) {
+            return false;
+        }
         int water = 0;
         for (BlockPos p : BlockPos.betweenClosed(pos.offset(-3, -3, -3), pos.offset(3, 3, 3))) {
             if (level.getFluidState(p).is(FluidTags.WATER)) {

@@ -37,5 +37,6 @@
   "entity.netheritesupremo.giant_glow_squid_baby": "Giant Glow Squid Hatchling",
   "entity.netheritesupremo.glow_ink_ball": "Glow Ink",
   "item.netheritesupremo.giant_glow_squid_spawn_egg": "Giant Glow Squid Spawn Egg",
-  "block.netheritesupremo.giant_glow_squid_egg": "Giant Glow Squid Egg"
+  "block.netheritesupremo.giant_glow_squid_egg": "Giant Glow Squid Egg",
+  "item.netheritesupremo.robot_spawn_egg": "Robot Spawn Egg"
 }
