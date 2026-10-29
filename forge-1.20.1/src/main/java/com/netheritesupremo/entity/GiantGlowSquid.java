@@ -26,7 +26,7 @@ public class GiantGlowSquid extends AbstractGiantSquid {
     public static final float INK_DAMAGE = 10.7F;
 
     private final ServerBossEvent bossEvent = new ServerBossEvent(this.getDisplayName(),
-            BossEvent.BossBarColor.CYAN, BossEvent.BossBarOverlay.NOTCHED_10);
+            BossEvent.BossBarColor.BLUE, BossEvent.BossBarOverlay.NOTCHED_10);
 
     public GiantGlowSquid(EntityType<? extends GlowSquid> type, Level level) {
         super(type, level);
