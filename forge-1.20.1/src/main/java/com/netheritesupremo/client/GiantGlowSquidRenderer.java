@@ -5,7 +5,7 @@ import net.minecraft.client.model.SquidModel;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.GlowSquidRenderer;
-import net.minecraft.world.entity.animal.GlowSquid;
+import net.minecraft.world.entity.GlowSquid;
 
 /** Lula brilhante de verdade (modelo/textura do jogo), so que enorme. */
 public class GiantGlowSquidRenderer extends GlowSquidRenderer {
