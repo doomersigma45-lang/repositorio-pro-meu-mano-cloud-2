@@ -38,6 +38,7 @@ public class NetheriteSupremo {
         MinecraftForge.EVENT_BUS.register(new RobotSummoning());
         MinecraftForge.EVENT_BUS.register(new GemEvents());
         MinecraftForge.EVENT_BUS.register(new CoreEvents());
+        MinecraftForge.EVENT_BUS.register(new WeaponEvents());
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -59,6 +60,10 @@ public class NetheriteSupremo {
             event.accept(ModItems.RAINBOW_BOSS_SPAWN_EGG);
             event.accept(ModItems.PRECURSOR_SPAWN_EGG);
             event.accept(ModItems.GIANT_GLOW_SQUID_SPAWN_EGG);
+        } else if (event.getTabKey() == CreativeModeTabs.COMBAT) {
+            event.accept(ModItems.KATANA);
+            event.accept(ModItems.SHURIKEN);
+            event.accept(ModItems.KUNAI);
         } else if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(ModItems.RAINBOW_GEM);
             event.accept(ModItems.PRECURSOR_CORE);

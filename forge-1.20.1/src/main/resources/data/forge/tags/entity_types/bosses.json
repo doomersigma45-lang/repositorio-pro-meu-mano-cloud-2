@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "netheritesupremo:netherite_robot_rainbow_boss",
+    "netheritesupremo:precursor",
+    "netheritesupremo:giant_glow_squid",
+    "netheritesupremo:netherbot",
+    "netheritesupremo:necromancer",
+    "minecraft:warden",
+    "minecraft:elder_guardian"
+  ]
+}

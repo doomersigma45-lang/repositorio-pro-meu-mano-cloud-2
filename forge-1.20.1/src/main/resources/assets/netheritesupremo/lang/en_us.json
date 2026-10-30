@@ -38,5 +38,10 @@
   "entity.netheritesupremo.glow_ink_ball": "Glow Ink",
   "item.netheritesupremo.giant_glow_squid_spawn_egg": "Giant Glow Squid Spawn Egg",
   "block.netheritesupremo.giant_glow_squid_egg": "Giant Glow Squid Egg",
-  "item.netheritesupremo.robot_spawn_egg": "Robot Spawn Egg"
+  "item.netheritesupremo.robot_spawn_egg": "Robot Spawn Egg",
+  "item.netheritesupremo.katana": "Katana",
+  "item.netheritesupremo.shuriken": "Shuriken",
+  "item.netheritesupremo.kunai": "Kunai",
+  "entity.netheritesupremo.shuriken": "Shuriken",
+  "item.netheritesupremo.kunai.desc": "Holding: double jump and +75% speed"
 }

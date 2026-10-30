@@ -99,6 +99,11 @@ def main():
             results.append(r.cmd("forceload add 190 190 400 270"))
             time.sleep(40)
             tests = [
+                "loot spawn 0 100 0 loot netheritesupremo:entities/giant_glow_squid",
+                "summon netheritesupremo:shuriken 70 110 90",
+                "summon netheritesupremo:netherbot 60 110 90",
+                "summon minecraft:armor_stand 60 110 94 {Tags:[\"ktest\"]}",
+                "recipe give @a netheritesupremo:katana",
                 "summon netheritesupremo:giant_glow_squid 70 110 40",
                 "attribute @e[type=netheritesupremo:giant_glow_squid,limit=1] minecraft:generic.max_health get",
                 "attribute @e[type=netheritesupremo:giant_glow_squid,limit=1] minecraft:generic.attack_damage get",

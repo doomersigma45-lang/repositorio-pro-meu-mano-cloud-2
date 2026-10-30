@@ -38,6 +38,8 @@ public final class ClientEvents {
         event.registerEntityRenderer(ModEntities.GIANT_GLOW_SQUID_BABY.get(), ctx -> new GiantGlowSquidRenderer(ctx, 2.0F));
         event.registerEntityRenderer(ModEntities.GLOW_INK_BALL.get(),
                 ctx -> new net.minecraft.client.renderer.entity.ThrownItemRenderer<>(ctx, 2.0F, true));
+        event.registerEntityRenderer(ModEntities.SHURIKEN.get(),
+                ctx -> new net.minecraft.client.renderer.entity.ThrownItemRenderer<com.netheritesupremo.entity.ShurikenEntity>(ctx, 1.0F, true));
         event.registerEntityRenderer(ModEntities.ROBOT.get(), RobotRenderer::new);
         event.registerEntityRenderer(ModEntities.UMBRAL_MERCHANT.get(), WanderingTraderRenderer::new);
     }

@@ -183,3 +183,9 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 - **Filhote:** triplo das estatísticas do boss (2100 de vida, 32,1 de dano de tinta, 60 de dano corpo a corpo), segue o dono, ataca monstros e é **montaria** (clique direito; W/S para nadar para onde você olha; Shift desce). Filhote sem dono pode ser domesticado com tinta brilhante.
 
 - **Robô:** além da construção (bloco de ferro + sinalizador + diamante + abóbora), voltou o ovo de geração (aba de ovos).
+
+## Katana, Shuriken e Kunai (1.20.1)
+- **Katana**: 17 de dano, velocidade de ataque 3,0, durabilidade 2500 (diamante: 1561), **dobro de dano em bosses** (tag `forge:bosses`, que inclui os bosses do mod, Warden e Ancião Guardião).
+- **Shuriken**: 6,5 de dano na mão; botão direito **arremessa** (consome uma; dano de 1x a 3x, ou seja 6,5 a 19,5). Se cair num bloco, 60% de chance de poder ser recolhida. Empilha até 16.
+- **Kunai**: 8 de dano, ataque rápido; na mão principal dá **velocidade 1,75x** e, com ele em qualquer mão, **pulo duplo** (aperte espaço de novo no ar).
+- Receitas: katana = 2 lingotes de netherite empilhados sobre um graveto, shuriken = ferro em cruz com fragmento de netherite no centro (4), kunai = lingote de netherite + graveto. Todos na aba Combate do criativo.

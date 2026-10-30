@@ -74,6 +74,20 @@ public final class ModItems {
             "robot_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.ROBOT, 0x1C2A33, 0x2BD9FF, new Item.Properties()));
 
+    public static final RegistryObject<Item> KATANA = ITEMS.register(
+            "katana",
+            () -> new net.minecraft.world.item.SwordItem(com.netheritesupremo.item.KatanaTier.INSTANCE, 16, -1.0F,
+                    new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
+
+    public static final RegistryObject<Item> SHURIKEN = ITEMS.register(
+            "shuriken",
+            () -> new com.netheritesupremo.item.ShurikenItem(new Item.Properties().stacksTo(16)));
+
+    public static final RegistryObject<Item> KUNAI = ITEMS.register(
+            "kunai",
+            () -> new com.netheritesupremo.item.KunaiItem(new Item.Properties().stacksTo(1)
+                    .rarity(net.minecraft.world.item.Rarity.RARE)));
+
     private ModItems() {
     }
 }

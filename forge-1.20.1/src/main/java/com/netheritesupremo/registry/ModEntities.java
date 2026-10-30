@@ -137,6 +137,15 @@ public final class ModEntities {
                     .updateInterval(2)
                     .build("glow_ink_ball"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.entity.ShurikenEntity>> SHURIKEN = ENTITIES.register(
+            "shuriken",
+            () -> EntityType.Builder.<com.netheritesupremo.entity.ShurikenEntity>of(
+                            com.netheritesupremo.entity.ShurikenEntity::new, MobCategory.MISC)
+                    .sized(0.4F, 0.4F)
+                    .clientTrackingRange(4)
+                    .updateInterval(10)
+                    .build("shuriken"));
+
     private ModEntities() {
     }
 }
