@@ -96,6 +96,10 @@ public final class ModItems {
             "samurai_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.SAMURAI, 0x8E1B24, 0xE8E2D0, new Item.Properties()));
 
+    public static final RegistryObject<Item> THIEF_SPAWN_EGG = ITEMS.register(
+            "thief_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.THIEF, 0x3A2A1C, 0xD9A441, new Item.Properties()));
+
     private ModItems() {
     }
 }

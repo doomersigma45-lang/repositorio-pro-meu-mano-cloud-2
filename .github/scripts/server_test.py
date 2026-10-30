@@ -99,6 +99,11 @@ def main():
             results.append(r.cmd("forceload add 190 190 400 270"))
             time.sleep(40)
             tests = [
+                "summon netheritesupremo:thief 70 110 180",
+                "attribute @e[type=netheritesupremo:thief,limit=1] minecraft:generic.max_health get",
+                "attribute @e[type=netheritesupremo:thief,limit=1] minecraft:generic.movement_speed get",
+                "data get entity @e[type=netheritesupremo:thief,limit=1] HandItems[0]",
+                "loot spawn 0 100 0 loot netheritesupremo:entities/thief",
                 "summon netheritesupremo:samurai 70 110 150",
                 "attribute @e[type=netheritesupremo:samurai,limit=1] minecraft:generic.max_health get",
                 "attribute @e[type=netheritesupremo:samurai,limit=1] minecraft:generic.attack_damage get",

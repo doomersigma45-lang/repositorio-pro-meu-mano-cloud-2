@@ -47,5 +47,7 @@
   "entity.netheritesupremo.ninja": "Ninja",
   "item.netheritesupremo.ninja_spawn_egg": "Ninja Spawn Egg",
   "entity.netheritesupremo.samurai": "Samurai (Boss)",
-  "item.netheritesupremo.samurai_spawn_egg": "Samurai Spawn Egg"
+  "item.netheritesupremo.samurai_spawn_egg": "Samurai Spawn Egg",
+  "entity.netheritesupremo.thief": "Thief",
+  "item.netheritesupremo.thief_spawn_egg": "Thief Spawn Egg"
 }

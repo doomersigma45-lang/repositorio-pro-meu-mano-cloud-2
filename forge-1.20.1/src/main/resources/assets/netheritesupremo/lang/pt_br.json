@@ -47,5 +47,7 @@
   "entity.netheritesupremo.ninja": "Ninja",
   "item.netheritesupremo.ninja_spawn_egg": "Ovo de Geração: Ninja",
   "entity.netheritesupremo.samurai": "Samurai (Boss)",
-  "item.netheritesupremo.samurai_spawn_egg": "Ovo de Geração: Samurai"
+  "item.netheritesupremo.samurai_spawn_egg": "Ovo de Geração: Samurai",
+  "entity.netheritesupremo.thief": "Ladrão",
+  "item.netheritesupremo.thief_spawn_egg": "Ovo de Geração: Ladrão"
 }

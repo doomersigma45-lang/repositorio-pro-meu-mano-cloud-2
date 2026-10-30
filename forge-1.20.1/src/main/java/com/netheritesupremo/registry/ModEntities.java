@@ -160,6 +160,13 @@ public final class ModEntities {
                     .clientTrackingRange(10)
                     .build("samurai"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.entity.Thief>> THIEF = ENTITIES.register(
+            "thief",
+            () -> EntityType.Builder.of(com.netheritesupremo.entity.Thief::new, MobCategory.MONSTER)
+                    .sized(0.6F, 1.95F)
+                    .clientTrackingRange(8)
+                    .build("thief"));
+
     private ModEntities() {
     }
 }

@@ -199,3 +199,8 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 - Spawna em **Cherry Grove**, **um só por vez** (não nasce outro enquanto houver um carregado na dimensão). 250 de vida, **15 de dano que aumenta com a vida perdida (até 45 quase morto)**, katana, **armadura de diamante completa invisível**.
 - **Chama ninjas** (2, ou 3 abaixo de metade da vida; até 6 por perto) e arremessa **salvas de 5 shurikens** (10 de dano cada) de 5 a 20 blocos.
 - Drops: katana, kunai, 16–32 shurikens e 6–12 diamantes. Ovo de geração na aba de ovos; barra de boss.
+
+## Ladrão (1.20.1)
+- Mob hostil que **só aparece à noite**, ao ar livre no Overworld, **em bandos de 3 a 5**; de dia, sem ter roubado nada, ele some. 15 de vida, velocidade 0,32 (mais rápido que o jogador), **espada de madeira ou de pedra**; 3 skins (sorteada por ladrão). Ataca jogadores e aldeões e chama os outros ladrões quando é ferido.
+- **Rouba:** ao acertar, 50% de chance de roubar **metade de uma pilha** do inventário de um jogador (ou do inventário de aldeões, ou o equipamento de outro mob, como a arma de um esqueleto) e foge por ~10 s. **O que ele roubou cai quando ele morre.**
+- Drops: esmeraldas, lingotes ou pepitas de ouro e, raramente (4%), 1 diamante. Ovo de geração na aba de ovos.
