@@ -59,6 +59,7 @@ public class NetheriteSupremo {
             event.accept(ModItems.NETHERBOT_SPAWN_EGG);
             event.accept(ModItems.RAINBOW_BOSS_SPAWN_EGG);
             event.accept(ModItems.PRECURSOR_SPAWN_EGG);
+            event.accept(ModItems.NINJA_SPAWN_EGG);
             event.accept(ModItems.GIANT_GLOW_SQUID_SPAWN_EGG);
         } else if (event.getTabKey() == CreativeModeTabs.COMBAT) {
             event.accept(ModItems.KATANA);

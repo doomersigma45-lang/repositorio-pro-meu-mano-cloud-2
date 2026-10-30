@@ -25,6 +25,13 @@ public class ShurikenEntity extends ThrowableItemProjectile {
         super(ModEntities.SHURIKEN.get(), owner, level);
     }
 
+    /** Dano fixo (usado pelo Ninja); negativo = dano normal de 1x a 3x. */
+    private float fixedDamage = -1.0F;
+
+    public void setFixedDamage(float damage) {
+        this.fixedDamage = damage;
+    }
+
     @Override
     protected Item getDefaultItem() {
         return ModItems.SHURIKEN.get();
@@ -35,7 +42,7 @@ public class ShurikenEntity extends ThrowableItemProjectile {
         super.onHitEntity(result);
         Entity target = result.getEntity();
         float multiplier = 1.0F + this.random.nextFloat() * 2.0F; // 1x ate 3x
-        target.hurt(this.damageSources().thrown(this, this.getOwner()), ShurikenItem.MELEE_DAMAGE * multiplier);
+        target.hurt(this.damageSources().thrown(this, this.getOwner()), this.fixedDamage >= 0.0F ? this.fixedDamage : ShurikenItem.MELEE_DAMAGE * multiplier);
     }
 
     @Override

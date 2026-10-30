@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "minecraft:cherry_grove",
+  "spawners": {
+    "type": "netheritesupremo:ninja",
+    "weight": 10,
+    "minCount": 1,
+    "maxCount": 3
+  }
+}

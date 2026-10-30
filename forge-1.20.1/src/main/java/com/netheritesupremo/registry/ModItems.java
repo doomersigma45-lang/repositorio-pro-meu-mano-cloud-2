@@ -88,6 +88,10 @@ public final class ModItems {
             () -> new com.netheritesupremo.item.KunaiItem(new Item.Properties().stacksTo(1)
                     .rarity(net.minecraft.world.item.Rarity.RARE)));
 
+    public static final RegistryObject<Item> NINJA_SPAWN_EGG = ITEMS.register(
+            "ninja_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.NINJA, 0x1B1B2A, 0xC0272D, new Item.Properties()));
+
     private ModItems() {
     }
 }

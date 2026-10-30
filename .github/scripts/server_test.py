@@ -99,6 +99,12 @@ def main():
             results.append(r.cmd("forceload add 190 190 400 270"))
             time.sleep(40)
             tests = [
+                "summon netheritesupremo:ninja 70 110 120",
+                "attribute @e[type=netheritesupremo:ninja,limit=1] minecraft:generic.max_health get",
+                "attribute @e[type=netheritesupremo:ninja,limit=1] minecraft:generic.attack_damage get",
+                "data get entity @e[type=netheritesupremo:ninja,limit=1] HandItems[0]",
+                "loot spawn 0 100 0 loot netheritesupremo:entities/ninja",
+                "locate biome minecraft:cherry_grove",
                 "loot spawn 0 100 0 loot netheritesupremo:entities/giant_glow_squid",
                 "summon netheritesupremo:shuriken 70 110 90",
                 "summon netheritesupremo:netherbot 60 110 90",

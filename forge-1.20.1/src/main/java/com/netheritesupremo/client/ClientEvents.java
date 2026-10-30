@@ -40,6 +40,8 @@ public final class ClientEvents {
                 ctx -> new net.minecraft.client.renderer.entity.ThrownItemRenderer<>(ctx, 2.0F, true));
         event.registerEntityRenderer(ModEntities.SHURIKEN.get(),
                 ctx -> new net.minecraft.client.renderer.entity.ThrownItemRenderer<com.netheritesupremo.entity.ShurikenEntity>(ctx, 1.0F, true));
+        event.registerEntityRenderer(ModEntities.NINJA.get(), ctx -> new PlayerRobotRenderer<com.netheritesupremo.entity.Ninja>(ctx,
+                new ResourceLocation(NetheriteSupremo.MODID, "textures/entity/ninja.png"), 1.0F));
         event.registerEntityRenderer(ModEntities.ROBOT.get(), RobotRenderer::new);
         event.registerEntityRenderer(ModEntities.UMBRAL_MERCHANT.get(), WanderingTraderRenderer::new);
     }

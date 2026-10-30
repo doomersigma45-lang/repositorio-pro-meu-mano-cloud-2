@@ -146,6 +146,13 @@ public final class ModEntities {
                     .updateInterval(10)
                     .build("shuriken"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.entity.Ninja>> NINJA = ENTITIES.register(
+            "ninja",
+            () -> EntityType.Builder.of(com.netheritesupremo.entity.Ninja::new, MobCategory.CREATURE)
+                    .sized(0.6F, 1.95F)
+                    .clientTrackingRange(8)
+                    .build("ninja"));
+
     private ModEntities() {
     }
 }

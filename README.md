@@ -189,3 +189,8 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 - **Shuriken**: 6,5 de dano na mão; botão direito **arremessa** (consome uma; dano de 1x a 3x, ou seja 6,5 a 19,5). Se cair num bloco, 60% de chance de poder ser recolhida. Empilha até 16.
 - **Kunai**: 8 de dano, ataque rápido; na mão principal dá **velocidade 1,75x** e, com ele em qualquer mão, **pulo duplo** (aperte espaço de novo no ar).
 - Receitas: katana = 2 lingotes de netherite empilhados sobre um graveto, shuriken = ferro em cruz com fragmento de netherite no centro (4), kunai = lingote de netherite + graveto. Todos na aba Combate do criativo.
+
+## Ninja (1.20.1)
+- Mob **neutro** que spawna em **Cherry Grove** (bandos de 1 a 3). 50 de vida, **3 de dano** (fixo, mesmo segurando a arma). Cada ninja nasce com **katana**, **kunai** (fica mais rápido, como o item) ou **shurikens** (arremessa de 4 a 16 blocos; cada shuriken dá 3 de dano).
+- Só ataca se for atacado; ao ser ferido, chama os outros ninjas por perto.
+- Drops: 1–3 shurikens, 1–4 pepitas de ferro, 6% de chance de kunai e 4% de katana. Ovo de geração na aba de ovos.
