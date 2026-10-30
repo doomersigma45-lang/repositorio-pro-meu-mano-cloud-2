@@ -153,6 +153,13 @@ public final class ModEntities {
                     .clientTrackingRange(8)
                     .build("ninja"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.entity.Samurai>> SAMURAI = ENTITIES.register(
+            "samurai",
+            () -> EntityType.Builder.of(com.netheritesupremo.entity.Samurai::new, MobCategory.MONSTER)
+                    .sized(0.72F, 2.34F)
+                    .clientTrackingRange(10)
+                    .build("samurai"));
+
     private ModEntities() {
     }
 }

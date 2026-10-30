@@ -22,16 +22,22 @@ import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import com.netheritesupremo.registry.ModItems;
 
 /**
- * Ninja: mob neutro de Cherry Grove. 50 de vida, 3 de dano (fixo, mesmo com a arma na mao). Cada ninja
+ * Ninja: mob neutro de Cherry Grove. 50 de vida, 7 ou 12 de dano (sorteado; fixo, mesmo com a arma na mao), armadura de ferro invisivel encantada. Cada ninja
  * nasce com katana, kunai (mais veloz) ou shurikens (ataca de longe). Revida se for atacado e chama os outros.
  */
 public class Ninja extends PathfinderMob {
-    public static final float DAMAGE = 3.0F;
+    public static final float DAMAGE_LOW = 7.0F;
+    public static final float DAMAGE_HIGH = 12.0F;
+    /** Dano deste ninja: 7 ou 12, sorteado ao nascer. */
+    private float hitDamage = DAMAGE_LOW;
 
     public Ninja(EntityType<? extends Ninja> type, Level level) {
         super(type, level);
@@ -40,7 +46,7 @@ public class Ninja extends PathfinderMob {
     public static AttributeSupplier.Builder createNinjaAttributes() {
         return PathfinderMob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 50.0D)
-                .add(Attributes.ATTACK_DAMAGE, DAMAGE)
+                .add(Attributes.ATTACK_DAMAGE, DAMAGE_LOW)
                 .add(Attributes.MOVEMENT_SPEED, 0.3D)
                 .add(Attributes.FOLLOW_RANGE, 28.0D);
     }
@@ -54,7 +60,39 @@ public class Ninja extends PathfinderMob {
             default -> new ItemStack(ModItems.SHURIKEN.get());
         };
         this.setItemSlot(EquipmentSlot.MAINHAND, weapon);
-        this.setDropChance(EquipmentSlot.MAINHAND, 0.0F); // o loot table cuida dos drops
+        // Armadura de ferro encantada (nao aparece: o renderer nao desenha armadura)
+        this.setItemSlot(EquipmentSlot.HEAD, enchanted(Items.IRON_HELMET, false));
+        this.setItemSlot(EquipmentSlot.CHEST, enchanted(Items.IRON_CHESTPLATE, false));
+        this.setItemSlot(EquipmentSlot.LEGS, enchanted(Items.IRON_LEGGINGS, false));
+        this.setItemSlot(EquipmentSlot.FEET, enchanted(Items.IRON_BOOTS, true));
+        for (EquipmentSlot slot : EquipmentSlot.values()) {
+            this.setDropChance(slot, 0.0F); // o loot table cuida dos drops
+        }
+    }
+
+    private static ItemStack enchanted(Item item, boolean boots) {
+        ItemStack stack = new ItemStack(item);
+        stack.enchant(Enchantments.ALL_DAMAGE_PROTECTION, 3);
+        stack.enchant(Enchantments.UNBREAKING, 3);
+        if (boots) {
+            stack.enchant(Enchantments.FALL_PROTECTION, 4);
+        }
+        return stack;
+    }
+
+    @Override
+    public void addAdditionalSaveData(net.minecraft.nbt.CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        tag.putFloat("HitDamage", this.hitDamage);
+    }
+
+    @Override
+    public void readAdditionalSaveData(net.minecraft.nbt.CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        if (tag.contains("HitDamage")) {
+            this.hitDamage = tag.getFloat("HitDamage");
+            this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(this.hitDamage);
+        }
     }
 
     @javax.annotation.Nullable
@@ -65,6 +103,8 @@ public class Ninja extends PathfinderMob {
             @javax.annotation.Nullable net.minecraft.nbt.CompoundTag tag) {
         data = super.finalizeSpawn(level, difficulty, reason, data, tag);
         this.populateDefaultEquipmentSlots(level.getRandom(), difficulty);
+        this.hitDamage = level.getRandom().nextBoolean() ? DAMAGE_LOW : DAMAGE_HIGH;
+        this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(this.hitDamage);
         return data;
     }
 
@@ -72,11 +112,11 @@ public class Ninja extends PathfinderMob {
         return this.getMainHandItem().is(ModItems.SHURIKEN.get());
     }
 
-    /** Dano fixo de 3, independente dos atributos da arma que ele segura. */
+    /** Dano fixo (7 ou 12), independente dos atributos da arma que ele segura. */
     @Override
     public boolean doHurtTarget(net.minecraft.world.entity.Entity target) {
         this.swing(InteractionHand.MAIN_HAND);
-        return target.hurt(this.damageSources().mobAttack(this), DAMAGE);
+        return target.hurt(this.damageSources().mobAttack(this), this.hitDamage);
     }
 
     @Override
@@ -121,7 +161,7 @@ public class Ninja extends PathfinderMob {
                 this.cooldown = 25;
                 this.ninja.swing(InteractionHand.MAIN_HAND);
                 ShurikenEntity shuriken = new ShurikenEntity(this.ninja.level(), this.ninja);
-                shuriken.setFixedDamage(DAMAGE);
+                shuriken.setFixedDamage(this.ninja.hitDamage);
                 shuriken.setItem(new ItemStack(ModItems.SHURIKEN.get()));
                 double dx = target.getX() - this.ninja.getX();
                 double dy = target.getEyeY() - 0.2D - shuriken.getY();

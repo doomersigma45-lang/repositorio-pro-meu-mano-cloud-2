@@ -45,5 +45,7 @@
   "entity.netheritesupremo.shuriken": "Shuriken",
   "item.netheritesupremo.kunai.desc": "Holding: double jump and +75% speed",
   "entity.netheritesupremo.ninja": "Ninja",
-  "item.netheritesupremo.ninja_spawn_egg": "Ninja Spawn Egg"
+  "item.netheritesupremo.ninja_spawn_egg": "Ninja Spawn Egg",
+  "entity.netheritesupremo.samurai": "Samurai (Boss)",
+  "item.netheritesupremo.samurai_spawn_egg": "Samurai Spawn Egg"
 }

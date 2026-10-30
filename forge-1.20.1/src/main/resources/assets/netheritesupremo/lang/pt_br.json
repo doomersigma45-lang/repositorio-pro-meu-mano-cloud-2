@@ -45,5 +45,7 @@
   "entity.netheritesupremo.shuriken": "Shuriken",
   "item.netheritesupremo.kunai.desc": "Segurando: pulo duplo e +75% de velocidade",
   "entity.netheritesupremo.ninja": "Ninja",
-  "item.netheritesupremo.ninja_spawn_egg": "Ovo de Geração: Ninja"
+  "item.netheritesupremo.ninja_spawn_egg": "Ovo de Geração: Ninja",
+  "entity.netheritesupremo.samurai": "Samurai (Boss)",
+  "item.netheritesupremo.samurai_spawn_egg": "Ovo de Geração: Samurai"
 }

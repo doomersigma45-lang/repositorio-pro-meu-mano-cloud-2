@@ -191,6 +191,11 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 - Receitas: katana = 2 lingotes de netherite empilhados sobre um graveto, shuriken = ferro em cruz com fragmento de netherite no centro (4), kunai = lingote de netherite + graveto. Todos na aba Combate do criativo.
 
 ## Ninja (1.20.1)
-- Mob **neutro** que spawna em **Cherry Grove** (bandos de 1 a 3). 50 de vida, **3 de dano** (fixo, mesmo segurando a arma). Cada ninja nasce com **katana**, **kunai** (fica mais rápido, como o item) ou **shurikens** (arremessa de 4 a 16 blocos; cada shuriken dá 3 de dano).
+- Mob **neutro** que spawna em **Cherry Grove** (bandos de 1 a 3). 50 de vida, **7 ou 12 de dano** (sorteado por ninja, fixo mesmo segurando a arma) e **armadura de ferro invisível** com Proteção III, Inquebrável III (e Peso Pena IV nas botas). Cada ninja nasce com **katana**, **kunai** (fica mais rápido, como o item) ou **shurikens** (arremessa de 4 a 16 blocos; cada shuriken dá o mesmo dano do ninja).
 - Só ataca se for atacado; ao ser ferido, chama os outros ninjas por perto.
 - Drops: 1–3 shurikens, 1–4 pepitas de ferro, 6% de chance de kunai e 4% de katana. Ovo de geração na aba de ovos.
+
+## Samurai (boss, 1.20.1)
+- Spawna em **Cherry Grove**, **um só por vez** (não nasce outro enquanto houver um carregado na dimensão). 250 de vida, **15 de dano que aumenta com a vida perdida (até 45 quase morto)**, katana, **armadura de diamante completa invisível**.
+- **Chama ninjas** (2, ou 3 abaixo de metade da vida; até 6 por perto) e arremessa **salvas de 5 shurikens** (10 de dano cada) de 5 a 20 blocos.
+- Drops: katana, kunai, 16–32 shurikens e 6–12 diamantes. Ovo de geração na aba de ovos; barra de boss.
