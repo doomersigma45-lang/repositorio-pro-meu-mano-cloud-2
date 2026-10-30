@@ -57,6 +57,17 @@ public class Ninja extends PathfinderMob {
         this.setDropChance(EquipmentSlot.MAINHAND, 0.0F); // o loot table cuida dos drops
     }
 
+    @javax.annotation.Nullable
+    @Override
+    public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor level,
+            DifficultyInstance difficulty, net.minecraft.world.entity.MobSpawnType reason,
+            @javax.annotation.Nullable net.minecraft.world.entity.SpawnGroupData data,
+            @javax.annotation.Nullable net.minecraft.nbt.CompoundTag tag) {
+        data = super.finalizeSpawn(level, difficulty, reason, data, tag);
+        this.populateDefaultEquipmentSlots(level.getRandom(), difficulty);
+        return data;
+    }
+
     private boolean holdsShuriken() {
         return this.getMainHandItem().is(ModItems.SHURIKEN.get());
     }
