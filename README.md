@@ -215,4 +215,4 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 - **Barra de obsidiana** (4 obsidianas em quadrado) e, com ela, **espada, machado, picareta, pá, enxada, capacete, peitoral, calças e botas** (receitas iguais às vanilla).
 - Ferramentas: durabilidade 2400 (diamante 1561), nível de diamante. **Espada 32 de dano** e **machado 34** (mais lento); picareta 10, pá 9,5, enxada 6.
 - Armadura: 39 de armadura no conjunto (9/12/10/8) + 5 de resistência da armadura + resistência a repulsão; durabilidade ~1,4x a do diamante. **Conjunto completo = imunidade a explosões.** Mais forte que o diamante, mais fraca que o netherite do mod.
-- Texturas dos itens: as que você enviou. A folha de armadura veio em layout de skin 64x64 (não serve direto no modelo de armadura do jogo), então as camadas da armadura usam as cores dela em obsidiana contínua.
+- Texturas dos itens: as que você enviou. A folha de armadura veio em layout de skin 64x64; as peças foram remapeadas para as duas camadas de armadura do jogo (capacete, peitoral, braços e botas na camada 1; calças e cinto na camada 2).
