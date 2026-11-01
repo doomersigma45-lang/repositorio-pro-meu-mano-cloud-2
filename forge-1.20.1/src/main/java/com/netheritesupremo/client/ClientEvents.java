@@ -45,6 +45,7 @@ public final class ClientEvents {
         event.registerEntityRenderer(ModEntities.SAMURAI.get(), ctx -> new PlayerRobotRenderer<com.netheritesupremo.entity.Samurai>(ctx,
                 new ResourceLocation(NetheriteSupremo.MODID, "textures/entity/samurai.png"), 1.2F));
         event.registerEntityRenderer(ModEntities.THIEF.get(), ThiefRenderer::new);
+        event.registerEntityRenderer(ModEntities.PRECURSOR_VILLAGER.get(), PrecursorVillagerRenderer::new);
         event.registerEntityRenderer(ModEntities.ROBOT.get(), RobotRenderer::new);
         event.registerEntityRenderer(ModEntities.UMBRAL_MERCHANT.get(), WanderingTraderRenderer::new);
     }

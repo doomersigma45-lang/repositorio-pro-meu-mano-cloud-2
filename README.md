@@ -204,3 +204,9 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 - Mob hostil que **só aparece à noite**, ao ar livre no Overworld, **em bandos de 3 a 5**; de dia, sem ter roubado nada, ele some. 15 de vida, velocidade 0,32 (mais rápido que o jogador), **espada de madeira ou de pedra**; 3 skins (sorteada por ladrão). Ataca jogadores e aldeões e chama os outros ladrões quando é ferido.
 - **Rouba:** ao acertar, 50% de chance de roubar **metade de uma pilha** do inventário de um jogador (ou do inventário de aldeões, ou o equipamento de outro mob, como a arma de um esqueleto) e foge por ~10 s. **O que ele roubou cai quando ele morre.**
 - Drops: esmeraldas, lingotes ou pepitas de ouro e, raramente (4%), 1 diamante. Ovo de geração na aba de ovos.
+
+## Aldeão Precursor (1.20.1)
+- Variante **neutra e mais fraca do Precursor**, com 3 skins sorteadas. 750 de vida, 25 de dano, **vive na água (nada em 3D) e na terra**. Nasce em rios (grupos de 2 a 4) e pelo ovo de geração.
+- **Defesa:** ao ver uma ameaça (monstro hostil) ou ser atacado, **chama 2 robôs** (até 6 por perto, a cada 15 s) que atacam o alvo; se for atacado, **todos da espécie num raio de 48 blocos** também vão atrás do agressor.
+- **Trocas** (como um aldeão; reabastecem a cada ~5 min): a moeda é **ferro e diamante**. Ferro: comida, maçã dourada, flechas, **shurikens**, **kunai**, escudo, peitoral e espada de ferro encantados, pérolas. Diamante: garrafas de XP, livros (Inquebrável III, Remendo), espada, picareta e peitoral de diamante encantados, **katana**, totem, élitro e **ovo de geração do Robô**.
+- Drops: 4–10 esmeraldas, 1–3 diamantes e 4–12 ferros.

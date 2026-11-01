@@ -100,6 +100,10 @@ public final class ModItems {
             "thief_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.THIEF, 0x3A2A1C, 0xD9A441, new Item.Properties()));
 
+    public static final RegistryObject<Item> PRECURSOR_VILLAGER_SPAWN_EGG = ITEMS.register(
+            "precursor_villager_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.PRECURSOR_VILLAGER, 0x2A1F5C, 0x8FE3D9, new Item.Properties()));
+
     private ModItems() {
     }
 }

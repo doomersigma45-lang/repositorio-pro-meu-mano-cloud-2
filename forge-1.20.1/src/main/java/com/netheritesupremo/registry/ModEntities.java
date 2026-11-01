@@ -167,6 +167,13 @@ public final class ModEntities {
                     .clientTrackingRange(8)
                     .build("thief"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.entity.PrecursorVillager>> PRECURSOR_VILLAGER = ENTITIES.register(
+            "precursor_villager",
+            () -> EntityType.Builder.of(com.netheritesupremo.entity.PrecursorVillager::new, MobCategory.CREATURE)
+                    .sized(0.6F, 1.95F)
+                    .clientTrackingRange(10)
+                    .build("precursor_villager"));
+
     private ModEntities() {
     }
 }

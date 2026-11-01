@@ -99,6 +99,12 @@ def main():
             results.append(r.cmd("forceload add 190 190 400 270"))
             time.sleep(40)
             tests = [
+                "summon netheritesupremo:precursor_villager 70 110 210",
+                "attribute @e[type=netheritesupremo:precursor_villager,limit=1] minecraft:generic.max_health get",
+                "attribute @e[type=netheritesupremo:precursor_villager,limit=1] minecraft:generic.attack_damage get",
+                "data get entity @e[type=netheritesupremo:precursor_villager,limit=1] Offers.Recipes[0]",
+                "data get entity @e[type=netheritesupremo:precursor_villager,limit=1] Offers.Recipes[16]",
+                "loot spawn 0 100 0 loot netheritesupremo:entities/precursor_villager",
                 "summon netheritesupremo:thief 70 110 180",
                 "attribute @e[type=netheritesupremo:thief,limit=1] minecraft:generic.max_health get",
                 "attribute @e[type=netheritesupremo:thief,limit=1] minecraft:generic.movement_speed get",

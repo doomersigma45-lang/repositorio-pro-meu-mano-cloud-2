@@ -44,6 +44,7 @@ public final class ModBusEvents {
         event.put(ModEntities.NINJA.get(), com.netheritesupremo.entity.Ninja.createNinjaAttributes().build());
         event.put(ModEntities.SAMURAI.get(), com.netheritesupremo.entity.Samurai.createSamuraiAttributes().build());
         event.put(ModEntities.THIEF.get(), com.netheritesupremo.entity.Thief.createThiefAttributes().build());
+        event.put(ModEntities.PRECURSOR_VILLAGER.get(), com.netheritesupremo.entity.PrecursorVillager.createAttributes().build());
         event.put(ModEntities.ROBOT.get(), Robot.createRobotAttributes().build());
         event.put(ModEntities.GOLDEN_ZOMBIE.get(), GoldenZombie.createGoldenZombieAttributes().build());
     }
@@ -70,6 +71,9 @@ public final class ModBusEvents {
                 SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.THIEF.get(), SpawnPlacements.Type.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, com.netheritesupremo.entity.Thief::checkSpawnRules,
+                SpawnPlacementRegisterEvent.Operation.OR);
+        event.register(ModEntities.PRECURSOR_VILLAGER.get(), SpawnPlacements.Type.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, net.minecraft.world.entity.Mob::checkMobSpawnRules,
                 SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.NETHER_SPIDER.get(), SpawnPlacements.Type.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules,
