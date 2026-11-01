@@ -227,3 +227,6 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 - **Como fazer:** na bancada, coloque **uma peça de ferro e a peça de diamante do mesmo tipo** (ex.: capacete de ferro + capacete de diamante) -> peça de fusão.
 - **Atributos = soma das duas:** armadura 5/14/11/5 (= 35; ferro 15 + diamante 20), resistência 2 (a do diamante), durabilidade ferro + diamante (528/768/720/624), encantabilidade 19.
 - **Textura:** em cada face, **metade ferro e metade diamante**; as texturas são geradas na hora a partir das armaduras de ferro e de diamante do jogo (acompanha resource packs), e o ícone usa as duas metades dos ícones vanilla.
+
+## Nova receita do lingote de netherite (1.20.1)
+- A receita padrão (4 fragmentos + 4 barras de ouro) foi **substituída**: agora é **4 fragmentos de netherite + 3 barras de obsidiana + 1 estrela do Nether** (sem formato fixo; o da imagem funciona). O resto (bloco <-> lingote, melhoria na bancada de ferraria) não muda.
