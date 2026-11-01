@@ -99,6 +99,13 @@ def main():
             results.append(r.cmd("forceload add 190 190 400 270"))
             time.sleep(40)
             tests = [
+                "summon netheritesupremo:precursor_villager 76 110 212",
+                "item replace entity @e[type=netheritesupremo:precursor_villager,limit=1] armor.head with netheritesupremo:fusion_helmet",
+                "item replace entity @e[type=netheritesupremo:precursor_villager,limit=1] armor.chest with netheritesupremo:fusion_chestplate",
+                "item replace entity @e[type=netheritesupremo:precursor_villager,limit=1] armor.legs with netheritesupremo:fusion_leggings",
+                "item replace entity @e[type=netheritesupremo:precursor_villager,limit=1] armor.feet with netheritesupremo:fusion_boots",
+                "data get entity @e[type=netheritesupremo:precursor_villager,limit=1] ArmorItems[1]",
+                "kill @e[type=netheritesupremo:precursor_villager,limit=1]",
                 "summon netheritesupremo:thief 72 110 184",
                 "item replace entity @e[type=netheritesupremo:thief,limit=1] armor.head with netheritesupremo:ninja_helmet",
                 "item replace entity @e[type=netheritesupremo:thief,limit=1] armor.chest with netheritesupremo:ninja_chestplate",

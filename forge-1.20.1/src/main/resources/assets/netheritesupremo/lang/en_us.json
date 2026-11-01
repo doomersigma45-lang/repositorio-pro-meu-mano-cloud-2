@@ -65,5 +65,9 @@
   "item.netheritesupremo.ninja_helmet": "Ninja Hood",
   "item.netheritesupremo.ninja_chestplate": "Ninja Garb",
   "item.netheritesupremo.ninja_leggings": "Ninja Pants",
-  "item.netheritesupremo.ninja_boots": "Ninja Boots"
+  "item.netheritesupremo.ninja_boots": "Ninja Boots",
+  "item.netheritesupremo.fusion_helmet": "Fusion Helmet",
+  "item.netheritesupremo.fusion_chestplate": "Fusion Chestplate",
+  "item.netheritesupremo.fusion_leggings": "Fusion Leggings",
+  "item.netheritesupremo.fusion_boots": "Fusion Boots"
 }

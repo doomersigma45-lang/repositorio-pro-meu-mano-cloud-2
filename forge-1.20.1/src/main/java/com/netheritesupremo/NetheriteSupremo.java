@@ -77,6 +77,10 @@ public class NetheriteSupremo {
             event.accept(ModItems.NINJA_CHESTPLATE);
             event.accept(ModItems.NINJA_LEGGINGS);
             event.accept(ModItems.NINJA_BOOTS);
+            event.accept(ModItems.FUSION_HELMET);
+            event.accept(ModItems.FUSION_CHESTPLATE);
+            event.accept(ModItems.FUSION_LEGGINGS);
+            event.accept(ModItems.FUSION_BOOTS);
             event.accept(ModItems.KATANA);
             event.accept(ModItems.SHURIKEN);
             event.accept(ModItems.KUNAI);

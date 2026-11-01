@@ -53,5 +53,6 @@ public final class ClientEvents {
     @SubscribeEvent
     public static void onRegisterReloadListeners(RegisterClientReloadListenersEvent event) {
         event.registerReloadListener(new GolemTexture());
+        event.registerReloadListener(new FusionArmorTextures());
     }
 }

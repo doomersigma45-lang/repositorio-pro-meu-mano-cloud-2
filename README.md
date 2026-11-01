@@ -222,3 +222,8 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 - Defesa um pouco acima do couro (2/4/3/2 = 11, couro = 7) e durabilidade 12x (couro = 5x).
 - **Conjunto completo:** Velocidade III e Pulo IV, e **furtividade**: os mobs quase nunca escolhem você como alvo (só se estiver a menos de 3 blocos ou se você os atacou).
 - **Ninjas** largam uma peça aleatória da armadura com 50% de chance. Texturas da armadura: as que você enviou (camada 1 da folha para capuz/roupa/botas, camada 2 montada a partir dela para as calças).
+
+## Armadura de Fusão (ferro + diamante, 1.20.1)
+- **Como fazer:** na bancada, coloque **uma peça de ferro e a peça de diamante do mesmo tipo** (ex.: capacete de ferro + capacete de diamante) -> peça de fusão.
+- **Atributos = soma das duas:** armadura 5/14/11/5 (= 35; ferro 15 + diamante 20), resistência 2 (a do diamante), durabilidade ferro + diamante (528/768/720/624), encantabilidade 19.
+- **Textura:** em cada face, **metade ferro e metade diamante**; as texturas são geradas na hora a partir das armaduras de ferro e de diamante do jogo (acompanha resource packs), e o ícone usa as duas metades dos ícones vanilla.

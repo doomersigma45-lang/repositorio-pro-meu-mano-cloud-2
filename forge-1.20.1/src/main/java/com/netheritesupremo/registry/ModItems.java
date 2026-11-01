@@ -164,6 +164,26 @@ public final class ModItems {
             () -> new net.minecraft.world.item.ArmorItem(com.netheritesupremo.item.NinjaArmorMaterial.INSTANCE,
                     net.minecraft.world.item.ArmorItem.Type.BOOTS, new Item.Properties()));
 
+    public static final RegistryObject<Item> FUSION_HELMET = ITEMS.register(
+            "fusion_helmet",
+            () -> new net.minecraft.world.item.ArmorItem(com.netheritesupremo.item.FusionArmorMaterial.INSTANCE,
+                    net.minecraft.world.item.ArmorItem.Type.HELMET, new Item.Properties().rarity(net.minecraft.world.item.Rarity.UNCOMMON)));
+
+    public static final RegistryObject<Item> FUSION_CHESTPLATE = ITEMS.register(
+            "fusion_chestplate",
+            () -> new net.minecraft.world.item.ArmorItem(com.netheritesupremo.item.FusionArmorMaterial.INSTANCE,
+                    net.minecraft.world.item.ArmorItem.Type.CHESTPLATE, new Item.Properties().rarity(net.minecraft.world.item.Rarity.UNCOMMON)));
+
+    public static final RegistryObject<Item> FUSION_LEGGINGS = ITEMS.register(
+            "fusion_leggings",
+            () -> new net.minecraft.world.item.ArmorItem(com.netheritesupremo.item.FusionArmorMaterial.INSTANCE,
+                    net.minecraft.world.item.ArmorItem.Type.LEGGINGS, new Item.Properties().rarity(net.minecraft.world.item.Rarity.UNCOMMON)));
+
+    public static final RegistryObject<Item> FUSION_BOOTS = ITEMS.register(
+            "fusion_boots",
+            () -> new net.minecraft.world.item.ArmorItem(com.netheritesupremo.item.FusionArmorMaterial.INSTANCE,
+                    net.minecraft.world.item.ArmorItem.Type.BOOTS, new Item.Properties().rarity(net.minecraft.world.item.Rarity.UNCOMMON)));
+
     private ModItems() {
     }
 }
