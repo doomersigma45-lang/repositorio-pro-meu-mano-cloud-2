@@ -144,6 +144,26 @@ public final class ModItems {
             "obsidian_boots",
             () -> new net.minecraft.world.item.ArmorItem(com.netheritesupremo.item.ObsidianArmorMaterial.INSTANCE, net.minecraft.world.item.ArmorItem.Type.BOOTS, new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
 
+    public static final RegistryObject<Item> NINJA_HELMET = ITEMS.register(
+            "ninja_helmet",
+            () -> new net.minecraft.world.item.ArmorItem(com.netheritesupremo.item.NinjaArmorMaterial.INSTANCE,
+                    net.minecraft.world.item.ArmorItem.Type.HELMET, new Item.Properties()));
+
+    public static final RegistryObject<Item> NINJA_CHESTPLATE = ITEMS.register(
+            "ninja_chestplate",
+            () -> new net.minecraft.world.item.ArmorItem(com.netheritesupremo.item.NinjaArmorMaterial.INSTANCE,
+                    net.minecraft.world.item.ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+
+    public static final RegistryObject<Item> NINJA_LEGGINGS = ITEMS.register(
+            "ninja_leggings",
+            () -> new net.minecraft.world.item.ArmorItem(com.netheritesupremo.item.NinjaArmorMaterial.INSTANCE,
+                    net.minecraft.world.item.ArmorItem.Type.LEGGINGS, new Item.Properties()));
+
+    public static final RegistryObject<Item> NINJA_BOOTS = ITEMS.register(
+            "ninja_boots",
+            () -> new net.minecraft.world.item.ArmorItem(com.netheritesupremo.item.NinjaArmorMaterial.INSTANCE,
+                    net.minecraft.world.item.ArmorItem.Type.BOOTS, new Item.Properties()));
+
     private ModItems() {
     }
 }

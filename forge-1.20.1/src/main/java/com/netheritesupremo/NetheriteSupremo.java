@@ -40,6 +40,7 @@ public class NetheriteSupremo {
         MinecraftForge.EVENT_BUS.register(new CoreEvents());
         MinecraftForge.EVENT_BUS.register(new WeaponEvents());
         MinecraftForge.EVENT_BUS.register(new ObsidianEvents());
+        MinecraftForge.EVENT_BUS.register(new NinjaArmorEvents());
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -72,6 +73,10 @@ public class NetheriteSupremo {
             event.accept(ModItems.OBSIDIAN_CHESTPLATE);
             event.accept(ModItems.OBSIDIAN_LEGGINGS);
             event.accept(ModItems.OBSIDIAN_BOOTS);
+            event.accept(ModItems.NINJA_HELMET);
+            event.accept(ModItems.NINJA_CHESTPLATE);
+            event.accept(ModItems.NINJA_LEGGINGS);
+            event.accept(ModItems.NINJA_BOOTS);
             event.accept(ModItems.KATANA);
             event.accept(ModItems.SHURIKEN);
             event.accept(ModItems.KUNAI);

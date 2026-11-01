@@ -72,6 +72,34 @@
           "chance": 0.04
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.5
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "netheritesupremo:ninja_helmet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "netheritesupremo:ninja_chestplate"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "netheritesupremo:ninja_leggings"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "netheritesupremo:ninja_boots"
+        }
+      ]
     }
   ]
 }

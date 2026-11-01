@@ -61,5 +61,9 @@
   "item.netheritesupremo.obsidian_helmet": "Obsidian Helmet",
   "item.netheritesupremo.obsidian_chestplate": "Obsidian Chestplate",
   "item.netheritesupremo.obsidian_leggings": "Obsidian Leggings",
-  "item.netheritesupremo.obsidian_boots": "Obsidian Boots"
+  "item.netheritesupremo.obsidian_boots": "Obsidian Boots",
+  "item.netheritesupremo.ninja_helmet": "Ninja Hood",
+  "item.netheritesupremo.ninja_chestplate": "Ninja Garb",
+  "item.netheritesupremo.ninja_leggings": "Ninja Pants",
+  "item.netheritesupremo.ninja_boots": "Ninja Boots"
 }

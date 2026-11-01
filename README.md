@@ -216,3 +216,9 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 - Ferramentas: durabilidade 2400 (diamante 1561), nível de diamante. **Espada 32 de dano** e **machado 34** (mais lento); picareta 10, pá 9,5, enxada 6.
 - Armadura: 39 de armadura no conjunto (9/12/10/8) + 5 de resistência da armadura + resistência a repulsão; durabilidade ~1,4x a do diamante. **Conjunto completo = imunidade a explosões.** Mais forte que o diamante, mais fraca que o netherite do mod.
 - Texturas dos itens: as que você enviou. A folha de armadura veio em layout de skin 64x64; as peças foram remapeadas para as duas camadas de armadura do jogo (capacete, peitoral, braços e botas na camada 1; calças e cinto na camada 2).
+
+## Armadura Ninja (1.20.1)
+- Capuz, roupa, calças e botas ninja. **Receitas:** couro + pepitas e lingotes de ferro (capuz: LLL/LNL; roupa: LNL/LIL/LLL; calças: LIL/N N/L L; botas: L L/N N).
+- Defesa um pouco acima do couro (2/4/3/2 = 11, couro = 7) e durabilidade 12x (couro = 5x).
+- **Conjunto completo:** Velocidade III e Pulo IV, e **furtividade**: os mobs quase nunca escolhem você como alvo (só se estiver a menos de 3 blocos ou se você os atacou).
+- **Ninjas** largam uma peça aleatória da armadura com 50% de chance. Texturas da armadura: as que você enviou (camada 1 da folha para capuz/roupa/botas, camada 2 montada a partir dela para as calças).
