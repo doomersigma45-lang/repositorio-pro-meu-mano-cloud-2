@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "I I"
+  ],
+  "key": {
+    "I": {
+      "item": "netheritesupremo:obsidian_ingot"
+    }
+  },
+  "result": {
+    "item": "netheritesupremo:obsidian_helmet",
+    "count": 1
+  }
+}

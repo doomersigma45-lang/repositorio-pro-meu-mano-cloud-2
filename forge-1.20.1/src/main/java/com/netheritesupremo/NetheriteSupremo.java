@@ -39,6 +39,7 @@ public class NetheriteSupremo {
         MinecraftForge.EVENT_BUS.register(new GemEvents());
         MinecraftForge.EVENT_BUS.register(new CoreEvents());
         MinecraftForge.EVENT_BUS.register(new WeaponEvents());
+        MinecraftForge.EVENT_BUS.register(new ObsidianEvents());
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -65,10 +66,21 @@ public class NetheriteSupremo {
             event.accept(ModItems.PRECURSOR_VILLAGER_SPAWN_EGG);
             event.accept(ModItems.GIANT_GLOW_SQUID_SPAWN_EGG);
         } else if (event.getTabKey() == CreativeModeTabs.COMBAT) {
+            event.accept(ModItems.OBSIDIAN_SWORD);
+            event.accept(ModItems.OBSIDIAN_AXE);
+            event.accept(ModItems.OBSIDIAN_HELMET);
+            event.accept(ModItems.OBSIDIAN_CHESTPLATE);
+            event.accept(ModItems.OBSIDIAN_LEGGINGS);
+            event.accept(ModItems.OBSIDIAN_BOOTS);
             event.accept(ModItems.KATANA);
             event.accept(ModItems.SHURIKEN);
             event.accept(ModItems.KUNAI);
+        } else if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
+            event.accept(ModItems.OBSIDIAN_PICKAXE);
+            event.accept(ModItems.OBSIDIAN_SHOVEL);
+            event.accept(ModItems.OBSIDIAN_HOE);
         } else if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(ModItems.OBSIDIAN_INGOT);
             event.accept(ModItems.RAINBOW_GEM);
             event.accept(ModItems.PRECURSOR_CORE);
             event.accept(ModItems.GIANT_GLOW_SQUID_EGG);

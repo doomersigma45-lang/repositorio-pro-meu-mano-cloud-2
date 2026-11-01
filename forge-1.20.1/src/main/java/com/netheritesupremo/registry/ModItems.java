@@ -104,6 +104,46 @@ public final class ModItems {
             "precursor_villager_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.PRECURSOR_VILLAGER, 0x2A1F5C, 0x8FE3D9, new Item.Properties()));
 
+    public static final RegistryObject<Item> OBSIDIAN_INGOT = ITEMS.register(
+            "obsidian_ingot",
+            () -> new Item.Properties());
+
+    public static final RegistryObject<Item> OBSIDIAN_SWORD = ITEMS.register(
+            "obsidian_sword",
+            () -> new net.minecraft.world.item.SwordItem(com.netheritesupremo.item.ObsidianTier.INSTANCE, 31, -2.2F, new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
+
+    public static final RegistryObject<Item> OBSIDIAN_AXE = ITEMS.register(
+            "obsidian_axe",
+            () -> new net.minecraft.world.item.AxeItem(com.netheritesupremo.item.ObsidianTier.INSTANCE, 33.0F, -3.0F, new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
+
+    public static final RegistryObject<Item> OBSIDIAN_PICKAXE = ITEMS.register(
+            "obsidian_pickaxe",
+            () -> new net.minecraft.world.item.PickaxeItem(com.netheritesupremo.item.ObsidianTier.INSTANCE, 9, -2.6F, new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
+
+    public static final RegistryObject<Item> OBSIDIAN_SHOVEL = ITEMS.register(
+            "obsidian_shovel",
+            () -> new net.minecraft.world.item.ShovelItem(com.netheritesupremo.item.ObsidianTier.INSTANCE, 8.5F, -2.8F, new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
+
+    public static final RegistryObject<Item> OBSIDIAN_HOE = ITEMS.register(
+            "obsidian_hoe",
+            () -> new net.minecraft.world.item.HoeItem(com.netheritesupremo.item.ObsidianTier.INSTANCE, 5, -1.0F, new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
+
+    public static final RegistryObject<Item> OBSIDIAN_HELMET = ITEMS.register(
+            "obsidian_helmet",
+            () -> new net.minecraft.world.item.ArmorItem(com.netheritesupremo.item.ObsidianArmorMaterial.INSTANCE, net.minecraft.world.item.ArmorItem.Type.HELMET, new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
+
+    public static final RegistryObject<Item> OBSIDIAN_CHESTPLATE = ITEMS.register(
+            "obsidian_chestplate",
+            () -> new net.minecraft.world.item.ArmorItem(com.netheritesupremo.item.ObsidianArmorMaterial.INSTANCE, net.minecraft.world.item.ArmorItem.Type.CHESTPLATE, new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
+
+    public static final RegistryObject<Item> OBSIDIAN_LEGGINGS = ITEMS.register(
+            "obsidian_leggings",
+            () -> new net.minecraft.world.item.ArmorItem(com.netheritesupremo.item.ObsidianArmorMaterial.INSTANCE, net.minecraft.world.item.ArmorItem.Type.LEGGINGS, new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
+
+    public static final RegistryObject<Item> OBSIDIAN_BOOTS = ITEMS.register(
+            "obsidian_boots",
+            () -> new net.minecraft.world.item.ArmorItem(com.netheritesupremo.item.ObsidianArmorMaterial.INSTANCE, net.minecraft.world.item.ArmorItem.Type.BOOTS, new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
+
     private ModItems() {
     }
 }

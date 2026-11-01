@@ -99,6 +99,18 @@ def main():
             results.append(r.cmd("forceload add 190 190 400 270"))
             time.sleep(40)
             tests = [
+                "summon minecraft:zombie 70 110 240",
+                "item replace entity @e[type=minecraft:zombie,limit=1] armor.head with netheritesupremo:obsidian_helmet",
+                "item replace entity @e[type=minecraft:zombie,limit=1] armor.chest with netheritesupremo:obsidian_chestplate",
+                "item replace entity @e[type=minecraft:zombie,limit=1] armor.legs with netheritesupremo:obsidian_leggings",
+                "item replace entity @e[type=minecraft:zombie,limit=1] armor.feet with netheritesupremo:obsidian_boots",
+                "attribute @e[type=minecraft:zombie,limit=1] minecraft:generic.armor get",
+                "damage @e[type=minecraft:zombie,limit=1] 20 minecraft:explosion",
+                "item replace entity @e[type=minecraft:zombie,limit=1] weapon.mainhand with netheritesupremo:obsidian_sword",
+                "attribute @e[type=minecraft:zombie,limit=1] minecraft:generic.attack_damage get",
+                "item replace entity @e[type=minecraft:zombie,limit=1] weapon.mainhand with netheritesupremo:obsidian_axe",
+                "attribute @e[type=minecraft:zombie,limit=1] minecraft:generic.attack_damage get",
+                "kill @e[type=minecraft:zombie,limit=1]",
                 "summon netheritesupremo:precursor_villager 70 110 210",
                 "attribute @e[type=netheritesupremo:precursor_villager,limit=1] minecraft:generic.max_health get",
                 "attribute @e[type=netheritesupremo:precursor_villager,limit=1] minecraft:generic.attack_damage get",

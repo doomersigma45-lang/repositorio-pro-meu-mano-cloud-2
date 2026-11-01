@@ -51,5 +51,15 @@
   "entity.netheritesupremo.thief": "Thief",
   "item.netheritesupremo.thief_spawn_egg": "Thief Spawn Egg",
   "entity.netheritesupremo.precursor_villager": "Precursor Villager",
-  "item.netheritesupremo.precursor_villager_spawn_egg": "Precursor Villager Spawn Egg"
+  "item.netheritesupremo.precursor_villager_spawn_egg": "Precursor Villager Spawn Egg",
+  "item.netheritesupremo.obsidian_ingot": "Obsidian Ingot",
+  "item.netheritesupremo.obsidian_sword": "Obsidian Sword",
+  "item.netheritesupremo.obsidian_axe": "Obsidian Axe",
+  "item.netheritesupremo.obsidian_pickaxe": "Obsidian Pickaxe",
+  "item.netheritesupremo.obsidian_shovel": "Obsidian Shovel",
+  "item.netheritesupremo.obsidian_hoe": "Obsidian Hoe",
+  "item.netheritesupremo.obsidian_helmet": "Obsidian Helmet",
+  "item.netheritesupremo.obsidian_chestplate": "Obsidian Chestplate",
+  "item.netheritesupremo.obsidian_leggings": "Obsidian Leggings",
+  "item.netheritesupremo.obsidian_boots": "Obsidian Boots"
 }

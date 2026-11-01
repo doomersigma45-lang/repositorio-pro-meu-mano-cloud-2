@@ -210,3 +210,9 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 - **Defesa:** ao ver uma ameaça (monstro hostil) ou ser atacado, **chama 2 robôs** (até 6 por perto, a cada 15 s) que atacam o alvo; se for atacado, **todos da espécie num raio de 48 blocos** também vão atrás do agressor.
 - **Trocas** (como um aldeão; reabastecem a cada ~5 min): a moeda é **ferro e diamante**. Ferro: comida, maçã dourada, flechas, **shurikens**, **kunai**, escudo, peitoral e espada de ferro encantados, pérolas. Diamante: garrafas de XP, livros (Inquebrável III, Remendo), espada, picareta e peitoral de diamante encantados, **katana**, totem, élitro e **ovo de geração do Robô**.
 - Drops: 4–10 esmeraldas, 1–3 diamantes e 4–12 ferros.
+
+## Obsidiana (1.20.1)
+- **Barra de obsidiana** (4 obsidianas em quadrado) e, com ela, **espada, machado, picareta, pá, enxada, capacete, peitoral, calças e botas** (receitas iguais às vanilla).
+- Ferramentas: durabilidade 2400 (diamante 1561), nível de diamante. **Espada 32 de dano** e **machado 34** (mais lento); picareta 10, pá 9,5, enxada 6.
+- Armadura: 39 de armadura no conjunto (9/12/10/8) + 5 de resistência da armadura + resistência a repulsão; durabilidade ~1,4x a do diamante. **Conjunto completo = imunidade a explosões.** Mais forte que o diamante, mais fraca que o netherite do mod.
+- Texturas dos itens: as que você enviou. A folha de armadura veio em layout de skin 64x64 (não serve direto no modelo de armadura do jogo), então as camadas da armadura usam as cores dela em obsidiana contínua.
