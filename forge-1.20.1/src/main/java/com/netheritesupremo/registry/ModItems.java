@@ -106,7 +106,7 @@ public final class ModItems {
 
     public static final RegistryObject<Item> OBSIDIAN_INGOT = ITEMS.register(
             "obsidian_ingot",
-            () -> new Item.Properties());
+            () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> OBSIDIAN_SWORD = ITEMS.register(
             "obsidian_sword",
