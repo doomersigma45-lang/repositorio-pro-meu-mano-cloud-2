@@ -214,7 +214,7 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 ## Obsidiana (1.20.1)
 - **Barra de obsidiana** (4 obsidianas em quadrado) e, com ela, **espada, machado, picareta, pá, enxada, capacete, peitoral, calças e botas** (receitas iguais às vanilla).
 - Ferramentas: durabilidade 2400 (diamante 1561), nível de diamante. **Espada 32 de dano** e **machado 34** (mais lento); picareta 10, pá 9,5, enxada 6.
-- Armadura: 39 de armadura no conjunto (9/12/10/8) + 5 de resistência da armadura + resistência a repulsão; durabilidade ~1,4x a do diamante. **Conjunto completo = imunidade a explosões.** Mais forte que o diamante, mais fraca que o netherite do mod.
+- Armadura: 45 de armadura no conjunto (8/16/13/8, melhor peça a peça que a Armadura de Fusão: 5/14/11/5) + 5 de resistência da armadura + resistência a repulsão; durabilidade 660/960/900/780 (a da fusão: 528/768/720/624), encantabilidade 20. **Conjunto completo = imunidade a explosões.** Mais forte que o diamante, mais fraca que o netherite do mod.
 - Texturas dos itens: as que você enviou. A folha de armadura veio em layout de skin 64x64; as peças foram remapeadas para as duas camadas de armadura do jogo (capacete, peitoral, braços e botas na camada 1; calças e cinto na camada 2).
 
 ## Armadura Ninja (1.20.1)

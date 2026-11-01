@@ -8,17 +8,17 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
 
-/** Armadura de obsidiana: 39 de armadura no conjunto (diamante: 20), durabilidade ~1,4x a do diamante. */
+/** Armadura de obsidiana: 45 de armadura no conjunto (diamante: 20, fusao: 35), durabilidade maior que a da fusao. */
 public enum ObsidianArmorMaterial implements ArmorMaterial {
     INSTANCE;
 
     @Override
     public int getDurabilityForType(ArmorItem.Type type) {
         return switch (type) {
-            case BOOTS -> 13 * 45;
-            case LEGGINGS -> 15 * 45;
-            case CHESTPLATE -> 16 * 45;
-            case HELMET -> 11 * 45;
+            case BOOTS -> 13 * 60;
+            case LEGGINGS -> 15 * 60;
+            case CHESTPLATE -> 16 * 60;
+            case HELMET -> 11 * 60;
         };
     }
 
@@ -26,15 +26,15 @@ public enum ObsidianArmorMaterial implements ArmorMaterial {
     public int getDefenseForType(ArmorItem.Type type) {
         return switch (type) {
             case BOOTS -> 8;
-            case LEGGINGS -> 10;
-            case CHESTPLATE -> 12;
+            case LEGGINGS -> 13;
+            case CHESTPLATE -> 16;
             case HELMET -> 9;
         };
     }
 
     @Override
     public int getEnchantmentValue() {
-        return 12;
+        return 20;
     }
 
     @Override
