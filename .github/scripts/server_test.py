@@ -99,7 +99,7 @@ def main():
             results.append(r.cmd("forceload add 190 190 400 270"))
             time.sleep(40)
             tests = [
-                "summon minecraft:iron_golem 70 110 240",
+                "summon minecraft:iron_golem 74 110 200",
                 "item replace entity @e[type=minecraft:iron_golem,limit=1] armor.head with netheritesupremo:obsidian_helmet",
                 "item replace entity @e[type=minecraft:iron_golem,limit=1] armor.chest with netheritesupremo:obsidian_chestplate",
                 "item replace entity @e[type=minecraft:iron_golem,limit=1] armor.legs with netheritesupremo:obsidian_leggings",
