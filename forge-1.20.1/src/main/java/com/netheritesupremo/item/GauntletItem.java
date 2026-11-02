@@ -2,7 +2,6 @@ package com.netheritesupremo.item;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import com.netheritesupremo.DragonEyePortals;
 import com.netheritesupremo.entity.ShurikenEntity;
 import java.util.List;
 import javax.annotation.Nullable;
@@ -74,7 +73,7 @@ public class GauntletItem extends Item {
     /**
      * Botao direito: rajada de rubis x10 (explosivos se o modo estiver ligado).
      * Agachado: explosao da joia onde voce olha. Agachado olhando pra baixo: liga/desliga projeteis explosivos.
-     * Agachado olhando pra cima: troca a dimensao. Correndo: abre o portal.
+     * Portais: tecla R (ver PortalKey).
      */
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
@@ -85,8 +84,6 @@ public class GauntletItem extends Item {
                 stack.getOrCreateTag().putBoolean(EXPLOSIVE, on);
                 sp.displayClientMessage(Component.translatable(on ? "message.netheritesupremo.gauntlet.explosive_on"
                         : "message.netheritesupremo.gauntlet.explosive_off"), true);
-            } else if (sp.isShiftKeyDown() && sp.getXRot() < -60.0F) {
-                DragonEyePortals.cycle(sp);
             } else if (sp.isShiftKeyDown()) {
                 long now = level.getGameTime();
                 if (stack.getOrCreateTag().getLong(EXPLOSION_CD) > now) {
@@ -102,8 +99,6 @@ public class GauntletItem extends Item {
                                     ? Level.ExplosionInteraction.TNT : Level.ExplosionInteraction.NONE);
                     level.playSound(null, sp.blockPosition(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 2.0F, 1.5F);
                 }
-            } else if (sp.isSprinting()) {
-                DragonEyePortals.open(sp);
             } else {
                 boolean explosive = isExplosive(stack);
                 level.playSound(null, sp.getX(), sp.getY(), sp.getZ(), SoundEvents.AMETHYST_BLOCK_CHIME,

@@ -37,6 +37,11 @@ public final class DragonEyePortals {
     private DragonEyePortals() {
     }
 
+    /** So quem segura o Olho do Dragao ou a Manopla Suprema pode abrir portais. */
+    public static boolean canUse(net.minecraft.world.entity.player.Player player) {
+        return DragonEyeEvents.holdsEye(player) || GauntletEvents.holdsGauntlet(player);
+    }
+
     public static String key(ResourceKey<Level> dim, BlockPos pos) {
         return dim.location() + "|" + pos.asLong();
     }
@@ -71,13 +76,14 @@ public final class DragonEyePortals {
         return list.get(0);
     }
 
-    public static void cycle(ServerPlayer player) {
+    public static void cycle(ServerPlayer player, int direction) {
         List<ResourceKey<Level>> list = options(player);
         if (list.isEmpty()) {
             return;
         }
         ResourceKey<Level> current = selected(player);
-        ResourceKey<Level> next = list.get((list.indexOf(current) + 1) % list.size());
+        int index = Math.floorMod(list.indexOf(current) + (direction >= 0 ? 1 : -1), list.size());
+        ResourceKey<Level> next = list.get(index);
         player.getPersistentData().putString(SELECTED, next.location().toString());
         player.displayClientMessage(Component.translatable("message.netheritesupremo.dragon_eye.dest",
                 next.location().toString()), true);

@@ -246,3 +246,7 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 - 5000 de dano. Segurando junta os poderes x10: Núcleo (+18 dano, +160 vida) e Olho (+30 vida, força x20, voo 10x mais rápido), Joia (Resistência V, visão noturna, imune a explosões), tecla K atravessa paredes. Botão direito: rajada de 90 projéteis de rubi (120 de dano cada). Agachado: explosão da Joia Colorida onde olha (recarga 30 s). Agachado olhando para baixo: liga/desliga projéteis explosivos (poder 4 cada). Correndo + botão direito: abre portal; agachado olhando para cima: troca a dimensão.
 - Cada mob/jogador morto com ela na mão conta um abate; com 100 (`GauntletItem.INFINITE_KILLS`) o dano vira infinito.
 - A armadura de netherite completa (a do bônus de conjunto) sofre menos com o dano infinito da Manopla: quem usa ainda toma dano, mas reduzido: 25% da vida máxima por golpe infinito.
+
+## Portais pela tecla R e compatibilidade com Avaritia (1.20.1)
+- Com o Olho do Dragão ou a Manopla Suprema na mão: **R** abre o portal; **segurar R e girar o scroll** troca a dimensão (o scroll não troca o item da hotbar enquanto R está apertada). O botão direito não abre mais portais.
+- **Avaritia / Re-Avaritia** (detectados pelo nome registrado `avaritia`, sem dependência): a armadura de netherite completa anula o dano das espadas do mod (inclusive o tipo de dano `avaritia:infinity`); a espada de netherite e a Manopla Suprema ferem quem veste armadura do mod, passando a imunidade e a redução dela. A armadura do mod não tem durabilidade, então ela em si não "quebra".
