@@ -11,6 +11,7 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.ShapelessRecipe;
 import net.minecraftforge.event.AddReloadListenerEvent;
+import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,21 +27,31 @@ public class RecipeEvents {
     @SubscribeEvent
     public void onAddReloadListeners(AddReloadListenerEvent event) {
         RecipeManager manager = event.getServerResources().getRecipeManager();
-        event.addListener((ResourceManagerReloadListener) (ResourceManager resourceManager) -> {
-            List<Recipe<?>> kept = new ArrayList<>();
-            int removed = 0;
-            for (Recipe<?> recipe : manager.getRecipes()) {
-                if (isVanillaGoldNetheriteIngot(recipe)) {
-                    removed++;
-                } else {
-                    kept.add(recipe);
-                }
+        event.addListener((ResourceManagerReloadListener) (ResourceManager resourceManager) -> strip(manager, "recarga"));
+    }
+
+    /** Garante a remocao no inicio do servidor, depois que todas as receitas ja carregaram. */
+    @SubscribeEvent
+    public void onServerStarted(ServerStartedEvent event) {
+        strip(event.getServer().getRecipeManager(), "inicio");
+    }
+
+    private static void strip(RecipeManager manager, String when) {
+        List<Recipe<?>> kept = new ArrayList<>();
+        int removed = 0;
+        int total = 0;
+        for (Recipe<?> recipe : manager.getRecipes()) {
+            total++;
+            if (isVanillaGoldNetheriteIngot(recipe)) {
+                removed++;
+            } else {
+                kept.add(recipe);
             }
-            if (removed > 0) {
-                manager.replaceRecipes(kept);
-            }
-            LOGGER.info("receita original da netherite removida: {}", removed);
-        });
+        }
+        if (removed > 0) {
+            manager.replaceRecipes(kept);
+        }
+        LOGGER.info("receita original da netherite removida ({}): {} de {} receitas", when, removed, total);
     }
 
     private static boolean isVanillaGoldNetheriteIngot(Recipe<?> recipe) {

@@ -5,7 +5,7 @@ plugins {
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
 }
 
-version = '1.35.4'
+version = '1.35.5'
 group = 'com.netheritesupremo'
 
 base {
