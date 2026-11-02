@@ -115,13 +115,16 @@ public class GauntletEvents {
         }
     }
 
-    /** Com 100+ abates o dano e infinito: passa por armadura, resistencia e absorcao. */
+    /**
+     * Com 100+ abates o dano e infinito: passa por armadura, resistencia e absorcao. Quem veste a armadura de
+     * netherite completa ainda toma dano, mas reduzido: 25% da vida maxima por golpe.
+     */
     @SubscribeEvent
     public void onDamage(LivingDamageEvent event) {
         if (event.getSource().getEntity() instanceof Player player && GauntletItem.isInfinite(held(player))
-                && event.getEntity() != player && !SupremoEvents.hasSetBonus(event.getEntity())) {
-            // Quem veste a armadura de netherite completa resiste ao dano infinito (leva so o dano normal reduzido)
-            event.setAmount(Float.MAX_VALUE);
+                && event.getEntity() != player) {
+            LivingEntity target = event.getEntity();
+            event.setAmount(SupremoEvents.hasSetBonus(target) ? target.getMaxHealth() * 0.25F : Float.MAX_VALUE);
         }
     }
 }
