@@ -42,6 +42,14 @@ public class RecipeEvents {
         int total = 0;
         for (Recipe<?> recipe : manager.getRecipes()) {
             total++;
+            try {
+                if (recipe.getResultItem(RegistryAccess.EMPTY).is(Items.NETHERITE_INGOT)) {
+                    LOGGER.info("DIAG netherite_ingot: {} {} {}", recipe.getId(), recipe.getClass().getSimpleName(),
+                            recipe.getIngredients().size());
+                }
+            } catch (RuntimeException ignored) {
+                // algumas receitas (ex.: ornamentos) nao aceitam RegistryAccess vazio
+            }
             if (isVanillaGoldNetheriteIngot(recipe)) {
                 removed++;
             } else {
