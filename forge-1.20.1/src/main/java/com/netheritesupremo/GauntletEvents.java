@@ -119,7 +119,8 @@ public class GauntletEvents {
     @SubscribeEvent
     public void onDamage(LivingDamageEvent event) {
         if (event.getSource().getEntity() instanceof Player player && GauntletItem.isInfinite(held(player))
-                && event.getEntity() != player) {
+                && event.getEntity() != player && !SupremoEvents.hasSetBonus(event.getEntity())) {
+            // Quem veste a armadura de netherite completa resiste ao dano infinito (leva so o dano normal reduzido)
             event.setAmount(Float.MAX_VALUE);
         }
     }
