@@ -99,8 +99,6 @@ def main():
             results.append(r.cmd("forceload add 190 190 400 270"))
             time.sleep(40)
             tests = [
-                "recipe give @a minecraft:netherite_ingot",
-                "recipe give @a minecraft:netherite_ingot_from_netherite_scrap",
                 "give @a netheritesupremo:supreme_gauntlet",
                 "setblock 92 110 84 netheritesupremo:dimension_portal",
                 "loot spawn 0 100 0 loot netheritesupremo:entities/samurai",
@@ -345,6 +343,7 @@ def main():
             with open(os.path.join(crash_dir, name), encoding="utf-8", errors="replace") as f:
                 crash_text.append(f"== {name}\n" + "".join(f.readlines()[:45]))
 
+    results += [l for l in log.splitlines() if "receita original da netherite" in l]
     if results:
         annotate("notice", "Testes de mobs (RCON)", results)
     if not started:
