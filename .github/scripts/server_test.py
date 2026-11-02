@@ -343,7 +343,7 @@ def main():
             with open(os.path.join(crash_dir, name), encoding="utf-8", errors="replace") as f:
                 crash_text.append(f"== {name}\n" + "".join(f.readlines()[:45]))
 
-    results += [l for l in log.splitlines() if "receita original da netherite" in l]
+    results = [l for l in log.splitlines() if "receita original da netherite" in l] + results
     if results:
         annotate("notice", "Testes de mobs (RCON)", results)
     if not started:
