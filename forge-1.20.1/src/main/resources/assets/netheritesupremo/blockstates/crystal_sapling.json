@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "stage=0": {
+      "model": "netheritesupremo:block/crystal_sapling"
+    },
+    "stage=1": {
+      "model": "netheritesupremo:block/crystal_sapling"
+    }
+  }
+}

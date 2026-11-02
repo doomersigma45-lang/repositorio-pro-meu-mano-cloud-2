@@ -69,5 +69,18 @@
   "item.netheritesupremo.fusion_helmet": "Capacete de Fusão",
   "item.netheritesupremo.fusion_chestplate": "Peitoral de Fusão",
   "item.netheritesupremo.fusion_leggings": "Calças de Fusão",
-  "item.netheritesupremo.fusion_boots": "Botas de Fusão"
+  "item.netheritesupremo.fusion_boots": "Botas de Fusão",
+  "block.netheritesupremo.crystal_log": "Tronco Cristalino",
+  "block.netheritesupremo.crystal_wood": "Madeira Cristalina",
+  "block.netheritesupremo.stripped_crystal_log": "Tronco Cristalino Descascado",
+  "block.netheritesupremo.stripped_crystal_wood": "Madeira Cristalina Descascada",
+  "block.netheritesupremo.crystal_planks": "Tábuas Cristalinas",
+  "block.netheritesupremo.crystal_stairs": "Escadas Cristalinas",
+  "block.netheritesupremo.crystal_slab": "Laje Cristalina",
+  "block.netheritesupremo.crystal_fence": "Cerca Cristalina",
+  "block.netheritesupremo.crystal_fence_gate": "Portão de Cerca Cristalino",
+  "block.netheritesupremo.crystal_button": "Botão Cristalino",
+  "block.netheritesupremo.crystal_pressure_plate": "Placa de Pressão Cristalina",
+  "block.netheritesupremo.crystal_leaves": "Folhas Cristalinas",
+  "block.netheritesupremo.crystal_sapling": "Muda Cristalina"
 }

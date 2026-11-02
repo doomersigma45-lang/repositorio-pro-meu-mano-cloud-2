@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "netheritesupremo:block/crystal_planks",
+    "top": "netheritesupremo:block/crystal_planks",
+    "side": "netheritesupremo:block/crystal_planks"
+  }
+}

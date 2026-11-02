@@ -99,6 +99,14 @@ def main():
             results.append(r.cmd("forceload add 190 190 400 270"))
             time.sleep(40)
             tests = [
+                "setblock 84 110 84 netheritesupremo:crystal_log[axis=x]",
+                "setblock 85 110 84 netheritesupremo:crystal_planks",
+                "setblock 86 110 84 netheritesupremo:crystal_stairs[facing=north,half=top]",
+                "setblock 87 110 84 netheritesupremo:crystal_fence_gate[open=true]",
+                "setblock 88 110 84 netheritesupremo:crystal_leaves",
+                "loot spawn 0 100 0 loot netheritesupremo:blocks/crystal_log",
+                "loot spawn 0 100 0 loot netheritesupremo:blocks/crystal_leaves",
+                "place feature netheritesupremo:crystal_tree 90 100 90",
                 "summon netheritesupremo:precursor_villager 80 110 80",
                 "item replace entity @e[type=netheritesupremo:precursor_villager,limit=1] armor.head with netheritesupremo:fusion_helmet",
                 "item replace entity @e[type=netheritesupremo:precursor_villager,limit=1] armor.chest with netheritesupremo:fusion_chestplate",

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "netheritesupremo:block/stripped_crystal_log"
+    },
+    "axis=z": {
+      "model": "netheritesupremo:block/stripped_crystal_log_horizontal",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "netheritesupremo:block/stripped_crystal_log_horizontal",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

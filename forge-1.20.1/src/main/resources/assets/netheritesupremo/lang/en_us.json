@@ -69,5 +69,18 @@
   "item.netheritesupremo.fusion_helmet": "Fusion Helmet",
   "item.netheritesupremo.fusion_chestplate": "Fusion Chestplate",
   "item.netheritesupremo.fusion_leggings": "Fusion Leggings",
-  "item.netheritesupremo.fusion_boots": "Fusion Boots"
+  "item.netheritesupremo.fusion_boots": "Fusion Boots",
+  "block.netheritesupremo.crystal_log": "Crystal Log",
+  "block.netheritesupremo.crystal_wood": "Crystal Wood",
+  "block.netheritesupremo.stripped_crystal_log": "Stripped Crystal Log",
+  "block.netheritesupremo.stripped_crystal_wood": "Stripped Crystal Wood",
+  "block.netheritesupremo.crystal_planks": "Crystal Planks",
+  "block.netheritesupremo.crystal_stairs": "Crystal Stairs",
+  "block.netheritesupremo.crystal_slab": "Crystal Slab",
+  "block.netheritesupremo.crystal_fence": "Crystal Fence",
+  "block.netheritesupremo.crystal_fence_gate": "Crystal Fence Gate",
+  "block.netheritesupremo.crystal_button": "Crystal Button",
+  "block.netheritesupremo.crystal_pressure_plate": "Crystal Pressure Plate",
+  "block.netheritesupremo.crystal_leaves": "Crystal Leaves",
+  "block.netheritesupremo.crystal_sapling": "Crystal Sapling"
 }

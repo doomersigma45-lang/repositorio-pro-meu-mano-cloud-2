@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "netheritesupremo:block/crystal_slab"
+    },
+    "type=top": {
+      "model": "netheritesupremo:block/crystal_slab_top"
+    },
+    "type=double": {
+      "model": "netheritesupremo:block/crystal_planks"
+    }
+  }
+}

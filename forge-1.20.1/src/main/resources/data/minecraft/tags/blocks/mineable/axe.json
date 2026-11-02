@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "netheritesupremo:crystal_log",
+    "netheritesupremo:crystal_wood",
+    "netheritesupremo:stripped_crystal_log",
+    "netheritesupremo:stripped_crystal_wood",
+    "netheritesupremo:crystal_planks",
+    "netheritesupremo:crystal_stairs",
+    "netheritesupremo:crystal_slab",
+    "netheritesupremo:crystal_fence",
+    "netheritesupremo:crystal_fence_gate",
+    "netheritesupremo:crystal_button",
+    "netheritesupremo:crystal_pressure_plate"
+  ]
+}

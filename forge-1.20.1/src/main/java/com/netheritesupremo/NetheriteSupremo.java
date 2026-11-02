@@ -88,6 +88,21 @@ public class NetheriteSupremo {
             event.accept(ModItems.OBSIDIAN_PICKAXE);
             event.accept(ModItems.OBSIDIAN_SHOVEL);
             event.accept(ModItems.OBSIDIAN_HOE);
+        } else if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
+            event.accept(ModItems.CRYSTAL_LOG);
+            event.accept(ModItems.CRYSTAL_WOOD);
+            event.accept(ModItems.STRIPPED_CRYSTAL_LOG);
+            event.accept(ModItems.STRIPPED_CRYSTAL_WOOD);
+            event.accept(ModItems.CRYSTAL_LEAVES);
+            event.accept(ModItems.CRYSTAL_SAPLING);
+        } else if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+            event.accept(ModItems.CRYSTAL_PLANKS);
+            event.accept(ModItems.CRYSTAL_STAIRS);
+            event.accept(ModItems.CRYSTAL_SLAB);
+            event.accept(ModItems.CRYSTAL_FENCE);
+            event.accept(ModItems.CRYSTAL_FENCE_GATE);
+            event.accept(ModItems.CRYSTAL_BUTTON);
+            event.accept(ModItems.CRYSTAL_PRESSURE_PLATE);
         } else if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(ModItems.OBSIDIAN_INGOT);
             event.accept(ModItems.RAINBOW_GEM);

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "netheritesupremo:block/stripped_crystal_log",
+    "side": "netheritesupremo:block/stripped_crystal_log"
+  }
+}

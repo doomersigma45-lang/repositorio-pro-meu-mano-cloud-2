@@ -230,3 +230,8 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 
 ## Nova receita do lingote de netherite (1.20.1)
 - A receita padrão (4 fragmentos + 4 barras de ouro) foi **substituída**: agora é **4 fragmentos de netherite + 3 barras de obsidiana + 1 estrela do Nether** (sem formato fixo; o da imagem funciona). O resto (bloco <-> lingote, melhoria na bancada de ferraria) não muda.
+
+## Árvore Cristalina (1.20.1)
+- Novo tipo de árvore com as suas texturas (tronco e tábuas). **Ainda não nasce naturalmente** (não há bioma/spawn configurado), só plantando a **muda** (cresce a feature `netheritesupremo:crystal_tree`) ou com `/place feature netheritesupremo:crystal_tree`.
+- Blocos: tronco, madeira, tronco e madeira descascados (machado), tábuas, escada, laje, cerca, portão, botão, placa de pressão, folhas e muda. Receitas das tábuas/escadas etc. **não foram adicionadas** (só pegar no criativo/dropando da árvore); porta, alçapão, placa e barco ficaram de fora por falta de textura.
+- Texturas das folhas, da muda e do tronco descascado foram geradas por mim nas cores da árvore.

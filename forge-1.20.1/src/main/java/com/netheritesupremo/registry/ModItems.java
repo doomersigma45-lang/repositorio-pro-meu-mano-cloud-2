@@ -184,6 +184,58 @@ public final class ModItems {
             () -> new net.minecraft.world.item.ArmorItem(com.netheritesupremo.item.FusionArmorMaterial.INSTANCE,
                     net.minecraft.world.item.ArmorItem.Type.BOOTS, new Item.Properties().rarity(net.minecraft.world.item.Rarity.UNCOMMON)));
 
+    public static final RegistryObject<Item> CRYSTAL_PLANKS = ITEMS.register(
+            "crystal_planks",
+            () -> new net.minecraft.world.item.BlockItem(ModBlocks.CRYSTAL_PLANKS.get(), new Item.Properties()));
+
+    public static final RegistryObject<Item> STRIPPED_CRYSTAL_LOG = ITEMS.register(
+            "stripped_crystal_log",
+            () -> new net.minecraft.world.item.BlockItem(ModBlocks.STRIPPED_CRYSTAL_LOG.get(), new Item.Properties()));
+
+    public static final RegistryObject<Item> STRIPPED_CRYSTAL_WOOD = ITEMS.register(
+            "stripped_crystal_wood",
+            () -> new net.minecraft.world.item.BlockItem(ModBlocks.STRIPPED_CRYSTAL_WOOD.get(), new Item.Properties()));
+
+    public static final RegistryObject<Item> CRYSTAL_LOG = ITEMS.register(
+            "crystal_log",
+            () -> new net.minecraft.world.item.BlockItem(ModBlocks.CRYSTAL_LOG.get(), new Item.Properties()));
+
+    public static final RegistryObject<Item> CRYSTAL_WOOD = ITEMS.register(
+            "crystal_wood",
+            () -> new net.minecraft.world.item.BlockItem(ModBlocks.CRYSTAL_WOOD.get(), new Item.Properties()));
+
+    public static final RegistryObject<Item> CRYSTAL_STAIRS = ITEMS.register(
+            "crystal_stairs",
+            () -> new net.minecraft.world.item.BlockItem(ModBlocks.CRYSTAL_STAIRS.get(), new Item.Properties()));
+
+    public static final RegistryObject<Item> CRYSTAL_SLAB = ITEMS.register(
+            "crystal_slab",
+            () -> new net.minecraft.world.item.BlockItem(ModBlocks.CRYSTAL_SLAB.get(), new Item.Properties()));
+
+    public static final RegistryObject<Item> CRYSTAL_FENCE = ITEMS.register(
+            "crystal_fence",
+            () -> new net.minecraft.world.item.BlockItem(ModBlocks.CRYSTAL_FENCE.get(), new Item.Properties()));
+
+    public static final RegistryObject<Item> CRYSTAL_FENCE_GATE = ITEMS.register(
+            "crystal_fence_gate",
+            () -> new net.minecraft.world.item.BlockItem(ModBlocks.CRYSTAL_FENCE_GATE.get(), new Item.Properties()));
+
+    public static final RegistryObject<Item> CRYSTAL_BUTTON = ITEMS.register(
+            "crystal_button",
+            () -> new net.minecraft.world.item.BlockItem(ModBlocks.CRYSTAL_BUTTON.get(), new Item.Properties()));
+
+    public static final RegistryObject<Item> CRYSTAL_PRESSURE_PLATE = ITEMS.register(
+            "crystal_pressure_plate",
+            () -> new net.minecraft.world.item.BlockItem(ModBlocks.CRYSTAL_PRESSURE_PLATE.get(), new Item.Properties()));
+
+    public static final RegistryObject<Item> CRYSTAL_LEAVES = ITEMS.register(
+            "crystal_leaves",
+            () -> new net.minecraft.world.item.BlockItem(ModBlocks.CRYSTAL_LEAVES.get(), new Item.Properties()));
+
+    public static final RegistryObject<Item> CRYSTAL_SAPLING = ITEMS.register(
+            "crystal_sapling",
+            () -> new net.minecraft.world.item.BlockItem(ModBlocks.CRYSTAL_SAPLING.get(), new Item.Properties()));
+
     private ModItems() {
     }
 }
