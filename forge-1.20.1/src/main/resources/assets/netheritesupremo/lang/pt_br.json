@@ -98,8 +98,14 @@
   "item.netheritesupremo.gauntlet.desc1": "5000 de dano; segurando junta os poderes dos 4 itens x10",
   "item.netheritesupremo.gauntlet.desc2": "Núcleo x10: +18 de dano, +160 de vida. Olho x10: +30 de vida, força x20, voo 10x",
   "item.netheritesupremo.gauntlet.desc3": "Joia: Resistência V, imune a explosões. K: atravessar paredes",
-  "item.netheritesupremo.gauntlet.desc4": "Botão direito: rajada de rubis x10. Agachado: portal (olhando pra cima: troca dimensão)",
+  "item.netheritesupremo.gauntlet.desc4": "Botão direito: rajada de rubis x10. Agachado: explosão da joia. Correndo: portal",
   "item.netheritesupremo.gauntlet.kills": "Abates: %s/%s (dano infinito ao completar)",
   "item.netheritesupremo.gauntlet.infinite": "DANO INFINITO",
-  "message.netheritesupremo.gauntlet.infinite": "A Manopla Suprema agora causa dano infinito!"
+  "message.netheritesupremo.gauntlet.infinite": "A Manopla Suprema agora causa dano infinito!",
+  "item.netheritesupremo.gauntlet.desc5": "Agachado olhando pra baixo: projéteis explosivos liga/desliga. Agachado olhando pra cima: troca a dimensão",
+  "item.netheritesupremo.gauntlet.mode_on": "Projéteis explosivos: LIGADO",
+  "item.netheritesupremo.gauntlet.mode_off": "Projéteis explosivos: DESLIGADO",
+  "message.netheritesupremo.gauntlet.explosive_on": "Projéteis explosivos: LIGADO",
+  "message.netheritesupremo.gauntlet.explosive_off": "Projéteis explosivos: DESLIGADO",
+  "message.netheritesupremo.gauntlet.cooldown": "Explosão recarregando"
 }

@@ -33,6 +33,12 @@ public class ShurikenEntity extends ThrowableItemProjectile {
     }
 
     private boolean noDrop = false;
+    private float explosionPower = 0.0F;
+
+    /** Projetil explosivo: explode onde acertar (0 = sem explosao). */
+    public void setExplosionPower(float power) {
+        this.explosionPower = power;
+    }
 
     public void setNoDrop(boolean noDrop) {
         this.noDrop = noDrop;
@@ -55,6 +61,12 @@ public class ShurikenEntity extends ThrowableItemProjectile {
     protected void onHit(HitResult result) {
         super.onHit(result);
         if (!this.level().isClientSide) {
+            if (this.explosionPower > 0.0F) {
+                this.level().explode(this.getOwner() != null ? this.getOwner() : this, this.getX(), this.getY(), this.getZ(),
+                        this.explosionPower, com.netheritesupremo.SupremoConfig.RAINBOW_DESTROYS_BLOCKS.get()
+                                ? net.minecraft.world.level.Level.ExplosionInteraction.TNT
+                                : net.minecraft.world.level.Level.ExplosionInteraction.NONE);
+            }
             if (!this.noDrop && result.getType() == HitResult.Type.BLOCK && this.random.nextFloat() < 0.6F) {
                 this.spawnAtLocation(new ItemStack(ModItems.SHURIKEN.get()));
             }

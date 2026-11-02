@@ -63,18 +63,49 @@ public class GauntletItem extends Item {
                         -2.0D, AttributeModifier.Operation.ADDITION));
     }
 
-    /** Botao direito: rajada de rubis x10. Agachado: abre portal; agachado olhando pra cima: troca a dimensao. */
+    public static final String EXPLOSIVE = "netheritesupremo_explosive";
+    private static final String EXPLOSION_CD = "netheritesupremo_explosion_cd";
+    public static final float PROJECTILE_EXPLOSION_POWER = 4.0F; // x90 projeteis: a explosao da joia (75) x90 travaria o jogo
+
+    public static boolean isExplosive(ItemStack stack) {
+        return stack.hasTag() && stack.getTag().getBoolean(EXPLOSIVE);
+    }
+
+    /**
+     * Botao direito: rajada de rubis x10 (explosivos se o modo estiver ligado).
+     * Agachado: explosao da joia onde voce olha. Agachado olhando pra baixo: liga/desliga projeteis explosivos.
+     * Agachado olhando pra cima: troca a dimensao. Correndo: abre o portal.
+     */
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         if (!level.isClientSide && player instanceof ServerPlayer sp) {
-            if (sp.isShiftKeyDown()) {
-                if (sp.getXRot() < -60.0F) {
-                    DragonEyePortals.cycle(sp);
+            if (sp.isShiftKeyDown() && sp.getXRot() > 60.0F) {
+                boolean on = !isExplosive(stack);
+                stack.getOrCreateTag().putBoolean(EXPLOSIVE, on);
+                sp.displayClientMessage(Component.translatable(on ? "message.netheritesupremo.gauntlet.explosive_on"
+                        : "message.netheritesupremo.gauntlet.explosive_off"), true);
+            } else if (sp.isShiftKeyDown() && sp.getXRot() < -60.0F) {
+                DragonEyePortals.cycle(sp);
+            } else if (sp.isShiftKeyDown()) {
+                long now = level.getGameTime();
+                if (stack.getOrCreateTag().getLong(EXPLOSION_CD) > now) {
+                    sp.displayClientMessage(Component.translatable("message.netheritesupremo.gauntlet.cooldown"), true);
                 } else {
-                    DragonEyePortals.open(sp);
+                    stack.getOrCreateTag().putLong(EXPLOSION_CD, now + RainbowGemItem.COOLDOWN_TICKS);
+                    sp.addEffect(new net.minecraft.world.effect.MobEffectInstance(
+                            net.minecraft.world.effect.MobEffects.DAMAGE_RESISTANCE, 100, 4, true, false, true));
+                    net.minecraft.world.phys.Vec3 at = sp.pick(RainbowGemItem.RANGE, 1.0F, false).getLocation();
+                    level.explode(sp, at.x, at.y, at.z,
+                            com.netheritesupremo.SupremoConfig.RAINBOW_EXPLOSION_POWER.get().floatValue(),
+                            com.netheritesupremo.SupremoConfig.RAINBOW_DESTROYS_BLOCKS.get()
+                                    ? Level.ExplosionInteraction.TNT : Level.ExplosionInteraction.NONE);
+                    level.playSound(null, sp.blockPosition(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 2.0F, 1.5F);
                 }
+            } else if (sp.isSprinting()) {
+                DragonEyePortals.open(sp);
             } else {
+                boolean explosive = isExplosive(stack);
                 level.playSound(null, sp.getX(), sp.getY(), sp.getZ(), SoundEvents.AMETHYST_BLOCK_CHIME,
                         SoundSource.PLAYERS, 1.5F, 0.8F);
                 for (int row = 0; row < 3; row++) {
@@ -84,13 +115,16 @@ public class GauntletItem extends Item {
                         shot.setItem(new ItemStack(com.netheritesupremo.registry.ModItems.RUBY.get()));
                         shot.setFixedDamage(RUBY_X10_DAMAGE);
                         shot.setNoDrop(true);
+                        if (explosive) {
+                            shot.setExplosionPower(PROJECTILE_EXPLOSION_POWER);
+                        }
                         shot.shootFromRotation(sp, sp.getXRot() + (row - 1) * 6.0F, sp.getYRot() + yaw, 0.0F, 2.6F, 0.4F);
                         level.addFreshEntity(shot);
                     }
                 }
+                player.getCooldowns().addCooldown(this, 20);
             }
         }
-        player.getCooldowns().addCooldown(this, 20);
         return InteractionResultHolder.sidedSuccess(stack, level.isClientSide());
     }
 
@@ -100,6 +134,9 @@ public class GauntletItem extends Item {
         tooltip.add(Component.translatable("item.netheritesupremo.gauntlet.desc2").withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.translatable("item.netheritesupremo.gauntlet.desc3").withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.translatable("item.netheritesupremo.gauntlet.desc4").withStyle(ChatFormatting.AQUA));
+        tooltip.add(Component.translatable("item.netheritesupremo.gauntlet.desc5").withStyle(ChatFormatting.AQUA));
+        tooltip.add(Component.translatable(isExplosive(stack) ? "item.netheritesupremo.gauntlet.mode_on"
+                : "item.netheritesupremo.gauntlet.mode_off").withStyle(ChatFormatting.YELLOW));
         if (isInfinite(stack)) {
             tooltip.add(Component.translatable("item.netheritesupremo.gauntlet.infinite").withStyle(ChatFormatting.LIGHT_PURPLE));
         } else {
