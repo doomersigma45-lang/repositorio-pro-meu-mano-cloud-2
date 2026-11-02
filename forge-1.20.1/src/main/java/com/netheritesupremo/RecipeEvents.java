@@ -2,14 +2,11 @@ package com.netheritesupremo;
 
 import java.util.ArrayList;
 import java.util.List;
-import net.minecraft.core.RegistryAccess;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.world.item.crafting.ShapelessRecipe;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -42,14 +39,6 @@ public class RecipeEvents {
         int total = 0;
         for (Recipe<?> recipe : manager.getRecipes()) {
             total++;
-            try {
-                if (recipe.getResultItem(RegistryAccess.EMPTY).is(Items.NETHERITE_INGOT)) {
-                    LOGGER.info("DIAG netherite_ingot: {} {} {}", recipe.getId(), recipe.getClass().getSimpleName(),
-                            recipe.getIngredients().size());
-                }
-            } catch (RuntimeException ignored) {
-                // algumas receitas (ex.: ornamentos) nao aceitam RegistryAccess vazio
-            }
             if (isVanillaGoldNetheriteIngot(recipe)) {
                 removed++;
             } else {
@@ -62,12 +51,9 @@ public class RecipeEvents {
         LOGGER.info("receita original da netherite removida ({}): {} de {} receitas", when, removed, total);
     }
 
+    private static final ResourceLocation VANILLA_ID = new ResourceLocation("minecraft", "netherite_ingot");
+
     private static boolean isVanillaGoldNetheriteIngot(Recipe<?> recipe) {
-        if (!(recipe instanceof ShapelessRecipe) || !"minecraft".equals(recipe.getId().getNamespace())
-                || !recipe.getResultItem(RegistryAccess.EMPTY).is(Items.NETHERITE_INGOT)) {
-            return false;
-        }
-        ItemStack gold = new ItemStack(Items.GOLD_INGOT);
-        return recipe.getIngredients().stream().anyMatch(ing -> ing.test(gold));
+        return recipe.getId().equals(VANILLA_ID);
     }
 }
