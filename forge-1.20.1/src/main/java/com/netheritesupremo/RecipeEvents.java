@@ -9,6 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraft.world.item.crafting.ShapelessRecipe;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.slf4j.Logger;
@@ -43,7 +44,7 @@ public class RecipeEvents {
     }
 
     private static boolean isVanillaGoldNetheriteIngot(Recipe<?> recipe) {
-        if (!"minecraft".equals(recipe.getId().getNamespace())
+        if (!(recipe instanceof ShapelessRecipe) || !"minecraft".equals(recipe.getId().getNamespace())
                 || !recipe.getResultItem(RegistryAccess.EMPTY).is(Items.NETHERITE_INGOT)) {
             return false;
         }
