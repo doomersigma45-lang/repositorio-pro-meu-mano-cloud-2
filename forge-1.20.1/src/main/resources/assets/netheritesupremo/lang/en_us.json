@@ -93,5 +93,13 @@
   "item.netheritesupremo.dragon_eye.desc4": "Right click: opens a portal to the selected dimension",
   "item.netheritesupremo.dragon_eye.desc5": "Sneak + right click: changes dimension (works with mod dimensions)",
   "message.netheritesupremo.dragon_eye.dest": "Destination: %s",
-  "message.netheritesupremo.dragon_eye.open": "Portal to %s opened"
+  "message.netheritesupremo.dragon_eye.open": "Portal to %s opened",
+  "item.netheritesupremo.supreme_gauntlet": "Supreme Gauntlet",
+  "item.netheritesupremo.gauntlet.desc1": "5000 damage; holding it joins the 4 items' powers x10",
+  "item.netheritesupremo.gauntlet.desc2": "Core x10: +18 damage, +160 health. Eye x10: +30 health, strength x20, flight 10x",
+  "item.netheritesupremo.gauntlet.desc3": "Gem: Resistance V, explosion immunity. K: walk through walls",
+  "item.netheritesupremo.gauntlet.desc4": "Right click: x10 ruby barrage. Sneak: portal (look up: change dimension)",
+  "item.netheritesupremo.gauntlet.kills": "Kills: %s/%s (infinite damage at the end)",
+  "item.netheritesupremo.gauntlet.infinite": "INFINITE DAMAGE",
+  "message.netheritesupremo.gauntlet.infinite": "The Supreme Gauntlet now deals infinite damage!"
 }

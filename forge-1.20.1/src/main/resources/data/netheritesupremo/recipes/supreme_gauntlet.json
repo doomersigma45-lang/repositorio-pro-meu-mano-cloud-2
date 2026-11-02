@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "netheritesupremo:dragon_eye"
+    },
+    {
+      "item": "netheritesupremo:ruby"
+    },
+    {
+      "item": "netheritesupremo:precursor_core"
+    },
+    {
+      "item": "netheritesupremo:rainbow_gem"
+    }
+  ],
+  "result": {
+    "item": "netheritesupremo:supreme_gauntlet",
+    "count": 1
+  }
+}

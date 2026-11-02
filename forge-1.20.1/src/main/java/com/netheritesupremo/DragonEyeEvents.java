@@ -55,6 +55,7 @@ public class DragonEyeEvents {
             return;
         }
         boolean holding = holdsEye(player);
+        boolean gauntlet = GauntletEvents.holdsGauntlet(player);
         setModifier(player, Attributes.MAX_HEALTH, HEALTH_ID, "Dragon eye health", 30.0D,
                 AttributeModifier.Operation.ADDITION, holding);
         setModifier(player, Attributes.ATTACK_DAMAGE, DAMAGE_ID, "Dragon eye strength", 1.0D,
@@ -63,13 +64,14 @@ public class DragonEyeEvents {
             return;
         }
         CompoundTag data = player.getPersistentData();
-        if (holding) {
+        if (holding || gauntlet) {
             boolean changed = false;
             if (!player.getAbilities().mayfly) {
                 player.getAbilities().mayfly = true;
                 changed = true;
             }
-            float speed = SupremoEvents.hasSetBonus(player) ? SupremoEvents.NETHERITE_FLYING_SPEED : EYE_FLYING_SPEED;
+            float speed = gauntlet ? GauntletEvents.GAUNTLET_FLYING_SPEED
+                    : SupremoEvents.hasSetBonus(player) ? SupremoEvents.NETHERITE_FLYING_SPEED : EYE_FLYING_SPEED;
             if (player.getAbilities().getFlyingSpeed() != speed) {
                 player.getAbilities().setFlyingSpeed(speed);
                 changed = true;

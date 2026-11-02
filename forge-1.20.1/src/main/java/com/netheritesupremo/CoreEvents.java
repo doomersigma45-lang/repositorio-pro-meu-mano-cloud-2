@@ -23,9 +23,15 @@ public class CoreEvents {
     public static final int STRENGTH_AMP = 5;      // Forca VI
     public static final int HEALTH_BOOST_AMP = 39; // Health Boost 40
 
-    public static boolean holdsCore(Player player) {
+    /** Item do nucleo na mao (efeitos de Forca VI / Health Boost 40). */
+    public static boolean holdsCoreItem(Player player) {
         return player.getMainHandItem().is(ModItems.PRECURSOR_CORE.get())
                 || player.getOffhandItem().is(ModItems.PRECURSOR_CORE.get());
+    }
+
+    /** Pode atravessar paredes (tecla K): nucleo ou Manopla Suprema. */
+    public static boolean holdsCore(Player player) {
+        return holdsCoreItem(player) || GauntletEvents.holdsGauntlet(player);
     }
 
     /** Roda no cliente e no servidor: a fisica do jogador precisa concordar nos dois lados. */
@@ -85,7 +91,7 @@ public class CoreEvents {
         if (player.tickCount % 10 != 0) {
             return;
         }
-        if (holdsCore(player)) {
+        if (holdsCoreItem(player)) {
             player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 40, STRENGTH_AMP, true, false, true));
             player.addEffect(new MobEffectInstance(MobEffects.HEALTH_BOOST, 40, HEALTH_BOOST_AMP, true, false, true));
             data.putBoolean(FX, true);

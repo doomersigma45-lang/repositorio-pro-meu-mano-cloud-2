@@ -246,6 +246,11 @@ public final class ModItems {
             () -> new com.netheritesupremo.item.DragonEyeItem(new Item.Properties().stacksTo(1).fireResistant()
                     .rarity(net.minecraft.world.item.Rarity.EPIC)));
 
+    public static final RegistryObject<Item> GAUNTLET = ITEMS.register(
+            "supreme_gauntlet",
+            () -> new com.netheritesupremo.item.GauntletItem(new Item.Properties().stacksTo(1).fireResistant()
+                    .rarity(net.minecraft.world.item.Rarity.EPIC)));
+
     private ModItems() {
     }
 }

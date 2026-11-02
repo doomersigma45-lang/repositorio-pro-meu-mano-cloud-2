@@ -39,6 +39,7 @@ public class NetheriteSupremo {
         MinecraftForge.EVENT_BUS.register(new GemEvents());
         MinecraftForge.EVENT_BUS.register(new CoreEvents());
         MinecraftForge.EVENT_BUS.register(new DragonEyeEvents());
+        MinecraftForge.EVENT_BUS.register(new GauntletEvents());
         MinecraftForge.EVENT_BUS.register(new WeaponEvents());
         MinecraftForge.EVENT_BUS.register(new ObsidianEvents());
         MinecraftForge.EVENT_BUS.register(new NinjaArmorEvents());
@@ -110,6 +111,7 @@ public class NetheriteSupremo {
             event.accept(ModItems.PRECURSOR_CORE);
             event.accept(ModItems.RUBY);
             event.accept(ModItems.DRAGON_EYE);
+            event.accept(ModItems.GAUNTLET);
             event.accept(ModItems.GIANT_GLOW_SQUID_EGG);
         }
     }
