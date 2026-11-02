@@ -235,3 +235,7 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 - Novo tipo de árvore com as suas texturas (tronco e tábuas). **Ainda não nasce naturalmente** (não há bioma/spawn configurado), só plantando a **muda** (cresce a feature `netheritesupremo:crystal_tree`) ou com `/place feature netheritesupremo:crystal_tree`.
 - Blocos: tronco, madeira, tronco e madeira descascados (machado), tábuas, escada, laje, cerca, portão, botão, placa de pressão, folhas e muda. Receitas das tábuas/escadas etc. **não foram adicionadas** (só pegar no criativo/dropando da árvore); porta, alçapão, placa e barco ficaram de fora por falta de textura.
 - Texturas das folhas, da muda e do tronco descascado foram geradas por mim nas cores da árvore.
+
+## Rubi e Olho do Dragão (1.20.1)
+- **Rubi** (dropado só pelo Samurai, garantido): botão direito solta um leque de 9 projéteis de rubi (12 de dano cada, recarga de 1 s, não gasta o item).
+- **Olho do Dragão** (dropado só pelo Ender Dragon, cai perto do portal ao morrer): segurando dá voo rápido (~26 blocos/s, mais que cavalo), +15 corações e dobra a força (dano de ataque x2). O voo é o voo de criativo acelerado (duplo pulo), não a pose de elytra.

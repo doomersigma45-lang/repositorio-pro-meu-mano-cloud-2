@@ -32,6 +32,12 @@ public class ShurikenEntity extends ThrowableItemProjectile {
         this.fixedDamage = damage;
     }
 
+    private boolean noDrop = false;
+
+    public void setNoDrop(boolean noDrop) {
+        this.noDrop = noDrop;
+    }
+
     @Override
     protected Item getDefaultItem() {
         return ModItems.SHURIKEN.get();
@@ -49,7 +55,7 @@ public class ShurikenEntity extends ThrowableItemProjectile {
     protected void onHit(HitResult result) {
         super.onHit(result);
         if (!this.level().isClientSide) {
-            if (result.getType() == HitResult.Type.BLOCK && this.random.nextFloat() < 0.6F) {
+            if (!this.noDrop && result.getType() == HitResult.Type.BLOCK && this.random.nextFloat() < 0.6F) {
                 this.spawnAtLocation(new ItemStack(ModItems.SHURIKEN.get()));
             }
             this.level().playSound(null, this.blockPosition(), SoundEvents.CHAIN_HIT, SoundSource.PLAYERS, 0.8F, 1.6F);

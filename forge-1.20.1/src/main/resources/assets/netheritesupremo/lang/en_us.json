@@ -82,5 +82,11 @@
   "block.netheritesupremo.crystal_button": "Crystal Button",
   "block.netheritesupremo.crystal_pressure_plate": "Crystal Pressure Plate",
   "block.netheritesupremo.crystal_leaves": "Crystal Leaves",
-  "block.netheritesupremo.crystal_sapling": "Crystal Sapling"
+  "block.netheritesupremo.crystal_sapling": "Crystal Sapling",
+  "item.netheritesupremo.ruby": "Ruby",
+  "item.netheritesupremo.ruby.desc1": "Right click: fires a fan of ruby projectiles",
+  "item.netheritesupremo.dragon_eye": "Dragon Eye",
+  "item.netheritesupremo.dragon_eye.desc1": "Holding: fast flight (faster than horses)",
+  "item.netheritesupremo.dragon_eye.desc2": "+15 hearts",
+  "item.netheritesupremo.dragon_eye.desc3": "Doubles your strength"
 }

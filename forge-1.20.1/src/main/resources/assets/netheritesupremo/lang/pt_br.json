@@ -82,5 +82,11 @@
   "block.netheritesupremo.crystal_button": "Botão Cristalino",
   "block.netheritesupremo.crystal_pressure_plate": "Placa de Pressão Cristalina",
   "block.netheritesupremo.crystal_leaves": "Folhas Cristalinas",
-  "block.netheritesupremo.crystal_sapling": "Muda Cristalina"
+  "block.netheritesupremo.crystal_sapling": "Muda Cristalina",
+  "item.netheritesupremo.ruby": "Rubi",
+  "item.netheritesupremo.ruby.desc1": "Botão direito: solta vários projéteis de rubi",
+  "item.netheritesupremo.dragon_eye": "Olho do Dragão",
+  "item.netheritesupremo.dragon_eye.desc1": "Segurando: voo rápido (mais que cavalos)",
+  "item.netheritesupremo.dragon_eye.desc2": "+15 corações",
+  "item.netheritesupremo.dragon_eye.desc3": "Duplica a sua força"
 }

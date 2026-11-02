@@ -99,6 +99,9 @@ def main():
             results.append(r.cmd("forceload add 190 190 400 270"))
             time.sleep(40)
             tests = [
+                "loot spawn 0 100 0 loot netheritesupremo:entities/samurai",
+                "give @a netheritesupremo:ruby",
+                "give @a netheritesupremo:dragon_eye",
                 "setblock 84 110 84 netheritesupremo:crystal_log[axis=x]",
                 "setblock 85 110 84 netheritesupremo:crystal_planks",
                 "setblock 86 110 84 netheritesupremo:crystal_stairs[facing=north,half=top]",

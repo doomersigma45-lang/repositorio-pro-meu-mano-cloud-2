@@ -236,6 +236,16 @@ public final class ModItems {
             "crystal_sapling",
             () -> new net.minecraft.world.item.BlockItem(ModBlocks.CRYSTAL_SAPLING.get(), new Item.Properties()));
 
+    public static final RegistryObject<Item> RUBY = ITEMS.register(
+            "ruby",
+            () -> new com.netheritesupremo.item.RubyItem(new Item.Properties().stacksTo(1).fireResistant()
+                    .rarity(net.minecraft.world.item.Rarity.EPIC)));
+
+    public static final RegistryObject<Item> DRAGON_EYE = ITEMS.register(
+            "dragon_eye",
+            () -> new com.netheritesupremo.item.DragonEyeItem(new Item.Properties().stacksTo(1).fireResistant()
+                    .rarity(net.minecraft.world.item.Rarity.EPIC)));
+
     private ModItems() {
     }
 }
