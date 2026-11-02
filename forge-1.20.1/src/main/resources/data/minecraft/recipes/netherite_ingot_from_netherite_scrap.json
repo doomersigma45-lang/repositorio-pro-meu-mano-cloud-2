@@ -1,34 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "misc",
-  "group": "netherite_ingot",
-  "ingredients": [
+  "conditions": [
     {
-      "item": "minecraft:netherite_scrap"
-    },
-    {
-      "item": "minecraft:netherite_scrap"
-    },
-    {
-      "item": "minecraft:netherite_scrap"
-    },
-    {
-      "item": "minecraft:netherite_scrap"
-    },
-    {
-      "item": "netheritesupremo:obsidian_ingot"
-    },
-    {
-      "item": "netheritesupremo:obsidian_ingot"
-    },
-    {
-      "item": "netheritesupremo:obsidian_ingot"
-    },
-    {
-      "item": "minecraft:nether_star"
+      "type": "forge:false"
     }
   ],
+  "ingredients": [],
   "result": {
-    "item": "minecraft:netherite_ingot"
+    "item": "minecraft:air"
   }
 }

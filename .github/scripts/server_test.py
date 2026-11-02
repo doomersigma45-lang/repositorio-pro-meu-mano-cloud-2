@@ -99,6 +99,8 @@ def main():
             results.append(r.cmd("forceload add 190 190 400 270"))
             time.sleep(40)
             tests = [
+                "recipe give @a minecraft:netherite_ingot",
+                "recipe give @a minecraft:netherite_ingot_from_netherite_scrap",
                 "give @a netheritesupremo:supreme_gauntlet",
                 "setblock 92 110 84 netheritesupremo:dimension_portal",
                 "loot spawn 0 100 0 loot netheritesupremo:entities/samurai",
