@@ -239,3 +239,4 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 ## Rubi e Olho do Dragão (1.20.1)
 - **Rubi** (dropado só pelo Samurai, garantido): botão direito solta um leque de 9 projéteis de rubi (12 de dano cada, recarga de 1 s, não gasta o item).
 - **Olho do Dragão** (dropado só pelo Ender Dragon, cai perto do portal ao morrer): segurando dá voo rápido (~26 blocos/s, mais que cavalo), +15 corações e dobra a força (dano de ataque x2). O voo é o voo de criativo acelerado (duplo pulo), não a pose de elytra.
+- **Olho do Dragão, portais:** botão direito abre um portal (2x3, dura 30 s) para a dimensão escolhida; agachado + botão direito troca o destino, percorrendo todas as dimensões carregadas no servidor (inclusive de outros mods). No destino aparece um portal de volta. Fora da dimensão do mod só funciona o que o servidor tiver carregado.

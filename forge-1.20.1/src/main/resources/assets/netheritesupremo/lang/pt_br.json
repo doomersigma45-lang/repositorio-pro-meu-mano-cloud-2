@@ -88,5 +88,10 @@
   "item.netheritesupremo.dragon_eye": "Olho do Dragão",
   "item.netheritesupremo.dragon_eye.desc1": "Segurando: voo rápido (mais que cavalos)",
   "item.netheritesupremo.dragon_eye.desc2": "+15 corações",
-  "item.netheritesupremo.dragon_eye.desc3": "Duplica a sua força"
+  "item.netheritesupremo.dragon_eye.desc3": "Duplica a sua força",
+  "block.netheritesupremo.dimension_portal": "Portal Dimensional",
+  "item.netheritesupremo.dragon_eye.desc4": "Botão direito: abre um portal para a dimensão escolhida",
+  "item.netheritesupremo.dragon_eye.desc5": "Agachado + botão direito: troca a dimensão (inclui dimensões de mods)",
+  "message.netheritesupremo.dragon_eye.dest": "Destino: %s",
+  "message.netheritesupremo.dragon_eye.open": "Portal para %s aberto"
 }

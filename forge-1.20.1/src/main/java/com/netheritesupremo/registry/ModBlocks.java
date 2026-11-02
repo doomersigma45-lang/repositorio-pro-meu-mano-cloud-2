@@ -56,6 +56,12 @@ public final class ModBlocks {
     public static final RegistryObject<Block> CRYSTAL_SAPLING = BLOCKS.register("crystal_sapling",
             () -> new net.minecraft.world.level.block.SaplingBlock(new com.netheritesupremo.block.CrystalTreeGrower(), BlockBehaviour.Properties.copy(net.minecraft.world.level.block.Blocks.OAK_SAPLING)));
 
+    public static final RegistryObject<Block> DIMENSION_PORTAL = BLOCKS.register("dimension_portal",
+            () -> new com.netheritesupremo.block.DimensionPortalBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_PURPLE).noCollission().noOcclusion().noLootTable()
+                    .strength(-1.0F, 3600000.0F).lightLevel(state -> 12)
+                    .isViewBlocking((state, level, pos) -> false)));
+
     private ModBlocks() {
     }
 }

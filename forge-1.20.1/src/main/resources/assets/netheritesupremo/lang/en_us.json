@@ -88,5 +88,10 @@
   "item.netheritesupremo.dragon_eye": "Dragon Eye",
   "item.netheritesupremo.dragon_eye.desc1": "Holding: fast flight (faster than horses)",
   "item.netheritesupremo.dragon_eye.desc2": "+15 hearts",
-  "item.netheritesupremo.dragon_eye.desc3": "Doubles your strength"
+  "item.netheritesupremo.dragon_eye.desc3": "Doubles your strength",
+  "block.netheritesupremo.dimension_portal": "Dimension Portal",
+  "item.netheritesupremo.dragon_eye.desc4": "Right click: opens a portal to the selected dimension",
+  "item.netheritesupremo.dragon_eye.desc5": "Sneak + right click: changes dimension (works with mod dimensions)",
+  "message.netheritesupremo.dragon_eye.dest": "Destination: %s",
+  "message.netheritesupremo.dragon_eye.open": "Portal to %s opened"
 }
