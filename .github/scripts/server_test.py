@@ -121,6 +121,9 @@ def main():
             time.sleep(15)
             for t in [
                 "execute in sistemasolar:plutao if entity @e[type=minecraft:cow]",
+                "execute in sistemasolar:plutao run kill @e[type=minecraft:cow]",
+                "execute in sistemasolar:plutao if entity @e[type=netheritesupremo:precursor_villager]",
+                "execute in minecraft:overworld if entity @e[type=minecraft:cow,x=96,y=110,z=120,distance=..40]",
                 "execute in sistemasolar:plutao run fill 0 40 0 31 100 15 minecraft:air replace netheritesupremo:satellite_portal",
             ]:
                 results.append(f"> {t}\n  {r.cmd(t)}")
