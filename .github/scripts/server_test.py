@@ -121,6 +121,10 @@ def main():
             time.sleep(15)
             for t in [
                 "execute in sistemasolar:plutao if entity @e[type=minecraft:cow]",
+                "execute in sistemasolar:plutao run data get entity @e[type=minecraft:cow,sort=nearest,limit=1] Pos",
+                "execute in sistemasolar:plutao run data get entity @e[type=minecraft:cow,sort=nearest,limit=1] ForgeData",
+                "execute in sistemasolar:plutao run data get entity @e[type=minecraft:cow,sort=nearest,limit=1] Age",
+                "execute in sistemasolar:plutao if entity @e[type=minecraft:cow,x=96,y=100,z=120,distance=..30]",
                 "execute in sistemasolar:plutao run kill @e[type=minecraft:cow]",
                 "execute in sistemasolar:plutao if entity @e[type=netheritesupremo:precursor_villager]",
                 "execute in minecraft:overworld if entity @e[type=minecraft:cow,x=96,y=110,z=120,distance=..40]",
