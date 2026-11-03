@@ -74,7 +74,7 @@ public final class ModEntities {
 
     public static final RegistryObject<EntityType<Robot>> ROBOT = ENTITIES.register(
             "robot",
-            () -> EntityType.Builder.of(Robot::new, MobCategory.MISC)
+            () -> EntityType.Builder.of(Robot::new, MobCategory.CREATURE)
                     .sized(0.72F, 2.16F)
                     .clientTrackingRange(10)
                     .updateInterval(2)

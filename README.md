@@ -250,3 +250,8 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 ## Portais pela tecla R e compatibilidade com Avaritia (1.20.1)
 - Com o Olho do Dragão ou a Manopla Suprema na mão: **R** abre o portal; **segurar R e girar o scroll** troca a dimensão (o scroll não troca o item da hotbar enquanto R está apertada). O botão direito não abre mais portais.
 - **Avaritia / Re-Avaritia** (detectados pelo nome registrado `avaritia`, sem dependência): a armadura de netherite completa anula o dano das espadas do mod (inclusive o tipo de dano `avaritia:infinity`); a espada de netherite e a Manopla Suprema ferem quem veste armadura do mod, passando a imunidade e a redução dela. A armadura do mod não tem durabilidade, então ela em si não "quebra".
+
+## Plutão com oceano, árvores de cristal e spawns (1.20.1)
+- O mod **Sistema Solar** (repositório `mod-de-planetas`) agora tem Plutão com crosta de gelo e **oceanos por baixo**. Árvores de cristal e os spawns de **Aldeão Precursor** e **Robô** ficam neste mod, ligados aos biomas de Plutão por tags opcionais (`netheritesupremo:pluto_biomes`): sem o Sistema Solar instalado, não fazem nada.
+- O Robô passou a ser criatura (antes era categoria "misc") para poder nascer em biomas; os Robôs construídos por jogadores continuam iguais.
+- O boss de Plutão ainda não existe (futuro).

@@ -8,6 +8,7 @@ import re
 import signal
 import socket
 import struct
+import shutil
 import subprocess
 import sys
 import time
@@ -74,7 +75,12 @@ def main():
     with open(os.path.join(RUN, "server.properties"), "w") as f:
         f.write("online-mode=false\nenable-rcon=true\nrcon.port=%d\nrcon.password=%s\n"
                 "level-name=world_teste\nspawn-protection=0\nview-distance=4\nsimulation-distance=4\n"
-                "enable-command-block=true\n" % (PORT, PASSWORD))
+                "enable-command-block=true\n"
+                "initial-enabled-packs=vanilla,mod_resources,file/sistemasolar-datapack.zip\n" % (PORT, PASSWORD))
+    # Datapack do mod Sistema Solar (planetas), para testar a integracao com Plutao
+    pack_dir = os.path.join(RUN, "world_teste", "datapacks")
+    os.makedirs(pack_dir, exist_ok=True)
+    shutil.copy(".github/test-data/sistemasolar-datapack.zip", pack_dir)
 
     proc = subprocess.Popen(["./gradlew", "runServer", "--no-daemon"], cwd=PROJECT,
                             stdout=open("server_gradle.out", "w"), stderr=subprocess.STDOUT,
@@ -98,7 +104,19 @@ def main():
             results.append("> forceload\n  " + r.cmd("forceload add -16 -16 112 112"))
             results.append(r.cmd("forceload add 190 190 400 270"))
             time.sleep(40)
+            # ---- integracao com o mod Sistema Solar: dimensao de Plutao
+            results.append("> forceload plutao\n  " + r.cmd("execute in sistemasolar:plutao run forceload add 0 0 40 40"))
+            time.sleep(45)
+            for t in [
+                "execute in sistemasolar:plutao positioned 0 70 0 run locate biome sistemasolar:plutao_coracao_tombaugh",
+                "execute in sistemasolar:plutao run fill 0 64 0 31 95 31 netheritesupremo:crystal_wood replace netheritesupremo:crystal_log",
+                "execute in sistemasolar:plutao run fill 0 20 0 31 50 31 minecraft:ice replace minecraft:water",
+                "execute in sistemasolar:plutao if entity @e[type=netheritesupremo:precursor_villager]",
+                "execute in sistemasolar:plutao if entity @e[type=netheritesupremo:robot]",
+            ]:
+                results.append(f"> {t}\n  {r.cmd(t)}")
             tests = [
+                "place feature netheritesupremo:crystal_tree_pluto 94 100 94",
                 "give @a netheritesupremo:supreme_gauntlet",
                 "setblock 92 110 84 netheritesupremo:dimension_portal",
                 "loot spawn 0 100 0 loot netheritesupremo:entities/samurai",

@@ -1,0 +1,18 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "#netheritesupremo:pluto_biomes",
+  "spawners": [
+    {
+      "type": "netheritesupremo:precursor_villager",
+      "weight": 12,
+      "minCount": 2,
+      "maxCount": 4
+    },
+    {
+      "type": "netheritesupremo:robot",
+      "weight": 10,
+      "minCount": 1,
+      "maxCount": 3
+    }
+  ]
+}

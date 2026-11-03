@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "sistemasolar:plutao_coracao_tombaugh",
+      "required": false
+    },
+    {
+      "id": "sistemasolar:plutao_terra_escura_cthulhu",
+      "required": false
+    }
+  ]
+}

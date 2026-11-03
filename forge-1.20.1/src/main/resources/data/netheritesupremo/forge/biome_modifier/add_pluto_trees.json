@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#netheritesupremo:pluto_tree_biomes",
+  "features": "netheritesupremo:crystal_tree_pluto",
+  "step": "vegetal_decoration"
+}

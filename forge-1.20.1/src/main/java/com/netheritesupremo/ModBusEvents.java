@@ -75,6 +75,9 @@ public final class ModBusEvents {
         event.register(ModEntities.PRECURSOR_VILLAGER.get(), SpawnPlacements.Type.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, net.minecraft.world.entity.Mob::checkMobSpawnRules,
                 SpawnPlacementRegisterEvent.Operation.OR);
+        event.register(ModEntities.ROBOT.get(), SpawnPlacements.Type.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, net.minecraft.world.entity.Mob::checkMobSpawnRules,
+                SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.NETHER_SPIDER.get(), SpawnPlacements.Type.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules,
                 SpawnPlacementRegisterEvent.Operation.OR);
