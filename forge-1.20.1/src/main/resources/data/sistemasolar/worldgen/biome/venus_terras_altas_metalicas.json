@@ -1,0 +1,65 @@
+{
+  "has_precipitation": false,
+  "temperature": 2.0,
+  "downfall": 0.0,
+  "effects": {
+    "sky_color": 14201418,
+    "fog_color": 14927728,
+    "water_color": 8018474,
+    "water_fog_color": 4863253,
+    "mood_sound": {
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2.0
+    }
+  },
+  "spawners": {
+    "monster": [
+      {
+        "type": "minecraft:magma_cube",
+        "weight": 30,
+        "minCount": 1,
+        "maxCount": 3
+      },
+      {
+        "type": "minecraft:blaze",
+        "weight": 4,
+        "minCount": 1,
+        "maxCount": 2
+      }
+    ],
+    "creature": [],
+    "ambient": [],
+    "axolotls": [],
+    "underground_water_creature": [],
+    "water_creature": [],
+    "water_ambient": [],
+    "misc": []
+  },
+  "spawn_costs": {},
+  "carvers": {
+    "air": [
+      "sistemasolar:venus_caverna",
+      "sistemasolar:venus_canion"
+    ]
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "sistemasolar:venus_enxofre",
+      "sistemasolar:venus_magma",
+      "sistemasolar:venus_geada_metalica",
+      "sistemasolar:venus_ouro"
+    ],
+    [],
+    [],
+    [],
+    []
+  ]
+}

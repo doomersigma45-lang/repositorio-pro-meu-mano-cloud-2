@@ -108,5 +108,7 @@
   "message.netheritesupremo.gauntlet.explosive_on": "Explosive projectiles: ON",
   "message.netheritesupremo.gauntlet.explosive_off": "Explosive projectiles: OFF",
   "message.netheritesupremo.gauntlet.cooldown": "Explosion recharging",
-  "key.netheritesupremo.portal": "Open portal / hold + scroll: change dimension (Dragon Eye, Supreme Gauntlet)"
+  "key.netheritesupremo.portal": "Open portal / hold + scroll: change dimension (Dragon Eye, Supreme Gauntlet)",
+  "block.netheritesupremo.satellite_portal": "Satellite Portal",
+  "message.netheritesupremo.satellite.no_pluto": "Pluto is not loaded"
 }

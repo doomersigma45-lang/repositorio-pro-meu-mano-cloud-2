@@ -1,0 +1,37 @@
+{
+  "id": "europa",
+  "nome": "Europa",
+  "tipo": "lua",
+  "dimensao": "sistemasolar:europa",
+  "descricao": "Crosta de gelo riscada de rachaduras marrons, com um oceano de água líquida escondido por baixo e fontes hidrotermais no fundo.",
+  "fisica": {
+    "gravidade_g": 0.134,
+    "temperatura_c": -160,
+    "dia_horas": 85.2,
+    "atmosfera": "oxigênio quase inexistente",
+    "respiravel": false,
+    "perigos": [
+      "frio",
+      "sem_oxigenio",
+      "radiacao"
+    ]
+  },
+  "ceu": {
+    "ceu": "#05070D",
+    "neblina": "#0B1020",
+    "agua": "#1C4E80",
+    "nevoa_da_agua": "#0A2744"
+  },
+  "tempo_fixo": 6000,
+  "biomas": [
+    "sistemasolar:europa_crosta_estriada",
+    "sistemasolar:europa_terreno_caotico",
+    "sistemasolar:europa_planicie_branca"
+  ],
+  "minerios": [
+    "sais_marrons",
+    "fontes_hidrotermais",
+    "ferro_do_fundo"
+  ],
+  "lua_de": "Júpiter"
+}

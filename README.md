@@ -255,3 +255,7 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 - O mod **Sistema Solar** (repositório `mod-de-planetas`) agora tem Plutão com crosta de gelo e **oceanos por baixo**. Árvores de cristal e os spawns de **Aldeão Precursor** e **Robô** ficam neste mod, ligados aos biomas de Plutão por tags opcionais (`netheritesupremo:pluto_biomes`): sem o Sistema Solar instalado, não fazem nada.
 - O Robô passou a ser criatura (antes era categoria "misc") para poder nascer em biomas; os Robôs construídos por jogadores continuam iguais.
 - O boss de Plutão ainda não existe (futuro).
+
+## Datapack do Sistema Solar e Satélite (1.20.1)
+- Os dados do mod **Sistema Solar** (dimensões dos 14 corpos, inclusive Plutão com oceano sob o gelo) agora vêm **dentro deste mod** (`data/sistemasolar`), então não precisa instalar o outro mod/datapack para as dimensões existirem. Se instalar os dois juntos, o conteúdo é o mesmo.
+- **Satélite:** estrutura rara que aparece no **oceano** (sobre a água, com pernas de ferro) e nas **ilhas externas do End**. Dentro há um baú com loot e um **portal para Plutão** (bloco `satellite_portal`). Ao entrar, uma plataforma com portal de volta é criada em Plutão; o portal de lá leva de volta ao lugar de onde a pessoa veio (ou ao Overworld).

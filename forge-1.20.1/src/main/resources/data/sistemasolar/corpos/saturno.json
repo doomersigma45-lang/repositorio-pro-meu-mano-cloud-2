@@ -1,0 +1,34 @@
+{
+  "id": "saturno",
+  "nome": "Saturno",
+  "tipo": "planeta",
+  "dimensao": "sistemasolar:saturno",
+  "descricao": "Gigante gasoso dourado: ilhas de nuvem flutuando em três camadas, um mar dourado lá embaixo e um anel de blocos de gelo no alto.",
+  "fisica": {
+    "gravidade_g": 1.07,
+    "temperatura_c": -178,
+    "dia_horas": 10.7,
+    "atmosfera": "H2 e He (sem superfície sólida)",
+    "respiravel": false,
+    "perigos": [
+      "queda_no_vazio",
+      "frio",
+      "sem_oxigenio"
+    ]
+  },
+  "ceu": {
+    "ceu": "#E0C48A",
+    "neblina": "#EAD7A8",
+    "agua": "#C9A24E",
+    "nevoa_da_agua": "#7A5F22"
+  },
+  "tempo_fixo": null,
+  "biomas": [
+    "sistemasolar:saturno_nuvens_douradas",
+    "sistemasolar:saturno_hexagono_polar"
+  ],
+  "minerios": [
+    "chuva_de_diamantes",
+    "gelo_de_amonia"
+  ]
+}

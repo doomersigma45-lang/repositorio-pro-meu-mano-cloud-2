@@ -1,0 +1,65 @@
+{
+  "has_precipitation": false,
+  "temperature": -0.8,
+  "downfall": 0.0,
+  "effects": {
+    "sky_color": 329485,
+    "fog_color": 725024,
+    "water_color": 1855104,
+    "water_fog_color": 665412,
+    "mood_sound": {
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2.0
+    }
+  },
+  "spawners": {
+    "monster": [],
+    "creature": [],
+    "ambient": [],
+    "axolotls": [],
+    "underground_water_creature": [
+      {
+        "type": "minecraft:glow_squid",
+        "weight": 20,
+        "minCount": 2,
+        "maxCount": 4
+      }
+    ],
+    "water_creature": [
+      {
+        "type": "minecraft:squid",
+        "weight": 10,
+        "minCount": 1,
+        "maxCount": 3
+      }
+    ],
+    "water_ambient": [],
+    "misc": []
+  },
+  "spawn_costs": {},
+  "carvers": {
+    "air": [
+      "sistemasolar:europa_caverna",
+      "sistemasolar:europa_canion"
+    ]
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "sistemasolar:europa_sais_marrons",
+      "sistemasolar:europa_fontes_hidrotermais",
+      "sistemasolar:europa_ferro_do_fundo"
+    ],
+    [],
+    [],
+    [],
+    []
+  ]
+}

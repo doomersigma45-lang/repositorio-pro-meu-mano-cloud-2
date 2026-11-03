@@ -1,0 +1,38 @@
+{
+  "id": "haumea",
+  "nome": "Haumea",
+  "tipo": "anao",
+  "dimensao": "sistemasolar:haumea",
+  "descricao": "Gelo cristalino branco com uma mancha vermelha escura e um anel de gelo flutuando no alto. Gira tão rápido que o dia dura menos de 4 horas.",
+  "fisica": {
+    "gravidade_g": 0.044,
+    "temperatura_c": -241,
+    "dia_horas": 3.9,
+    "atmosfera": "nenhuma",
+    "respiravel": false,
+    "perigos": [
+      "vacuo",
+      "frio_extremo"
+    ],
+    "luas": [
+      "Hi'iaka",
+      "Namaka"
+    ]
+  },
+  "ceu": {
+    "ceu": "#020203",
+    "neblina": "#0B0D12",
+    "agua": "#3A5A7A",
+    "nevoa_da_agua": "#1B2D3E"
+  },
+  "tempo_fixo": 6000,
+  "biomas": [
+    "sistemasolar:haumea_planicies_cristalinas",
+    "sistemasolar:haumea_mancha_vermelha_escura",
+    "sistemasolar:haumea_picos_cristalinos"
+  ],
+  "minerios": [
+    "cristais",
+    "gelo_azul"
+  ]
+}

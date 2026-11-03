@@ -1,0 +1,36 @@
+{
+  "id": "miller",
+  "nome": "Planeta Miller",
+  "tipo": "planeta",
+  "dimensao": "sistemasolar:miller",
+  "descricao": "Oceano raso e sem fim sob gravidade enorme, com ilhas de rocha raras. (Ondas gigantes e dilatação do tempo ficam para a fase de Java.)",
+  "fisica": {
+    "gravidade_g": 1.3,
+    "temperatura_c": 25,
+    "dia_horas": null,
+    "atmosfera": "respirável, muito úmida",
+    "respiravel": true,
+    "perigos": [
+      "ondas_gigantes",
+      "dilatacao_do_tempo"
+    ],
+    "dilatacao_tempo": "1 hora aqui = 7 anos fora (a implementar)"
+  },
+  "ceu": {
+    "ceu": "#7FA8C9",
+    "neblina": "#A9C4D9",
+    "agua": "#2E6F8E",
+    "nevoa_da_agua": "#154256"
+  },
+  "tempo_fixo": null,
+  "biomas": [
+    "sistemasolar:miller_ilhas_de_rocha",
+    "sistemasolar:miller_bancos_de_areia",
+    "sistemasolar:miller_leito_de_cascalho"
+  ],
+  "minerios": [
+    "prismarina",
+    "argila",
+    "ferro"
+  ]
+}

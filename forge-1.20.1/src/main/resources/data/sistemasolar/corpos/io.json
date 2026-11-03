@@ -1,0 +1,39 @@
+{
+  "id": "io",
+  "nome": "Io",
+  "tipo": "lua",
+  "dimensao": "sistemasolar:io",
+  "descricao": "O mundo mais vulcânico: planícies de enxofre amarelo, patera (crateras) cheias de lava, vulcões e rios de magma.",
+  "fisica": {
+    "gravidade_g": 0.183,
+    "temperatura_c": -143,
+    "dia_horas": 42.5,
+    "atmosfera": "dióxido de enxofre rarefeito",
+    "respiravel": false,
+    "perigos": [
+      "lava",
+      "radiacao",
+      "sem_oxigenio"
+    ]
+  },
+  "ceu": {
+    "ceu": "#2A1F0A",
+    "neblina": "#5A4414",
+    "agua": "#7A4A10",
+    "nevoa_da_agua": "#3A2008"
+  },
+  "tempo_fixo": null,
+  "biomas": [
+    "sistemasolar:io_vulcoes",
+    "sistemasolar:io_planicies_de_enxofre",
+    "sistemasolar:io_campos_de_cinza"
+  ],
+  "minerios": [
+    "enxofre",
+    "magma",
+    "obsidiana",
+    "ouro",
+    "quartzo"
+  ],
+  "lua_de": "Júpiter"
+}

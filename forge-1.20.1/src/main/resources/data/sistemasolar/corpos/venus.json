@@ -1,0 +1,38 @@
+{
+  "id": "venus",
+  "nome": "Vênus",
+  "tipo": "planeta",
+  "dimensao": "sistemasolar:venus",
+  "descricao": "Inferno de basalto e lava sob uma névoa amarela de ácido sulfúrico. O calor é extremo e a água evapora.",
+  "fisica": {
+    "gravidade_g": 0.9,
+    "temperatura_c": 464,
+    "dia_horas": 5832,
+    "atmosfera": "CO2 com nuvens de ácido sulfúrico (92x a pressão da Terra)",
+    "respiravel": false,
+    "perigos": [
+      "calor_extremo",
+      "acido",
+      "pressao",
+      "sem_oxigenio"
+    ]
+  },
+  "ceu": {
+    "ceu": "#D8B24A",
+    "neblina": "#E3C770",
+    "agua": "#7A5A2A",
+    "nevoa_da_agua": "#4A3515"
+  },
+  "tempo_fixo": 6000,
+  "biomas": [
+    "sistemasolar:venus_terras_altas_metalicas",
+    "sistemasolar:venus_planicies_sulfurosas",
+    "sistemasolar:venus_planicies_basalticas"
+  ],
+  "minerios": [
+    "enxofre",
+    "magma",
+    "geada_metalica",
+    "ouro"
+  ]
+}

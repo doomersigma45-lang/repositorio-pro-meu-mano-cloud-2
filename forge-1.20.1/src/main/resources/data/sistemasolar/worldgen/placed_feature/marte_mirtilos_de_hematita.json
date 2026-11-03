@@ -1,0 +1,27 @@
+{
+  "feature": "sistemasolar:marte_mirtilos_de_hematita",
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 14
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "min_inclusive": {
+          "absolute": 66
+        },
+        "max_inclusive": {
+          "absolute": 76
+        }
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

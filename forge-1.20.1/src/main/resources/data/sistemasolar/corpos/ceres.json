@@ -1,0 +1,35 @@
+{
+  "id": "ceres",
+  "nome": "Ceres",
+  "tipo": "anao",
+  "dimensao": "sistemasolar:ceres",
+  "descricao": "Rocha escura toda cravada de crateras, com manchas brilhantes de sal (Occator) e um criovulcão solitário (Ahuna Mons).",
+  "fisica": {
+    "gravidade_g": 0.029,
+    "temperatura_c": -105,
+    "dia_horas": 9.07,
+    "atmosfera": "nenhuma",
+    "respiravel": false,
+    "perigos": [
+      "vacuo",
+      "frio"
+    ]
+  },
+  "ceu": {
+    "ceu": "#050505",
+    "neblina": "#101010",
+    "agua": "#3A3F4A",
+    "nevoa_da_agua": "#1F2229"
+  },
+  "tempo_fixo": 6000,
+  "biomas": [
+    "sistemasolar:ceres_criovulcao",
+    "sistemasolar:ceres_faculas_de_sal",
+    "sistemasolar:ceres_terreno_escuro"
+  ],
+  "minerios": [
+    "sal",
+    "gelo",
+    "carbono"
+  ]
+}

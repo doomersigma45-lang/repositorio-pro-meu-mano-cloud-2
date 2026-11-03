@@ -1,0 +1,35 @@
+{
+  "id": "plutao",
+  "nome": "Plutão",
+  "tipo": "anao",
+  "dimensao": "sistemasolar:plutao",
+  "descricao": "Crosta de gelo de nitrogênio com a região em forma de coração, terras escuras de tolinas e montanhas de gelo, sob um céu escuro. Debaixo da crosta de gelo há oceanos de água líquida. Na superfície crescem árvores de cristal e vivem precursores e robôs (spawns e árvores vêm do mod Netherite Supremo).",
+  "fisica": {
+    "gravidade_g": 0.063,
+    "temperatura_c": -229,
+    "dia_horas": 153.3,
+    "atmosfera": "N2 quase inexistente",
+    "respiravel": false,
+    "perigos": [
+      "frio_extremo",
+      "sem_oxigenio"
+    ]
+  },
+  "ceu": {
+    "ceu": "#05060A",
+    "neblina": "#10131C",
+    "agua": "#3A4A6A",
+    "nevoa_da_agua": "#1B2538"
+  },
+  "tempo_fixo": 18000,
+  "biomas": [
+    "sistemasolar:plutao_coracao_tombaugh",
+    "sistemasolar:plutao_terra_escura_cthulhu",
+    "sistemasolar:plutao_montanhas_de_gelo"
+  ],
+  "minerios": [
+    "gelo_de_metano",
+    "tolinas",
+    "ferro"
+  ]
+}

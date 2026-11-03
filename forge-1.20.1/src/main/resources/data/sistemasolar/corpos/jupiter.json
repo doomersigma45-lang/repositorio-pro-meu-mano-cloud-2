@@ -1,0 +1,34 @@
+{
+  "id": "jupiter",
+  "nome": "Júpiter",
+  "tipo": "planeta",
+  "dimensao": "sistemasolar:jupiter",
+  "descricao": "Gigante de tempestades: ilhas de nuvem listradas em três altitudes, a Grande Mancha Vermelha e um oceano de lava (hidrogênio metálico) lá embaixo.",
+  "fisica": {
+    "gravidade_g": 2.53,
+    "temperatura_c": -145,
+    "dia_horas": 9.9,
+    "atmosfera": "H2 e He (sem superfície sólida)",
+    "respiravel": false,
+    "perigos": [
+      "queda_na_lava",
+      "raios",
+      "radiacao",
+      "sem_oxigenio"
+    ]
+  },
+  "ceu": {
+    "ceu": "#D8B890",
+    "neblina": "#E6CFA8",
+    "agua": "#8A5A2A",
+    "nevoa_da_agua": "#4A2E12"
+  },
+  "tempo_fixo": null,
+  "biomas": [
+    "sistemasolar:jupiter_faixas_equatoriais",
+    "sistemasolar:jupiter_grande_mancha_vermelha"
+  ],
+  "minerios": [
+    "chuva_de_diamantes"
+  ]
+}

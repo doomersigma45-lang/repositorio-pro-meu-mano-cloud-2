@@ -1,0 +1,36 @@
+{
+  "id": "netuno",
+  "nome": "Netuno",
+  "tipo": "planeta",
+  "dimensao": "sistemasolar:netuno",
+  "descricao": "Mundo de gelo azul sob um crepúsculo eterno, com picos de gelo, tempestades escuras e diamantes presos no gelo (a 'chuva de diamantes' de Netuno).",
+  "fisica": {
+    "gravidade_g": 1.14,
+    "temperatura_c": -214,
+    "dia_horas": 16.1,
+    "atmosfera": "H2, He e metano; ventos de até 2100 km/h",
+    "respiravel": false,
+    "perigos": [
+      "frio_extremo",
+      "ventos",
+      "sem_oxigenio"
+    ]
+  },
+  "ceu": {
+    "ceu": "#3F6FD8",
+    "neblina": "#6C93E6",
+    "agua": "#2A56B8",
+    "nevoa_da_agua": "#12295C"
+  },
+  "tempo_fixo": 13000,
+  "biomas": [
+    "sistemasolar:netuno_picos_de_gelo",
+    "sistemasolar:netuno_planicies_de_gelo",
+    "sistemasolar:netuno_grande_mancha_escura"
+  ],
+  "minerios": [
+    "diamante",
+    "gelo_azul",
+    "lazuli"
+  ]
+}

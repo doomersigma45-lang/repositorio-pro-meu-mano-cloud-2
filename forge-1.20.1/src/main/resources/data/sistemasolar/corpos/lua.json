@@ -1,0 +1,36 @@
+{
+  "id": "lua",
+  "nome": "Lua",
+  "tipo": "lua",
+  "dimensao": "sistemasolar:lua",
+  "descricao": "Cinza e sem ar: mares de basalto escuro, terras altas claras, crateras de todos os tamanhos e a Terra no céu preto.",
+  "fisica": {
+    "gravidade_g": 0.165,
+    "temperatura_c": -53,
+    "dia_horas": 655.7,
+    "atmosfera": "nenhuma",
+    "respiravel": false,
+    "perigos": [
+      "vacuo",
+      "frio"
+    ]
+  },
+  "ceu": {
+    "ceu": "#000000",
+    "neblina": "#0A0A0A",
+    "agua": "#3A4A5A",
+    "nevoa_da_agua": "#202A33"
+  },
+  "tempo_fixo": 6000,
+  "biomas": [
+    "sistemasolar:lua_mares_basalticos",
+    "sistemasolar:lua_planicies_de_regolito",
+    "sistemasolar:lua_terras_altas"
+  ],
+  "minerios": [
+    "ilmenita",
+    "helio_3",
+    "gelo_polar"
+  ],
+  "lua_de": "Terra"
+}

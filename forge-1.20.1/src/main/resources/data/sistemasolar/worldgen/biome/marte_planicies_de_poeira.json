@@ -1,0 +1,60 @@
+{
+  "has_precipitation": false,
+  "temperature": 0.8,
+  "downfall": 0.0,
+  "effects": {
+    "sky_color": 13208414,
+    "fog_color": 14262394,
+    "water_color": 8019018,
+    "water_fog_color": 4864560,
+    "mood_sound": {
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2.0
+    }
+  },
+  "spawners": {
+    "monster": [
+      {
+        "type": "minecraft:husk",
+        "weight": 30,
+        "minCount": 2,
+        "maxCount": 4
+      }
+    ],
+    "creature": [],
+    "ambient": [],
+    "axolotls": [],
+    "underground_water_creature": [],
+    "water_creature": [],
+    "water_ambient": [],
+    "misc": []
+  },
+  "spawn_costs": {},
+  "carvers": {
+    "air": [
+      "sistemasolar:marte_caverna",
+      "sistemasolar:marte_canion"
+    ]
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "sistemasolar:marte_ferro_oxidado",
+      "sistemasolar:marte_mirtilos_de_hematita",
+      "sistemasolar:marte_gelo_subterraneo",
+      "sistemasolar:marte_ferro",
+      "sistemasolar:marte_cobre"
+    ],
+    [],
+    [],
+    [],
+    []
+  ]
+}

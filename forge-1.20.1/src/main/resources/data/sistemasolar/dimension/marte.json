@@ -1,0 +1,120 @@
+{
+  "type": "sistemasolar:marte",
+  "generator": {
+    "type": "minecraft:noise",
+    "settings": "sistemasolar:marte",
+    "biome_source": {
+      "type": "minecraft:multi_noise",
+      "biomes": [
+        {
+          "biome": "sistemasolar:marte_calotas_polares",
+          "parameters": {
+            "temperature": [
+              -2.0,
+              -0.4666
+            ],
+            "humidity": [
+              -2.0,
+              2.0
+            ],
+            "continentalness": [
+              -2.0,
+              2.0
+            ],
+            "erosion": [
+              -2.0,
+              2.0
+            ],
+            "weirdness": [
+              -2.0,
+              2.0
+            ],
+            "depth": 0.0,
+            "offset": 0.0
+          }
+        },
+        {
+          "biome": "sistemasolar:marte_montes_vulcanicos",
+          "parameters": {
+            "temperature": [
+              -0.4666,
+              2.0
+            ],
+            "humidity": [
+              -2.0,
+              2.0
+            ],
+            "continentalness": [
+              0.3894,
+              2.0
+            ],
+            "erosion": [
+              -2.0,
+              2.0
+            ],
+            "weirdness": [
+              -2.0,
+              2.0
+            ],
+            "depth": 0.0,
+            "offset": 0.0
+          }
+        },
+        {
+          "biome": "sistemasolar:marte_planicies_escuras",
+          "parameters": {
+            "temperature": [
+              -0.4666,
+              2.0
+            ],
+            "humidity": [
+              0.0751,
+              2.0
+            ],
+            "continentalness": [
+              -2.0,
+              0.3894
+            ],
+            "erosion": [
+              -2.0,
+              2.0
+            ],
+            "weirdness": [
+              -2.0,
+              2.0
+            ],
+            "depth": 0.0,
+            "offset": 0.0
+          }
+        },
+        {
+          "biome": "sistemasolar:marte_planicies_de_poeira",
+          "parameters": {
+            "temperature": [
+              -0.4666,
+              2.0
+            ],
+            "humidity": [
+              -2.0,
+              0.0751
+            ],
+            "continentalness": [
+              -2.0,
+              0.3894
+            ],
+            "erosion": [
+              -2.0,
+              2.0
+            ],
+            "weirdness": [
+              -2.0,
+              2.0
+            ],
+            "depth": 0.0,
+            "offset": 0.0
+          }
+        }
+      ]
+    }
+  }
+}

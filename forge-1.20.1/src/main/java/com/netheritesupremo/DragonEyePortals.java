@@ -123,7 +123,7 @@ public final class DragonEyePortals {
         return s.getCollisionShape(level, pos).isEmpty() && s.getFluidState().isEmpty();
     }
 
-    private static BlockPos findSafe(ServerLevel level, int x, int z) {
+    public static BlockPos findSafe(ServerLevel level, int x, int z) {
         level.getChunk(x >> 4, z >> 4);
         int min = level.getMinBuildHeight();
         int max = min + level.getLogicalHeight() - 3;
@@ -153,6 +153,28 @@ public final class DragonEyePortals {
             }
         }
         return p;
+    }
+
+    /** Teleporta qualquer entidade viva para outra dimensao (jogadores e mobs). */
+    public static void teleportTo(Entity entity, ServerLevel dest, double x, double y, double z) {
+        float yaw = entity.getYRot();
+        float pitch = entity.getXRot();
+        if (entity instanceof ServerPlayer player) {
+            player.teleportTo(dest, x, y, z, yaw, pitch);
+        } else {
+            final Vec3 target = new Vec3(x, y, z);
+            entity.changeDimension(dest, new ITeleporter() {
+                @Override
+                public PortalInfo getPortalInfo(Entity e, ServerLevel level, Function<ServerLevel, PortalInfo> defaultInfo) {
+                    return new PortalInfo(target, Vec3.ZERO, yaw, pitch);
+                }
+
+                @Override
+                public boolean playTeleportSound(ServerPlayer player, ServerLevel sourceWorld, ServerLevel destWorld) {
+                    return false;
+                }
+            });
+        }
     }
 
     public static void travel(Entity entity, ServerLevel from, BlockPos pos) {

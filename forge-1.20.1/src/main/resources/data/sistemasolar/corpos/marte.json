@@ -1,0 +1,38 @@
+{
+  "id": "marte",
+  "nome": "Marte",
+  "tipo": "planeta",
+  "dimensao": "sistemasolar:marte",
+  "descricao": "Deserto vermelho de poeira e ferro oxidado, com cânions gigantes, vulcões enormes e gelo nos polos.",
+  "fisica": {
+    "gravidade_g": 0.38,
+    "temperatura_c": -63,
+    "dia_horas": 24.6,
+    "atmosfera": "CO2 muito rarefeita (1% da pressão da Terra)",
+    "respiravel": false,
+    "perigos": [
+      "frio",
+      "sem_oxigenio"
+    ]
+  },
+  "ceu": {
+    "ceu": "#C98B5E",
+    "neblina": "#D9A07A",
+    "agua": "#7A5C4A",
+    "nevoa_da_agua": "#4A3A30"
+  },
+  "tempo_fixo": null,
+  "biomas": [
+    "sistemasolar:marte_calotas_polares",
+    "sistemasolar:marte_montes_vulcanicos",
+    "sistemasolar:marte_planicies_escuras",
+    "sistemasolar:marte_planicies_de_poeira"
+  ],
+  "minerios": [
+    "ferro_oxidado",
+    "mirtilos_de_hematita",
+    "gelo_subterraneo",
+    "ferro",
+    "cobre"
+  ]
+}

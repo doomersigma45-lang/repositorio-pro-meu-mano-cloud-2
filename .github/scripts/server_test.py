@@ -75,12 +75,7 @@ def main():
     with open(os.path.join(RUN, "server.properties"), "w") as f:
         f.write("online-mode=false\nenable-rcon=true\nrcon.port=%d\nrcon.password=%s\n"
                 "level-name=world_teste\nspawn-protection=0\nview-distance=4\nsimulation-distance=4\n"
-                "enable-command-block=true\n"
-                "initial-enabled-packs=vanilla,mod_resources,file/sistemasolar-datapack.zip\n" % (PORT, PASSWORD))
-    # Datapack do mod Sistema Solar (planetas), para testar a integracao com Plutao
-    pack_dir = os.path.join(RUN, "world_teste", "datapacks")
-    os.makedirs(pack_dir, exist_ok=True)
-    shutil.copy(".github/test-data/sistemasolar-datapack.zip", pack_dir)
+                "enable-command-block=true\n" % (PORT, PASSWORD))
 
     proc = subprocess.Popen(["./gradlew", "runServer", "--no-daemon"], cwd=PROJECT,
                             stdout=open("server_gradle.out", "w"), stderr=subprocess.STDOUT,
@@ -113,6 +108,20 @@ def main():
                 "execute in sistemasolar:plutao run fill 0 20 0 31 50 31 minecraft:ice replace minecraft:water",
                 "execute in sistemasolar:plutao if entity @e[type=netheritesupremo:precursor_villager]",
                 "execute in sistemasolar:plutao if entity @e[type=netheritesupremo:robot]",
+            ]:
+                results.append(f"> {t}\n  {r.cmd(t)}")
+            # ---- satelite: estrutura e viagem pelo portal para Plutao
+            for t in [
+                "place structure netheritesupremo:satellite_ocean 100 70 100",
+                "place structure netheritesupremo:satellite_end 300 70 300",
+                "setblock 96 110 120 netheritesupremo:satellite_portal",
+                "summon minecraft:cow 96 110 120",
+            ]:
+                results.append(f"> {t}\n  {r.cmd(t)}")
+            time.sleep(15)
+            for t in [
+                "execute in sistemasolar:plutao if entity @e[type=minecraft:cow]",
+                "execute in sistemasolar:plutao run fill 0 40 0 31 100 15 minecraft:air replace netheritesupremo:satellite_portal",
             ]:
                 results.append(f"> {t}\n  {r.cmd(t)}")
             tests = [

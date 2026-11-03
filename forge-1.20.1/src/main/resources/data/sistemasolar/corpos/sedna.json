@@ -1,0 +1,36 @@
+{
+  "id": "sedna",
+  "nome": "Sedna",
+  "tipo": "anao",
+  "dimensao": "sistemasolar:sedna",
+  "descricao": "Mundo vermelho-sangue de tolinas e gelo, quase sem luz, no limite do Sistema Solar. O Sol é só uma estrela entre as outras.",
+  "fisica": {
+    "gravidade_g": 0.03,
+    "temperatura_c": -261,
+    "dia_horas": 10.0,
+    "atmosfera": "nenhuma",
+    "respiravel": false,
+    "perigos": [
+      "vacuo",
+      "frio_extremo"
+    ],
+    "nota": "massa e rotação estimadas"
+  },
+  "ceu": {
+    "ceu": "#000000",
+    "neblina": "#0A0508",
+    "agua": "#3A2430",
+    "nevoa_da_agua": "#1F1218"
+  },
+  "tempo_fixo": 18000,
+  "biomas": [
+    "sistemasolar:sedna_picos_gelados",
+    "sistemasolar:sedna_planicies_avermelhadas",
+    "sistemasolar:sedna_geada_escura"
+  ],
+  "minerios": [
+    "gelo",
+    "hidrocarbonetos",
+    "tolinas"
+  ]
+}

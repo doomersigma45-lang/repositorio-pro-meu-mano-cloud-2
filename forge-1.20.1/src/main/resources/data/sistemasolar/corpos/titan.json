@@ -1,0 +1,37 @@
+{
+  "id": "titan",
+  "nome": "Titã",
+  "tipo": "lua",
+  "dimensao": "sistemasolar:titan",
+  "descricao": "Lua laranja de névoa espessa, dunas escuras de hidrocarbonetos e lagos de metano (a água do jogo ganha a cor do metano).",
+  "fisica": {
+    "gravidade_g": 0.138,
+    "temperatura_c": -179,
+    "dia_horas": 382.7,
+    "atmosfera": "N2 densa (1,45x a pressão da Terra), sem O2",
+    "respiravel": false,
+    "perigos": [
+      "frio",
+      "sem_oxigenio"
+    ],
+    "nota": "ar tão denso que seria possível voar batendo asas (a implementar)"
+  },
+  "ceu": {
+    "ceu": "#C4813A",
+    "neblina": "#D9A066",
+    "agua": "#7A4A1E",
+    "nevoa_da_agua": "#3A2410"
+  },
+  "tempo_fixo": null,
+  "biomas": [
+    "sistemasolar:titan_montes_de_gelo",
+    "sistemasolar:titan_dunas_de_hidrocarbonetos",
+    "sistemasolar:titan_planicies_alaranjadas"
+  ],
+  "minerios": [
+    "gelo_de_agua",
+    "hidrocarbonetos",
+    "tolinas"
+  ],
+  "lua_de": "Saturno"
+}

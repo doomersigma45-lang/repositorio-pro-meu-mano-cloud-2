@@ -62,6 +62,12 @@ public final class ModBlocks {
                     .strength(-1.0F, 3600000.0F).lightLevel(state -> 12)
                     .isViewBlocking((state, level, pos) -> false)));
 
+    public static final RegistryObject<Block> SATELLITE_PORTAL = BLOCKS.register("satellite_portal",
+            () -> new com.netheritesupremo.block.SatellitePortalBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_CYAN).noCollission().noOcclusion().noLootTable()
+                    .strength(50.0F, 1200.0F).lightLevel(state -> 15)
+                    .isViewBlocking((state, level, pos) -> false)));
+
     private ModBlocks() {
     }
 }
