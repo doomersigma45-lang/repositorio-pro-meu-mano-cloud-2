@@ -119,11 +119,13 @@ def main():
                 "summon minecraft:cow 96.5 110 90.5 {CustomName:'\"viajante\"'}",
             ]:
                 results.append(f"> {t}\n  {r.cmd(t)}")
-            time.sleep(15)
+            time.sleep(3)
             for t in [
                 "execute in sistemasolar:plutao if entity @e[type=minecraft:cow,name=viajante]",
+                "execute in sistemasolar:plutao run data get entity @e[type=minecraft:cow,name=viajante,limit=1] Pos",
                 "execute in minecraft:overworld if entity @e[type=minecraft:cow,name=viajante]",
-                "execute in sistemasolar:plutao run fill 70 40 70 125 110 125 minecraft:air replace netheritesupremo:satellite_portal",
+                "execute in minecraft:overworld run data get entity @e[type=minecraft:cow,name=viajante,limit=1] Pos",
+                "execute in sistemasolar:plutao run fill 85 60 80 110 100 100 minecraft:air replace netheritesupremo:satellite_portal",
             ]:
                 results.append(f"> {t}\n  {r.cmd(t)}")
             tests = [
