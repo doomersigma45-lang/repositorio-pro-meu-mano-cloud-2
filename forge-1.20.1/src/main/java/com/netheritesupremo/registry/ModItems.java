@@ -267,6 +267,43 @@ public final class ModItems {
             "opabinia_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.OPABINIA, 0xDE9696, 0xFFEEDD, new Item.Properties()));
 
+    public static final RegistryObject<Item> SPECTRITE_GEM = ITEMS.register("spectrite_gem",
+            () -> new Item(new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
+
+    public static final RegistryObject<Item> SPECTRITE_ORE = ITEMS.register("spectrite_ore",
+            () -> new net.minecraft.world.item.BlockItem(ModBlocks.SPECTRITE_ORE.get(), new Item.Properties()));
+
+    public static final RegistryObject<Item> SPECTRITE_BLOCK = ITEMS.register("spectrite_block",
+            () -> new net.minecraft.world.item.BlockItem(ModBlocks.SPECTRITE_BLOCK.get(), new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
+
+    public static final RegistryObject<Item> SPECTRITE_HELMET = ITEMS.register("spectrite_helmet",
+            () -> new net.minecraft.world.item.ArmorItem(com.netheritesupremo.item.SpectriteArmorMaterial.INSTANCE,
+                    net.minecraft.world.item.ArmorItem.Type.HELMET, new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
+
+    public static final RegistryObject<Item> SPECTRITE_CHESTPLATE = ITEMS.register("spectrite_chestplate",
+            () -> new net.minecraft.world.item.ArmorItem(com.netheritesupremo.item.SpectriteArmorMaterial.INSTANCE,
+                    net.minecraft.world.item.ArmorItem.Type.CHESTPLATE, new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
+
+    public static final RegistryObject<Item> SPECTRITE_LEGGINGS = ITEMS.register("spectrite_leggings",
+            () -> new net.minecraft.world.item.ArmorItem(com.netheritesupremo.item.SpectriteArmorMaterial.INSTANCE,
+                    net.minecraft.world.item.ArmorItem.Type.LEGGINGS, new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
+
+    public static final RegistryObject<Item> SPECTRITE_BOOTS = ITEMS.register("spectrite_boots",
+            () -> new net.minecraft.world.item.ArmorItem(com.netheritesupremo.item.SpectriteArmorMaterial.INSTANCE,
+                    net.minecraft.world.item.ArmorItem.Type.BOOTS, new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
+
+    public static final RegistryObject<Item> SPECTRITE_SWORD = ITEMS.register("spectrite_sword",
+            () -> new net.minecraft.world.item.SwordItem(com.netheritesupremo.item.SpectriteTier.INSTANCE, 3, -2.4F, new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
+
+    public static final RegistryObject<Item> SPECTRITE_PICKAXE = ITEMS.register("spectrite_pickaxe",
+            () -> new net.minecraft.world.item.PickaxeItem(com.netheritesupremo.item.SpectriteTier.INSTANCE, 1, -2.8F, new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
+
+    public static final RegistryObject<Item> SPECTRITE_AXE = ITEMS.register("spectrite_axe",
+            () -> new net.minecraft.world.item.AxeItem(com.netheritesupremo.item.SpectriteTier.INSTANCE, 5.0F, -3.0F, new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
+
+    public static final RegistryObject<Item> SPECTRITE_SHOVEL = ITEMS.register("spectrite_shovel",
+            () -> new net.minecraft.world.item.ShovelItem(com.netheritesupremo.item.SpectriteTier.INSTANCE, 1.5F, -3.0F, new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
+
     private ModItems() {
     }
 }

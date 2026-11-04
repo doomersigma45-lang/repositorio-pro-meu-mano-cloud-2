@@ -270,3 +270,8 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 - Moradores fixos: 4 Aldeões Precursores e 2 Robôs em todas as cidades.
 - **Boss Precursor:** em cerca de 1 a cada 3 cidades ele já nasce dentro do salão da torre central (não some sozinho).
 - As estruturas são geradas por `tools/gerar_cidade.py` (sem texturas novas, só blocos do jogo).
+
+## Spectrite (porte do mod 1.12.2 para 1.20.1)
+- O mod original (Spectrite 1.7.1, de Samuel Harbord) é do Minecraft 1.12.2 e não roda no 1.20.1, então portei o essencial **para dentro do nosso mod**: **Gema**, **Minério** (raro, Overworld, y -64 a 16, brilha), **Bloco**, **Armadura** (4 peças) e **Ferramentas** (espada, picareta, machado, pá), com as texturas animadas do mod original (a armadura vestida usa um quadro fixo, o jogo não anima armadura).
+- **Armadura de Spectrite:** levemente melhor que a de Fusão: defesa 6/15/12/6 (Fusão 5/14/11/5), dureza 3 (Fusão 2), durabilidade x50 (Fusão x48), encantabilidade 22 (Fusão 19). Craft: gemas no formato de armadura normal.
+- Não portados (por enquanto): chefes, estruturas, baús, bigorna, fogo/fluido de Spectrite, arcos, flechas e demais itens do mod original.

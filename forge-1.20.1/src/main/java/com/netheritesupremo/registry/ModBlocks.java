@@ -17,6 +17,15 @@ public final class ModBlocks {
             () -> new GiantGlowSquidEggBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_CYAN)
                     .strength(0.5F).sound(SoundType.FROGSPAWN).noOcclusion().lightLevel(state -> 8)));
 
+    public static final RegistryObject<Block> SPECTRITE_ORE = BLOCKS.register("spectrite_ore",
+            () -> new net.minecraft.world.level.block.DropExperienceBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.STONE).strength(4.5F, 6.0F).requiresCorrectToolForDrops().lightLevel(state -> 7),
+                    net.minecraft.util.valueproviders.UniformInt.of(4, 8)));
+
+    public static final RegistryObject<Block> SPECTRITE_BLOCK = BLOCKS.register("spectrite_block",
+            () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE).strength(5.0F, 12.0F)
+                    .requiresCorrectToolForDrops().lightLevel(state -> 10).sound(SoundType.METAL)));
+
     public static final RegistryObject<Block> CRYSTAL_PLANKS = BLOCKS.register("crystal_planks",
             () -> new Block(BlockBehaviour.Properties.copy(net.minecraft.world.level.block.Blocks.OAK_PLANKS)));
 

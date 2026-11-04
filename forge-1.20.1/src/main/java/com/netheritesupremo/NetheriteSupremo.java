@@ -89,6 +89,17 @@ public class NetheriteSupremo {
             event.accept(ModItems.FUSION_CHESTPLATE);
             event.accept(ModItems.FUSION_LEGGINGS);
             event.accept(ModItems.FUSION_BOOTS);
+            event.accept(ModItems.SPECTRITE_GEM);
+            event.accept(ModItems.SPECTRITE_ORE);
+            event.accept(ModItems.SPECTRITE_BLOCK);
+            event.accept(ModItems.SPECTRITE_HELMET);
+            event.accept(ModItems.SPECTRITE_CHESTPLATE);
+            event.accept(ModItems.SPECTRITE_LEGGINGS);
+            event.accept(ModItems.SPECTRITE_BOOTS);
+            event.accept(ModItems.SPECTRITE_SWORD);
+            event.accept(ModItems.SPECTRITE_PICKAXE);
+            event.accept(ModItems.SPECTRITE_AXE);
+            event.accept(ModItems.SPECTRITE_SHOVEL);
             event.accept(ModItems.KATANA);
             event.accept(ModItems.SHURIKEN);
             event.accept(ModItems.KUNAI);

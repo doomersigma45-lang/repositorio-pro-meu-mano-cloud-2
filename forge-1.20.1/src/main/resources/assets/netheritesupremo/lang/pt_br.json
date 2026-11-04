@@ -118,5 +118,18 @@
   "item.netheritesupremo.aquatic_alien_spawn_egg": "Ovo de Geração: Alienígena Aquático",
   "item.netheritesupremo.anomalocaris_spawn_egg": "Ovo de Geração: Anomalocaris",
   "item.netheritesupremo.trilobite_spawn_egg": "Ovo de Geração: Trilobita",
-  "item.netheritesupremo.opabinia_spawn_egg": "Ovo de Geração: Opabínia"
+  "item.netheritesupremo.opabinia_spawn_egg": "Ovo de Geração: Opabínia",
+  "item.netheritesupremo.spectrite_gem": "Gema de Spectrite",
+  "block.netheritesupremo.spectrite_ore": "Minério de Spectrite",
+  "item.netheritesupremo.spectrite_ore": "Minério de Spectrite",
+  "block.netheritesupremo.spectrite_block": "Bloco de Spectrite",
+  "item.netheritesupremo.spectrite_block": "Bloco de Spectrite",
+  "item.netheritesupremo.spectrite_helmet": "Capacete de Spectrite",
+  "item.netheritesupremo.spectrite_chestplate": "Peitoral de Spectrite",
+  "item.netheritesupremo.spectrite_leggings": "Calça de Spectrite",
+  "item.netheritesupremo.spectrite_boots": "Botas de Spectrite",
+  "item.netheritesupremo.spectrite_sword": "Espada de Spectrite",
+  "item.netheritesupremo.spectrite_pickaxe": "Picareta de Spectrite",
+  "item.netheritesupremo.spectrite_axe": "Machado de Spectrite",
+  "item.netheritesupremo.spectrite_shovel": "Pá de Spectrite"
 }

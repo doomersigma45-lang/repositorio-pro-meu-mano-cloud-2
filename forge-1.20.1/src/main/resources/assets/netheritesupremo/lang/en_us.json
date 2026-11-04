@@ -118,5 +118,18 @@
   "item.netheritesupremo.aquatic_alien_spawn_egg": "Aquatic Alien Spawn Egg",
   "item.netheritesupremo.anomalocaris_spawn_egg": "Anomalocaris Spawn Egg",
   "item.netheritesupremo.trilobite_spawn_egg": "Trilobite Spawn Egg",
-  "item.netheritesupremo.opabinia_spawn_egg": "Opabinia Spawn Egg"
+  "item.netheritesupremo.opabinia_spawn_egg": "Opabinia Spawn Egg",
+  "item.netheritesupremo.spectrite_gem": "Spectrite Gem",
+  "block.netheritesupremo.spectrite_ore": "Spectrite Ore",
+  "item.netheritesupremo.spectrite_ore": "Spectrite Ore",
+  "block.netheritesupremo.spectrite_block": "Block of Spectrite",
+  "item.netheritesupremo.spectrite_block": "Block of Spectrite",
+  "item.netheritesupremo.spectrite_helmet": "Spectrite Helmet",
+  "item.netheritesupremo.spectrite_chestplate": "Spectrite Chestplate",
+  "item.netheritesupremo.spectrite_leggings": "Spectrite Leggings",
+  "item.netheritesupremo.spectrite_boots": "Spectrite Boots",
+  "item.netheritesupremo.spectrite_sword": "Spectrite Sword",
+  "item.netheritesupremo.spectrite_pickaxe": "Spectrite Pickaxe",
+  "item.netheritesupremo.spectrite_axe": "Spectrite Axe",
+  "item.netheritesupremo.spectrite_shovel": "Spectrite Shovel"
 }

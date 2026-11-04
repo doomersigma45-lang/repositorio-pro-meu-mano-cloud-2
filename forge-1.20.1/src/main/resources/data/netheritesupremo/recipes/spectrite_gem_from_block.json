@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "netheritesupremo:spectrite_block"
+    }
+  ],
+  "result": {
+    "item": "netheritesupremo:spectrite_gem",
+    "count": 9
+  }
+}
