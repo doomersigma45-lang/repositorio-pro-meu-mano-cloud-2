@@ -251,6 +251,22 @@ public final class ModItems {
             () -> new com.netheritesupremo.item.GauntletItem(new Item.Properties().stacksTo(1).fireResistant()
                     .rarity(net.minecraft.world.item.Rarity.EPIC)));
 
+    public static final RegistryObject<Item> AQUATIC_ALIEN_SPAWN_EGG = ITEMS.register(
+            "aquatic_alien_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.AQUATIC_ALIEN, 0x2A8CA0, 0x9CFFF0, new Item.Properties()));
+
+    public static final RegistryObject<Item> ANOMALOCARIS_SPAWN_EGG = ITEMS.register(
+            "anomalocaris_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.ANOMALOCARIS, 0xB0622F, 0xF2D6A2, new Item.Properties()));
+
+    public static final RegistryObject<Item> TRILOBITE_SPAWN_EGG = ITEMS.register(
+            "trilobite_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.TRILOBITE, 0x584A6E, 0xC8B8E0, new Item.Properties()));
+
+    public static final RegistryObject<Item> OPABINIA_SPAWN_EGG = ITEMS.register(
+            "opabinia_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.OPABINIA, 0xDE9696, 0xFFEEDD, new Item.Properties()));
+
     private ModItems() {
     }
 }

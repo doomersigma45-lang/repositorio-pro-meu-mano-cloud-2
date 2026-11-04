@@ -1,0 +1,30 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "#netheritesupremo:pluto_biomes",
+  "spawners": [
+    {
+      "type": "netheritesupremo:aquatic_alien",
+      "weight": 20,
+      "minCount": 1,
+      "maxCount": 3
+    },
+    {
+      "type": "netheritesupremo:anomalocaris",
+      "weight": 8,
+      "minCount": 1,
+      "maxCount": 2
+    },
+    {
+      "type": "netheritesupremo:trilobite",
+      "weight": 30,
+      "minCount": 2,
+      "maxCount": 5
+    },
+    {
+      "type": "netheritesupremo:opabinia",
+      "weight": 20,
+      "minCount": 1,
+      "maxCount": 3
+    }
+  ]
+}

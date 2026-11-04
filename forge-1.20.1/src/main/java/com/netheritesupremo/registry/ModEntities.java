@@ -167,6 +167,34 @@ public final class ModEntities {
                     .clientTrackingRange(8)
                     .build("thief"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.entity.AquaticAlien>> AQUATIC_ALIEN = ENTITIES.register(
+            "aquatic_alien",
+            () -> EntityType.Builder.of(com.netheritesupremo.entity.AquaticAlien::new, MobCategory.MONSTER)
+                    .sized(0.6F, 1.95F)
+                    .clientTrackingRange(10)
+                    .build("aquatic_alien"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.entity.Anomalocaris>> ANOMALOCARIS = ENTITIES.register(
+            "anomalocaris",
+            () -> EntityType.Builder.of(com.netheritesupremo.entity.Anomalocaris::new, MobCategory.MONSTER)
+                    .sized(1.8F, 0.9F)
+                    .clientTrackingRange(10)
+                    .build("anomalocaris"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.entity.Trilobite>> TRILOBITE = ENTITIES.register(
+            "trilobite",
+            () -> EntityType.Builder.of(com.netheritesupremo.entity.Trilobite::new, MobCategory.WATER_AMBIENT)
+                    .sized(0.9F, 0.5F)
+                    .clientTrackingRange(8)
+                    .build("trilobite"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.entity.Opabinia>> OPABINIA = ENTITIES.register(
+            "opabinia",
+            () -> EntityType.Builder.of(com.netheritesupremo.entity.Opabinia::new, MobCategory.WATER_CREATURE)
+                    .sized(1.0F, 0.6F)
+                    .clientTrackingRange(8)
+                    .build("opabinia"));
+
     public static final RegistryObject<EntityType<com.netheritesupremo.entity.PrecursorVillager>> PRECURSOR_VILLAGER = ENTITIES.register(
             "precursor_villager",
             () -> EntityType.Builder.of(com.netheritesupremo.entity.PrecursorVillager::new, MobCategory.CREATURE)

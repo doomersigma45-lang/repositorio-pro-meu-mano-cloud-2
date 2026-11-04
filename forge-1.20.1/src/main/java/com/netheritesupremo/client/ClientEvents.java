@@ -47,7 +47,21 @@ public final class ClientEvents {
         event.registerEntityRenderer(ModEntities.THIEF.get(), ThiefRenderer::new);
         event.registerEntityRenderer(ModEntities.PRECURSOR_VILLAGER.get(), PrecursorVillagerRenderer::new);
         event.registerEntityRenderer(ModEntities.ROBOT.get(), RobotRenderer::new);
+        event.registerEntityRenderer(ModEntities.AQUATIC_ALIEN.get(), AlienRenderer::new);
+        event.registerEntityRenderer(ModEntities.ANOMALOCARIS.get(), ctx -> new CambrianRenderer<com.netheritesupremo.entity.Anomalocaris>(
+                ctx, CambrianRenderer.ANOMALOCARIS_LAYER, SegmentedModel.ANOMALOCARIS, "anomalocaris", 0.9F));
+        event.registerEntityRenderer(ModEntities.TRILOBITE.get(), ctx -> new CambrianRenderer<com.netheritesupremo.entity.Trilobite>(
+                ctx, CambrianRenderer.TRILOBITE_LAYER, SegmentedModel.TRILOBITE, "trilobite", 0.4F));
+        event.registerEntityRenderer(ModEntities.OPABINIA.get(), ctx -> new CambrianRenderer<com.netheritesupremo.entity.Opabinia>(
+                ctx, CambrianRenderer.OPABINIA_LAYER, SegmentedModel.OPABINIA, "opabinia", 0.5F));
         event.registerEntityRenderer(ModEntities.UMBRAL_MERCHANT.get(), WanderingTraderRenderer::new);
+    }
+
+    @SubscribeEvent
+    public static void onRegisterLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        event.registerLayerDefinition(CambrianRenderer.ANOMALOCARIS_LAYER, () -> SegmentedModel.createLayer(SegmentedModel.ANOMALOCARIS));
+        event.registerLayerDefinition(CambrianRenderer.TRILOBITE_LAYER, () -> SegmentedModel.createLayer(SegmentedModel.TRILOBITE));
+        event.registerLayerDefinition(CambrianRenderer.OPABINIA_LAYER, () -> SegmentedModel.createLayer(SegmentedModel.OPABINIA));
     }
 
     @SubscribeEvent

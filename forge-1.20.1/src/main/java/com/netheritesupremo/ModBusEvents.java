@@ -46,6 +46,10 @@ public final class ModBusEvents {
         event.put(ModEntities.THIEF.get(), com.netheritesupremo.entity.Thief.createThiefAttributes().build());
         event.put(ModEntities.PRECURSOR_VILLAGER.get(), com.netheritesupremo.entity.PrecursorVillager.createAttributes().build());
         event.put(ModEntities.ROBOT.get(), Robot.createRobotAttributes().build());
+        event.put(ModEntities.AQUATIC_ALIEN.get(), com.netheritesupremo.entity.AquaticAlien.createAlienAttributes().build());
+        event.put(ModEntities.ANOMALOCARIS.get(), com.netheritesupremo.entity.Anomalocaris.createAttributes().build());
+        event.put(ModEntities.TRILOBITE.get(), com.netheritesupremo.entity.Trilobite.createAttributes().build());
+        event.put(ModEntities.OPABINIA.get(), com.netheritesupremo.entity.Opabinia.createAttributes().build());
         event.put(ModEntities.GOLDEN_ZOMBIE.get(), GoldenZombie.createGoldenZombieAttributes().build());
     }
 
@@ -77,6 +81,18 @@ public final class ModBusEvents {
                 SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.ROBOT.get(), SpawnPlacements.Type.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, net.minecraft.world.entity.Mob::checkMobSpawnRules,
+                SpawnPlacementRegisterEvent.Operation.OR);
+        event.register(ModEntities.AQUATIC_ALIEN.get(), SpawnPlacements.Type.IN_WATER,
+                Heightmap.Types.OCEAN_FLOOR, com.netheritesupremo.entity.AquaticAlien::checkSpawnRules,
+                SpawnPlacementRegisterEvent.Operation.OR);
+        event.register(ModEntities.ANOMALOCARIS.get(), SpawnPlacements.Type.IN_WATER,
+                Heightmap.Types.OCEAN_FLOOR, com.netheritesupremo.entity.CambrianCreature::checkSpawnRules,
+                SpawnPlacementRegisterEvent.Operation.OR);
+        event.register(ModEntities.TRILOBITE.get(), SpawnPlacements.Type.IN_WATER,
+                Heightmap.Types.OCEAN_FLOOR, com.netheritesupremo.entity.CambrianCreature::checkSpawnRules,
+                SpawnPlacementRegisterEvent.Operation.OR);
+        event.register(ModEntities.OPABINIA.get(), SpawnPlacements.Type.IN_WATER,
+                Heightmap.Types.OCEAN_FLOOR, com.netheritesupremo.entity.CambrianCreature::checkSpawnRules,
                 SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.NETHER_SPIDER.get(), SpawnPlacements.Type.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules,

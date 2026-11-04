@@ -110,5 +110,13 @@
   "message.netheritesupremo.gauntlet.cooldown": "Explosion recharging",
   "key.netheritesupremo.portal": "Open portal / hold + scroll: change dimension (Dragon Eye, Supreme Gauntlet)",
   "block.netheritesupremo.satellite_portal": "Satellite Portal",
-  "message.netheritesupremo.satellite.no_pluto": "Pluto is not loaded"
+  "message.netheritesupremo.satellite.no_pluto": "Pluto is not loaded",
+  "entity.netheritesupremo.aquatic_alien": "Aquatic Alien",
+  "entity.netheritesupremo.anomalocaris": "Anomalocaris",
+  "entity.netheritesupremo.trilobite": "Trilobite",
+  "entity.netheritesupremo.opabinia": "Opabinia",
+  "item.netheritesupremo.aquatic_alien_spawn_egg": "Aquatic Alien Spawn Egg",
+  "item.netheritesupremo.anomalocaris_spawn_egg": "Anomalocaris Spawn Egg",
+  "item.netheritesupremo.trilobite_spawn_egg": "Trilobite Spawn Egg",
+  "item.netheritesupremo.opabinia_spawn_egg": "Opabinia Spawn Egg"
 }

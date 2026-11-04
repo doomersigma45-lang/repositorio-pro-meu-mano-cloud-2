@@ -110,5 +110,13 @@
   "message.netheritesupremo.gauntlet.cooldown": "Explosão recarregando",
   "key.netheritesupremo.portal": "Abrir portal / segurar + scroll: trocar dimensão (Olho do Dragão, Manopla Suprema)",
   "block.netheritesupremo.satellite_portal": "Portal do Satélite",
-  "message.netheritesupremo.satellite.no_pluto": "Plutão não está carregado"
+  "message.netheritesupremo.satellite.no_pluto": "Plutão não está carregado",
+  "entity.netheritesupremo.aquatic_alien": "Alienígena Aquático",
+  "entity.netheritesupremo.anomalocaris": "Anomalocaris",
+  "entity.netheritesupremo.trilobite": "Trilobita",
+  "entity.netheritesupremo.opabinia": "Opabínia",
+  "item.netheritesupremo.aquatic_alien_spawn_egg": "Ovo de Geração: Alienígena Aquático",
+  "item.netheritesupremo.anomalocaris_spawn_egg": "Ovo de Geração: Anomalocaris",
+  "item.netheritesupremo.trilobite_spawn_egg": "Ovo de Geração: Trilobita",
+  "item.netheritesupremo.opabinia_spawn_egg": "Ovo de Geração: Opabínia"
 }

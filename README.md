@@ -259,3 +259,8 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 ## Datapack do Sistema Solar e Satélite (1.20.1)
 - Os dados do mod **Sistema Solar** (dimensões dos 14 corpos, inclusive Plutão com oceano sob o gelo) agora vêm **dentro deste mod** (`data/sistemasolar`), então não precisa instalar o outro mod/datapack para as dimensões existirem. Se instalar os dois juntos, o conteúdo é o mesmo.
 - **Satélite:** estrutura rara que aparece no **oceano** (sobre a água, com pernas de ferro) e nas **ilhas externas do End**. Dentro há um baú com loot e um **portal para Plutão** (bloco `satellite_portal`). Ao entrar, uma plataforma com portal de volta é criada em Plutão; o portal de lá leva de volta ao lugar de onde a pessoa veio (ou ao Overworld).
+
+## Alienígenas aquáticos e animais do Cambriano (1.20.1)
+- **Alienígena Aquático** (40 vida, 6 de dano): humanoide que nada e ataca como um afogado, sem tridente; dropa cristais/lascas de prismarinho e raramente um Coração do Mar.
+- **Anomalocaris** (60 vida, 8 de dano): predador do Cambriano, ataca jogadores. **Trilobita** (6 vida) e **Opabínia** (14 vida): pacíficos, fogem do jogador.
+- Todos nascem **só nos oceanos de Plutão** (dentro d'água, qualquer luz). Os modelos dos animais são feitos em código (corpo segmentado) e as texturas foram geradas por mim, então dá para trocar por texturas suas. Cada um tem ovo de geração.

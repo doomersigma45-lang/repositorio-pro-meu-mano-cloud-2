@@ -129,6 +129,12 @@ def main():
             ]:
                 results.append(f"> {t}\n  {r.cmd(t)}")
             tests = [
+                "execute in sistemasolar:plutao run summon netheritesupremo:aquatic_alien 96 70 90",
+                "execute in sistemasolar:plutao run summon netheritesupremo:anomalocaris 96 40 92",
+                "execute in sistemasolar:plutao run summon netheritesupremo:trilobite 98 40 92",
+                "execute in sistemasolar:plutao run summon netheritesupremo:opabinia 100 40 92",
+                "loot spawn 0 100 0 loot netheritesupremo:entities/anomalocaris",
+                "loot spawn 0 100 0 loot netheritesupremo:entities/aquatic_alien",
                 "place feature netheritesupremo:crystal_tree_pluto 94 100 94",
                 "give @a netheritesupremo:supreme_gauntlet",
                 "setblock 92 110 84 netheritesupremo:dimension_portal",
