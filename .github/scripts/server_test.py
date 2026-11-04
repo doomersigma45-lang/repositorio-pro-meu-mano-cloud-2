@@ -164,7 +164,15 @@ def main():
             ]:
                 results.append(f"> {t}\n  {r.cmd(t)}")
             sp = []
-            for t in ['place feature netheritesupremo:spectrite_ore 40 -20 40', 'setblock 44 100 44 netheritesupremo:spectrite_ore', 'loot spawn 0 100 0 loot netheritesupremo:blocks/spectrite_ore', 'recipe give @a netheritesupremo:spectrite_helmet']:
+            placed = 0
+            for x in (30, 50, 70, 90):
+                for z in (30, 50, 70):
+                    for y in (-50, -30, -10):
+                        out = r.cmd(f"place feature netheritesupremo:spectrite_ore {x} {y} {z}")
+                        placed += 1 if "Placed" in out else 0
+            sp.append(f"minerio: {placed} de 36 tentativas colocaram veio")
+            for t in ["setblock 44 100 44 netheritesupremo:spectrite_ore",
+                      "loot spawn 0 100 0 loot netheritesupremo:blocks/spectrite_ore"]:
                 sp.append(f"> {t}\n  {r.cmd(t)}")
             annotate("notice", "spectrite", sp)
             tests = [
