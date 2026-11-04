@@ -100,6 +100,11 @@ public class NetheriteSupremo {
             event.accept(ModItems.SPECTRITE_PICKAXE);
             event.accept(ModItems.SPECTRITE_AXE);
             event.accept(ModItems.SPECTRITE_SHOVEL);
+            event.accept(ModItems.SPECTRITE_ROD);
+            event.accept(ModItems.SPECTRITE_SWORD_SPECIAL);
+            event.accept(ModItems.SPECTRITE_PICKAXE_SPECIAL);
+            event.accept(ModItems.SPECTRITE_AXE_SPECIAL);
+            event.accept(ModItems.SPECTRITE_SHOVEL_SPECIAL);
             event.accept(ModItems.KATANA);
             event.accept(ModItems.SHURIKEN);
             event.accept(ModItems.KUNAI);

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " X ",
+    " X ",
+    "XYX"
+  ],
+  "key": {
+    "X": {
+      "item": "netheritesupremo:spectrite_gem"
+    },
+    "Y": {
+      "item": "netheritesupremo:spectrite_rod"
+    }
+  },
+  "result": {
+    "item": "netheritesupremo:spectrite_sword_special",
+    "count": 1
+  }
+}

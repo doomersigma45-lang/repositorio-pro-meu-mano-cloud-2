@@ -128,8 +128,13 @@
   "item.netheritesupremo.spectrite_chestplate": "Spectrite Chestplate",
   "item.netheritesupremo.spectrite_leggings": "Spectrite Leggings",
   "item.netheritesupremo.spectrite_boots": "Spectrite Boots",
-  "item.netheritesupremo.spectrite_sword": "Spectrite Sword",
-  "item.netheritesupremo.spectrite_pickaxe": "Spectrite Pickaxe",
-  "item.netheritesupremo.spectrite_axe": "Spectrite Axe",
-  "item.netheritesupremo.spectrite_shovel": "Spectrite Shovel"
+  "item.netheritesupremo.spectrite_sword": "Diamond Spectrite Sword",
+  "item.netheritesupremo.spectrite_pickaxe": "Diamond Spectrite Pickaxe",
+  "item.netheritesupremo.spectrite_axe": "Diamond Spectrite Axe",
+  "item.netheritesupremo.spectrite_shovel": "Diamond Spectrite Shovel",
+  "item.netheritesupremo.spectrite_rod": "Spectrite Rod",
+  "item.netheritesupremo.spectrite_sword_special": "Spectrite Sword",
+  "item.netheritesupremo.spectrite_pickaxe_special": "Spectrite Pickaxe",
+  "item.netheritesupremo.spectrite_axe_special": "Spectrite Axe",
+  "item.netheritesupremo.spectrite_shovel_special": "Spectrite Shovel"
 }

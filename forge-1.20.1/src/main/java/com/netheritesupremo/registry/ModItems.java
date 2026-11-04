@@ -304,6 +304,21 @@ public final class ModItems {
     public static final RegistryObject<Item> SPECTRITE_SHOVEL = ITEMS.register("spectrite_shovel",
             () -> new net.minecraft.world.item.ShovelItem(com.netheritesupremo.item.SpectriteTier.INSTANCE, 1.5F, -3.0F, new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
 
+    public static final RegistryObject<Item> SPECTRITE_ROD = ITEMS.register("spectrite_rod",
+            () -> new Item(new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
+
+    public static final RegistryObject<Item> SPECTRITE_SWORD_SPECIAL = ITEMS.register("spectrite_sword_special",
+            () -> new net.minecraft.world.item.SwordItem(com.netheritesupremo.item.PerfectSpectriteTier.INSTANCE, 3, -2.4F, new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC)));
+
+    public static final RegistryObject<Item> SPECTRITE_PICKAXE_SPECIAL = ITEMS.register("spectrite_pickaxe_special",
+            () -> new net.minecraft.world.item.PickaxeItem(com.netheritesupremo.item.PerfectSpectriteTier.INSTANCE, 1, -2.8F, new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC)));
+
+    public static final RegistryObject<Item> SPECTRITE_AXE_SPECIAL = ITEMS.register("spectrite_axe_special",
+            () -> new net.minecraft.world.item.AxeItem(com.netheritesupremo.item.PerfectSpectriteTier.INSTANCE, 5.0F, -3.0F, new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC)));
+
+    public static final RegistryObject<Item> SPECTRITE_SHOVEL_SPECIAL = ITEMS.register("spectrite_shovel_special",
+            () -> new net.minecraft.world.item.ShovelItem(com.netheritesupremo.item.PerfectSpectriteTier.INSTANCE, 1.5F, -3.0F, new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC)));
+
     private ModItems() {
     }
 }

@@ -128,8 +128,13 @@
   "item.netheritesupremo.spectrite_chestplate": "Peitoral de Spectrite",
   "item.netheritesupremo.spectrite_leggings": "Calça de Spectrite",
   "item.netheritesupremo.spectrite_boots": "Botas de Spectrite",
-  "item.netheritesupremo.spectrite_sword": "Espada de Spectrite",
-  "item.netheritesupremo.spectrite_pickaxe": "Picareta de Spectrite",
-  "item.netheritesupremo.spectrite_axe": "Machado de Spectrite",
-  "item.netheritesupremo.spectrite_shovel": "Pá de Spectrite"
+  "item.netheritesupremo.spectrite_sword": "Espada de Diamante-Spectrite",
+  "item.netheritesupremo.spectrite_pickaxe": "Picareta de Diamante-Spectrite",
+  "item.netheritesupremo.spectrite_axe": "Machado de Diamante-Spectrite",
+  "item.netheritesupremo.spectrite_shovel": "Pá de Diamante-Spectrite",
+  "item.netheritesupremo.spectrite_rod": "Bastão de Spectrite",
+  "item.netheritesupremo.spectrite_sword_special": "Espada de Spectrite",
+  "item.netheritesupremo.spectrite_pickaxe_special": "Picareta de Spectrite",
+  "item.netheritesupremo.spectrite_axe_special": "Machado de Spectrite",
+  "item.netheritesupremo.spectrite_shovel_special": "Pá de Spectrite"
 }

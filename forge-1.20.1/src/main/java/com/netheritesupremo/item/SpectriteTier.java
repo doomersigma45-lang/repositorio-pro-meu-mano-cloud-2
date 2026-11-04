@@ -4,23 +4,23 @@ import com.netheritesupremo.registry.ModItems;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 
-/** Ferramentas de Spectrite (portadas do mod Spectrite). */
+/** Ferramentas de Spectrite com cabo de diamante (material "spectrite_tool" do mod original). */
 public enum SpectriteTier implements Tier {
     INSTANCE;
 
     @Override
     public int getUses() {
-        return 2800;
+        return 2400;
     }
 
     @Override
     public float getSpeed() {
-        return 9.0F;
+        return 10.0F;
     }
 
     @Override
     public float getAttackDamageBonus() {
-        return 4.0F;
+        return 6.0F;
     }
 
     @Override
@@ -30,7 +30,7 @@ public enum SpectriteTier implements Tier {
 
     @Override
     public int getEnchantmentValue() {
-        return 22;
+        return 15;
     }
 
     @Override
