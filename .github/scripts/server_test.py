@@ -171,7 +171,10 @@ def main():
                         out = r.cmd(f"place feature netheritesupremo:spectrite_ore {x} {y} {z}")
                         placed += 1 if "Placed" in out else 0
             sp.append(f"minerio: {placed} de 36 tentativas colocaram veio")
-            for t in ["setblock 44 100 44 netheritesupremo:spectrite_ore",
+            for t in ['summon minecraft:zombie 60 100 60 {CustomName:\'"spectro"\',PersistenceRequired:1b,ArmorItems:[{id:"netheritesupremo:spectrite_boots",Count:1b},{id:"netheritesupremo:spectrite_leggings",Count:1b},{id:"netheritesupremo:spectrite_chestplate",Count:1b},{id:"netheritesupremo:spectrite_helmet",Count:1b}]}',
+                      "attribute @e[type=minecraft:zombie,name=spectro,limit=1] minecraft:generic.max_health get",
+                      "attribute @e[type=minecraft:zombie,name=spectro,limit=1] minecraft:generic.armor get",
+                      "setblock 44 100 44 netheritesupremo:spectrite_ore",
                       "loot spawn 0 100 0 loot netheritesupremo:blocks/spectrite_ore"]:
                 sp.append(f"> {t}\n  {r.cmd(t)}")
             annotate("notice", "spectrite", sp)

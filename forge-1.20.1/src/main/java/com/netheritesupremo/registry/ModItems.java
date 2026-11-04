@@ -277,19 +277,19 @@ public final class ModItems {
             () -> new net.minecraft.world.item.BlockItem(ModBlocks.SPECTRITE_BLOCK.get(), new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
 
     public static final RegistryObject<Item> SPECTRITE_HELMET = ITEMS.register("spectrite_helmet",
-            () -> new net.minecraft.world.item.ArmorItem(com.netheritesupremo.item.SpectriteArmorMaterial.INSTANCE,
+            () -> new com.netheritesupremo.item.SpectriteArmorItem(com.netheritesupremo.item.SpectriteArmorMaterial.INSTANCE,
                     net.minecraft.world.item.ArmorItem.Type.HELMET, new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
 
     public static final RegistryObject<Item> SPECTRITE_CHESTPLATE = ITEMS.register("spectrite_chestplate",
-            () -> new net.minecraft.world.item.ArmorItem(com.netheritesupremo.item.SpectriteArmorMaterial.INSTANCE,
+            () -> new com.netheritesupremo.item.SpectriteArmorItem(com.netheritesupremo.item.SpectriteArmorMaterial.INSTANCE,
                     net.minecraft.world.item.ArmorItem.Type.CHESTPLATE, new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
 
     public static final RegistryObject<Item> SPECTRITE_LEGGINGS = ITEMS.register("spectrite_leggings",
-            () -> new net.minecraft.world.item.ArmorItem(com.netheritesupremo.item.SpectriteArmorMaterial.INSTANCE,
+            () -> new com.netheritesupremo.item.SpectriteArmorItem(com.netheritesupremo.item.SpectriteArmorMaterial.INSTANCE,
                     net.minecraft.world.item.ArmorItem.Type.LEGGINGS, new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
 
     public static final RegistryObject<Item> SPECTRITE_BOOTS = ITEMS.register("spectrite_boots",
-            () -> new net.minecraft.world.item.ArmorItem(com.netheritesupremo.item.SpectriteArmorMaterial.INSTANCE,
+            () -> new com.netheritesupremo.item.SpectriteArmorItem(com.netheritesupremo.item.SpectriteArmorMaterial.INSTANCE,
                     net.minecraft.world.item.ArmorItem.Type.BOOTS, new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
 
     public static final RegistryObject<Item> SPECTRITE_SWORD = ITEMS.register("spectrite_sword",

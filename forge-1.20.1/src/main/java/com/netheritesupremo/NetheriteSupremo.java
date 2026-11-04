@@ -41,6 +41,7 @@ public class NetheriteSupremo {
         MinecraftForge.EVENT_BUS.register(new DragonEyeEvents());
         MinecraftForge.EVENT_BUS.register(new GauntletEvents());
         MinecraftForge.EVENT_BUS.register(new AvaritiaCompat());
+        MinecraftForge.EVENT_BUS.register(new SpectriteEvents());
         MinecraftForge.EVENT_BUS.register(new RecipeEvents());
         MinecraftForge.EVENT_BUS.register(new WeaponEvents());
         MinecraftForge.EVENT_BUS.register(new ObsidianEvents());
