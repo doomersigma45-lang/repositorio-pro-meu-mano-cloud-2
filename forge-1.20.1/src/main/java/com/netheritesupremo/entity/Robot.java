@@ -137,7 +137,7 @@ public class Robot extends IronGolem {
         this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Mob.class, 5, false, false,
-                e -> e instanceof Enemy && !(e instanceof Creeper) && !(e instanceof NetheriteKnight)));
+                e -> e instanceof Enemy && !(e instanceof Creeper) && !(e instanceof NetheriteKnight) && !(e instanceof Precursor)));
     }
 
     @Override
@@ -221,7 +221,7 @@ public class Robot extends IronGolem {
             final Vec3 beamEnd = end;
             List<LivingEntity> hit = level.getEntitiesOfClass(LivingEntity.class,
                     new net.minecraft.world.phys.AABB(from, beamEnd).inflate(1.0D),
-                    e -> e != this.robot && e.isAlive() && !(e instanceof NetheriteKnight)
+                    e -> e != this.robot && e.isAlive() && !(e instanceof NetheriteKnight) && !(e instanceof Precursor)
                             && (e == target || e instanceof Enemy)
                             && e.getBoundingBox().inflate(0.3D).clip(from, beamEnd).isPresent());
             for (LivingEntity victim : hit) {

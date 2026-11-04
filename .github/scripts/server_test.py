@@ -138,6 +138,7 @@ def main():
                     results.append(f"> {t}\n  {r.cmd(t)}")
             for t in [
                 "execute in sistemasolar:plutao if entity @e[type=netheritesupremo:precursor,x=430,y=106,z=230,distance=..60]",
+                "execute in sistemasolar:plutao run data get entity @e[type=netheritesupremo:precursor,x=430,y=106,z=230,distance=..60,limit=1] Health",
                 "execute in sistemasolar:plutao if entity @e[type=netheritesupremo:precursor,x=230,y=106,z=230,distance=..60]",
                 "execute in sistemasolar:plutao if entity @e[type=netheritesupremo:precursor_villager,x=230,y=106,z=230,distance=..60]",
                 "execute in sistemasolar:plutao if entity @e[type=netheritesupremo:robot,x=230,y=106,z=230,distance=..60]",

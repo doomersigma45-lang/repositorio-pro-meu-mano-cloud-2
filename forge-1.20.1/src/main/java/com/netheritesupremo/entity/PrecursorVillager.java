@@ -152,12 +152,15 @@ public class PrecursorVillager extends AbstractVillager {
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this, PrecursorVillager.class).setAlertOthers());
         // Ameaca = monstro hostil a vista (jogadores so viram alvo se atacarem)
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Mob.class, 10, true, false,
-                e -> e instanceof Enemy));
+                e -> e instanceof Enemy && !(e instanceof Precursor)));
     }
 
     /** Alvo novo (ameaca vista ou agressor): chama robos. */
     @Override
     public void setTarget(@Nullable LivingEntity target) {
+        if (target instanceof Precursor) {
+            target = null; // o boss Precursor e aliado dos moradores
+        }
         super.setTarget(target);
         if (target != null && !this.level().isClientSide) {
             this.callRobots(target);
@@ -168,7 +171,7 @@ public class PrecursorVillager extends AbstractVillager {
     public boolean hurt(DamageSource source, float amount) {
         boolean hurt = super.hurt(source, amount);
         if (hurt && !this.level().isClientSide && source.getEntity() instanceof LivingEntity attacker
-                && attacker != this && !(attacker instanceof PrecursorVillager) && !(attacker instanceof Robot)) {
+                && attacker != this && !(attacker instanceof PrecursorVillager) && !(attacker instanceof Robot) && !(attacker instanceof Precursor)) {
             this.setTarget(attacker);
             // Chama todos da mesma especie ao redor para atacar o agressor
             List<PrecursorVillager> kin = this.level().getEntitiesOfClass(PrecursorVillager.class,
