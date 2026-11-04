@@ -112,6 +112,7 @@ def main():
                 results.append(f"> {t}\n  {r.cmd(t)}")
             # ---- cidades futuristas de Plutao (so la): template com e sem boss
             results.append("> forceload plutao (cidade)\n  " + r.cmd("execute in sistemasolar:plutao run forceload add 192 192 270 270"))
+            results.append("> forceload plutao (cidade boss)\n  " + r.cmd("execute in sistemasolar:plutao run forceload add 392 192 470 270"))
             time.sleep(15)
             for t in [
                 "execute in sistemasolar:plutao run place template netheritesupremo:pluto_city 200 100 200",

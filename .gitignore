@@ -8,3 +8,4 @@ run/
 *.iws
 bin/
 out/
+__pycache__/
