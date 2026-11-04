@@ -163,11 +163,11 @@ def main():
                 "execute in sistemasolar:plutao run fill 85 60 80 110 100 100 minecraft:air replace netheritesupremo:satellite_portal",
             ]:
                 results.append(f"> {t}\n  {r.cmd(t)}")
+            sp = []
+            for t in ['place feature netheritesupremo:spectrite_ore 40 -20 40', 'setblock 44 100 44 netheritesupremo:spectrite_ore', 'loot spawn 0 100 0 loot netheritesupremo:blocks/spectrite_ore', 'recipe give @a netheritesupremo:spectrite_helmet']:
+                sp.append(f"> {t}\n  {r.cmd(t)}")
+            annotate("notice", "spectrite", sp)
             tests = [
-                "place feature netheritesupremo:spectrite_ore 40 -20 40",
-                "setblock 44 100 44 netheritesupremo:spectrite_ore",
-                "loot spawn 0 100 0 loot netheritesupremo:blocks/spectrite_ore",
-                "recipe give @a netheritesupremo:spectrite_helmet",
                 "execute in sistemasolar:plutao run summon netheritesupremo:aquatic_alien 96 70 90",
                 "execute in sistemasolar:plutao run summon netheritesupremo:anomalocaris 96 40 92",
                 "execute in sistemasolar:plutao run summon netheritesupremo:trilobite 98 40 92",
