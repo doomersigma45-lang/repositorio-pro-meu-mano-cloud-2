@@ -110,6 +110,39 @@ def main():
                 "execute in sistemasolar:plutao if entity @e[type=netheritesupremo:robot]",
             ]:
                 results.append(f"> {t}\n  {r.cmd(t)}")
+            # ---- cidades futuristas de Plutao (so la): template com e sem boss
+            results.append("> forceload plutao (cidade)\n  " + r.cmd("execute in sistemasolar:plutao run forceload add 192 192 270 270"))
+            time.sleep(15)
+            for t in [
+                "execute in sistemasolar:plutao run place template netheritesupremo:pluto_city 200 100 200",
+                "execute in sistemasolar:plutao run place template netheritesupremo:pluto_city_boss 400 100 200",
+                "execute in sistemasolar:plutao run fill 200 100 200 230 130 230 minecraft:air replace minecraft:sea_lantern",
+                "execute in sistemasolar:plutao run fill 200 100 200 230 130 230 minecraft:air replace minecraft:cyan_stained_glass",
+                "execute in sistemasolar:plutao run fill 225 100 225 245 125 245 minecraft:air replace minecraft:chest",
+                "execute in sistemasolar:plutao run data get block 222 106 222 LootTable",
+            ]:
+                results.append(f"> {t}\n  {r.cmd(t)}")
+            loc = r.cmd("execute in sistemasolar:plutao positioned 0 70 0 run locate biome sistemasolar:plutao_coracao_tombaugh")
+            m = re.search(r"\[(-?\d+), (?:-?\d+|~), (-?\d+)\]", loc)
+            results.append("> locate tombaugh\n  " + loc)
+            if m:
+                bx, bz = int(m.group(1)), int(m.group(2))
+                results.append("> forceload cidade natural\n  " + r.cmd(f"execute in sistemasolar:plutao run forceload add {bx-48} {bz-48} {bx+48} {bz+48}"))
+                time.sleep(20)
+                for t in [
+                    f"execute in sistemasolar:plutao run place structure netheritesupremo:pluto_city {bx} 70 {bz}",
+                    f"execute in sistemasolar:plutao run place structure netheritesupremo:pluto_city {bx+300} 70 {bz}",
+                    "place structure netheritesupremo:pluto_city 100 70 100",
+                ]:
+                    results.append(f"> {t}\n  {r.cmd(t)}")
+            for t in [
+                "execute in sistemasolar:plutao if entity @e[type=netheritesupremo:precursor,x=430,y=106,z=230,distance=..60]",
+                "execute in sistemasolar:plutao if entity @e[type=netheritesupremo:precursor,x=230,y=106,z=230,distance=..60]",
+                "execute in sistemasolar:plutao if entity @e[type=netheritesupremo:precursor_villager,x=230,y=106,z=230,distance=..60]",
+                "execute in sistemasolar:plutao if entity @e[type=netheritesupremo:robot,x=230,y=106,z=230,distance=..60]",
+                "execute in sistemasolar:plutao run kill @e[type=netheritesupremo:precursor]",
+            ]:
+                results.append(f"> {t}\n  {r.cmd(t)}")
             # ---- satelite: estrutura e viagem pelo portal para Plutao
             results.append("> forceload plutao (chegada)\n  " + r.cmd("execute in sistemasolar:plutao run forceload add 80 70 112 110"))
             for t in [

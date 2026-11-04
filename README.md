@@ -264,3 +264,9 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 - **Alienígena Aquático** (40 vida, 6 de dano): humanoide que nada e ataca como um afogado, sem tridente; dropa cristais/lascas de prismarinho e raramente um Coração do Mar.
 - **Anomalocaris** (60 vida, 8 de dano): predador do Cambriano, ataca jogadores. **Trilobita** (6 vida) e **Opabínia** (14 vida): pacíficos, fogem do jogador.
 - Todos nascem **só nos oceanos de Plutão** (dentro d'água, qualquer luz). Os modelos dos animais são feitos em código (corpo segmentado) e as texturas foram geradas por mim, então dá para trocar por texturas suas. Cada um tem ovo de geração.
+
+## Cidades futuristas de Plutão (1.20.1)
+- Estrutura **só em Plutão** (biomas Coração de Tombaugh e Terra Escura de Cthulhu), gerada pelo mod em `netheritesupremo:pluto_city`: praça com torre central de vidro e antena, 4 arranha-céus nos cantos com escadas, 8 prédios baixos, ruas com postes de luz, monotrilho elevado em anel e baús com loot (`chests/pluto_city`).
+- Moradores fixos: 4 Aldeões Precursores e 2 Robôs em todas as cidades.
+- **Boss Precursor:** em cerca de 1 a cada 3 cidades ele já nasce dentro do salão da torre central (não some sozinho).
+- As estruturas são geradas por `tools/gerar_cidade.py` (sem texturas novas, só blocos do jogo).
