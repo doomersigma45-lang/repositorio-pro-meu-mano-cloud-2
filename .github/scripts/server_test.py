@@ -111,24 +111,19 @@ def main():
             ]:
                 results.append(f"> {t}\n  {r.cmd(t)}")
             # ---- satelite: estrutura e viagem pelo portal para Plutao
+            results.append("> forceload plutao (chegada)\n  " + r.cmd("execute in sistemasolar:plutao run forceload add 80 70 112 110"))
             for t in [
                 "place structure netheritesupremo:satellite_ocean 100 70 100",
                 "place structure netheritesupremo:satellite_end 300 70 300",
-                "setblock 96 110 120 netheritesupremo:satellite_portal",
-                "summon minecraft:cow 96 110 120",
+                "setblock 96 110 90 netheritesupremo:satellite_portal",
+                "summon minecraft:cow 96.5 110 90.5 {CustomName:'\"viajante\"'}",
             ]:
                 results.append(f"> {t}\n  {r.cmd(t)}")
             time.sleep(15)
             for t in [
-                "execute in sistemasolar:plutao if entity @e[type=minecraft:cow]",
-                "execute in sistemasolar:plutao run data get entity @e[type=minecraft:cow,sort=nearest,limit=1] Pos",
-                "execute in sistemasolar:plutao run data get entity @e[type=minecraft:cow,sort=nearest,limit=1] ForgeData",
-                "execute in sistemasolar:plutao run data get entity @e[type=minecraft:cow,sort=nearest,limit=1] Age",
-                "execute in sistemasolar:plutao if entity @e[type=minecraft:cow,x=96,y=100,z=120,distance=..30]",
-                "execute in sistemasolar:plutao run kill @e[type=minecraft:cow]",
-                "execute in sistemasolar:plutao if entity @e[type=netheritesupremo:precursor_villager]",
-                "execute in minecraft:overworld if entity @e[type=minecraft:cow,x=96,y=110,z=120,distance=..40]",
-                "execute in sistemasolar:plutao run fill 0 40 0 31 100 15 minecraft:air replace netheritesupremo:satellite_portal",
+                "execute in sistemasolar:plutao if entity @e[type=minecraft:cow,name=viajante]",
+                "execute in minecraft:overworld if entity @e[type=minecraft:cow,name=viajante]",
+                "execute in sistemasolar:plutao run fill 70 40 70 125 110 125 minecraft:air replace netheritesupremo:satellite_portal",
             ]:
                 results.append(f"> {t}\n  {r.cmd(t)}")
             tests = [
