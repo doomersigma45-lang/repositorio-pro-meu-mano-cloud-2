@@ -44,29 +44,26 @@ class Lab:
                 for z in range(min(z1, z2), max(z1, z2) + 1): self.set(x, y, z, s)
 
 def stairs(c, sx, sz, bu):
-    """Escada descendo para -x do nivel com piso em y=bu ate o nivel de baixo. Ocupa x sx..sx+7, z sz..sz+2."""
+    """Escada descendo para -x, ABERTA: o buraco no piso de cima cobre a escada inteira (sem blocos no caminho),
+    com grades em volta. Ocupa x sx..sx+7, z sz..sz+2; o andar de baixo comeca em x=sx-1."""
     bl = bu - 8
-    wallm = QUARTZ
     for i in range(8):
+        x = sx + i
         for z in range(sz, sz + 3):
-            x = sx + i
-            for y in range(bl + 1, bl + 1 + i): c.set(x, y, z, QUARTZ)        # enchimento sob o degrau
+            for y in range(bl + 1, bl + 1 + i): c.set(x, y, z, QUARTZ)      # enchimento sob o degrau
             c.set(x, bl + 1 + i, z, STAIR)
-            for y in (bl + 2 + i, bl + 3 + i):
-                if y <= bu + 6: c.set(x, y, z, AIR)
-    for x in range(sx, sx + 8):
+            if i < 7:
+                for y in range(bl + 2 + i, bu + 1): c.set(x, y, z, AIR)      # abre tudo acima do degrau, ate o piso de cima
+            for y in range(bu + 1, bu + 3): c.set(x, y, z, AIR)
+    for x in range(sx, sx + 8):                                              # paredes laterais da escada (andar de baixo e borda)
         for y in range(bl + 1, bu + 1):
-            for z in (sz - 1, sz + 3):
-                if x + 0 >= sx and y <= bl + 1 + (x - sx) + 3 or y <= bl + 7: c.set(x, y, z, wallm)
-    for x in range(sx, sx + 8):                                    # paredes laterais completas no andar de baixo
-        for y in range(bl + 1, bl + 8):
-            for z in (sz - 1, sz + 3): c.set(x, y, z, wallm)
-    # grades ao redor do buraco no andar de cima
-    for x in range(sx + 4, sx + 7):
+            for z in (sz - 1, sz + 3): c.set(x, y, z, QUARTZ)
+    # grades no andar de cima: dois lados e a ponta oeste (a entrada e pelo lado leste, no degrau mais alto)
+    for x in range(sx, sx + 7):
         for y in (bu + 1, bu + 2):
             c.set(x, y, sz - 1, BARS); c.set(x, y, sz + 3, BARS)
-    for z in range(sz, sz + 3):
-        for y in (bu + 1, bu + 2): c.set(sx + 4, y, z, BARS)
+    for z in range(sz - 1, sz + 4):
+        for y in (bu + 1, bu + 2): c.set(sx - 1, y, z, BARS)
 
 STAIRS = {0: (19, 22), 1: (33, 5), 2: (4, 38), 3: (4, 5)}     # nivel de cima -> (sx, sz)
 

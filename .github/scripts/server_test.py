@@ -174,7 +174,7 @@ def main():
                       "execute if entity @e[type=netheritesupremo:netherbot,x=305,y=20,z=305,dx=47,dy=44,dz=47]",
                       "execute if entity @e[type=netheritesupremo:netherite_robot_rainbow_boss,x=305,y=20,z=305,dx=47,dy=44,dz=47]",
                       "execute in minecraft:the_nether if entity @e[type=netheritesupremo:netherite_robot_rainbow_boss,x=305,y=40,z=305,dx=47,dy=44,dz=47]",
-                      "execute positioned 305 20 305 run data get block 321 22 331 LootTable",
+                      "data get block 319 22 319 LootTable",
                       "place structure netheritesupremo:robot_lab_overworld 330 70 330",
                       "execute in minecraft:the_nether run place structure netheritesupremo:robot_lab_nether 330 70 330",
                       "loot spawn 0 100 0 loot netheritesupremo:chests/robot_lab_hard"]:

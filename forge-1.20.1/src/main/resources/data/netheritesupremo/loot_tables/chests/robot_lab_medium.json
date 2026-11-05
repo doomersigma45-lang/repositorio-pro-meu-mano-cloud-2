@@ -116,11 +116,6 @@
         },
         {
           "type": "minecraft:item",
-          "name": "netheritesupremo:ruby",
-          "weight": 3
-        },
-        {
-          "type": "minecraft:item",
           "name": "minecraft:obsidian",
           "weight": 8,
           "functions": [
