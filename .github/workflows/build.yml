@@ -76,4 +76,4 @@ jobs:
           gh release create "build-${{ github.run_number }}" dist/*.jar \
             --repo "${{ github.repository }}" \
             --title "Netherite Supremo (build ${{ github.run_number }})" \
-            --notes "Jars compilados para Forge 1.19.2 e 1.20.1."
+            --notes "COMO INSTALAR: baixe SOMENTE o jar netherite-supremo-forge-1.20.1-*.jar (o jar 1.19.2 e antigo e quase vazio, nao use). Requisitos: Minecraft 1.20.1, Forge 47.1.0 ou mais novo, Java 17. Coloque o jar na pasta mods (sem outros mods de versao diferente). Se der erro, envie o arquivo logs/latest.log ou crash-reports."

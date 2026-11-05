@@ -107,6 +107,11 @@ Não vale para mobs, nem para vazio e `/kill`. Desligue com `lethalHitProtection
 - Só um multiplicador por item. Para pegar pelo criativo: `/give @s enchanted_book{StoredEnchantments:[{id:"netheritesupremo:multiplier_8x",lvl:1s}]}`.
 - Os tetos de armadura e de resistência da armadura foram removidos para os valores multiplicados valerem.
 
+## Instalar (para amigos)
+- Use **somente** o jar `netherite-supremo-forge-1.20.1-<versão>.jar` (o do 1.19.2 está congelado e quase vazio).
+- Precisa de **Minecraft 1.20.1**, **Forge 47.1.0 ou mais novo** e **Java 17**. Coloque o jar na pasta `mods`.
+- Se o jogo fechar ou der erro, envie `logs/latest.log` (ou o arquivo em `crash-reports`) para o autor.
+
 ## Compilar
 
 ### Opção 1: GitHub Actions (sem instalar nada)
