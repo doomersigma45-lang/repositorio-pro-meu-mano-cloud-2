@@ -423,6 +423,19 @@ def main():
                       "list", "kill @e[type=netheritesupremo:netherite_knight]",
                       "kill @e[type=netheritesupremo:netherite_golem]"):
                 results.append(f"> {t}\n  {r.cmd(t)}")
+            # ---- mods incorporados (Claude Content + Vila de Ferro)
+            im = []
+            for t in ["summon netheritesupremo:mossling 40 100 40", "summon netheritesupremo:lumileu 42 100 40",
+                      "summon netheritesupremo:moss_colossus 44 100 40", "summon netheritesupremo:ash_reaper 46 100 40",
+                      "summon netheritesupremo:cinder_stalker 48 100 40", "summon netheritesupremo:guerreiro_villager 50 100 40",
+                      "summon netheritesupremo:chefe_villager 52 100 40",
+                      "give @a netheritesupremo:cinder_helmet", "give @a netheritesupremo:root_altar",
+                      "locate biome minecraft:forest"]:
+                im.append(f"> {t}\n  {r.cmd(t)}")
+            for e in ["mossling", "lumileu", "moss_colossus", "ash_reaper", "cinder_stalker", "guerreiro_villager", "chefe_villager"]:
+                im.append(f"> existe {e}\n  {r.cmd('execute if entity @e[type=netheritesupremo:' + e + ']')}")
+            r.cmd("kill @e[type=netheritesupremo:ash_reaper]"); r.cmd("kill @e[type=netheritesupremo:moss_colossus]")
+            annotate("notice", "mods incorporados", im)
             # ---- aliados alienigenas, soldados vs saqueadores/piglins, hibridos
             al = []
             for t in ["fill 18 99 18 34 99 34 minecraft:stone",

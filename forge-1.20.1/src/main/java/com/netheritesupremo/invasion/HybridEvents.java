@@ -32,7 +32,7 @@ public class HybridEvents {
                                 && v.getPersistentData().getLong(CD) <= now);
                 for (PrecursorVillager pv : parents) {
                     List<Villager> mates = level.getEntitiesOfClass(Villager.class, pv.getBoundingBox().inflate(5.0D),
-                            v -> v.isAlive() && !v.isBaby() && v.getPersistentData().getLong(CD) <= now);
+                            v -> v.getType() == net.minecraft.world.entity.EntityType.VILLAGER && v.isAlive() && !v.isBaby() && v.getPersistentData().getLong(CD) <= now);
                     if (mates.isEmpty() || level.random.nextFloat() > 0.5F) {
                         continue;
                     }

@@ -1,0 +1,6 @@
+{ "type": "minecraft:crafting_shaped", "category": "misc",
+  "pattern": ["SOS","ONO","SOS"],
+  "key": { "S": { "item": "netheritesupremo:cinder_scale" },
+           "O": { "item": "minecraft:obsidian" },
+           "N": { "item": "minecraft:nether_star" } },
+  "result": { "item": "netheritesupremo:ash_sigil" } }

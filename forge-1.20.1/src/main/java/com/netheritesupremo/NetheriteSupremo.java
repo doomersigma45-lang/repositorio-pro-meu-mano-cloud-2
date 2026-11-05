@@ -24,6 +24,8 @@ public class NetheriteSupremo {
         com.netheritesupremo.registry.ModBlocks.BLOCKS.register(modBus);
         ModItems.ITEMS.register(modBus);
         ModEnchantments.ENCHANTMENTS.register(modBus);
+        com.netheritesupremo.claudecontent.ClaudeContent.register(modBus);
+        com.netheritesupremo.viladeferro.VilaDeFerro.register(modBus);
         com.netheritesupremo.network.ModNetwork.register();
         modBus.addListener(this::commonSetup);
         modBus.addListener(this::addCreativeTabItems);

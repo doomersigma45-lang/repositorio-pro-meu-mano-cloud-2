@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [{ "type": "minecraft:item", "name": "netheritesupremo:rooted_core" }]
+    },
+    {
+      "rolls": { "min": 0, "max": 1 },
+      "entries": [{ "type": "minecraft:item", "name": "netheritesupremo:ancient_sprout" }]
+    }
+  ],
+  "random_sequence": "netheritesupremo:entities/moss_colossus"
+}
