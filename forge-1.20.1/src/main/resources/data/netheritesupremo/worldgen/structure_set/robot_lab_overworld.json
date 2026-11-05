@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "netheritesupremo:robot_lab_overworld",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 36,
+    "separation": 14,
+    "salt": 771300
+  }
+}

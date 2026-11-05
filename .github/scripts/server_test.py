@@ -163,6 +163,23 @@ def main():
                 "execute in sistemasolar:plutao run fill 85 60 80 110 100 100 minecraft:air replace netheritesupremo:satellite_portal",
             ]:
                 results.append(f"> {t}\n  {r.cmd(t)}")
+            # ---- laboratorio de robos: template nas duas dimensoes + estruturas naturais
+            lab = []
+            lab.append("> forceload lab\n  " + r.cmd("forceload add 300 300 360 360"))
+            lab.append("> forceload lab nether\n  " + r.cmd("execute in minecraft:the_nether run forceload add 300 300 360 360"))
+            time.sleep(10)
+            for t in ["place template netheritesupremo:robot_lab 305 20 305",
+                      "execute in minecraft:the_nether run place template netheritesupremo:robot_lab 305 40 305",
+                      "execute if entity @e[type=netheritesupremo:netherite_bomb_robot,x=305,y=20,z=305,dx=47,dy=44,dz=47]",
+                      "execute if entity @e[type=netheritesupremo:netherbot,x=305,y=20,z=305,dx=47,dy=44,dz=47]",
+                      "execute if entity @e[type=netheritesupremo:netherite_robot_rainbow_boss,x=305,y=20,z=305,dx=47,dy=44,dz=47]",
+                      "execute in minecraft:the_nether if entity @e[type=netheritesupremo:netherite_robot_rainbow_boss,x=305,y=40,z=305,dx=47,dy=44,dz=47]",
+                      "execute positioned 305 20 305 run data get block 321 22 331 LootTable",
+                      "place structure netheritesupremo:robot_lab_overworld 330 70 330",
+                      "execute in minecraft:the_nether run place structure netheritesupremo:robot_lab_nether 330 70 330",
+                      "loot spawn 0 100 0 loot netheritesupremo:chests/robot_lab_hard"]:
+                lab.append(f"> {t}\n  {r.cmd(t)}")
+            annotate("notice", "robot_lab", lab)
             sp = []
             placed = 0
             for x in (30, 50, 70, 90):

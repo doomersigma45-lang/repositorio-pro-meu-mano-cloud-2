@@ -280,3 +280,8 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 - **Armadura:** cada peça aumenta a vida máxima, como no mod original (capacete +4, peitoral +8, calça +6, botas +2 = **+20 de vida, 10 corações**). Com o **set completo** e a fome não zerada: Velocidade I, Força II, Resistência II e Resistência ao Fogo (renovados sozinhos, sem partículas).
 - **Espadas de Spectrite** (as duas): ao acertar, soltam uma **explosão colorida** (esfera de partículas em ciclo do arco-íris + fagulhas) que fere os outros seres em volta sem destruir blocos nem ferir você: 12 de dano em 5 blocos na espada Spectrite (special) e 8 em 4 blocos na de Diamante-Spectrite.
 - No mod original esses efeitos são ligados a uma poção própria de Resistência de Spectrite e a orbes; não portei as orbes, então usei efeitos do próprio jogo.
+
+## Laboratório de Robôs (1.20.1)
+- Estrutura grande (47x47) que aparece no **Overworld** (florestas, planícies, montanhas, desertos, etc.; não em oceano) e no **Nether**: um pavilhão na superfície com escada para **4 andares subterrâneos** de dungeon, gerada por `tools/gerar_laboratorio.py`.
+- **Andar 1 e 2 (fáceis):** só Robôs Bomba (8 e 12). **Andar 3 (médio):** 12 Netherbots. **Andar 4 (difícil):** o **Rainbow Bot** (chefe) no salão central + 6 Netherbots. Cada andar tem 4 salas, um salão em cruz e escadas em cantos opostos, então é preciso atravessar o andar.
+- Baús com loot por dificuldade (`chests/robot_lab_easy`, `_medium`, `_hard`). No Nether a entrada (pavilhão) pode estar dentro de rocha: é preciso cavar ou achar uma caverna.
