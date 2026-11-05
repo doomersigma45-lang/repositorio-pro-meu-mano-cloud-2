@@ -39,7 +39,7 @@ jobs:
           for l in (off or '').splitlines():
               if l.startswith('#') or not l.strip(): continue
               if not l.startswith(' '):
-                  m,ob=l.rstrip(':').split(' -> '); cur=ob; o2m[(ob,None)]=m
+                  m,ob=l.rstrip(':').split(' -> '); ob=ob.replace('.','/'); cur=ob; o2m[(ob,None)]=m
               else:
                   p=l.strip().split(' -> '); ob=p[1]; left=p[0]
                   name=left.split(' ')[-1].split('(')[0]
@@ -47,14 +47,14 @@ jobs:
           s2n={}; cur=None
           for l in (tsrg or '').splitlines():
               if not l.startswith('\t'):
-                  cur=l.split(' ')[0]
+                  cur=l.split(' ')[0].replace('.','/')
               else:
                   p=l.strip().split(' ')
                   obf=p[0]; srg=p[-1]
                   if srg.startswith(('m_','f_')):
                       nm=o2m.get((cur,obf))
                       if nm: s2n[srg]=nm
-          print(len(s2n))
+          print('mapped',len(s2n)); print(list(o2m.items())[:3]); print(tsrg[:300])
           rx=re.compile(r'\b[mf]_\d+_\b')
           for root in glob.glob('_port/src_*'):
               for f in glob.glob(root+'/**/*.java',recursive=True):
