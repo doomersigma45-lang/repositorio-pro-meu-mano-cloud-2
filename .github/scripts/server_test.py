@@ -423,6 +423,28 @@ def main():
                       "list", "kill @e[type=netheritesupremo:netherite_knight]",
                       "kill @e[type=netheritesupremo:netherite_golem]"):
                 results.append(f"> {t}\n  {r.cmd(t)}")
+            # ---- invasao alienigena (modo de teste: sem jogador, ondas rapidas)
+            inv = []
+            def icmd(t):
+                inv.append(f"> {t}\n  {r.cmd(t)}")
+            icmd("invasion reset")
+            icmd("invasion test 40 40")
+            time.sleep(10)
+            for ty in ("precursor_soldier", "netherite_bomb_robot", "alien_ship", "netherbot"):
+                icmd(f"execute if entity @e[type=netheritesupremo:{ty},tag=netheritesupremo_invader]")
+            icmd("invasion status")
+            time.sleep(28)
+            icmd("execute if entity @e[type=netheritesupremo:precursor,tag=netheritesupremo_invader]")
+            icmd("invasion status")
+            icmd("invasion lose")
+            icmd("execute if entity @e[tag=netheritesupremo_invader]")
+            icmd("fill 30 55 30 50 110 50 minecraft:air replace minecraft:chest")
+            icmd("invasion win")
+            icmd("invasion status")
+            icmd("invasion city 400 400")
+            icmd("execute if entity @e[type=netheritesupremo:precursor_villager,x=400,y=64,z=400,distance=..70]")
+            icmd("invasion reset")
+            annotate("notice", "invasion", inv)
             time.sleep(3)
             try:
                 r.cmd("stop")

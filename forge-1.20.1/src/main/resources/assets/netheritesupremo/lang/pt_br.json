@@ -136,5 +136,9 @@
   "item.netheritesupremo.spectrite_sword_special": "Espada de Spectrite",
   "item.netheritesupremo.spectrite_pickaxe_special": "Picareta de Spectrite",
   "item.netheritesupremo.spectrite_axe_special": "Machado de Spectrite",
-  "item.netheritesupremo.spectrite_shovel_special": "Pá de Spectrite"
+  "item.netheritesupremo.spectrite_shovel_special": "Pá de Spectrite",
+  "entity.netheritesupremo.precursor_soldier": "Soldado Precursor",
+  "entity.netheritesupremo.alien_ship": "Nave Alienígena",
+  "item.netheritesupremo.precursor_soldier_spawn_egg": "Ovo de Geração: Soldado Precursor",
+  "item.netheritesupremo.alien_ship_spawn_egg": "Ovo de Geração: Nave Alienígena"
 }

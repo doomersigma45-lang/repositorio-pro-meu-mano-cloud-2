@@ -39,7 +39,7 @@ public final class RobotLaser {
         final Vec3 beamEnd = end;
         List<LivingEntity> hit = level.getEntitiesOfClass(LivingEntity.class, new AABB(from, beamEnd).inflate(1.0D),
                 e -> e != shooter && e.isAlive() && !(e instanceof FlyingRobot) && !(e instanceof NetheriteKnight)
-                        && !(e instanceof net.minecraft.world.entity.monster.Guardian)
+                        && !(e instanceof net.minecraft.world.entity.monster.Guardian) && !(e instanceof PrecursorSoldier) && !(e instanceof AlienShip)
                         && (e == target || e instanceof Enemy)
                         && e.getBoundingBox().inflate(0.3D).clip(from, beamEnd).isPresent());
         for (LivingEntity victim : hit) {

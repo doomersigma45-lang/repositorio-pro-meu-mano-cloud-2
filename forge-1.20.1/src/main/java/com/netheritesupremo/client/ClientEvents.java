@@ -48,6 +48,9 @@ public final class ClientEvents {
         event.registerEntityRenderer(ModEntities.PRECURSOR_VILLAGER.get(), PrecursorVillagerRenderer::new);
         event.registerEntityRenderer(ModEntities.ROBOT.get(), RobotRenderer::new);
         event.registerEntityRenderer(ModEntities.AQUATIC_ALIEN.get(), AlienRenderer::new);
+        event.registerEntityRenderer(ModEntities.PRECURSOR_SOLDIER.get(), ctx -> new PlayerRobotRenderer<com.netheritesupremo.entity.PrecursorSoldier>(ctx,
+                new ResourceLocation(NetheriteSupremo.MODID, "textures/entity/precursor_soldier.png"), 1.1F));
+        event.registerEntityRenderer(ModEntities.ALIEN_SHIP.get(), SaucerRenderer::new);
         event.registerEntityRenderer(ModEntities.ANOMALOCARIS.get(), ctx -> new CambrianRenderer<com.netheritesupremo.entity.Anomalocaris>(
                 ctx, CambrianRenderer.ANOMALOCARIS_LAYER, SegmentedModel.ANOMALOCARIS, "anomalocaris", 0.9F));
         event.registerEntityRenderer(ModEntities.TRILOBITE.get(), ctx -> new CambrianRenderer<com.netheritesupremo.entity.Trilobite>(
@@ -59,6 +62,7 @@ public final class ClientEvents {
 
     @SubscribeEvent
     public static void onRegisterLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        event.registerLayerDefinition(SaucerRenderer.LAYER, SaucerModel::createLayer);
         event.registerLayerDefinition(CambrianRenderer.ANOMALOCARIS_LAYER, () -> SegmentedModel.createLayer(SegmentedModel.ANOMALOCARIS));
         event.registerLayerDefinition(CambrianRenderer.TRILOBITE_LAYER, () -> SegmentedModel.createLayer(SegmentedModel.TRILOBITE));
         event.registerLayerDefinition(CambrianRenderer.OPABINIA_LAYER, () -> SegmentedModel.createLayer(SegmentedModel.OPABINIA));

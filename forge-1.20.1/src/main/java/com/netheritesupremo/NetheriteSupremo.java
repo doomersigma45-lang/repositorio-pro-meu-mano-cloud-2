@@ -42,6 +42,8 @@ public class NetheriteSupremo {
         MinecraftForge.EVENT_BUS.register(new GauntletEvents());
         MinecraftForge.EVENT_BUS.register(new AvaritiaCompat());
         MinecraftForge.EVENT_BUS.register(new SpectriteEvents());
+        MinecraftForge.EVENT_BUS.register(new com.netheritesupremo.invasion.InvasionManager());
+        MinecraftForge.EVENT_BUS.register(new com.netheritesupremo.invasion.InvasionCommand());
         MinecraftForge.EVENT_BUS.register(new RecipeEvents());
         MinecraftForge.EVENT_BUS.register(new WeaponEvents());
         MinecraftForge.EVENT_BUS.register(new ObsidianEvents());
@@ -70,6 +72,8 @@ public class NetheriteSupremo {
             event.accept(ModItems.SAMURAI_SPAWN_EGG);
             event.accept(ModItems.THIEF_SPAWN_EGG);
             event.accept(ModItems.AQUATIC_ALIEN_SPAWN_EGG);
+            event.accept(ModItems.PRECURSOR_SOLDIER_SPAWN_EGG);
+            event.accept(ModItems.ALIEN_SHIP_SPAWN_EGG);
             event.accept(ModItems.ANOMALOCARIS_SPAWN_EGG);
             event.accept(ModItems.TRILOBITE_SPAWN_EGG);
             event.accept(ModItems.OPABINIA_SPAWN_EGG);

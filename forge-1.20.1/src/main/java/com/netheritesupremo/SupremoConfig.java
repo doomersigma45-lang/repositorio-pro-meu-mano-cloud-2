@@ -11,6 +11,7 @@ public final class SupremoConfig {
     public static final ForgeConfigSpec.DoubleValue RAINBOW_EXPLOSION_POWER;
     public static final ForgeConfigSpec.BooleanValue RAINBOW_DESTROYS_BLOCKS;
     public static final ForgeConfigSpec.BooleanValue PRECURSOR_DESTROYS_BLOCKS;
+    public static final ForgeConfigSpec.BooleanValue INVASION_ENABLED;
 
     static {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
@@ -43,6 +44,10 @@ public final class SupremoConfig {
                 .comment("true = o Precursor quebra qualquer bloco por onde passa e suas explosoes destroem blocos.",
                         "false = so causa dano.")
                 .define("precursorDestroysBlocks", true);
+        INVASION_ENABLED = builder
+                .comment("true = a invasao alienigena pode acontecer (gatilhos: matar guardioes, entrar em Plutao, matar aldeoes Precursores ou o boss Precursor).",
+                        "false = desliga o sistema de invasao.")
+                .define("invasionEnabled", true);
         SPEC = builder.build();
     }
 

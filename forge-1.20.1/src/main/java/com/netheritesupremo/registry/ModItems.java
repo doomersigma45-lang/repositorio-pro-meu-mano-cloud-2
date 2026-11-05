@@ -319,6 +319,14 @@ public final class ModItems {
     public static final RegistryObject<Item> SPECTRITE_SHOVEL_SPECIAL = ITEMS.register("spectrite_shovel_special",
             () -> new net.minecraft.world.item.ShovelItem(com.netheritesupremo.item.PerfectSpectriteTier.INSTANCE, 1.5F, -3.0F, new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC)));
 
+    public static final RegistryObject<Item> PRECURSOR_SOLDIER_SPAWN_EGG = ITEMS.register(
+            "precursor_soldier_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.PRECURSOR_SOLDIER, 0x2A1F5C, 0xFF7A2A, new Item.Properties()));
+
+    public static final RegistryObject<Item> ALIEN_SHIP_SPAWN_EGG = ITEMS.register(
+            "alien_ship_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.ALIEN_SHIP, 0x6B7480, 0xFF3344, new Item.Properties()));
+
     private ModItems() {
     }
 }

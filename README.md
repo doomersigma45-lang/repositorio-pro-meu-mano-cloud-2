@@ -285,3 +285,11 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 - Estrutura grande (47x47) que aparece no **Overworld** (florestas, planícies, montanhas, desertos, etc.; não em oceano) e no **Nether**: um pavilhão na superfície com escada para **4 andares subterrâneos** de dungeon, gerada por `tools/gerar_laboratorio.py`.
 - **Andar 1 e 2 (fáceis):** só Robôs Bomba (8 e 12). **Andar 3 (médio):** 12 Netherbots. **Andar 4 (difícil):** o **Rainbow Bot** (chefe) no salão central + 6 Netherbots. Cada andar tem 4 salas, um salão em cruz e escadas em cantos opostos, então é preciso atravessar o andar.
 - Baús com loot por dificuldade (`chests/robot_lab_easy`, `_medium`, `_hard`). No Nether a entrada (pavilhão) pode estar dentro de rocha: é preciso cavar ou achar uma caverna.
+
+## Invasão alienígena (1.20.1)
+- **Gatilhos** (chance de começar uma invasão): matar um **Guardião ou Guardião Ancião 10%**, **entrar em Plutão 30%**, matar um **Aldeão Precursor 60%**, matar um **boss Precursor 100%**. Ao sortear, o jogador recebe um aviso e a invasão começa em 30 segundos (se ele estiver no Overworld; senão espera ele voltar).
+- **A invasão** tem 6 ondas de **robôs hostis reforçados** (Robôs Bomba e Netherbots com o dobro de vida e +50% de dano), **Soldados Precursores** (infantaria que atira laser) e **Naves Espaciais** (até 3, orbitam o alvo e disparam lasers explosivos que destroem casas, respeitando `mobGriefing`). Ao fim das ondas surge o **boss Precursor**.
+- **Alienígenas vencem** se matarem **todos os aldeões da vila** (os que estavam num raio de 80 blocos quando a invasão começou) **e** matarem o jogador **3 vezes** durante a invasão. Aí passam a surgir **Aldeões Precursores nas vilas** e **cidades futuristas** (até 5, uma por vez, a 180-280 blocos do jogador).
+- **Se perderem** (boss morto ou tempo esgotado): os invasores somem e deixam um **baú de oferta de paz** (netherite, maçãs douradas encantadas, totens, estrelas do Nether, armadura/espada/picareta de netherite encantadas, etc.) perto da casa do jogador (cama, ou onde a invasão começou).
+- Soldados e naves têm ovo de geração. O boss da invasão não dispara um novo sorteio enquanto ela estiver ativa. Desligue tudo com `invasionEnabled=false` na config.
+- Comandos de operador: `/invasion start|stop|win|lose|reset|status|city x z|peace x y z|test x z`.

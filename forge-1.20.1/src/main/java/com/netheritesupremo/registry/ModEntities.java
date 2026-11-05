@@ -107,6 +107,24 @@ public final class ModEntities {
                     .updateInterval(2)
                     .build("netherite_robot_rainbow_boss"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.entity.PrecursorSoldier>> PRECURSOR_SOLDIER = ENTITIES.register(
+            "precursor_soldier",
+            () -> EntityType.Builder.of(com.netheritesupremo.entity.PrecursorSoldier::new, MobCategory.MONSTER)
+                    .sized(0.7F, 2.1F)
+                    .fireImmune()
+                    .clientTrackingRange(10)
+                    .updateInterval(2)
+                    .build("precursor_soldier"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.entity.AlienShip>> ALIEN_SHIP = ENTITIES.register(
+            "alien_ship",
+            () -> EntityType.Builder.of(com.netheritesupremo.entity.AlienShip::new, MobCategory.MONSTER)
+                    .sized(3.0F, 1.2F)
+                    .fireImmune()
+                    .clientTrackingRange(16)
+                    .updateInterval(2)
+                    .build("alien_ship"));
+
     public static final RegistryObject<EntityType<Precursor>> PRECURSOR = ENTITIES.register(
             "precursor",
             () -> EntityType.Builder.of(Precursor::new, MobCategory.MONSTER)

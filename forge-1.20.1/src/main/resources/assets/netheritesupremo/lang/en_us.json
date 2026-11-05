@@ -136,5 +136,9 @@
   "item.netheritesupremo.spectrite_sword_special": "Spectrite Sword",
   "item.netheritesupremo.spectrite_pickaxe_special": "Spectrite Pickaxe",
   "item.netheritesupremo.spectrite_axe_special": "Spectrite Axe",
-  "item.netheritesupremo.spectrite_shovel_special": "Spectrite Shovel"
+  "item.netheritesupremo.spectrite_shovel_special": "Spectrite Shovel",
+  "entity.netheritesupremo.precursor_soldier": "Precursor Soldier",
+  "entity.netheritesupremo.alien_ship": "Alien Spaceship",
+  "item.netheritesupremo.precursor_soldier_spawn_egg": "Precursor Soldier Spawn Egg",
+  "item.netheritesupremo.alien_ship_spawn_egg": "Alien Spaceship Spawn Egg"
 }
