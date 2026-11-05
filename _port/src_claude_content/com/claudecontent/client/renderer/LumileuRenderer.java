@@ -24,7 +24,7 @@ extends MobRenderer<LumileuEntity, PigModel<LumileuEntity>> {
     private static final ResourceLocation TEXTURE = new ResourceLocation("claude_content", "textures/entity/lumileu.png");
 
     public LumileuRenderer(EntityRendererProvider.Context context) {
-        super(context, (EntityModel)new PigModel(context.m_174023_(ModelLayers.f_171205_)), 0.35f);
+        super(context, (EntityModel)new PigModel(context.bakeLayer(ModelLayers.PIG)), 0.35f);
     }
 
     public ResourceLocation getTextureLocation(LumileuEntity entity) {

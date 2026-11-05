@@ -37,13 +37,13 @@ public final class VillageSeeder {
 
     public static void trySeed(ServerLevel level, ServerPlayer player) {
         boolean hasChief;
-        List villagers = level.m_6443_(Villager.class, player.m_20191_().m_82400_(64.0), v -> v.m_6095_() == EntityType.f_20492_ && v.m_6084_() && !v.m_6162_());
+        List villagers = level.lambda$getNearbyEntities$1(Villager.class, player.getBoundingBox().inflate(64.0), v -> v.getType() == EntityType.VILLAGER && v.isAlive() && !v.isBaby());
         if (villagers.size() < 3) {
             return;
         }
         Villager anchor = (Villager)villagers.get(0);
-        BlockPos center = anchor.m_20183_();
-        if (!level.m_8802_(center)) {
+        BlockPos center = anchor.blockPosition();
+        if (!level.lambda$onBlockStateChange$17(center)) {
             return;
         }
         VillageSeedData data = VillageSeedData.get(level);
@@ -51,25 +51,25 @@ public final class VillageSeeder {
             return;
         }
         data.add(center);
-        boolean bl = hasChief = !level.m_45976_(ChiefVillager.class, new AABB(center).m_82400_(128.0)).isEmpty();
+        boolean bl = hasChief = !level.lambda$getNearbyEntities$1(ChiefVillager.class, new AABB(center).inflate(128.0)).isEmpty();
         if (!hasChief) {
             VillageSeeder.spawn(level, (EntityType<? extends FighterVillager>)((EntityType)VilaDeFerro.CHIEF.get()), anchor);
         }
         int fighters = Math.min(4, Math.max(2, villagers.size() / 3));
         for (int i = 0; i < fighters; ++i) {
-            Villager near = (Villager)villagers.get(level.f_46441_.m_188503_(villagers.size()));
+            Villager near = (Villager)villagers.get(level.random.lambda$static$0(villagers.size()));
             VillageSeeder.spawn(level, (EntityType<? extends FighterVillager>)((EntityType)VilaDeFerro.FIGHTER.get()), near);
         }
     }
 
     private static void spawn(ServerLevel level, EntityType<? extends FighterVillager> type, Villager near) {
-        FighterVillager mob = (FighterVillager)type.m_20615_((Level)level);
+        FighterVillager mob = (FighterVillager)type.lambda$appendCustomNameConfig$2((Level)level);
         if (mob == null) {
             return;
         }
-        mob.m_7678_(near.m_20185_(), near.m_20186_(), near.m_20189_(), level.f_46441_.m_188501_() * 360.0f, 0.0f);
-        mob.m_6518_((ServerLevelAccessor)level, level.m_6436_(mob.m_20183_()), MobSpawnType.STRUCTURE, null, null);
-        level.m_7967_((Entity)mob);
+        mob.moveTo(near.getX(), near.getY(), near.getZ(), level.random.nextFloat() * 360.0f, 0.0f);
+        mob.access$000((ServerLevelAccessor)level, level.getCurrentDifficultyAt(mob.blockPosition()), MobSpawnType.STRUCTURE, null, null);
+        level.addFreshEntity((Entity)mob);
     }
 }
 

@@ -23,11 +23,11 @@ extends MobRenderer<MossColossusEntity, ColossusModel<MossColossusEntity>> {
     private static final ResourceLocation TEXTURE = new ResourceLocation("claude_content", "textures/entity/moss_colossus.png");
 
     public MossColossusRenderer(EntityRendererProvider.Context context) {
-        super(context, new ColossusModel(context.m_174023_(ModelLayers.f_171192_)), 0.8f);
+        super(context, new ColossusModel(context.bakeLayer(ModelLayers.IRON_GOLEM)), 0.8f);
     }
 
     protected void scale(MossColossusEntity entity, PoseStack poseStack, float partialTick) {
-        poseStack.m_85841_(1.25f, 1.25f, 1.25f);
+        poseStack.popPose(1.25f, 1.25f, 1.25f);
     }
 
     public ResourceLocation getTextureLocation(MossColossusEntity entity) {

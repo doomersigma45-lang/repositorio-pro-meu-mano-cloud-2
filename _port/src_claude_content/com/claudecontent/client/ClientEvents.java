@@ -36,7 +36,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 public final class ClientEvents {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
-        event.enqueueWork(() -> ItemBlockRenderTypes.setRenderLayer((Block)((Block)ModBlocks.ANCIENT_SPROUT.get()), (RenderType)RenderType.m_110463_()));
+        event.enqueueWork(() -> ItemBlockRenderTypes.setRenderLayer((Block)((Block)ModBlocks.ANCIENT_SPROUT.get()), (RenderType)RenderType.lambda$static$3()));
     }
 
     @SubscribeEvent

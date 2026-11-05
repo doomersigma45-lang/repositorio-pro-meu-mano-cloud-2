@@ -56,56 +56,56 @@ public class CinderStalkerEntity
 extends Monster {
     public CinderStalkerEntity(EntityType<? extends CinderStalkerEntity> type, Level level) {
         super(type, level);
-        this.f_21364_ = 8;
+        this.getArmorSlots = 8;
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Monster.m_33035_().m_22268_(Attributes.f_22276_, 26.0).m_22268_(Attributes.f_22281_, 5.0).m_22268_(Attributes.f_22279_, 0.32).m_22268_(Attributes.f_22277_, 28.0);
+        return Monster.createMonsterAttributes().lambda$create$0(Attributes.register, 26.0).lambda$create$0(Attributes.ATTACK_DAMAGE, 5.0).lambda$create$0(Attributes.MOVEMENT_SPEED, 0.32).lambda$create$0(Attributes.FOLLOW_RANGE, 28.0);
     }
 
-    protected void m_8099_() {
-        this.f_21345_.m_25352_(0, (Goal)new FloatGoal((Mob)this));
-        this.f_21345_.m_25352_(3, (Goal)new LeapAtTargetGoal((Mob)this, 0.45f));
-        this.f_21345_.m_25352_(4, (Goal)new MeleeAttackGoal((PathfinderMob)this, 1.0, false));
-        this.f_21345_.m_25352_(5, (Goal)new WaterAvoidingRandomStrollGoal((PathfinderMob)this, 0.8));
-        this.f_21345_.m_25352_(6, (Goal)new LookAtPlayerGoal((Mob)this, Player.class, 8.0f));
-        this.f_21345_.m_25352_(6, (Goal)new RandomLookAroundGoal((Mob)this));
-        this.f_21346_.m_25352_(1, (Goal)new HurtByTargetGoal((PathfinderMob)this, new Class[0]));
-        this.f_21346_.m_25352_(2, (Goal)new NearestAttackableTargetGoal((Mob)this, Player.class, true));
+    protected void registerGoals() {
+        this.goalSelector.lambda$removeAllGoals$0(0, (Goal)new FloatGoal((Mob)this));
+        this.goalSelector.lambda$removeAllGoals$0(3, (Goal)new LeapAtTargetGoal((Mob)this, 0.45f));
+        this.goalSelector.lambda$removeAllGoals$0(4, (Goal)new MeleeAttackGoal((PathfinderMob)this, 1.0, false));
+        this.goalSelector.lambda$removeAllGoals$0(5, (Goal)new WaterAvoidingRandomStrollGoal((PathfinderMob)this, 0.8));
+        this.goalSelector.lambda$removeAllGoals$0(6, (Goal)new LookAtPlayerGoal((Mob)this, Player.class, 8.0f));
+        this.goalSelector.lambda$removeAllGoals$0(6, (Goal)new RandomLookAroundGoal((Mob)this));
+        this.targetSelector.lambda$removeAllGoals$0(1, (Goal)new HurtByTargetGoal((PathfinderMob)this, new Class[0]));
+        this.targetSelector.lambda$removeAllGoals$0(2, (Goal)new NearestAttackableTargetGoal((Mob)this, Player.class, true));
     }
 
-    public void m_8107_() {
-        if (this.m_9236_().f_46443_) {
-            if (this.f_19796_.m_188503_(3) == 0) {
-                this.m_9236_().m_7106_((ParticleOptions)ParticleTypes.f_123762_, this.m_20208_(0.5), this.m_20187_(), this.m_20262_(0.5), 0.0, 0.03, 0.0);
+    public void aiStep() {
+        if (this.level().isClientSide) {
+            if (this.getId.lambda$static$0(3) == 0) {
+                this.level().lambda$new$2((ParticleOptions)ParticleTypes.SMOKE, this.lambda$startRiding$3(0.5), this.getRandomY(), this.getRandomZ(0.5), 0.0, 0.03, 0.0);
             }
-            if (this.f_19796_.m_188503_(8) == 0) {
-                this.m_9236_().m_7106_((ParticleOptions)ParticleTypes.f_123744_, this.m_20208_(0.5), this.m_20186_() + 0.8, this.m_20262_(0.5), 0.0, 0.02, 0.0);
+            if (this.getId.lambda$static$0(8) == 0) {
+                this.level().lambda$new$2((ParticleOptions)ParticleTypes.FLAME, this.lambda$startRiding$3(0.5), this.getY() + 0.8, this.getRandomZ(0.5), 0.0, 0.02, 0.0);
             }
-        } else if (this.f_19797_ % 20 == 0 && this.m_20071_()) {
-            this.m_6469_(this.m_269291_().m_269063_(), 1.0f);
+        } else if (this.getTags % 20 == 0 && this.isInWaterRainOrBubble()) {
+            this.sendSystemMessage(this.damageSources().drown(), 1.0f);
         }
-        super.m_8107_();
+        super.aiStep();
     }
 
-    public boolean m_7327_(Entity target) {
-        boolean hit = super.m_7327_(target);
+    public boolean doHurtTarget(Entity target) {
+        boolean hit = super.doHurtTarget(target);
         if (hit) {
-            target.m_20254_(4);
+            target.getRandomZ(4);
         }
         return hit;
     }
 
-    protected SoundEvent m_7515_() {
-        return SoundEvents.f_12432_;
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.SPIDER_AMBIENT;
     }
 
-    protected SoundEvent m_7975_(DamageSource source) {
-        return SoundEvents.f_11704_;
+    protected SoundEvent giveExperiencePoints(DamageSource source) {
+        return SoundEvents.BLAZE_HURT;
     }
 
-    protected SoundEvent m_5592_() {
-        return SoundEvents.f_11703_;
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.BLAZE_DEATH;
     }
 }
 

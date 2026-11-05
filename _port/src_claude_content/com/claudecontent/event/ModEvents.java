@@ -36,18 +36,18 @@ import net.minecraftforge.fml.common.Mod;
 public final class ModEvents {
     @SubscribeEvent
     public static void onAttributes(EntityAttributeCreationEvent event) {
-        event.put((EntityType)ModEntities.ASH_REAPER.get(), AshReaperEntity.createAttributes().m_22265_());
-        event.put((EntityType)ModEntities.CINDER_STALKER.get(), CinderStalkerEntity.createAttributes().m_22265_());
-        event.put((EntityType)ModEntities.MOSSLING.get(), MosslingEntity.createAttributes().m_22265_());
-        event.put((EntityType)ModEntities.MOSS_COLOSSUS.get(), MossColossusEntity.createAttributes().m_22265_());
-        event.put((EntityType)ModEntities.LUMILEU.get(), LumileuEntity.createAttributes().m_22265_());
+        event.put((EntityType)ModEntities.ASH_REAPER.get(), AshReaperEntity.createAttributes().lambda$create$0());
+        event.put((EntityType)ModEntities.CINDER_STALKER.get(), CinderStalkerEntity.createAttributes().lambda$create$0());
+        event.put((EntityType)ModEntities.MOSSLING.get(), MosslingEntity.createAttributes().lambda$create$0());
+        event.put((EntityType)ModEntities.MOSS_COLOSSUS.get(), MossColossusEntity.createAttributes().lambda$create$0());
+        event.put((EntityType)ModEntities.LUMILEU.get(), LumileuEntity.createAttributes().lambda$create$0());
     }
 
     @SubscribeEvent
     public static void onSpawnPlacements(SpawnPlacementRegisterEvent event) {
-        event.register((EntityType)ModEntities.CINDER_STALKER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::m_219019_, SpawnPlacementRegisterEvent.Operation.OR);
-        event.register((EntityType)ModEntities.MOSSLING.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::m_217057_, SpawnPlacementRegisterEvent.Operation.OR);
-        event.register((EntityType)ModEntities.LUMILEU.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::m_217057_, SpawnPlacementRegisterEvent.Operation.OR);
+        event.register((EntityType)ModEntities.CINDER_STALKER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
+        event.register((EntityType)ModEntities.MOSSLING.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::lambda$removeFreeWill$3, SpawnPlacementRegisterEvent.Operation.OR);
+        event.register((EntityType)ModEntities.LUMILEU.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::lambda$removeFreeWill$3, SpawnPlacementRegisterEvent.Operation.OR);
     }
 
     private ModEvents() {

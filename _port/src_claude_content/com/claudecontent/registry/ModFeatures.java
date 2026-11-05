@@ -20,7 +20,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
 public final class ModFeatures {
-    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create((ResourceKey)Registries.f_256833_, (String)"claude_content");
+    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create((ResourceKey)Registries.FEATURE, (String)"claude_content");
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> ROOTS_SANCTUARY = FEATURES.register("roots_sanctuary", RootsSanctuaryFeature::new);
 
     private ModFeatures() {

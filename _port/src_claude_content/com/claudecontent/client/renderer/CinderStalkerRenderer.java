@@ -24,7 +24,7 @@ extends MobRenderer<CinderStalkerEntity, SpiderModel<CinderStalkerEntity>> {
     private static final ResourceLocation TEXTURE = new ResourceLocation("claude_content", "textures/entity/cinder_stalker.png");
 
     public CinderStalkerRenderer(EntityRendererProvider.Context context) {
-        super(context, (EntityModel)new SpiderModel(context.m_174023_(ModelLayers.f_171245_)), 0.8f);
+        super(context, (EntityModel)new SpiderModel(context.bakeLayer(ModelLayers.SPIDER)), 0.8f);
     }
 
     public ResourceLocation getTextureLocation(CinderStalkerEntity entity) {

@@ -82,40 +82,40 @@ extends FighterVillager {
 
     public ChiefVillager(EntityType<? extends Villager> type, Level level) {
         super(type, level);
-        this.m_6593_((Component)Component.m_237115_((String)"entity.viladeferro.chefe_villager"));
-        this.m_20340_(true);
+        this.setCustomName((Component)Component.translatable((String)"entity.viladeferro.chefe_villager"));
+        this.teleportToWithTicket(true);
     }
 
     public static AttributeSupplier.Builder createChiefAttributes() {
-        return ChiefVillager.createFighterAttributes().m_22268_(Attributes.f_22276_, 80.0).m_22268_(Attributes.f_22281_, 9.0).m_22268_(Attributes.f_22278_, 0.5);
+        return ChiefVillager.createFighterAttributes().lambda$create$0(Attributes.register, 80.0).lambda$create$0(Attributes.ATTACK_DAMAGE, 9.0).lambda$create$0(Attributes.KNOCKBACK_RESISTANCE, 0.5);
     }
 
-    public void m_8107_() {
-        super.m_8107_();
-        if (this.m_9236_().f_46443_) {
+    public void aiStep() {
+        super.aiStep();
+        if (this.level().isClientSide) {
             this.spawnAura();
         }
     }
 
     private void spawnAura() {
-        boolean enraged = this.m_21023_(MobEffects.f_19600_);
-        double angle = (double)this.f_19797_ * 0.35;
+        boolean enraged = this.lambda$addAdditionalSaveData$1(MobEffects.DAMAGE_BOOST);
+        double angle = (double)this.getTags * 0.35;
         for (int i = 0; i < 2; ++i) {
             double a = angle + Math.PI * (double)i;
-            double y = this.m_20186_() + 0.2 + (double)((this.f_19797_ + i * 10) % 40) / 40.0 * (double)this.m_20206_();
-            double x = this.m_20185_() + Math.cos(a) * 0.85;
-            double z = this.m_20189_() + Math.sin(a) * 0.85;
-            this.m_9236_().m_7106_((ParticleOptions)(enraged ? ParticleTypes.f_123745_ : ParticleTypes.f_123810_), x, y, z, 0.0, 0.02, 0.0);
+            double y = this.getY() + 0.2 + (double)((this.getTags + i * 10) % 40) / 40.0 * (double)this.getBbHeight();
+            double x = this.getX() + Math.cos(a) * 0.85;
+            double z = this.getZ() + Math.sin(a) * 0.85;
+            this.level().lambda$new$2((ParticleOptions)(enraged ? ParticleTypes.SOUL_FIRE_FLAME : ParticleTypes.END_ROD), x, y, z, 0.0, 0.02, 0.0);
         }
-        if (enraged && this.f_19797_ % 4 == 0) {
-            this.m_9236_().m_7106_((ParticleOptions)ParticleTypes.f_123744_, this.m_20208_(0.6), this.m_20187_(), this.m_20262_(0.6), 0.0, 0.03, 0.0);
+        if (enraged && this.getTags % 4 == 0) {
+            this.level().lambda$new$2((ParticleOptions)ParticleTypes.FLAME, this.lambda$startRiding$3(0.6), this.getRandomY(), this.getRandomZ(0.6), 0.0, 0.03, 0.0);
         }
     }
 
-    public void m_8119_() {
+    public void lerpMotion() {
         Level level;
-        super.m_8119_();
-        if (this.m_9236_().f_46443_ || !((level = this.m_9236_()) instanceof ServerLevel)) {
+        super.lerpMotion();
+        if (this.level().isClientSide || !((level = this.level()) instanceof ServerLevel)) {
             return;
         }
         ServerLevel serverLevel = (ServerLevel)level;
@@ -124,86 +124,86 @@ extends FighterVillager {
     }
 
     private void tickTotem() {
-        if (this.hasTotem && !this.m_21206_().m_150930_(Items.f_42747_)) {
+        if (this.hasTotem && !this.getOffhandItem().lambda$static$0(Items.TOTEM_OF_UNDYING)) {
             this.hasTotem = false;
             this.totemUsed = true;
-            this.m_7292_(new MobEffectInstance(MobEffects.f_19600_, -1, 1, false, true));
-            this.m_7292_(new MobEffectInstance(MobEffects.f_19606_, -1, 0, false, true));
-            this.m_7292_(new MobEffectInstance(MobEffects.f_19605_, 300, 2, false, true));
+            this.getStandingEyeHeight(new MobEffectInstance(MobEffects.DAMAGE_BOOST, -1, 1, false, true));
+            this.getStandingEyeHeight(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, -1, 0, false, true));
+            this.getStandingEyeHeight(new MobEffectInstance(MobEffects.REGENERATION, 300, 2, false, true));
         }
     }
 
     private void tickSummon(ServerLevel serverLevel) {
         IronGolem golem;
-        LivingEntity target = this.m_5448_();
-        if (target == null || !target.m_6084_()) {
+        LivingEntity target = this.getTarget();
+        if (target == null || !target.isAlive()) {
             return;
         }
         if (--this.summonCooldown > 0) {
             return;
         }
         this.summonCooldown = 180;
-        long nearby = serverLevel.m_6443_(FighterVillager.class, this.m_20191_().m_82400_(24.0), mob -> mob != this).size();
+        long nearby = serverLevel.lambda$getNearbyEntities$1(FighterVillager.class, this.getBoundingBox().inflate(24.0), mob -> mob != this).size();
         int amount = (int)Math.max(0L, Math.min(3L, 6L - nearby));
         for (int i = 0; i < amount; ++i) {
-            FighterVillager ally = (FighterVillager)((EntityType)VilaDeFerro.FIGHTER.get()).m_20615_((Level)serverLevel);
+            FighterVillager ally = (FighterVillager)((EntityType)VilaDeFerro.FIGHTER.get()).lambda$appendCustomNameConfig$2((Level)serverLevel);
             if (ally == null) continue;
-            double angle = Math.PI * 2 * (double)i / (double)Math.max(1, amount) + this.f_19796_.m_188500_() * 0.4;
-            ally.m_7678_(this.m_20185_() + Math.cos(angle) * 2.5, this.m_20186_(), this.m_20189_() + Math.sin(angle) * 2.5, this.f_19796_.m_188501_() * 360.0f, 0.0f);
-            ally.m_6518_((ServerLevelAccessor)serverLevel, serverLevel.m_6436_(ally.m_20183_()), MobSpawnType.EVENT, null, null);
+            double angle = Math.PI * 2 * (double)i / (double)Math.max(1, amount) + this.getId.nextDouble() * 0.4;
+            ally.moveTo(this.getX() + Math.cos(angle) * 2.5, this.getY(), this.getZ() + Math.sin(angle) * 2.5, this.getId.nextFloat() * 360.0f, 0.0f);
+            ally.access$000((ServerLevelAccessor)serverLevel, serverLevel.getCurrentDifficultyAt(ally.blockPosition()), MobSpawnType.EVENT, null, null);
             ally.setTier(Tier.AGGRESSIVE);
-            ally.m_6710_(target);
-            serverLevel.m_7967_((Entity)ally);
+            ally.setTarget(target);
+            serverLevel.addFreshEntity((Entity)ally);
         }
-        long golems = serverLevel.m_6443_(IronGolem.class, this.m_20191_().m_82400_(24.0), g -> Tier.of((Entity)g) == Tier.AGGRESSIVE).size();
-        if (golems < 2L && (golem = (IronGolem)EntityType.f_20460_.m_20615_((Level)serverLevel)) != null) {
-            double angle = this.f_19796_.m_188500_() * Math.PI * 2.0;
-            golem.m_7678_(this.m_20185_() + Math.cos(angle) * 3.0, this.m_20186_(), this.m_20189_() + Math.sin(angle) * 3.0, this.f_19796_.m_188501_() * 360.0f, 0.0f);
+        long golems = serverLevel.lambda$getNearbyEntities$1(IronGolem.class, this.getBoundingBox().inflate(24.0), g -> Tier.of((Entity)g) == Tier.AGGRESSIVE).size();
+        if (golems < 2L && (golem = (IronGolem)EntityType.IRON_GOLEM.lambda$appendCustomNameConfig$2((Level)serverLevel)) != null) {
+            double angle = this.getId.nextDouble() * Math.PI * 2.0;
+            golem.moveTo(this.getX() + Math.cos(angle) * 3.0, this.getY(), this.getZ() + Math.sin(angle) * 3.0, this.getId.nextFloat() * 360.0f, 0.0f);
             Tier.set(golem, Tier.AGGRESSIVE);
-            golem.m_6710_(target);
+            golem.setTarget(target);
             if (target instanceof Player) {
-                golem.m_6925_(target.m_20148_());
-                golem.m_6825_();
+                golem.lambda$alertOthers$3(target.getUUID());
+                golem.lambda$alertOthers$1();
             }
-            serverLevel.m_7967_((Entity)golem);
+            serverLevel.addFreshEntity((Entity)golem);
         }
     }
 
     @Override
-    public SpawnGroupData m_6518_(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData data, @Nullable CompoundTag tag) {
-        SpawnGroupData result = super.m_6518_(level, difficulty, reason, data, tag);
-        this.m_8061_(EquipmentSlot.MAINHAND, new ItemStack((ItemLike)Items.f_42391_));
-        this.m_8061_(EquipmentSlot.OFFHAND, new ItemStack((ItemLike)Items.f_42747_));
-        this.m_8061_(EquipmentSlot.HEAD, new ItemStack((ItemLike)Items.f_42472_));
-        this.m_8061_(EquipmentSlot.CHEST, new ItemStack((ItemLike)Items.f_42473_));
-        this.m_8061_(EquipmentSlot.LEGS, new ItemStack((ItemLike)Items.f_42474_));
-        this.m_8061_(EquipmentSlot.FEET, new ItemStack((ItemLike)Items.f_42475_));
+    public SpawnGroupData access$000(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData data, @Nullable CompoundTag tag) {
+        SpawnGroupData result = super.access$000(level, difficulty, reason, data, tag);
+        this.lambda$addAdditionalSaveData$2(EquipmentSlot.MAINHAND, new ItemStack((ItemLike)Items.DIAMOND_AXE));
+        this.lambda$addAdditionalSaveData$2(EquipmentSlot.OFFHAND, new ItemStack((ItemLike)Items.TOTEM_OF_UNDYING));
+        this.lambda$addAdditionalSaveData$2(EquipmentSlot.HEAD, new ItemStack((ItemLike)Items.DIAMOND_HELMET));
+        this.lambda$addAdditionalSaveData$2(EquipmentSlot.CHEST, new ItemStack((ItemLike)Items.DIAMOND_CHESTPLATE));
+        this.lambda$addAdditionalSaveData$2(EquipmentSlot.LEGS, new ItemStack((ItemLike)Items.DIAMOND_LEGGINGS));
+        this.lambda$addAdditionalSaveData$2(EquipmentSlot.FEET, new ItemStack((ItemLike)Items.DIAMOND_BOOTS));
         for (EquipmentSlot slot : EquipmentSlot.values()) {
-            this.m_21409_(slot, 0.0f);
+            this.lambda$removeFreeWill$3(slot, 0.0f);
         }
         this.hasTotem = true;
         return result;
     }
 
-    public void m_6667_(DamageSource source) {
+    public void access$000(DamageSource source) {
         Level level;
-        boolean alreadyDead = this.f_20890_ || this.m_213877_();
-        super.m_6667_(source);
-        if (alreadyDead || !((level = this.m_9236_()) instanceof ServerLevel)) {
+        boolean alreadyDead = this.dead || this.isRemoved();
+        super.access$000(source);
+        if (alreadyDead || !((level = this.level()) instanceof ServerLevel)) {
             return;
         }
         ServerLevel serverLevel = (ServerLevel)level;
         this.dropGoodLoot();
         ServerPlayer killer = null;
-        Entity entity = source.m_7639_();
+        Entity entity = source.getEntity();
         if (entity instanceof ServerPlayer) {
             ServerPlayer p;
             killer = p = (ServerPlayer)entity;
         } else {
-            entity = this.f_20888_;
+            entity = this.lastHurtByPlayer;
             if (entity instanceof ServerPlayer) {
                 ServerPlayer p2 = (ServerPlayer)entity;
-                if (this.f_20889_ > 0) {
+                if (this.lastHurtByPlayerTime > 0) {
                     killer = p2;
                 }
             }
@@ -211,48 +211,48 @@ extends FighterVillager {
         if (killer == null) {
             return;
         }
-        Advancement advancement = serverLevel.m_7654_().m_129889_().m_136041_(new ResourceLocation("viladeferro", "derrotar_chefe"));
+        Advancement advancement = serverLevel.getServer().getAdvancements().lambda$apply$0(new ResourceLocation("viladeferro", "derrotar_chefe"));
         if (advancement != null) {
-            killer.m_8960_().m_135988_(advancement, "derrotado");
+            killer.getAdvancements().lambda$load$0(advancement, "derrotado");
         }
-        ItemStack chest = new ItemStack((ItemLike)Items.f_42473_);
-        chest.m_41663_(Enchantments.f_44965_, 4);
-        chest.m_41663_(Enchantments.f_44986_, 3);
-        chest.m_41663_(Enchantments.f_44962_, 1);
-        this.m_19983_(chest);
-        ChiefCub cub = (ChiefCub)((EntityType)VilaDeFerro.CHIEF_CUB.get()).m_20615_((Level)serverLevel);
+        ItemStack chest = new ItemStack((ItemLike)Items.DIAMOND_CHESTPLATE);
+        chest.lambda$static$0(Enchantments.register, 4);
+        chest.lambda$static$0(Enchantments.UNBREAKING, 3);
+        chest.lambda$static$0(Enchantments.MENDING, 1);
+        this.lambda$teleportPassengers$13(chest);
+        ChiefCub cub = (ChiefCub)((EntityType)VilaDeFerro.CHIEF_CUB.get()).lambda$appendCustomNameConfig$2((Level)serverLevel);
         if (cub != null) {
-            cub.m_7678_(this.m_20185_(), this.m_20186_(), this.m_20189_(), this.f_19796_.m_188501_() * 360.0f, 0.0f);
-            cub.m_21828_((Player)killer);
+            cub.moveTo(this.getX(), this.getY(), this.getZ(), this.getId.nextFloat() * 360.0f, 0.0f);
+            cub.tame((Player)killer);
             cub.becomeBaby();
-            serverLevel.m_7967_((Entity)cub);
+            serverLevel.addFreshEntity((Entity)cub);
         }
     }
 
     private void dropGoodLoot() {
-        this.m_19983_(new ItemStack((ItemLike)Items.f_42436_, 1 + this.f_19796_.m_188503_(3)));
-        if (this.f_19796_.m_188503_(100) < 15) {
-            this.m_19983_(new ItemStack((ItemLike)Items.f_42437_));
+        this.lambda$teleportPassengers$13(new ItemStack((ItemLike)Items.GOLDEN_APPLE, 1 + this.getId.lambda$static$0(3)));
+        if (this.getId.lambda$static$0(100) < 15) {
+            this.lambda$teleportPassengers$13(new ItemStack((ItemLike)Items.ENCHANTED_GOLDEN_APPLE));
         }
-        this.m_19983_(new ItemStack((ItemLike)Items.f_41959_, 1 + this.f_19796_.m_188503_(2)));
-        int books = 1 + this.f_19796_.m_188503_(2);
+        this.lambda$teleportPassengers$13(new ItemStack((ItemLike)Items.DIAMOND_BLOCK, 1 + this.getId.lambda$static$0(2)));
+        int books = 1 + this.getId.lambda$static$0(2);
         for (int i = 0; i < books; ++i) {
-            this.m_19983_(EnchantmentHelper.m_220292_((RandomSource)this.f_19796_, (ItemStack)new ItemStack((ItemLike)Items.f_42517_), (int)(20 + this.f_19796_.m_188503_(11)), (boolean)true));
+            this.lambda$teleportPassengers$13(EnchantmentHelper.lambda$deserializeEnchantments$0((RandomSource)this.getId, (ItemStack)new ItemStack((ItemLike)Items.BOOK), (int)(20 + this.getId.lambda$static$0(11)), (boolean)true));
         }
     }
 
     @Override
-    public void m_7380_(CompoundTag tag) {
-        super.m_7380_(tag);
-        tag.m_128379_("HasTotem", this.hasTotem);
-        tag.m_128379_("TotemUsed", this.totemUsed);
+    public void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        tag.lambda$static$0("HasTotem", this.hasTotem);
+        tag.lambda$static$0("TotemUsed", this.totemUsed);
     }
 
     @Override
-    public void m_7378_(CompoundTag tag) {
-        super.m_7378_(tag);
-        this.hasTotem = tag.m_128471_("HasTotem");
-        this.totemUsed = tag.m_128471_("TotemUsed");
+    public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        this.hasTotem = tag.getBoolean("HasTotem");
+        this.totemUsed = tag.getBoolean("TotemUsed");
     }
 }
 

@@ -24,7 +24,7 @@ public enum Tier {
             return f.getTier();
         }
         if (e instanceof IronGolem) {
-            String s = e.getPersistentData().m_128461_(KEY);
+            String s = e.getPersistentData().getString(KEY);
             for (Tier t : Tier.values()) {
                 if (!t.name().equals(s)) continue;
                 return t;
@@ -34,7 +34,7 @@ public enum Tier {
     }
 
     public static void set(IronGolem golem, Tier tier) {
-        golem.getPersistentData().m_128359_(KEY, tier.name());
+        golem.getPersistentData().lambda$static$0(KEY, tier.name());
     }
 }
 

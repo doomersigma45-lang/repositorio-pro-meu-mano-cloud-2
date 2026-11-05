@@ -40,9 +40,9 @@ extends MobRenderer<T, VillagerModel<T>> {
     private static final ResourceLocation TEXTURE = new ResourceLocation("textures/entity/wandering_trader.png");
 
     public ChiefRenderer(EntityRendererProvider.Context context) {
-        super(context, (EntityModel)new VillagerModel(context.m_174023_(ModelLayers.f_171212_)), 0.5f);
-        this.m_115326_((RenderLayer)new CustomHeadLayer((RenderLayerParent)this, context.m_174027_(), context.m_234598_()));
-        this.m_115326_((RenderLayer)new CrossedArmsItemLayer((RenderLayerParent)this, context.m_234598_()));
+        super(context, (EntityModel)new VillagerModel(context.bakeLayer(ModelLayers.WANDERING_TRADER)), 0.5f);
+        this.render((RenderLayer)new CustomHeadLayer((RenderLayerParent)this, context.getModelSet(), context.getItemInHandRenderer()));
+        this.render((RenderLayer)new CrossedArmsItemLayer((RenderLayerParent)this, context.getItemInHandRenderer()));
     }
 
     public ResourceLocation getTextureLocation(T entity) {
@@ -55,13 +55,13 @@ extends MobRenderer<T, VillagerModel<T>> {
         float scale = 0.9375f;
         if (entity instanceof ChiefVillager) {
             scale *= 1.2f;
-        } else if (entity instanceof AgeableMob && (ageable = (AgeableMob)entity).m_6162_()) {
+        } else if (entity instanceof AgeableMob && (ageable = (AgeableMob)entity).isBaby()) {
             scale *= 0.5f;
         }
-        if (entity instanceof TamableAnimal && (pet = (TamableAnimal)entity).m_21825_()) {
-            stack.m_252880_(0.0f, 0.45f, 0.0f);
+        if (entity instanceof TamableAnimal && (pet = (TamableAnimal)entity).isInSittingPose()) {
+            stack.lambda$new$0(0.0f, 0.45f, 0.0f);
         }
-        stack.m_85841_(scale, scale, scale);
+        stack.popPose(scale, scale, scale);
     }
 }
 

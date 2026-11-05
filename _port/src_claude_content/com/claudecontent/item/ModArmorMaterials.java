@@ -24,7 +24,7 @@ import net.minecraft.world.level.ItemLike;
 
 public enum ModArmorMaterials implements ArmorMaterial
 {
-    CINDER("cinder", 36, new int[]{3, 8, 6, 3}, 17, SoundEvents.f_11679_, 3.5f, 0.05f, () -> Ingredient.m_43929_((ItemLike[])new ItemLike[]{(ItemLike)ModItems.CINDER_SCALE.get()}));
+    CINDER("cinder", 36, new int[]{3, 8, 6, 3}, 17, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.5f, 0.05f, () -> Ingredient.lambda$getItems$1((ItemLike[])new ItemLike[]{(ItemLike)ModItems.CINDER_SCALE.get()}));
 
     private final String name;
     private final int durabilityMultiplier;
@@ -66,35 +66,35 @@ public enum ModArmorMaterials implements ArmorMaterial
         };
     }
 
-    public int m_266425_(ArmorItem.Type type) {
+    public int lambda$static$14(ArmorItem.Type type) {
         return ModArmorMaterials.baseDurability(type) * this.durabilityMultiplier;
     }
 
-    public int m_7366_(ArmorItem.Type type) {
+    public int lambda$static$12(ArmorItem.Type type) {
         return this.defense[ModArmorMaterials.index(type)];
     }
 
-    public int m_6646_() {
+    public int lambda$static$14() {
         return this.enchantability;
     }
 
-    public SoundEvent m_7344_() {
+    public SoundEvent lambda$static$12() {
         return this.equipSound;
     }
 
-    public Ingredient m_6230_() {
-        return (Ingredient)this.repairIngredient.m_13971_();
+    public Ingredient lambda$static$8() {
+        return (Ingredient)this.repairIngredient.get();
     }
 
-    public String m_6082_() {
+    public String lambda$static$6() {
         return "claude_content:" + this.name;
     }
 
-    public float m_6651_() {
+    public float lambda$static$4() {
         return this.toughness;
     }
 
-    public float m_6649_() {
+    public float lambda$static$2() {
         return this.knockbackResistance;
     }
 }

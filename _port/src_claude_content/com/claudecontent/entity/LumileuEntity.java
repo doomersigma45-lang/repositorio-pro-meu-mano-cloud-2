@@ -70,45 +70,45 @@ extends Animal {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.m_21552_().m_22268_(Attributes.f_22276_, 14.0).m_22268_(Attributes.f_22279_, 0.25).m_22268_(Attributes.f_22277_, 18.0);
+        return Mob.createMobAttributes().lambda$create$0(Attributes.register, 14.0).lambda$create$0(Attributes.MOVEMENT_SPEED, 0.25).lambda$create$0(Attributes.FOLLOW_RANGE, 18.0);
     }
 
-    protected void m_8099_() {
-        this.f_21345_.m_25352_(0, (Goal)new PanicGoal((PathfinderMob)this, 1.35));
-        this.f_21345_.m_25352_(1, (Goal)new TemptGoal((PathfinderMob)this, 1.1, Ingredient.m_43929_((ItemLike[])new ItemLike[]{Items.f_42780_, Items.f_42410_}), false));
-        this.f_21345_.m_25352_(2, (Goal)new BreedGoal((Animal)this, 1.0));
-        this.f_21345_.m_25352_(3, (Goal)new FollowParentGoal((Animal)this, 1.1));
-        this.f_21345_.m_25352_(5, (Goal)new WaterAvoidingRandomStrollGoal((PathfinderMob)this, 0.8));
-        this.f_21345_.m_25352_(6, (Goal)new LookAtPlayerGoal((Mob)this, Player.class, 6.0f));
-        this.f_21345_.m_25352_(7, (Goal)new RandomLookAroundGoal((Mob)this));
+    protected void registerGoals() {
+        this.goalSelector.lambda$removeAllGoals$0(0, (Goal)new PanicGoal((PathfinderMob)this, 1.35));
+        this.goalSelector.lambda$removeAllGoals$0(1, (Goal)new TemptGoal((PathfinderMob)this, 1.1, Ingredient.lambda$getItems$1((ItemLike[])new ItemLike[]{Items.SWEET_BERRIES, Items.APPLE}), false));
+        this.goalSelector.lambda$removeAllGoals$0(2, (Goal)new BreedGoal((Animal)this, 1.0));
+        this.goalSelector.lambda$removeAllGoals$0(3, (Goal)new FollowParentGoal((Animal)this, 1.1));
+        this.goalSelector.lambda$removeAllGoals$0(5, (Goal)new WaterAvoidingRandomStrollGoal((PathfinderMob)this, 0.8));
+        this.goalSelector.lambda$removeAllGoals$0(6, (Goal)new LookAtPlayerGoal((Mob)this, Player.class, 6.0f));
+        this.goalSelector.lambda$removeAllGoals$0(7, (Goal)new RandomLookAroundGoal((Mob)this));
     }
 
-    public boolean m_6898_(ItemStack stack) {
-        return stack.m_150930_(Items.f_42780_) || stack.m_150930_(Items.f_42410_);
+    public boolean isFood(ItemStack stack) {
+        return stack.lambda$static$0(Items.SWEET_BERRIES) || stack.lambda$static$0(Items.APPLE);
     }
 
     @Nullable
-    public AgeableMob m_142606_(ServerLevel level, AgeableMob partner) {
-        return (AgeableMob)((EntityType)ModEntities.LUMILEU.get()).m_20615_((Level)level);
+    public AgeableMob access$000(ServerLevel level, AgeableMob partner) {
+        return (AgeableMob)((EntityType)ModEntities.LUMILEU.get()).lambda$appendCustomNameConfig$2((Level)level);
     }
 
-    public void m_8107_() {
-        if (this.m_9236_().f_46443_ && this.f_19797_ % 3 == 0) {
-            this.m_9236_().m_7106_((ParticleOptions)ParticleTypes.f_175827_, this.m_20208_(0.35), this.m_20186_() + 0.35 + this.f_19796_.m_188500_() * 0.4, this.m_20262_(0.35), 0.0, 0.0, 0.0);
+    public void aiStep() {
+        if (this.level().isClientSide && this.getTags % 3 == 0) {
+            this.level().lambda$new$2((ParticleOptions)ParticleTypes.GLOW, this.lambda$startRiding$3(0.35), this.getY() + 0.35 + this.getId.nextDouble() * 0.4, this.getRandomZ(0.35), 0.0, 0.0, 0.0);
         }
-        super.m_8107_();
+        super.aiStep();
     }
 
-    protected SoundEvent m_7515_() {
-        return SoundEvents.f_11944_;
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.FOX_AMBIENT;
     }
 
-    protected SoundEvent m_7975_(DamageSource source) {
-        return SoundEvents.f_11948_;
+    protected SoundEvent giveExperiencePoints(DamageSource source) {
+        return SoundEvents.FOX_HURT;
     }
 
-    protected SoundEvent m_5592_() {
-        return SoundEvents.f_11946_;
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.FOX_DEATH;
     }
 }
 

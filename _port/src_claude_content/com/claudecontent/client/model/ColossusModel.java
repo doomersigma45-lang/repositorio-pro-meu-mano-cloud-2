@@ -25,31 +25,31 @@ extends HierarchicalModel<T> {
 
     public ColossusModel(ModelPart root) {
         this.root = root;
-        this.head = root.m_171324_("head");
-        this.rightArm = root.m_171324_("right_arm");
-        this.leftArm = root.m_171324_("left_arm");
-        this.rightLeg = root.m_171324_("right_leg");
-        this.leftLeg = root.m_171324_("left_leg");
+        this.head = root.offsetRotation("head");
+        this.rightArm = root.offsetRotation("right_arm");
+        this.leftArm = root.offsetRotation("left_arm");
+        this.rightLeg = root.offsetRotation("right_leg");
+        this.leftLeg = root.offsetRotation("left_leg");
     }
 
-    public ModelPart m_142109_() {
+    public ModelPart setupAnim() {
         return this.root;
     }
 
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.head.f_104204_ = netHeadYaw * ((float)Math.PI / 180);
-        this.head.f_104203_ = headPitch * ((float)Math.PI / 180);
-        this.rightLeg.f_104203_ = -1.5f * Mth.m_14156_((float)limbSwing, (float)13.0f) * limbSwingAmount;
-        this.leftLeg.f_104203_ = 1.5f * Mth.m_14156_((float)limbSwing, (float)13.0f) * limbSwingAmount;
-        this.rightLeg.f_104204_ = 0.0f;
-        this.leftLeg.f_104204_ = 0.0f;
-        if (entity.m_5912_()) {
-            float sway = Mth.m_14089_((float)(ageInTicks * 0.15f)) * 0.08f;
-            this.rightArm.f_104203_ = -1.6f + sway;
-            this.leftArm.f_104203_ = -1.6f - sway;
+        this.head.yRot = netHeadYaw * ((float)Math.PI / 180);
+        this.head.getAllParts = headPitch * ((float)Math.PI / 180);
+        this.rightLeg.getAllParts = -1.5f * Mth.lengthSquared((float)limbSwing, (float)13.0f) * limbSwingAmount;
+        this.leftLeg.getAllParts = 1.5f * Mth.lengthSquared((float)limbSwing, (float)13.0f) * limbSwingAmount;
+        this.rightLeg.yRot = 0.0f;
+        this.leftLeg.yRot = 0.0f;
+        if (entity.isAggressive()) {
+            float sway = Mth.lambda$outFromOrigin$1((float)(ageInTicks * 0.15f)) * 0.08f;
+            this.rightArm.getAllParts = -1.6f + sway;
+            this.leftArm.getAllParts = -1.6f - sway;
         } else {
-            this.rightArm.f_104203_ = (-0.2f + 1.5f * Mth.m_14156_((float)limbSwing, (float)13.0f)) * limbSwingAmount;
-            this.leftArm.f_104203_ = (-0.2f - 1.5f * Mth.m_14156_((float)limbSwing, (float)13.0f)) * limbSwingAmount;
+            this.rightArm.getAllParts = (-0.2f + 1.5f * Mth.lengthSquared((float)limbSwing, (float)13.0f)) * limbSwingAmount;
+            this.leftArm.getAllParts = (-0.2f - 1.5f * Mth.lengthSquared((float)limbSwing, (float)13.0f)) * limbSwingAmount;
         }
     }
 }

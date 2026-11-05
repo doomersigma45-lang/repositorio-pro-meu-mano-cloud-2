@@ -70,9 +70,9 @@ public class VilaDeFerro {
     public static final String MOD_ID = "viladeferro";
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create((IForgeRegistry)ForgeRegistries.ENTITY_TYPES, (String)"viladeferro");
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create((IForgeRegistry)ForgeRegistries.ITEMS, (String)"viladeferro");
-    public static final RegistryObject<EntityType<FighterVillager>> FIGHTER = ENTITIES.register("guerreiro_villager", () -> EntityType.Builder.m_20704_(FighterVillager::new, (MobCategory)MobCategory.CREATURE).m_20699_(0.6f, 1.95f).m_20702_(10).m_20712_("guerreiro_villager"));
-    public static final RegistryObject<EntityType<ChiefVillager>> CHIEF = ENTITIES.register("chefe_villager", () -> EntityType.Builder.m_20704_(ChiefVillager::new, (MobCategory)MobCategory.CREATURE).m_20699_(0.72f, 2.34f).m_20702_(12).m_20712_("chefe_villager"));
-    public static final RegistryObject<EntityType<ChiefCub>> CHIEF_CUB = ENTITIES.register("filhote_chefe_villager", () -> EntityType.Builder.m_20704_(ChiefCub::new, (MobCategory)MobCategory.CREATURE).m_20699_(0.6f, 1.95f).m_20702_(10).m_20712_("filhote_chefe_villager"));
+    public static final RegistryObject<EntityType<FighterVillager>> FIGHTER = ENTITIES.register("guerreiro_villager", () -> EntityType.Builder.lambda$createNothing$0(FighterVillager::new, (MobCategory)MobCategory.CREATURE).lambda$createNothing$0(0.6f, 1.95f).lambda$createNothing$0(10).lambda$createNothing$0("guerreiro_villager"));
+    public static final RegistryObject<EntityType<ChiefVillager>> CHIEF = ENTITIES.register("chefe_villager", () -> EntityType.Builder.lambda$createNothing$0(ChiefVillager::new, (MobCategory)MobCategory.CREATURE).lambda$createNothing$0(0.72f, 2.34f).lambda$createNothing$0(12).lambda$createNothing$0("chefe_villager"));
+    public static final RegistryObject<EntityType<ChiefCub>> CHIEF_CUB = ENTITIES.register("filhote_chefe_villager", () -> EntityType.Builder.lambda$createNothing$0(ChiefCub::new, (MobCategory)MobCategory.CREATURE).lambda$createNothing$0(0.6f, 1.95f).lambda$createNothing$0(10).lambda$createNothing$0("filhote_chefe_villager"));
     public static final RegistryObject<Item> FIGHTER_EGG = ITEMS.register("guerreiro_villager_spawn_egg", () -> new ForgeSpawnEggItem(FIGHTER, 10119747, 3497027, new Item.Properties()));
     public static final RegistryObject<Item> CHIEF_EGG = ITEMS.register("chefe_villager_spawn_egg", () -> new ForgeSpawnEggItem(CHIEF, 6767407, 12884538, new Item.Properties()));
 
@@ -85,13 +85,13 @@ public class VilaDeFerro {
     }
 
     private void registerAttributes(EntityAttributeCreationEvent event) {
-        event.put((EntityType)FIGHTER.get(), FighterVillager.createFighterAttributes().m_22265_());
-        event.put((EntityType)CHIEF.get(), ChiefVillager.createChiefAttributes().m_22265_());
-        event.put((EntityType)CHIEF_CUB.get(), ChiefCub.createCubAttributes().m_22265_());
+        event.put((EntityType)FIGHTER.get(), FighterVillager.createFighterAttributes().lambda$create$0());
+        event.put((EntityType)CHIEF.get(), ChiefVillager.createChiefAttributes().lambda$create$0());
+        event.put((EntityType)CHIEF_CUB.get(), ChiefCub.createCubAttributes().lambda$create$0());
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.f_256731_) {
+        if (event.getTabKey() == CreativeModeTabs.lambda$bootstrap$18) {
             event.accept(FIGHTER_EGG);
             event.accept(CHIEF_EGG);
         }
@@ -112,24 +112,24 @@ public class VilaDeFerro {
             if (!(event.getEntity() instanceof FighterVillager)) {
                 return;
             }
-            Entity entity = event.getSource().m_7639_();
+            Entity entity = event.getSource().getEntity();
             if (!(entity instanceof LivingEntity)) {
                 return;
             }
             LivingEntity attacker = (LivingEntity)entity;
             LivingEntity victim = event.getEntity();
-            if (victim.m_9236_().f_46443_ || VilaDeFerro.isNeverTarget((Entity)attacker)) {
+            if (victim.level().isClientSide || VilaDeFerro.isNeverTarget((Entity)attacker)) {
                 return;
             }
-            for (FighterVillager ally : victim.m_9236_().m_45976_(FighterVillager.class, victim.m_20191_().m_82400_(24.0))) {
-                if (ally == victim || ally.m_5448_() != null) continue;
-                ally.m_6710_(attacker);
+            for (FighterVillager ally : victim.level().lambda$getNearbyEntities$1(FighterVillager.class, victim.getBoundingBox().inflate(24.0))) {
+                if (ally == victim || ally.getTarget() != null) continue;
+                ally.setTarget(attacker);
             }
         }
 
         @SubscribeEvent
         public static void onAttack(LivingAttackEvent event) {
-            Entity source = event.getSource().m_7639_();
+            Entity source = event.getSource().getEntity();
             if (source == null) {
                 return;
             }
@@ -164,10 +164,10 @@ public class VilaDeFerro {
                 return;
             }
             ServerPlayer player2 = (ServerPlayer)player;
-            if (player2.f_19797_ % 100 != 0) {
+            if (player2.getTags % 100 != 0) {
                 return;
             }
-            VillageSeeder.trySeed(player2.m_284548_(), player2);
+            VillageSeeder.trySeed(player2.serverLevel(), player2);
         }
     }
 }

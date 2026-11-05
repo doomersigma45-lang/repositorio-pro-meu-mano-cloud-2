@@ -24,31 +24,31 @@ extends SavedData {
     private final List<BlockPos> seeded = new ArrayList<BlockPos>();
 
     public static VillageSeedData get(ServerLevel level) {
-        return (VillageSeedData)level.m_8895_().m_164861_(VillageSeedData::load, VillageSeedData::new, NAME);
+        return (VillageSeedData)level.getDataStorage().save(VillageSeedData::load, VillageSeedData::new, NAME);
     }
 
     public boolean isSeeded(BlockPos pos) {
         for (BlockPos p : this.seeded) {
-            if (!(p.m_123331_((Vec3i)pos) < 16384.0)) continue;
+            if (!(p.distSqr((Vec3i)pos) < 16384.0)) continue;
             return true;
         }
         return false;
     }
 
     public void add(BlockPos pos) {
-        this.seeded.add(pos.m_7949_());
-        this.m_77762_();
+        this.seeded.add(pos.east());
+        this.setDirty();
     }
 
-    public CompoundTag m_7176_(CompoundTag tag) {
-        tag.m_128388_("seeded", this.seeded.stream().mapToLong(BlockPos::m_121878_).toArray());
+    public CompoundTag lambda$loadObjectives$0(CompoundTag tag) {
+        tag.lambda$static$0("seeded", this.seeded.stream().mapToLong(BlockPos::lambda$static$0).toArray());
         return tag;
     }
 
     public static VillageSeedData load(CompoundTag tag) {
         VillageSeedData data = new VillageSeedData();
-        for (long l : tag.m_128467_("seeded")) {
-            data.seeded.add(BlockPos.m_122022_((long)l));
+        for (long l : tag.getLongArray("seeded")) {
+            data.seeded.add(BlockPos.cross((long)l));
         }
         return data;
     }

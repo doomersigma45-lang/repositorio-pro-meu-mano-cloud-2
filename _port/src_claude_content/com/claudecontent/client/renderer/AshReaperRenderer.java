@@ -24,11 +24,11 @@ extends HumanoidMobRenderer<AshReaperEntity, HumanoidModel<AshReaperEntity>> {
     private static final ResourceLocation TEXTURE = new ResourceLocation("claude_content", "textures/entity/ash_reaper.png");
 
     public AshReaperRenderer(EntityRendererProvider.Context context) {
-        super(context, new HumanoidModel(context.m_174023_(ModelLayers.f_171223_)), 0.9f);
+        super(context, new HumanoidModel(context.bakeLayer(ModelLayers.ZOMBIE)), 0.9f);
     }
 
     protected void scale(AshReaperEntity entity, PoseStack poseStack, float partialTick) {
-        poseStack.m_85841_(1.7f, 1.7f, 1.7f);
+        poseStack.popPose(1.7f, 1.7f, 1.7f);
     }
 
     public ResourceLocation getTextureLocation(AshReaperEntity entity) {

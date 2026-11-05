@@ -26,11 +26,11 @@ import net.minecraftforge.registries.RegistryObject;
 
 public final class ModEntities {
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create((IForgeRegistry)ForgeRegistries.ENTITY_TYPES, (String)"claude_content");
-    public static final RegistryObject<EntityType<AshReaperEntity>> ASH_REAPER = ENTITIES.register("ash_reaper", () -> EntityType.Builder.m_20704_(AshReaperEntity::new, (MobCategory)MobCategory.MONSTER).m_20699_(1.1f, 3.3f).m_20719_().m_20702_(10).m_20712_("ash_reaper"));
-    public static final RegistryObject<EntityType<MosslingEntity>> MOSSLING = ENTITIES.register("mossling", () -> EntityType.Builder.m_20704_(MosslingEntity::new, (MobCategory)MobCategory.CREATURE).m_20699_(0.9f, 0.9f).m_20702_(8).m_20712_("mossling"));
-    public static final RegistryObject<EntityType<MossColossusEntity>> MOSS_COLOSSUS = ENTITIES.register("moss_colossus", () -> EntityType.Builder.m_20704_(MossColossusEntity::new, (MobCategory)MobCategory.MONSTER).m_20699_(1.8f, 3.4f).m_20702_(10).m_20719_().m_20712_("moss_colossus"));
-    public static final RegistryObject<EntityType<LumileuEntity>> LUMILEU = ENTITIES.register("lumileu", () -> EntityType.Builder.m_20704_(LumileuEntity::new, (MobCategory)MobCategory.CREATURE).m_20699_(0.8f, 0.8f).m_20702_(8).m_20712_("lumileu"));
-    public static final RegistryObject<EntityType<CinderStalkerEntity>> CINDER_STALKER = ENTITIES.register("cinder_stalker", () -> EntityType.Builder.m_20704_(CinderStalkerEntity::new, (MobCategory)MobCategory.MONSTER).m_20699_(1.4f, 0.9f).m_20719_().m_20702_(8).m_20712_("cinder_stalker"));
+    public static final RegistryObject<EntityType<AshReaperEntity>> ASH_REAPER = ENTITIES.register("ash_reaper", () -> EntityType.Builder.lambda$createNothing$0(AshReaperEntity::new, (MobCategory)MobCategory.MONSTER).lambda$createNothing$0(1.1f, 3.3f).fireImmune().lambda$createNothing$0(10).lambda$createNothing$0("ash_reaper"));
+    public static final RegistryObject<EntityType<MosslingEntity>> MOSSLING = ENTITIES.register("mossling", () -> EntityType.Builder.lambda$createNothing$0(MosslingEntity::new, (MobCategory)MobCategory.CREATURE).lambda$createNothing$0(0.9f, 0.9f).lambda$createNothing$0(8).lambda$createNothing$0("mossling"));
+    public static final RegistryObject<EntityType<MossColossusEntity>> MOSS_COLOSSUS = ENTITIES.register("moss_colossus", () -> EntityType.Builder.lambda$createNothing$0(MossColossusEntity::new, (MobCategory)MobCategory.MONSTER).lambda$createNothing$0(1.8f, 3.4f).lambda$createNothing$0(10).fireImmune().lambda$createNothing$0("moss_colossus"));
+    public static final RegistryObject<EntityType<LumileuEntity>> LUMILEU = ENTITIES.register("lumileu", () -> EntityType.Builder.lambda$createNothing$0(LumileuEntity::new, (MobCategory)MobCategory.CREATURE).lambda$createNothing$0(0.8f, 0.8f).lambda$createNothing$0(8).lambda$createNothing$0("lumileu"));
+    public static final RegistryObject<EntityType<CinderStalkerEntity>> CINDER_STALKER = ENTITIES.register("cinder_stalker", () -> EntityType.Builder.lambda$createNothing$0(CinderStalkerEntity::new, (MobCategory)MobCategory.MONSTER).lambda$createNothing$0(1.4f, 0.9f).fireImmune().lambda$createNothing$0(8).lambda$createNothing$0("cinder_stalker"));
 
     private ModEntities() {
     }

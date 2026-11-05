@@ -72,100 +72,100 @@ import org.jetbrains.annotations.Nullable;
 public class MosslingEntity
 extends PathfinderMob
 implements NeutralMob {
-    private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.m_145020_((int)20, (int)39);
+    private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds((int)20, (int)39);
     private int remainingPersistentAngerTime;
     @Nullable
     private UUID persistentAngerTarget;
 
     public MosslingEntity(EntityType<? extends MosslingEntity> type, Level level) {
         super(type, level);
-        this.f_21364_ = 2;
+        this.getArmorSlots = 2;
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return PathfinderMob.m_21552_().m_22268_(Attributes.f_22276_, 20.0).m_22268_(Attributes.f_22279_, 0.22).m_22268_(Attributes.f_22281_, 4.0).m_22268_(Attributes.f_22277_, 16.0);
+        return PathfinderMob.createMobAttributes().lambda$create$0(Attributes.register, 20.0).lambda$create$0(Attributes.MOVEMENT_SPEED, 0.22).lambda$create$0(Attributes.ATTACK_DAMAGE, 4.0).lambda$create$0(Attributes.FOLLOW_RANGE, 16.0);
     }
 
-    protected void m_8099_() {
-        this.f_21345_.m_25352_(0, (Goal)new FloatGoal((Mob)this));
-        this.f_21345_.m_25352_(1, (Goal)new MeleeAttackGoal((PathfinderMob)this, 1.2, true));
-        this.f_21345_.m_25352_(5, (Goal)new WaterAvoidingRandomStrollGoal((PathfinderMob)this, 0.8));
-        this.f_21345_.m_25352_(6, (Goal)new LookAtPlayerGoal((Mob)this, Player.class, 6.0f));
-        this.f_21345_.m_25352_(7, (Goal)new RandomLookAroundGoal((Mob)this));
-        this.f_21346_.m_25352_(1, (Goal)new HurtByTargetGoal((PathfinderMob)this, new Class[0]).m_26044_(new Class[0]));
-        this.f_21346_.m_25352_(2, (Goal)new NearestAttackableTargetGoal((Mob)this, Player.class, 10, true, false, arg_0 -> ((MosslingEntity)this).m_21674_(arg_0)));
-        this.f_21346_.m_25352_(3, (Goal)new ResetUniversalAngerTargetGoal((Mob)this, true));
+    protected void registerGoals() {
+        this.goalSelector.lambda$removeAllGoals$0(0, (Goal)new FloatGoal((Mob)this));
+        this.goalSelector.lambda$removeAllGoals$0(1, (Goal)new MeleeAttackGoal((PathfinderMob)this, 1.2, true));
+        this.goalSelector.lambda$removeAllGoals$0(5, (Goal)new WaterAvoidingRandomStrollGoal((PathfinderMob)this, 0.8));
+        this.goalSelector.lambda$removeAllGoals$0(6, (Goal)new LookAtPlayerGoal((Mob)this, Player.class, 6.0f));
+        this.goalSelector.lambda$removeAllGoals$0(7, (Goal)new RandomLookAroundGoal((Mob)this));
+        this.targetSelector.lambda$removeAllGoals$0(1, (Goal)new HurtByTargetGoal((PathfinderMob)this, new Class[0]).alertOther(new Class[0]));
+        this.targetSelector.lambda$removeAllGoals$0(2, (Goal)new NearestAttackableTargetGoal((Mob)this, Player.class, 10, true, false, arg_0 -> ((MosslingEntity)this).playerDied(arg_0)));
+        this.targetSelector.lambda$removeAllGoals$0(3, (Goal)new ResetUniversalAngerTargetGoal((Mob)this, true));
     }
 
-    protected void m_8024_() {
-        super.m_8024_();
-        Level level = this.m_9236_();
+    protected void customServerAiStep() {
+        super.customServerAiStep();
+        Level level = this.level();
         if (level instanceof ServerLevel) {
             ServerLevel server = (ServerLevel)level;
-            this.m_21666_(server, true);
-            if (!this.m_21660_() && this.f_19796_.m_188503_(1200) == 0) {
-                BlockPos pos = this.m_20183_();
-                BlockState carpet = Blocks.f_152543_.m_49966_();
-                if (server.m_46859_(pos) && carpet.m_60710_((LevelReader)server, pos)) {
-                    server.m_46597_(pos, carpet);
-                    server.m_8767_((ParticleOptions)ParticleTypes.f_123748_, this.m_20185_(), this.m_20186_() + 0.5, this.m_20189_(), 6, 0.3, 0.2, 0.3, 0.0);
+            this.setLastHurtByMob(server, true);
+            if (!this.isAngry() && this.getId.lambda$static$0(1200) == 0) {
+                BlockPos pos = this.blockPosition();
+                BlockState carpet = Blocks.MOSS_CARPET.defaultBlockState();
+                if (server.isEmptyBlock(pos) && carpet.lambda$getOffset$0((LevelReader)server, pos)) {
+                    server.isFluidAtPosition(pos, carpet);
+                    server.lambda$new$0((ParticleOptions)ParticleTypes.HAPPY_VILLAGER, this.getX(), this.getY() + 0.5, this.getZ(), 6, 0.3, 0.2, 0.3, 0.0);
                 }
             }
         }
     }
 
-    public void m_8107_() {
-        if (this.m_9236_().f_46443_ && this.m_21660_() && this.f_19796_.m_188503_(4) == 0) {
-            this.m_9236_().m_7106_((ParticleOptions)ParticleTypes.f_123792_, this.m_20208_(0.5), this.m_20186_() + 1.0, this.m_20262_(0.5), 0.0, 0.0, 0.0);
+    public void aiStep() {
+        if (this.level().isClientSide && this.isAngry() && this.getId.lambda$static$0(4) == 0) {
+            this.level().lambda$new$2((ParticleOptions)ParticleTypes.lambda$static$3, this.lambda$startRiding$3(0.5), this.getY() + 1.0, this.getRandomZ(0.5), 0.0, 0.0, 0.0);
         }
-        super.m_8107_();
+        super.aiStep();
     }
 
-    public int m_6784_() {
+    public int lambda$alertOthers$3() {
         return this.remainingPersistentAngerTime;
     }
 
-    public void m_7870_(int time) {
+    public void lambda$alertOthers$3(int time) {
         this.remainingPersistentAngerTime = time;
     }
 
     @Nullable
-    public UUID m_6120_() {
+    public UUID lambda$alertOthers$2() {
         return this.persistentAngerTarget;
     }
 
-    public void m_6925_(@Nullable UUID target) {
+    public void lambda$alertOthers$3(@Nullable UUID target) {
         this.persistentAngerTarget = target;
     }
 
-    public void m_6825_() {
-        this.m_7870_(PERSISTENT_ANGER_TIME.m_214085_(this.f_19796_));
+    public void lambda$alertOthers$1() {
+        this.lambda$alertOthers$3(PERSISTENT_ANGER_TIME.lambda$static$0(this.getId));
     }
 
-    public void m_7380_(CompoundTag tag) {
-        super.m_7380_(tag);
-        this.m_21678_(tag);
+    public void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        this.canAttack(tag);
     }
 
-    public void m_7378_(CompoundTag tag) {
-        super.m_7378_(tag);
-        Level level = this.m_9236_();
+    public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        Level level = this.level();
         if (level instanceof ServerLevel) {
             ServerLevel server = (ServerLevel)level;
-            this.m_147285_((Level)server, tag);
+            this.setLastHurtByMob((Level)server, tag);
         }
     }
 
-    protected SoundEvent m_7515_() {
-        return SoundEvents.f_215690_;
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.FROG_AMBIENT;
     }
 
-    protected SoundEvent m_7975_(DamageSource source) {
-        return SoundEvents.f_215693_;
+    protected SoundEvent giveExperiencePoints(DamageSource source) {
+        return SoundEvents.FROG_HURT;
     }
 
-    protected SoundEvent m_5592_() {
-        return SoundEvents.f_215691_;
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.FROG_DEATH;
     }
 }
 

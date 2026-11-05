@@ -24,7 +24,7 @@ extends MobRenderer<MosslingEntity, PigModel<MosslingEntity>> {
     private static final ResourceLocation TEXTURE = new ResourceLocation("claude_content", "textures/entity/mossling.png");
 
     public MosslingRenderer(EntityRendererProvider.Context context) {
-        super(context, (EntityModel)new PigModel(context.m_174023_(ModelLayers.f_171205_)), 0.5f);
+        super(context, (EntityModel)new PigModel(context.bakeLayer(ModelLayers.PIG)), 0.5f);
     }
 
     public ResourceLocation getTextureLocation(MosslingEntity entity) {

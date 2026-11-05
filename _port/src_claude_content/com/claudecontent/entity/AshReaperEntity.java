@@ -88,49 +88,49 @@ extends Monster {
     private static final UUID ENRAGE_SPEED_UUID = UUID.fromString("5b6f1c4e-3a52-4b7a-9d57-0c1f2f6f7a11");
     private static final float MAX_DAMAGE_PER_HIT = 40.0f;
     private static final double SLAM_RADIUS = 6.0;
-    private final ServerBossEvent bossEvent = (ServerBossEvent)new ServerBossEvent(this.m_5446_(), BossEvent.BossBarColor.RED, BossEvent.BossBarOverlay.NOTCHED_10).m_7003_(true);
+    private final ServerBossEvent bossEvent = (ServerBossEvent)new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.RED, BossEvent.BossBarOverlay.NOTCHED_10).setDarkenScreen(true);
     private boolean enraged = false;
     private int slamCooldown = 100;
     private int summonCooldown = 160;
 
     public AshReaperEntity(EntityType<? extends AshReaperEntity> type, Level level) {
         super(type, level);
-        this.f_21364_ = 250;
-        this.m_21530_();
+        this.getArmorSlots = 250;
+        this.setPersistenceRequired();
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Monster.m_33035_().m_22268_(Attributes.f_22276_, 300.0).m_22268_(Attributes.f_22281_, 12.0).m_22268_(Attributes.f_22279_, 0.28).m_22268_(Attributes.f_22278_, 0.9).m_22268_(Attributes.f_22284_, 8.0).m_22268_(Attributes.f_22277_, 40.0);
+        return Monster.createMonsterAttributes().lambda$create$0(Attributes.register, 300.0).lambda$create$0(Attributes.ATTACK_DAMAGE, 12.0).lambda$create$0(Attributes.MOVEMENT_SPEED, 0.28).lambda$create$0(Attributes.KNOCKBACK_RESISTANCE, 0.9).lambda$create$0(Attributes.ARMOR, 8.0).lambda$create$0(Attributes.FOLLOW_RANGE, 40.0);
     }
 
-    protected void m_8099_() {
-        this.f_21345_.m_25352_(0, (Goal)new FloatGoal((Mob)this));
-        this.f_21345_.m_25352_(2, (Goal)new AshFireballGoal(this));
-        this.f_21345_.m_25352_(3, (Goal)new MeleeAttackGoal((PathfinderMob)this, 1.1, true));
-        this.f_21345_.m_25352_(5, (Goal)new WaterAvoidingRandomStrollGoal((PathfinderMob)this, 0.8));
-        this.f_21345_.m_25352_(6, (Goal)new LookAtPlayerGoal((Mob)this, Player.class, 32.0f));
-        this.f_21345_.m_25352_(7, (Goal)new RandomLookAroundGoal((Mob)this));
-        this.f_21346_.m_25352_(1, (Goal)new HurtByTargetGoal((PathfinderMob)this, new Class[0]));
-        this.f_21346_.m_25352_(2, (Goal)new NearestAttackableTargetGoal((Mob)this, Player.class, true));
+    protected void registerGoals() {
+        this.goalSelector.lambda$removeAllGoals$0(0, (Goal)new FloatGoal((Mob)this));
+        this.goalSelector.lambda$removeAllGoals$0(2, (Goal)new AshFireballGoal(this));
+        this.goalSelector.lambda$removeAllGoals$0(3, (Goal)new MeleeAttackGoal((PathfinderMob)this, 1.1, true));
+        this.goalSelector.lambda$removeAllGoals$0(5, (Goal)new WaterAvoidingRandomStrollGoal((PathfinderMob)this, 0.8));
+        this.goalSelector.lambda$removeAllGoals$0(6, (Goal)new LookAtPlayerGoal((Mob)this, Player.class, 32.0f));
+        this.goalSelector.lambda$removeAllGoals$0(7, (Goal)new RandomLookAroundGoal((Mob)this));
+        this.targetSelector.lambda$removeAllGoals$0(1, (Goal)new HurtByTargetGoal((PathfinderMob)this, new Class[0]));
+        this.targetSelector.lambda$removeAllGoals$0(2, (Goal)new NearestAttackableTargetGoal((Mob)this, Player.class, true));
     }
 
     public boolean isEnraged() {
         return this.enraged;
     }
 
-    protected void m_8024_() {
+    protected void customServerAiStep() {
         LivingEntity target;
-        super.m_8024_();
-        this.bossEvent.m_142711_(this.m_21223_() / this.m_21233_());
-        if (!this.enraged && this.m_21223_() <= this.m_21233_() * 0.5f) {
+        super.customServerAiStep();
+        this.bossEvent.setProgress(this.getHealth() / this.getMaxHealth());
+        if (!this.enraged && this.getHealth() <= this.getMaxHealth() * 0.5f) {
             this.enrage(true);
         }
-        if ((target = this.m_5448_()) == null || !target.m_6084_()) {
+        if ((target = this.getTarget()) == null || !target.isAlive()) {
             return;
         }
         if (this.slamCooldown > 0) {
             --this.slamCooldown;
-        } else if (this.m_20280_((Entity)target) < 36.0 && this.m_20096_()) {
+        } else if (this.getZ((Entity)target) < 36.0 && this.onGround()) {
             this.groundSlam();
             int n = this.slamCooldown = this.enraged ? 100 : 180;
         }
@@ -146,137 +146,137 @@ extends Monster {
 
     private void enrage(boolean withEffects) {
         this.enraged = true;
-        AttributeInstance speed = this.m_21051_(Attributes.f_22279_);
-        if (speed != null && speed.m_22111_(ENRAGE_SPEED_UUID) == null) {
-            speed.m_22118_(new AttributeModifier(ENRAGE_SPEED_UUID, "ash_reaper_enrage", 0.3, AttributeModifier.Operation.MULTIPLY_BASE));
+        AttributeInstance speed = this.lambda$addAdditionalSaveData$1(Attributes.MOVEMENT_SPEED);
+        if (speed != null && speed.lambda$replaceFrom$1(ENRAGE_SPEED_UUID) == null) {
+            speed.getModifiersOrEmpty(new AttributeModifier(ENRAGE_SPEED_UUID, "ash_reaper_enrage", 0.3, AttributeModifier.Operation.MULTIPLY_BASE));
         }
         if (withEffects) {
-            this.m_9236_().m_5594_(null, this.m_20183_(), SoundEvents.f_12554_, SoundSource.HOSTILE, 2.0f, 0.5f);
-            Level level = this.m_9236_();
+            this.level().gameEvent(null, this.blockPosition(), SoundEvents.WITHER_AMBIENT, SoundSource.HOSTILE, 2.0f, 0.5f);
+            Level level = this.level();
             if (level instanceof ServerLevel) {
                 ServerLevel server = (ServerLevel)level;
-                server.m_8767_((ParticleOptions)ParticleTypes.f_123756_, this.m_20185_(), this.m_20186_() + 1.5, this.m_20189_(), 50, 1.0, 1.5, 1.0, 0.1);
+                server.lambda$new$0((ParticleOptions)ParticleTypes.LAVA, this.getX(), this.getY() + 1.5, this.getZ(), 50, 1.0, 1.5, 1.0, 0.1);
             }
         }
-        this.bossEvent.m_6451_(BossEvent.BossBarColor.PURPLE);
+        this.bossEvent.setDarkenScreen(BossEvent.BossBarColor.PURPLE);
     }
 
     private void groundSlam() {
-        Level level = this.m_9236_();
+        Level level = this.level();
         if (!(level instanceof ServerLevel)) {
             return;
         }
         ServerLevel server = (ServerLevel)level;
-        server.m_5594_(null, this.m_20183_(), SoundEvents.f_11913_, SoundSource.HOSTILE, 1.5f, 0.7f);
-        server.m_8767_((ParticleOptions)ParticleTypes.f_123813_, this.m_20185_(), this.m_20186_() + 0.2, this.m_20189_(), 6, 2.0, 0.1, 2.0, 0.0);
-        server.m_8767_((ParticleOptions)ParticleTypes.f_123744_, this.m_20185_(), this.m_20186_() + 0.2, this.m_20189_(), 60, 3.0, 0.1, 3.0, 0.08);
-        for (Player player : server.m_45976_(Player.class, this.m_20191_().m_82377_(6.0, 2.0, 6.0))) {
-            if (player.m_7500_() || player.m_5833_() || !player.m_20096_()) continue;
-            player.m_6469_(this.m_269291_().m_269333_((LivingEntity)this), this.enraged ? 14.0f : 10.0f);
-            player.m_20254_(3);
-            Vec3 push = player.m_20182_().m_82546_(this.m_20182_()).m_82541_().m_82490_(0.8);
-            player.m_20334_(push.f_82479_, 0.6, push.f_82481_);
-            player.f_19864_ = true;
+        server.gameEvent(null, this.blockPosition(), SoundEvents.GENERIC_EXPLODE, SoundSource.HOSTILE, 1.5f, 0.7f);
+        server.lambda$new$0((ParticleOptions)ParticleTypes.EXPLOSION, this.getX(), this.getY() + 0.2, this.getZ(), 6, 2.0, 0.1, 2.0, 0.0);
+        server.lambda$new$0((ParticleOptions)ParticleTypes.FLAME, this.getX(), this.getY() + 0.2, this.getZ(), 60, 3.0, 0.1, 3.0, 0.08);
+        for (Player player : server.lambda$getNearbyEntities$1(Player.class, this.getBoundingBox().getYsize(6.0, 2.0, 6.0))) {
+            if (player.isCreative() || player.isSpectator() || !player.onGround()) continue;
+            player.sendSystemMessage(this.damageSources().thrown((LivingEntity)this), this.enraged ? 14.0f : 10.0f);
+            player.getRandomZ(3);
+            Vec3 push = player.position().multiply(this.position()).multiply().lambda$static$1(0.8);
+            player.setIsInPowderSnow(push.z, 0.6, push.reverse);
+            player.getAddEntityPacket = true;
         }
     }
 
     private void summonStalkers(LivingEntity target) {
-        Level level = this.m_9236_();
+        Level level = this.level();
         if (!(level instanceof ServerLevel)) {
             return;
         }
         ServerLevel server = (ServerLevel)level;
-        int existing = server.m_45976_(CinderStalkerEntity.class, this.m_20191_().m_82400_(24.0)).size();
+        int existing = server.lambda$getNearbyEntities$1(CinderStalkerEntity.class, this.getBoundingBox().inflate(24.0)).size();
         int toSpawn = Math.min(2, 4 - existing);
         for (int i = 0; i < toSpawn; ++i) {
-            CinderStalkerEntity stalker = (CinderStalkerEntity)((EntityType)ModEntities.CINDER_STALKER.get()).m_20615_((Level)server);
+            CinderStalkerEntity stalker = (CinderStalkerEntity)((EntityType)ModEntities.CINDER_STALKER.get()).lambda$appendCustomNameConfig$2((Level)server);
             if (stalker == null) continue;
-            double angle = this.f_19796_.m_188500_() * Math.PI * 2.0;
-            stalker.m_7678_(this.m_20185_() + Math.cos(angle) * 3.0, this.m_20186_(), this.m_20189_() + Math.sin(angle) * 3.0, this.f_19796_.m_188501_() * 360.0f, 0.0f);
-            if (!server.m_45786_((Entity)stalker)) {
-                stalker.m_146870_();
+            double angle = this.getId.nextDouble() * Math.PI * 2.0;
+            stalker.moveTo(this.getX() + Math.cos(angle) * 3.0, this.getY(), this.getZ() + Math.sin(angle) * 3.0, this.getId.nextFloat() * 360.0f, 0.0f);
+            if (!server.borderCollision((Entity)stalker)) {
+                stalker.discard();
                 continue;
             }
-            stalker.m_6710_(target);
-            server.m_7967_((Entity)stalker);
-            server.m_8767_((ParticleOptions)ParticleTypes.f_123755_, stalker.m_20185_(), stalker.m_20186_() + 0.5, stalker.m_20189_(), 15, 0.4, 0.4, 0.4, 0.02);
+            stalker.setTarget(target);
+            server.addFreshEntity((Entity)stalker);
+            server.lambda$new$0((ParticleOptions)ParticleTypes.LARGE_SMOKE, stalker.getX(), stalker.getY() + 0.5, stalker.getZ(), 15, 0.4, 0.4, 0.4, 0.02);
         }
     }
 
-    public void m_8107_() {
-        if (this.m_9236_().f_46443_) {
+    public void aiStep() {
+        if (this.level().isClientSide) {
             for (int i = 0; i < 2; ++i) {
-                this.m_9236_().m_7106_((ParticleOptions)ParticleTypes.f_123783_, this.m_20208_(0.6), this.m_20187_(), this.m_20262_(0.6), 0.0, -0.02, 0.0);
+                this.level().lambda$new$2((ParticleOptions)ParticleTypes.ASH, this.lambda$startRiding$3(0.6), this.getRandomY(), this.getRandomZ(0.6), 0.0, -0.02, 0.0);
             }
-            if (this.enraged || this.f_19796_.m_188503_(4) == 0) {
-                this.m_9236_().m_7106_((ParticleOptions)ParticleTypes.f_123744_, this.m_20208_(0.5), this.m_20186_() + 2.6, this.m_20262_(0.5), 0.0, 0.02, 0.0);
+            if (this.enraged || this.getId.lambda$static$0(4) == 0) {
+                this.level().lambda$new$2((ParticleOptions)ParticleTypes.FLAME, this.lambda$startRiding$3(0.5), this.getY() + 2.6, this.getRandomZ(0.5), 0.0, 0.02, 0.0);
             }
         }
-        super.m_8107_();
+        super.aiStep();
     }
 
-    public boolean m_7327_(Entity target) {
-        boolean hit = super.m_7327_(target);
+    public boolean doHurtTarget(Entity target) {
+        boolean hit = super.doHurtTarget(target);
         if (hit) {
-            target.m_20254_(5);
+            target.getRandomZ(5);
         }
         return hit;
     }
 
-    public boolean m_6469_(DamageSource source, float amount) {
-        if (!source.m_269533_(DamageTypeTags.f_268738_)) {
+    public boolean sendSystemMessage(DamageSource source, float amount) {
+        if (!source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
             amount = Math.min(amount, 40.0f);
         }
-        return super.m_6469_(source, amount);
+        return super.sendSystemMessage(source, amount);
     }
 
-    public boolean m_6072_() {
+    public boolean canChangeDimensions() {
         return false;
     }
 
-    public void m_6457_(ServerPlayer player) {
-        super.m_6457_(player);
-        this.bossEvent.m_6543_(player);
+    public void canBeAffected(ServerPlayer player) {
+        super.canBeAffected(player);
+        this.bossEvent.addPlayer(player);
     }
 
-    public void m_6452_(ServerPlayer player) {
-        super.m_6452_(player);
-        this.bossEvent.m_6539_(player);
+    public void stopSeenByPlayer(ServerPlayer player) {
+        super.stopSeenByPlayer(player);
+        this.bossEvent.removeAllPlayers(player);
     }
 
-    public void m_6593_(Component name) {
-        super.m_6593_(name);
-        this.bossEvent.m_6456_(this.m_5446_());
+    public void setCustomName(Component name) {
+        super.setCustomName(name);
+        this.bossEvent.setDarkenScreen(this.getDisplayName());
     }
 
-    public void m_7380_(CompoundTag tag) {
-        super.m_7380_(tag);
-        tag.m_128379_("Enraged", this.enraged);
+    public void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        tag.lambda$static$0("Enraged", this.enraged);
     }
 
-    public void m_7378_(CompoundTag tag) {
-        super.m_7378_(tag);
-        if (this.m_8077_()) {
-            this.bossEvent.m_6456_(this.m_5446_());
+    public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        if (this.hasCustomName()) {
+            this.bossEvent.setDarkenScreen(this.getDisplayName());
         }
-        if (tag.m_128471_("Enraged")) {
+        if (tag.getBoolean("Enraged")) {
             this.enrage(false);
         }
     }
 
-    protected SoundEvent m_7515_() {
-        return SoundEvents.f_12559_;
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.WITHER_SKELETON_AMBIENT;
     }
 
-    protected SoundEvent m_7975_(DamageSource source) {
-        return SoundEvents.f_12557_;
+    protected SoundEvent giveExperiencePoints(DamageSource source) {
+        return SoundEvents.WITHER_HURT;
     }
 
-    protected SoundEvent m_5592_() {
-        return SoundEvents.f_12556_;
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.WITHER_DEATH;
     }
 
-    protected float m_6121_() {
+    protected float getSoundVolume() {
         return 1.5f;
     }
 
@@ -287,45 +287,45 @@ extends Monster {
 
         AshFireballGoal(AshReaperEntity boss) {
             this.boss = boss;
-            this.m_7021_(EnumSet.of(Goal.Flag.LOOK));
+            this.setFlags(EnumSet.of(Goal.Flag.LOOK));
         }
 
-        public boolean m_8036_() {
-            LivingEntity target = this.boss.m_5448_();
-            if (target == null || !target.m_6084_()) {
+        public boolean lambda$hasSuitablePoi$0() {
+            LivingEntity target = this.boss.getTarget();
+            if (target == null || !target.isAlive()) {
                 return false;
             }
-            double distSqr = this.boss.m_20280_((Entity)target);
-            return distSqr > 36.0 && distSqr < 576.0 && this.boss.m_142582_((Entity)target);
+            double distSqr = this.boss.getZ((Entity)target);
+            return distSqr > 36.0 && distSqr < 576.0 && this.boss.hasLineOfSight((Entity)target);
         }
 
-        public boolean m_8045_() {
-            return this.m_8036_();
+        public boolean canContinueToUse() {
+            return this.lambda$hasSuitablePoi$0();
         }
 
-        public void m_8037_() {
-            LivingEntity target = this.boss.m_5448_();
+        public void tick() {
+            LivingEntity target = this.boss.getTarget();
             if (target == null) {
                 return;
             }
-            this.boss.m_21563_().m_24960_((Entity)target, 30.0f, 30.0f);
+            this.boss.getLookControl().lambda$tick$1((Entity)target, 30.0f, 30.0f);
             if (--this.cooldown > 0) {
                 return;
             }
             this.cooldown = this.boss.isEnraged() ? 40 : 70;
             int count = this.boss.isEnraged() ? 3 : 1;
-            double baseDx = target.m_20185_() - this.boss.m_20185_();
-            double dy = target.m_20227_(0.5) - this.boss.m_20227_(0.75);
-            double baseDz = target.m_20189_() - this.boss.m_20189_();
+            double baseDx = target.getX() - this.boss.getX();
+            double dy = target.lambda$move$0(0.5) - this.boss.lambda$move$0(0.75);
+            double baseDz = target.getZ() - this.boss.getZ();
             for (int i = 0; i < count; ++i) {
                 double spread = ((double)i - (double)(count - 1) / 2.0) * 0.35;
                 double dx = baseDx + spread * baseDz * 0.2;
                 double dz = baseDz - spread * baseDx * 0.2;
-                SmallFireball fireball = new SmallFireball(this.boss.m_9236_(), (LivingEntity)this.boss, dx, dy, dz);
-                fireball.m_6034_(this.boss.m_20185_(), this.boss.m_20227_(2.4), this.boss.m_20189_());
-                this.boss.m_9236_().m_7967_((Entity)fireball);
+                SmallFireball fireball = new SmallFireball(this.boss.level(), (LivingEntity)this.boss, dx, dy, dz);
+                fireball.access$400(this.boss.getX(), this.boss.lambda$move$0(2.4), this.boss.getZ());
+                this.boss.level().addFreshEntity((Entity)fireball);
             }
-            this.boss.m_9236_().m_5594_(null, this.boss.m_20183_(), SoundEvents.f_11705_, SoundSource.HOSTILE, 1.5f, 0.8f);
+            this.boss.level().gameEvent(null, this.boss.blockPosition(), SoundEvents.BLAZE_SHOOT, SoundSource.HOSTILE, 1.5f, 0.8f);
         }
     }
 }

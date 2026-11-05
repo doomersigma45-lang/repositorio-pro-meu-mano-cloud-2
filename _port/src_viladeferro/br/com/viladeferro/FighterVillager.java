@@ -105,76 +105,76 @@ implements RangedAttackMob {
         this.tier = tier;
     }
 
-    public void m_7380_(CompoundTag tag) {
-        super.m_7380_(tag);
-        tag.m_128359_("VilaTier", this.tier.name());
+    public void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        tag.lambda$static$0("VilaTier", this.tier.name());
     }
 
-    public void m_7378_(CompoundTag tag) {
-        super.m_7378_(tag);
+    public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
         for (Tier t : Tier.values()) {
-            if (!t.name().equals(tag.m_128461_("VilaTier"))) continue;
+            if (!t.name().equals(tag.getString("VilaTier"))) continue;
             this.tier = t;
         }
     }
 
     public static AttributeSupplier.Builder createFighterAttributes() {
-        return Villager.m_35503_().m_22268_(Attributes.f_22276_, 30.0).m_22268_(Attributes.f_22281_, 5.0).m_22268_(Attributes.f_22277_, 32.0);
+        return Villager.createAttributes().lambda$create$0(Attributes.register, 30.0).lambda$create$0(Attributes.ATTACK_DAMAGE, 5.0).lambda$create$0(Attributes.FOLLOW_RANGE, 32.0);
     }
 
-    protected Brain<?> m_8075_(Dynamic<?> dynamic) {
-        return this.m_5490_().m_22073_(dynamic);
+    protected Brain<?> lambda$static$3(Dynamic<?> dynamic) {
+        return this.brainProvider().lambda$makeBrain$1(dynamic);
     }
 
-    public void m_35483_(ServerLevel level) {
+    public void lambda$static$1(ServerLevel level) {
     }
 
-    public InteractionResult m_6071_(Player player, InteractionHand hand) {
+    public InteractionResult access$100(Player player, InteractionHand hand) {
         return InteractionResult.PASS;
     }
 
-    protected void m_8099_() {
-        this.f_21345_.m_25352_(0, (Goal)new CombatGoal(this));
-        this.f_21345_.m_25352_(1, (Goal)new OpenDoorGoal((Mob)this, true));
-        this.f_21345_.m_25352_(5, (Goal)new WaterAvoidingRandomStrollGoal((PathfinderMob)this, 0.6));
-        this.f_21345_.m_25352_(6, (Goal)new LookAtPlayerGoal((Mob)this, Player.class, 8.0f));
-        this.f_21345_.m_25352_(7, (Goal)new RandomLookAroundGoal((Mob)this));
-        this.f_21346_.m_25352_(1, (Goal)new HurtByTargetGoal((PathfinderMob)this, new Class[0]));
-        this.f_21346_.m_25352_(2, (Goal)new NearestAttackableTargetGoal((Mob)this, Monster.class, 10, true, false, e -> !VilaDeFerro.isNeverTarget((Entity)e)));
-        this.f_21346_.m_25352_(3, (Goal)new NearestAttackableTargetGoal((Mob)this, Player.class, 10, true, false, e -> this.tier == Tier.AGGRESSIVE));
+    protected void registerGoals() {
+        this.goalSelector.lambda$removeAllGoals$0(0, (Goal)new CombatGoal(this));
+        this.goalSelector.lambda$removeAllGoals$0(1, (Goal)new OpenDoorGoal((Mob)this, true));
+        this.goalSelector.lambda$removeAllGoals$0(5, (Goal)new WaterAvoidingRandomStrollGoal((PathfinderMob)this, 0.6));
+        this.goalSelector.lambda$removeAllGoals$0(6, (Goal)new LookAtPlayerGoal((Mob)this, Player.class, 8.0f));
+        this.goalSelector.lambda$removeAllGoals$0(7, (Goal)new RandomLookAroundGoal((Mob)this));
+        this.targetSelector.lambda$removeAllGoals$0(1, (Goal)new HurtByTargetGoal((PathfinderMob)this, new Class[0]));
+        this.targetSelector.lambda$removeAllGoals$0(2, (Goal)new NearestAttackableTargetGoal((Mob)this, Monster.class, 10, true, false, e -> !VilaDeFerro.isNeverTarget((Entity)e)));
+        this.targetSelector.lambda$removeAllGoals$0(3, (Goal)new NearestAttackableTargetGoal((Mob)this, Player.class, 10, true, false, e -> this.tier == Tier.AGGRESSIVE));
     }
 
-    public void m_6710_(@Nullable LivingEntity target) {
+    public void setTarget(@Nullable LivingEntity target) {
         if (target != null && VilaDeFerro.isNeverTarget((Entity)target)) {
             return;
         }
         if (target instanceof Player && this.tier == Tier.PASSIVE) {
             return;
         }
-        super.m_6710_(target);
+        super.setTarget(target);
     }
 
-    public void m_6504_(LivingEntity target, float velocity) {
-        ItemStack ammo = new ItemStack((ItemLike)Items.f_42412_);
-        AbstractArrow arrow = ProjectileUtil.m_37300_((LivingEntity)this, (ItemStack)ammo, (float)velocity);
-        double dx = target.m_20185_() - this.m_20185_();
-        double dz = target.m_20189_() - this.m_20189_();
-        double dy = target.m_20227_(0.3333333333333333) - arrow.m_20186_();
+    public void startRiding(LivingEntity target, float velocity) {
+        ItemStack ammo = new ItemStack((ItemLike)Items.ARROW);
+        AbstractArrow arrow = ProjectileUtil.getMobArrow((LivingEntity)this, (ItemStack)ammo, (float)velocity);
+        double dx = target.getX() - this.getX();
+        double dz = target.getZ() - this.getZ();
+        double dy = target.lambda$move$0(0.3333333333333333) - arrow.getY();
         double horizontal = Math.sqrt(dx * dx + dz * dz);
-        arrow.m_6686_(dx, dy + horizontal * 0.2, dz, 1.6f, (float)(14 - this.m_9236_().m_46791_().m_19028_() * 4));
-        this.m_5496_(SoundEvents.f_12382_, 1.0f, 1.0f / (this.m_217043_().m_188501_() * 0.4f + 0.8f));
-        this.m_9236_().m_7967_((Entity)arrow);
+        arrow.lambda$checkLeftOwner$0(dx, dy + horizontal * 0.2, dz, 1.6f, (float)(14 - this.level().getDifficulty().byName() * 4));
+        this.lambda$updateAutoJump$0(SoundEvents.SKELETON_SHOOT, 1.0f, 1.0f / (this.getRandom().nextFloat() * 0.4f + 0.8f));
+        this.level().addFreshEntity((Entity)arrow);
     }
 
-    public SpawnGroupData m_6518_(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData data, @Nullable CompoundTag tag) {
-        SpawnGroupData result = super.m_6518_(level, difficulty, reason, data, tag);
-        RandomSource random = this.m_217043_();
-        this.m_8061_(EquipmentSlot.MAINHAND, new ItemStack((ItemLike)(random.m_188499_() ? Items.f_42383_ : Items.f_42411_)));
-        this.m_8061_(EquipmentSlot.HEAD, new ItemStack((ItemLike)(random.m_188503_(3) == 0 ? Items.f_42468_ : Items.f_42407_)));
-        this.m_8061_(EquipmentSlot.CHEST, new ItemStack((ItemLike)(random.m_188503_(3) == 0 ? Items.f_42469_ : Items.f_42408_)));
-        this.m_8061_(EquipmentSlot.LEGS, new ItemStack((ItemLike)Items.f_42462_));
-        this.m_8061_(EquipmentSlot.FEET, new ItemStack((ItemLike)Items.f_42463_));
-        this.m_21409_(EquipmentSlot.MAINHAND, 0.0f);
+    public SpawnGroupData access$000(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData data, @Nullable CompoundTag tag) {
+        SpawnGroupData result = super.access$000(level, difficulty, reason, data, tag);
+        RandomSource random = this.getRandom();
+        this.lambda$addAdditionalSaveData$2(EquipmentSlot.MAINHAND, new ItemStack((ItemLike)(random.nextBoolean() ? Items.IRON_SWORD : Items.BOW)));
+        this.lambda$addAdditionalSaveData$2(EquipmentSlot.HEAD, new ItemStack((ItemLike)(random.lambda$static$0(3) == 0 ? Items.IRON_HELMET : Items.LEATHER_HELMET)));
+        this.lambda$addAdditionalSaveData$2(EquipmentSlot.CHEST, new ItemStack((ItemLike)(random.lambda$static$0(3) == 0 ? Items.IRON_CHESTPLATE : Items.LEATHER_CHESTPLATE)));
+        this.lambda$addAdditionalSaveData$2(EquipmentSlot.LEGS, new ItemStack((ItemLike)Items.LEATHER_LEGGINGS));
+        this.lambda$addAdditionalSaveData$2(EquipmentSlot.FEET, new ItemStack((ItemLike)Items.LEATHER_BOOTS));
+        this.lambda$removeFreeWill$3(EquipmentSlot.MAINHAND, 0.0f);
         return result;
     }
 
@@ -185,44 +185,44 @@ implements RangedAttackMob {
 
         CombatGoal(FighterVillager mob) {
             this.mob = mob;
-            this.m_7021_(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
+            this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
         }
 
-        public boolean m_8036_() {
-            this.target = this.mob.m_5448_();
-            return this.target != null && this.target.m_6084_();
+        public boolean lambda$hasSuitablePoi$0() {
+            this.target = this.mob.getTarget();
+            return this.target != null && this.target.isAlive();
         }
 
-        public boolean m_8045_() {
-            return this.m_8036_();
+        public boolean canContinueToUse() {
+            return this.lambda$hasSuitablePoi$0();
         }
 
-        public void m_8037_() {
-            this.target = this.mob.m_5448_();
+        public void tick() {
+            this.target = this.mob.getTarget();
             if (this.target == null) {
                 return;
             }
-            this.mob.m_21563_().m_24960_((Entity)this.target, 30.0f, 30.0f);
-            double d2 = this.mob.m_20280_((Entity)this.target);
-            boolean ranged = this.mob.m_21205_().m_150930_(Items.f_42411_);
+            this.mob.getLookControl().lambda$tick$1((Entity)this.target, 30.0f, 30.0f);
+            double d2 = this.mob.getZ((Entity)this.target);
+            boolean ranged = this.mob.getMainHandItem().lambda$static$0(Items.BOW);
             if (ranged) {
                 if (d2 > 100.0) {
-                    this.mob.m_21573_().m_5624_((Entity)this.target, 1.0);
+                    this.mob.getNavigation().moveTo((Entity)this.target, 1.0);
                 } else {
-                    this.mob.m_21573_().m_26573_();
+                    this.mob.getNavigation().stop();
                 }
                 if (this.mob.bowCooldown-- <= 0 && d2 < 484.0) {
-                    this.mob.m_6504_(this.target, 1.0f);
+                    this.mob.startRiding(this.target, 1.0f);
                     this.mob.bowCooldown = 35;
                 }
             } else {
                 if (this.mob.meleeCooldown > 0) {
                     --this.mob.meleeCooldown;
                 }
-                this.mob.m_21573_().m_5624_((Entity)this.target, 1.15);
+                this.mob.getNavigation().moveTo((Entity)this.target, 1.15);
                 if (d2 < 10.240000000000002 && this.mob.meleeCooldown <= 0) {
-                    this.mob.m_6674_(InteractionHand.MAIN_HAND);
-                    this.mob.m_7327_((Entity)this.target);
+                    this.mob.lambda$updateAutoJump$0(InteractionHand.MAIN_HAND);
+                    this.mob.doHurtTarget((Entity)this.target);
                     this.mob.meleeCooldown = 20;
                 }
             }

@@ -24,8 +24,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
 public final class ModCreativeTabs {
-    public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create((ResourceKey)Registries.f_279569_, (String)"claude_content");
-    public static final RegistryObject<CreativeModeTab> MAIN = TABS.register("main", () -> CreativeModeTab.builder().m_257941_((Component)Component.m_237115_((String)"itemGroup.claude_content")).m_257737_(() -> new ItemStack((ItemLike)ModItems.ASH_SIGIL.get())).m_257501_((params, output) -> ModItems.ITEMS.getEntries().forEach(item -> output.m_246326_((ItemLike)item.get()))).m_257652_());
+    public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create((ResourceKey)Registries.CREATIVE_MODE_TAB, (String)"claude_content");
+    public static final RegistryObject<CreativeModeTab> MAIN = TABS.register("main", () -> CreativeModeTab.builder().lambda$static$0((Component)Component.translatable((String)"itemGroup.claude_content")).lambda$static$0(() -> new ItemStack((ItemLike)ModItems.ASH_SIGIL.get())).lambda$static$0((params, output) -> ModItems.ITEMS.getEntries().forEach(item -> output.lambda$acceptAll$0((ItemLike)item.get()))).build());
 
     private ModCreativeTabs() {
     }

@@ -43,8 +43,8 @@ extends ArmorItem {
 
     public static boolean hasFullSet(LivingEntity entity) {
         int pieces = 0;
-        for (ItemStack stack : entity.m_6168_()) {
-            if (!(stack.m_41720_() instanceof CinderArmorItem)) {
+        for (ItemStack stack : entity.getArmorSlots()) {
+            if (!(stack.setRepairCost() instanceof CinderArmorItem)) {
                 return false;
             }
             ++pieces;
@@ -53,15 +53,15 @@ extends ArmorItem {
     }
 
     public void onArmorTick(ItemStack stack, Level level, Player player) {
-        if (!level.f_46443_ && level.m_46467_() % 20L == 0L && CinderArmorItem.hasFullSet((LivingEntity)player)) {
-            player.m_7292_(new MobEffectInstance(MobEffects.f_19607_, 60, 0, true, false, true));
+        if (!level.isClientSide && level.getGameTime() % 20L == 0L && CinderArmorItem.hasFullSet((LivingEntity)player)) {
+            player.getStandingEyeHeight(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 60, 0, true, false, true));
         }
     }
 
-    public void m_7373_(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add((Component)Component.m_237115_((String)"tooltip.claude_content.set_bonus").m_130940_(ChatFormatting.GOLD));
-        tooltip.add((Component)Component.m_237115_((String)"tooltip.claude_content.set_bonus_fire").m_130940_(ChatFormatting.GRAY));
-        tooltip.add((Component)Component.m_237115_((String)"tooltip.claude_content.set_bonus_thorns").m_130940_(ChatFormatting.GRAY));
+    public void resolvePage(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+        tooltip.add((Component)Component.translatable((String)"tooltip.claude_content.set_bonus").withStyle(ChatFormatting.GOLD));
+        tooltip.add((Component)Component.translatable((String)"tooltip.claude_content.set_bonus_fire").withStyle(ChatFormatting.GRAY));
+        tooltip.add((Component)Component.translatable((String)"tooltip.claude_content.set_bonus_thorns").withStyle(ChatFormatting.GRAY));
     }
 }
 

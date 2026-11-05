@@ -24,12 +24,12 @@ public final class ForgeEvents {
     public static void onLivingHurt(LivingHurtEvent event) {
         LivingEntity attacker;
         LivingEntity victim = event.getEntity();
-        if (victim.m_9236_().f_46443_) {
+        if (victim.level().isClientSide) {
             return;
         }
-        Entity entity = event.getSource().m_7639_();
-        if (entity instanceof LivingEntity && (attacker = (LivingEntity)entity) != victim && CinderArmorItem.hasFullSet(victim) && victim.m_217043_().m_188501_() < 0.25f) {
-            attacker.m_20254_(4);
+        Entity entity = event.getSource().getEntity();
+        if (entity instanceof LivingEntity && (attacker = (LivingEntity)entity) != victim && CinderArmorItem.hasFullSet(victim) && victim.getRandom().nextFloat() < 0.25f) {
+            attacker.getRandomZ(4);
         }
     }
 

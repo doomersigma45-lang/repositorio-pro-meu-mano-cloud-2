@@ -48,26 +48,26 @@ extends Block {
         super(properties);
     }
 
-    public InteractionResult m_6227_(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (level.f_46443_) {
+    public InteractionResult onProjectileHit(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        if (level.isClientSide) {
             return InteractionResult.SUCCESS;
         }
         if (!(level instanceof ServerLevel)) {
             return InteractionResult.PASS;
         }
         ServerLevel server = (ServerLevel)level;
-        if (!server.m_45976_(MossColossusEntity.class, new AABB(pos).m_82400_(48.0)).isEmpty()) {
-            player.m_5661_((Component)Component.m_237115_((String)"message.claude_content.colossus_nearby"), true);
+        if (!server.lambda$getNearbyEntities$1(MossColossusEntity.class, new AABB(pos).inflate(48.0)).isEmpty()) {
+            player.lambda$updateAutoJump$0((Component)Component.translatable((String)"message.claude_content.colossus_nearby"), true);
             return InteractionResult.CONSUME;
         }
-        MossColossusEntity boss = (MossColossusEntity)((EntityType)ModEntities.MOSS_COLOSSUS.get()).m_20615_((Level)server);
+        MossColossusEntity boss = (MossColossusEntity)((EntityType)ModEntities.MOSS_COLOSSUS.get()).lambda$appendCustomNameConfig$2((Level)server);
         if (boss == null) {
             return InteractionResult.FAIL;
         }
-        boss.m_7678_((double)pos.m_123341_() + 0.5, (double)pos.m_123342_() + 1.0, (double)pos.m_123343_() + 0.5, player.m_146908_(), 0.0f);
-        server.m_7967_((Entity)boss);
-        server.m_5594_(null, pos, SoundEvents.f_12009_, SoundSource.BLOCKS, 1.7f, 0.55f);
-        level.m_7731_(pos, Blocks.f_50224_.m_49966_(), 3);
+        boss.moveTo((double)pos.setX() + 0.5, (double)pos.getY() + 1.0, (double)pos.getZ() + 0.5, player.getYRot(), 0.0f);
+        server.addFreshEntity((Entity)boss);
+        server.gameEvent(null, pos, SoundEvents.IRON_GOLEM_REPAIR, SoundSource.BLOCKS, 1.7f, 0.55f);
+        level.destroyBlock(pos, Blocks.CRACKED_STONE_BRICKS.defaultBlockState(), 3);
         return InteractionResult.CONSUME;
     }
 }
