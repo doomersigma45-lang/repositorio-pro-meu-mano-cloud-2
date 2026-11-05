@@ -27,8 +27,8 @@ jobs:
           tsrg=None; off=None
           for f in glob.glob(home+'/**/*',recursive=True):
               b=os.path.basename(f)
-              if b=='joined.tsrg' and not tsrg: tsrg=open(f).read()
-              if b.endswith('.zip') and 'mcp_config' in f and not tsrg:
+              if b=='joined.tsrg' and 'mergeMappings' in f and not tsrg: tsrg=open(f).read()
+              if False:
                   z=zipfile.ZipFile(f)
                   for n in z.namelist():
                       if n.endswith('joined.tsrg'): tsrg=z.read(n).decode()
@@ -50,8 +50,8 @@ jobs:
                   cur=l.split(' ')[0].replace('.','/')
               else:
                   p=l.strip().split(' ')
-                  obf=p[0]; srg=p[-1]
-                  if srg.startswith(('m_','f_')):
+                  obf=p[0]; srg=next((x for x in p[1:] if x.startswith(('m_','f_'))),'')
+                  if srg:
                       nm=o2m.get((cur,obf))
                       if nm: s2n[srg]=nm
           print('mapped',len(s2n)); print(list(o2m.items())[:3]); print(tsrg[:300])
