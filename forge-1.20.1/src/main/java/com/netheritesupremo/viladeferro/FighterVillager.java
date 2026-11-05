@@ -38,6 +38,12 @@ public class FighterVillager extends Villager implements net.minecraft.world.ent
 
     public FighterVillager(EntityType<? extends Villager> type, Level level) { super(type, level); }
 
+    /** Aldeoes normais usam "<tipo>.<profissao>"; aqui o nome e o do proprio tipo. */
+    @Override
+    public net.minecraft.network.chat.Component getTypeName() {
+        return net.minecraft.network.chat.Component.translatable(getType().getDescriptionId());
+    }
+
     public Tier getTier() { return tier; }
 
     public void setTier(Tier tier) { this.tier = tier; }

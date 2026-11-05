@@ -306,7 +306,7 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 - **Aldeão Híbrido:** um Aldeão Precursor e um aldeão normal adultos lado a lado (5 blocos) têm 50% de chance a cada 5 s de gerar um filhote híbrido (recarga de 5 min). O híbrido tem 50 de vida e 5 de dano, as mesmas trocas e textura própria (gerada por mim).
 - **Depois que os alienígenas vencem:** perto de cada jogador a população de Precursores (híbridos incluídos) é mantida em cerca do **dobro** da de aldeões normais (+2, mínimo 4, máximo 40).
 
-### Mods incorporados (1.46.0)
+### Mods incorporados (1.46.x)
 Os mods **Claude Content** e **Vila de Ferro** agora fazem parte deste mod (mesmo jar, namespace `netheritesupremo`; os IDs mudaram, ex.: `/summon netheritesupremo:mossling`).
 - **Claude Content:** Ceifador de Cinzas (boss, invocado com o Selo de Cinzas), Musgolim, Lumiléu, Colosso de Musgo (guardião do Altar das Raízes), Espreitador de Brasa, armadura de Brasa (bônus de conjunto), Núcleo Enraizado, Broto Antigo, Altar das Raízes, Santuário das Raízes (estrutura em florestas) e uma aba própria no criativo.
 - **Vila de Ferro:** Villager Guerreiro (neutro, espada ou arco), Chefe Villager (invoca guerreiros e golems, totem, equipamento de diamante) e o Filhote do Chefe (pet leal ao jogador, cresce com o tempo). Vilas ganham um Chefe e guerreiros quando o jogador chega perto; ao derrotar o Chefe sai a conquista "Fim do Chefe da Vila".
