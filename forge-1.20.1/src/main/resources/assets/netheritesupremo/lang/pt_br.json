@@ -140,5 +140,7 @@
   "entity.netheritesupremo.precursor_soldier": "Soldado Precursor",
   "entity.netheritesupremo.alien_ship": "Nave Alienígena",
   "item.netheritesupremo.precursor_soldier_spawn_egg": "Ovo de Geração: Soldado Precursor",
-  "item.netheritesupremo.alien_ship_spawn_egg": "Ovo de Geração: Nave Alienígena"
+  "item.netheritesupremo.alien_ship_spawn_egg": "Ovo de Geração: Nave Alienígena",
+  "entity.netheritesupremo.hybrid_villager": "Aldeão Híbrido",
+  "item.netheritesupremo.hybrid_villager_spawn_egg": "Ovo de Geração: Aldeão Híbrido"
 }

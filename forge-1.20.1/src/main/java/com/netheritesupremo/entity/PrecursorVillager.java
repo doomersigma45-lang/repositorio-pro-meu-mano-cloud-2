@@ -56,13 +56,18 @@ public class PrecursorVillager extends AbstractVillager {
         this.xpReward = 20;
     }
 
+    /** So o hibrido sobrescreve. */
+    public boolean isHybrid() {
+        return false;
+    }
+
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 750.0D)
-                .add(Attributes.ATTACK_DAMAGE, 25.0D)
+                .add(Attributes.MAX_HEALTH, 100.0D)
+                .add(Attributes.ATTACK_DAMAGE, 10.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.32D)
                 .add(Attributes.FOLLOW_RANGE, 32.0D)
-                .add(Attributes.ARMOR, 10.0D)
+                .add(Attributes.ARMOR, 4.0D)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 0.6D);
     }
 
@@ -152,7 +157,7 @@ public class PrecursorVillager extends AbstractVillager {
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this, PrecursorVillager.class).setAlertOthers());
         // Ameaca = monstro hostil a vista (jogadores so viram alvo se atacarem)
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Mob.class, 10, true, false,
-                e -> e instanceof Enemy && !(e instanceof Precursor) && !(e instanceof PrecursorSoldier) && !(e instanceof AlienShip)));
+                e -> e instanceof Enemy && !AlienAllies.isAlien(e)));
     }
 
     /** Alvo novo (ameaca vista ou agressor): chama robos. */

@@ -140,5 +140,7 @@
   "entity.netheritesupremo.precursor_soldier": "Precursor Soldier",
   "entity.netheritesupremo.alien_ship": "Alien Spaceship",
   "item.netheritesupremo.precursor_soldier_spawn_egg": "Precursor Soldier Spawn Egg",
-  "item.netheritesupremo.alien_ship_spawn_egg": "Alien Spaceship Spawn Egg"
+  "item.netheritesupremo.alien_ship_spawn_egg": "Alien Spaceship Spawn Egg",
+  "entity.netheritesupremo.hybrid_villager": "Hybrid Villager",
+  "item.netheritesupremo.hybrid_villager_spawn_egg": "Hybrid Villager Spawn Egg"
 }

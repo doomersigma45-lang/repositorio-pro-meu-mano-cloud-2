@@ -16,12 +16,19 @@ public class PrecursorVillagerRenderer extends HumanoidMobRenderer<PrecursorVill
             new ResourceLocation(NetheriteSupremo.MODID, "textures/entity/precursor_villager_3.png")
     };
 
+    private static final ResourceLocation[] HYBRID = {
+            new ResourceLocation(NetheriteSupremo.MODID, "textures/entity/hybrid_villager_1.png"),
+            new ResourceLocation(NetheriteSupremo.MODID, "textures/entity/hybrid_villager_2.png"),
+            new ResourceLocation(NetheriteSupremo.MODID, "textures/entity/hybrid_villager_3.png")
+    };
+
     public PrecursorVillagerRenderer(EntityRendererProvider.Context context) {
         super(context, new PlayerModel<>(context.bakeLayer(ModelLayers.PLAYER), false), 0.5F);
     }
 
     @Override
     public ResourceLocation getTextureLocation(PrecursorVillager villager) {
-        return TEXTURES[Math.floorMod(villager.getUUID().hashCode(), TEXTURES.length)];
+        ResourceLocation[] set = villager.isHybrid() ? HYBRID : TEXTURES;
+        return set[Math.floorMod(villager.getUUID().hashCode(), set.length)];
     }
 }

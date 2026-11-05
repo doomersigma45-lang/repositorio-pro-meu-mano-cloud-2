@@ -327,6 +327,10 @@ public final class ModItems {
             "alien_ship_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.ALIEN_SHIP, 0x6B7480, 0xFF3344, new Item.Properties()));
 
+    public static final RegistryObject<Item> HYBRID_VILLAGER_SPAWN_EGG = ITEMS.register(
+            "hybrid_villager_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.HYBRID_VILLAGER, 0x6B4A2E, 0x8FE3D9, new Item.Properties()));
+
     private ModItems() {
     }
 }

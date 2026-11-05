@@ -109,7 +109,7 @@ public class InvasionManager {
         } else if (!data.aliensWon && event.getSource().getEntity() instanceof ServerPlayer killer) {
             if (dead instanceof Guardian || dead instanceof ElderGuardian) {
                 roll(killer, 10);
-            } else if (dead instanceof PrecursorVillager) {
+            } else if (dead instanceof PrecursorVillager && dead.getType() == ModEntities.PRECURSOR_VILLAGER.get()) {
                 roll(killer, 60);
             } else if (dead instanceof Precursor) {
                 roll(killer, 100);
@@ -396,11 +396,14 @@ public class InvasionManager {
     // -------------------------------------------------------- depois da vitoria
     private static void tickWon(ServerLevel ow, InvasionData data, MinecraftServer server) {
         long t = server.getTickCount();
-        if (t % 600 == 0) {
+        if (t % 200 == 0) {
+            // populacao: sempre mais Precursores (inclui hibridos) que aldeoes normais por perto
             for (ServerPlayer p : ow.players()) {
-                List<Villager> vs = ow.getEntitiesOfClass(Villager.class, p.getBoundingBox().inflate(64.0D));
-                int pv = ow.getEntitiesOfClass(PrecursorVillager.class, p.getBoundingBox().inflate(64.0D)).size();
-                if (!vs.isEmpty() && pv < 5) {
+                net.minecraft.world.phys.AABB box = p.getBoundingBox().inflate(64.0D);
+                List<Villager> vs = ow.getEntitiesOfClass(Villager.class, box);
+                int pv = ow.getEntitiesOfClass(PrecursorVillager.class, box).size();
+                int desired = Math.min(40, Math.max(4, vs.size() * 2 + 2));
+                for (int i = 0; i < 2 && !vs.isEmpty() && pv < desired; i++, pv++) {
                     Villager v = vs.get(ow.random.nextInt(vs.size()));
                     PrecursorVillager pvil = ModEntities.PRECURSOR_VILLAGER.get().create(ow);
                     if (pvil != null) {

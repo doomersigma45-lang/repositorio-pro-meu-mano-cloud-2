@@ -423,6 +423,31 @@ def main():
                       "list", "kill @e[type=netheritesupremo:netherite_knight]",
                       "kill @e[type=netheritesupremo:netherite_golem]"):
                 results.append(f"> {t}\n  {r.cmd(t)}")
+            # ---- aliados alienigenas, soldados vs saqueadores/piglins, hibridos
+            al = []
+            for t in ["fill 18 99 18 34 99 34 minecraft:stone",
+                      "fill 18 100 18 34 110 34 minecraft:air",
+                      "summon netheritesupremo:precursor_soldier 24 100 24 {CustomName:'\"sold\"',PersistenceRequired:1b}",
+                      "summon netheritesupremo:netherite_bomb_robot 26 100 24 {CustomName:'\"bomba\"',PersistenceRequired:1b}",
+                      "summon netheritesupremo:robot 28 100 24 {PersistenceRequired:1b}",
+                      "summon netheritesupremo:alien_ship 24 104 28 {CustomName:'\"nave\"',PersistenceRequired:1b}",
+                      "summon minecraft:pillager 30 100 26 {PersistenceRequired:1b}",
+                      "summon minecraft:piglin 20 100 26 {PersistenceRequired:1b}",
+                      "summon netheritesupremo:precursor_villager 32 100 32 {PersistenceRequired:1b}",
+                      "summon minecraft:villager 33 100 32 {PersistenceRequired:1b}"]:
+                al.append(f"> {t}\n  {r.cmd(t)}")
+            time.sleep(30)
+            for t in ["data get entity @e[type=netheritesupremo:precursor_soldier,name=sold,limit=1] Health",
+                      "data get entity @e[type=netheritesupremo:netherite_bomb_robot,name=bomba,limit=1] Health",
+                      "data get entity @e[type=netheritesupremo:alien_ship,name=nave,limit=1] Health",
+                      "execute if entity @e[type=minecraft:pillager,x=30,y=100,z=26,distance=..30]",
+                      "execute if entity @e[type=minecraft:piglin,x=20,y=100,z=26,distance=..30]",
+                      "execute if entity @e[type=netheritesupremo:hybrid_villager]",
+                      "attribute @e[type=netheritesupremo:precursor_villager,limit=1] minecraft:generic.max_health get",
+                      "attribute @e[type=netheritesupremo:precursor_soldier,limit=1] minecraft:generic.max_health get"]:
+                al.append(f"> {t}\n  {r.cmd(t)}")
+            r.cmd("kill @e[type=netheritesupremo:precursor_soldier]"); r.cmd("kill @e[type=netheritesupremo:alien_ship]"); r.cmd("kill @e[type=netheritesupremo:robot]"); r.cmd("kill @e[type=netheritesupremo:netherite_bomb_robot]")
+            annotate("notice", "aliados", al)
             # ---- invasao alienigena (modo de teste: sem jogador, ondas rapidas)
             inv = []
             def icmd(t):

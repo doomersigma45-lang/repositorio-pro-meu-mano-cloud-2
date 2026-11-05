@@ -45,9 +45,14 @@ public class PrecursorSoldier extends Monster {
         this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 0.9D));
         this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 12.0F));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-        this.targetSelector.addGoal(1, new HurtByTargetGoal(this, PrecursorSoldier.class));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Villager.class, true));
+        // prioridade: bosses (menos os aliados), depois saqueadores e piglins, depois o resto
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 5, false, false,
+                e -> e.getType().is(net.minecraftforge.common.Tags.EntityTypes.BOSSES) && !AlienAllies.isAlien(e)));
+        this.targetSelector.addGoal(2, new HurtByTargetGoal(this, PrecursorSoldier.class));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 5, false, false,
+                e -> e instanceof net.minecraft.world.entity.raid.Raider || e instanceof net.minecraft.world.entity.monster.piglin.AbstractPiglin));
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Player.class, true));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Villager.class, true));
     }
 
     @Override

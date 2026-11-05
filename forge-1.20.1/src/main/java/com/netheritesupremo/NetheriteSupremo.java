@@ -42,6 +42,8 @@ public class NetheriteSupremo {
         MinecraftForge.EVENT_BUS.register(new GauntletEvents());
         MinecraftForge.EVENT_BUS.register(new AvaritiaCompat());
         MinecraftForge.EVENT_BUS.register(new SpectriteEvents());
+        MinecraftForge.EVENT_BUS.register(new com.netheritesupremo.entity.AlienAllies());
+        MinecraftForge.EVENT_BUS.register(new com.netheritesupremo.invasion.HybridEvents());
         MinecraftForge.EVENT_BUS.register(new com.netheritesupremo.invasion.InvasionManager());
         MinecraftForge.EVENT_BUS.register(new com.netheritesupremo.invasion.InvasionCommand());
         MinecraftForge.EVENT_BUS.register(new RecipeEvents());
@@ -78,6 +80,7 @@ public class NetheriteSupremo {
             event.accept(ModItems.TRILOBITE_SPAWN_EGG);
             event.accept(ModItems.OPABINIA_SPAWN_EGG);
             event.accept(ModItems.PRECURSOR_VILLAGER_SPAWN_EGG);
+            event.accept(ModItems.HYBRID_VILLAGER_SPAWN_EGG);
             event.accept(ModItems.GIANT_GLOW_SQUID_SPAWN_EGG);
         } else if (event.getTabKey() == CreativeModeTabs.COMBAT) {
             event.accept(ModItems.OBSIDIAN_SWORD);

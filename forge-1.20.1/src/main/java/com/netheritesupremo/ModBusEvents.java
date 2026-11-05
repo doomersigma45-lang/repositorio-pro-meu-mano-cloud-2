@@ -44,6 +44,7 @@ public final class ModBusEvents {
         event.put(ModEntities.NINJA.get(), com.netheritesupremo.entity.Ninja.createNinjaAttributes().build());
         event.put(ModEntities.SAMURAI.get(), com.netheritesupremo.entity.Samurai.createSamuraiAttributes().build());
         event.put(ModEntities.THIEF.get(), com.netheritesupremo.entity.Thief.createThiefAttributes().build());
+        event.put(ModEntities.HYBRID_VILLAGER.get(), com.netheritesupremo.entity.HybridVillager.createHybridAttributes().build());
         event.put(ModEntities.PRECURSOR_VILLAGER.get(), com.netheritesupremo.entity.PrecursorVillager.createAttributes().build());
         event.put(ModEntities.ROBOT.get(), Robot.createRobotAttributes().build());
         event.put(ModEntities.PRECURSOR_SOLDIER.get(), com.netheritesupremo.entity.PrecursorSoldier.createAttributes().build());

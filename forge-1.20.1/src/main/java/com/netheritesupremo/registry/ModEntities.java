@@ -213,6 +213,13 @@ public final class ModEntities {
                     .clientTrackingRange(8)
                     .build("opabinia"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.entity.HybridVillager>> HYBRID_VILLAGER = ENTITIES.register(
+            "hybrid_villager",
+            () -> EntityType.Builder.of(com.netheritesupremo.entity.HybridVillager::new, MobCategory.CREATURE)
+                    .sized(0.6F, 1.95F)
+                    .clientTrackingRange(10)
+                    .build("hybrid_villager"));
+
     public static final RegistryObject<EntityType<com.netheritesupremo.entity.PrecursorVillager>> PRECURSOR_VILLAGER = ENTITIES.register(
             "precursor_villager",
             () -> EntityType.Builder.of(com.netheritesupremo.entity.PrecursorVillager::new, MobCategory.CREATURE)

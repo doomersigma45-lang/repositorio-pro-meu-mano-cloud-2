@@ -137,7 +137,7 @@ public class Robot extends IronGolem {
         this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Mob.class, 5, false, false,
-                e -> e instanceof Enemy && !(e instanceof Creeper) && !(e instanceof NetheriteKnight) && !(e instanceof Precursor)));
+                e -> e instanceof Enemy && !(e instanceof Creeper) && !(e instanceof NetheriteKnight) && !AlienAllies.isAlien(e)));
     }
 
     @Override

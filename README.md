@@ -293,3 +293,10 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 - **Se perderem** (boss morto ou tempo esgotado): os invasores somem e deixam um **baú de oferta de paz** (netherite, maçãs douradas encantadas, totens, estrelas do Nether, armadura/espada/picareta de netherite encantadas, etc.) perto da casa do jogador (cama, ou onde a invasão começou).
 - Soldados e naves têm ovo de geração. O boss da invasão não dispara um novo sorteio enquanto ela estiver ativa. Desligue tudo com `invasionEnabled=false` na config.
 - Comandos de operador: `/invasion start|stop|win|lose|reset|status|city x z|peace x y z|test x z`.
+
+### Aliados alienígenas, soldados e híbridos (1.45.0)
+- **Aliados:** Robôs (todas as variantes), Robôs Bomba, Netherbots, Rainbow Bot, Precursor, Soldados Precursores, Naves e Aldeões Precursores **não se atacam** nem se ferem (lasers, explosões e golpes), e nenhum escolhe o outro como alvo.
+- **Aldeão Precursor** ficou mais fraco que o Soldado: 100 de vida, 10 de dano, armadura 4 (Soldado: 150 de vida, 22 de dano, armadura 12).
+- **Soldados Precursores** atacam **primeiro os bosses** (tag `forge:bosses`, exceto aliados), depois **saqueadores (pillagers, vindicators, evokers, ravagers) e piglins**, depois jogadores e aldeões normais.
+- **Aldeão Híbrido:** um Aldeão Precursor e um aldeão normal adultos lado a lado (5 blocos) têm 50% de chance a cada 5 s de gerar um filhote híbrido (recarga de 5 min). O híbrido tem 50 de vida e 5 de dano, as mesmas trocas e textura própria (gerada por mim).
+- **Depois que os alienígenas vencem:** perto de cada jogador a população de Precursores (híbridos incluídos) é mantida em cerca do **dobro** da de aldeões normais (+2, mínimo 4, máximo 40).
