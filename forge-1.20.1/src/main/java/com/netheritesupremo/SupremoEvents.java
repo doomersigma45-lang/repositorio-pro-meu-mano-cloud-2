@@ -40,8 +40,8 @@ public class SupremoEvents {
     public static final double BOOTS_ARMOR = 13.0D;
 
     // Dano total (inclui o 1 de dano base da mao)
-    public static final double SWORD_DAMAGE = 80.0D;
-    public static final double AXE_DAMAGE = 100.0D;
+    public static final double SWORD_DAMAGE = 100.0D;
+    public static final double AXE_DAMAGE = 120.0D;
 
     // Armadura: todo dano que nao seja queda/explosao fica com 3% (reduz 97%)
     public static final float DAMAGE_MULTIPLIER = 0.03F;
@@ -120,6 +120,7 @@ public class SupremoEvents {
         if (entity.tickCount % 10 == 0 && hasSetBonus(entity)) {
             entity.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 40, 0, true, false, false));
             entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 40, 1, true, false, false)); // Forca II
+            entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 40, 3, true, false, false)); // Resistencia IV
         }
     }
 

@@ -10,8 +10,8 @@ Mod que deixa a netherite OP e remove o limite de armadura do jogo.
 | Qualquer outro dano | reduzido em 97% com o conjunto |
 | Voo | voa como no criativo com o conjunto (duplo pulo para ligar), em velocidade ~3x a da aranha do nether montada (~58 blocos/s; correr no ar dobra). Valor em `NETHERITE_FLYING_SPEED` |
 | Escudo | flechas quicam e não dão dano, com o som do escudo |
-| Efeitos | Resistência ao Fogo e Força II |
-| Espada / machado | 80 / 100 de dano total, Fire Aspect II |
+| Efeitos | Resistência ao Fogo, Força II e Resistência IV |
+| Espada / machado | 100 / 120 de dano total, Fire Aspect II |
 | Espada (efeitos no alvo) | Fraqueza II, Wither II e Lentidão III por 10 segundos |
 | Picareta | quebra qualquer bloco instantaneamente |
 | Inquebrável | armadura, espada, machado, picareta e pá de netherite |
@@ -21,7 +21,7 @@ Os efeitos da armadura (voo, escudo, imunidades, -97% e efeitos) ativam com o co
 completo (4 peças). Para ativar com qualquer peça, mude `requireFullSet` para `false` no
 arquivo `config/netheritesupremo-common.toml`.
 
-Com a Força II o dano sobe +6: espada 86 e machado 106 quando o conjunto está vestido.
+Com a Força II o dano sobe +6: espada 106 e machado 126 quando o conjunto está vestido.
 
 Limite da picareta: blocos que o jogo marca como indestrutíveis (bedrock, barreira, etc.)
 continuam impossíveis de quebrar no modo survival, porque isso é fixo no jogo.
