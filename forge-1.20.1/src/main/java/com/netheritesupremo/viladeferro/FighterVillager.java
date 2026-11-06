@@ -36,7 +36,13 @@ public class FighterVillager extends Villager implements net.minecraft.world.ent
     private int bowCooldown;
     private int meleeCooldown;
 
-    public FighterVillager(EntityType<? extends Villager> type, Level level) { super(type, level); }
+    public FighterVillager(EntityType<? extends Villager> type, Level level) {
+        super(type, level);
+        // Nada rapido na agua (guerreiros e chefe): multiplicador de velocidade de nado do Forge.
+        var swim = getAttribute(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get());
+        if (swim != null) swim.setBaseValue(4.0D);
+        if (getNavigation() instanceof net.minecraft.world.entity.ai.navigation.GroundPathNavigation nav) nav.setCanFloat(true);
+    }
 
     /** Aldeoes normais usam "<tipo>.<profissao>"; aqui o nome e o do proprio tipo. */
     @Override
@@ -85,6 +91,7 @@ public class FighterVillager extends Villager implements net.minecraft.world.ent
 
     @Override
     protected void registerGoals() {
+        goalSelector.addGoal(0, new net.minecraft.world.entity.ai.goal.FloatGoal(this));
         goalSelector.addGoal(0, new CombatGoal(this));
         goalSelector.addGoal(1, new net.minecraft.world.entity.ai.goal.OpenDoorGoal(this, true));
         goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 0.6));

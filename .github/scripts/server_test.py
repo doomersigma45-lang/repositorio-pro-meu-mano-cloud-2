@@ -436,6 +436,12 @@ def main():
                 im.append(f"> existe {e}\n  {r.cmd('execute if entity @e[type=netheritesupremo:' + e + ']')}")
             r.cmd("kill @e[type=netheritesupremo:ash_reaper]"); r.cmd("kill @e[type=netheritesupremo:moss_colossus]")
             annotate("notice", "mods incorporados", im)
+            # ---- nado rapido dos guerreiros/chefe
+            sw = []
+            for t in ["attribute @e[type=netheritesupremo:guerreiro_villager,limit=1] forge:swim_speed get",
+                      "attribute @e[type=netheritesupremo:chefe_villager,limit=1] forge:swim_speed get"]:
+                sw.append(f"> {t}\n  {r.cmd(t)}")
+            annotate("notice", "nado", sw)
             # ---- aliados alienigenas, soldados vs saqueadores/piglins, hibridos
             al = []
             for t in ["fill 18 99 18 34 99 34 minecraft:stone",
