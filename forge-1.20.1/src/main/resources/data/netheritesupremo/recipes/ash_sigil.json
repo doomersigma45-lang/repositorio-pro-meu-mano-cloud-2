@@ -1,6 +1,6 @@
 { "type": "minecraft:crafting_shaped", "category": "misc",
   "pattern": ["SOS","ONO","SOS"],
-  "key": { "S": { "item": "netheritesupremo:cinder_scale" },
+  "key": { "S": { "item": "minecraft:gold_ingot" },
            "O": { "item": "minecraft:obsidian" },
-           "N": { "item": "minecraft:nether_star" } },
+           "N": { "item": "minecraft:diamond" } },
   "result": { "item": "netheritesupremo:ash_sigil" } }
