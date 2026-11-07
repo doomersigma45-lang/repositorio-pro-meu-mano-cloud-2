@@ -4,6 +4,7 @@ import com.netheritesupremo.NetheriteSupremo;
 import java.util.function.Consumer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
@@ -49,7 +50,7 @@ public final class ModFluids {
             () -> new ForgeFlowingFluid.Source(ModFluids.PROPERTIES));
     public static final RegistryObject<FlowingFluid> FLOWING = FLUIDS.register("flowing_black_liquid",
             () -> new ForgeFlowingFluid.Flowing(ModFluids.PROPERTIES));
-    public static final RegistryObject<Block> BLOCK = BLOCKS.register("black_liquid",
+    public static final RegistryObject<LiquidBlock> BLOCK = BLOCKS.register("black_liquid",
             () -> new BlackLiquidBlock(ModFluids.SOURCE, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK)
                     .replaceable().noCollission().strength(100.0F).pushReaction(PushReaction.DESTROY)
                     .noLootTable().liquid()));
