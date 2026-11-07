@@ -1,0 +1,11 @@
+{
+  "type": "netheritesupremo:black_realm",
+  "generator": {
+    "type": "minecraft:noise",
+    "settings": "netheritesupremo:black_realm",
+    "biome_source": {
+      "type": "minecraft:fixed",
+      "biome": "netheritesupremo:black_realm"
+    }
+  }
+}

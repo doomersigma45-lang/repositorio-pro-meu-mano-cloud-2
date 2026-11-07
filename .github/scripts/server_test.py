@@ -456,6 +456,32 @@ def main():
                 im.append(f"> existe {e}\n  {r.cmd('execute if entity @e[type=netheritesupremo:' + e + ']')}")
             r.cmd("kill @e[type=netheritesupremo:ash_reaper]"); r.cmd("kill @e[type=netheritesupremo:moss_colossus]")
             annotate("notice", "mods incorporados", im)
+            # ---- Steve Vermelho + Terra Negra
+            bl = []
+            for t in ["summon netheritesupremo:red_steve 80 100 80 {CustomName:'\"steve\"',PersistenceRequired:1b}",
+                      "attribute @e[type=netheritesupremo:red_steve,limit=1] minecraft:generic.max_health get",
+                      "attribute @e[type=netheritesupremo:red_steve,limit=1] minecraft:generic.attack_damage get",
+                      "execute in netheritesupremo:black_realm run forceload add 0 0 63 63",
+                      "summon minecraft:zombie 82 100 80 {CustomName:'\"assassino\"',PersistenceRequired:1b}"]:
+                bl.append(f"> {t}\n  {r.cmd(t)}")
+            time.sleep(40)
+            for t in ["execute in netheritesupremo:black_realm run setblock 5 150 5 netheritesupremo:black_liquid",
+                      "execute in netheritesupremo:black_realm run fill 0 0 0 15 100 15 minecraft:stone replace netheritesupremo:black_soil",
+                      "execute in netheritesupremo:black_realm run fill 0 0 16 15 100 31 minecraft:stone replace netheritesupremo:black_liquid",
+                      "execute in netheritesupremo:black_realm run fill 16 0 0 31 100 15 minecraft:stone replace minecraft:dark_oak_log",
+                      "execute in netheritesupremo:black_realm run locate structure netheritesupremo:ruin_house",
+                      "execute in netheritesupremo:black_realm run locate structure netheritesupremo:ruin_tower",
+                      "execute in netheritesupremo:black_realm run locate structure netheritesupremo:ruin_hall",
+                      "damage @e[type=netheritesupremo:red_steve,limit=1] 1000 minecraft:mob_attack by @e[type=minecraft:zombie,name=assassino,limit=1]"]:
+                bl.append(f"> {t}\n  {r.cmd(t)}")
+            time.sleep(8)
+            for t in ["execute in netheritesupremo:black_realm if entity @e[type=minecraft:zombie,name=assassino]",
+                      "execute in minecraft:overworld if entity @e[type=minecraft:zombie,name=assassino]",
+                      "execute in netheritesupremo:black_realm run data get entity @e[type=minecraft:zombie,name=assassino,limit=1] Pos",
+                      "execute if entity @e[type=netheritesupremo:red_steve]"]:
+                bl.append(f"> {t}\n  {r.cmd(t)}")
+            r.cmd("execute in netheritesupremo:black_realm run forceload remove 0 0 63 63")
+            annotate("notice", "steve vermelho / terra negra", bl)
             # ---- Rei Esqueleto + invocador do necromante
             kg = []
             for t in ["summon netheritesupremo:skeleton_king 70 100 70 {CustomName:'\"rei\"'}",

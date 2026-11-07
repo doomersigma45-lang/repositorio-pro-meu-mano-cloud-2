@@ -274,6 +274,13 @@ public final class ModItems {
     public static final RegistryObject<Item> NECROMANCER_SUMMONER = ITEMS.register("necromancer_summoner",
             () -> new com.netheritesupremo.item.NecromancerSummonItem(new Item.Properties().stacksTo(16).rarity(net.minecraft.world.item.Rarity.EPIC)));
 
+    public static final RegistryObject<Item> RED_STEVE_SPAWN_EGG = ITEMS.register(
+            "red_steve_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.RED_STEVE, 0xB01818, 0x4A3A2A, new Item.Properties()));
+
+    public static final RegistryObject<Item> BLACK_SOIL = ITEMS.register("black_soil",
+            () -> new net.minecraft.world.item.BlockItem(ModBlocks.BLACK_SOIL.get(), new Item.Properties()));
+
     public static final RegistryObject<Item> SPECTRITE_GEM = ITEMS.register("spectrite_gem",
             () -> new Item(new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
 

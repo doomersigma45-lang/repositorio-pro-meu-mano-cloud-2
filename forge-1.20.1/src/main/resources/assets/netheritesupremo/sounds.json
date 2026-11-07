@@ -1,0 +1,10 @@
+{
+  "music.black_realm": {
+    "sounds": [
+      {
+        "name": "netheritesupremo:music/black_realm",
+        "stream": true
+      }
+    ]
+  }
+}

@@ -181,5 +181,9 @@
   "entity.netheritesupremo.skeleton_king": "Skeleton King",
   "item.netheritesupremo.skeleton_king_spawn_egg": "Skeleton King Spawn Egg",
   "item.netheritesupremo.necromancer_summoner": "Necromancer Summoner",
-  "tooltip.netheritesupremo.necromancer_summoner": "Use on a block to summon the Necromancer."
+  "tooltip.netheritesupremo.necromancer_summoner": "Use on a block to summon the Necromancer.",
+  "entity.netheritesupremo.red_steve": "Red Steve",
+  "item.netheritesupremo.red_steve_spawn_egg": "Red Steve Spawn Egg",
+  "block.netheritesupremo.black_soil": "Black Soil",
+  "block.netheritesupremo.black_liquid": "Black Liquid"
 }

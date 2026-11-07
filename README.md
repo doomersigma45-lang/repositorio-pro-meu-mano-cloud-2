@@ -316,3 +316,11 @@ Os mods **Claude Content** e **Vila de Ferro** agora fazem parte deste mod (mesm
 - **Rei Esqueleto (boss, só por ovo de geração):** esqueleto 60% maior que um jogador, de coroa dourada, **7500 de vida e 100 de dano**, imune a fogo e a Wither. Invoca as três variantes (esqueleto, stray e wither) com **armadura e espada de Spectrite** (até 9 vivos, somem em 2 min, sem drops) e arremessa **bolas de fogo** e **cabeças de wither** (50% do dano dele, sem quebrar blocos).
 - **Fase 2 (metade da vida):** invoca **dois Necromantes** (sem drops), causa **3x mais dano** (300) e recebe **1/3 do dano**. A barra de boss fica vermelha.
 - Drops: 2–3 estrelas do Nether, 6–12 gemas de Spectrite, 3–6 blocos de diamante, 2–4 maçãs douradas encantadas, 1–2 totens e blocos de osso. Está na tag `forge:bosses`.
+
+### Steve Vermelho e a Terra Negra (1.49.0)
+- **Steve Vermelho:** modelo de jogador com a skin que você enviou. **20 de vida e 550 de dano**, **neutro** (só revida se atacado). É **muito raro** de achar: tem o menor peso de spawn possível no Overworld, só 1 em 4 das tentativas passa e nasce sozinho. Também tem ovo de geração.
+- **Quem o matar** (jogador ou mob) é **teletransportado para a Terra Negra** (`netheritesupremo:black_realm`), nas mesmas coordenadas x/z (procura um ponto seguro perto).
+- **Terra Negra:** sempre noite, céu preto, terra preta (`Terra Preta`), subsolo de blackstone, **árvores sem folhas** (troncos de carvalho-escuro bifurcados), **rios e lagos de Líquido Negro** e **ruínas abandonadas e quebradas** (casa, torre e salão em ruínas, com baús de pouca coisa). Monstros: zumbis, esqueletos, aranhas e raros endermen.
+- **Líquido Negro:** causa 8 de dano a cada meio segundo, Lentidão IV, **puxa para o fundo** (não dá para nadar para cima) e afoga. Não é água: não apaga fogo, não serve para barcos.
+- **Música invertida:** faixa sombria **sintetizada por mim e tocada de trás para frente** (`tools/gerar_musica.py`), que toca na dimensão.
+- **Sair:** morrendo você volta ao seu ponto de renascimento. Operadores têm `/blackrealm enter` e `/blackrealm leave`.

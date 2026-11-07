@@ -25,6 +25,8 @@ public class NetheriteSupremo {
         ModItems.ITEMS.register(modBus);
         ModEnchantments.ENCHANTMENTS.register(modBus);
         com.netheritesupremo.claudecontent.ClaudeContent.register(modBus);
+        com.netheritesupremo.blackrealm.ModFluids.register(modBus);
+        com.netheritesupremo.blackrealm.ModSounds.SOUNDS.register(modBus);
         com.netheritesupremo.viladeferro.VilaDeFerro.register(modBus);
         com.netheritesupremo.network.ModNetwork.register();
         modBus.addListener(this::commonSetup);
@@ -44,6 +46,7 @@ public class NetheriteSupremo {
         MinecraftForge.EVENT_BUS.register(new GauntletEvents());
         MinecraftForge.EVENT_BUS.register(new AvaritiaCompat());
         MinecraftForge.EVENT_BUS.register(new SpectriteEvents());
+        MinecraftForge.EVENT_BUS.register(new com.netheritesupremo.blackrealm.BlackRealmCommand());
         MinecraftForge.EVENT_BUS.register(new com.netheritesupremo.entity.TamedSpiderProtection());
         MinecraftForge.EVENT_BUS.register(new com.netheritesupremo.entity.AlienAllies());
         MinecraftForge.EVENT_BUS.register(new com.netheritesupremo.invasion.HybridEvents());
@@ -66,6 +69,7 @@ public class NetheriteSupremo {
             event.accept(ModItems.NETHERITE_KNIGHT_SPAWN_EGG);
             event.accept(ModItems.NECROMANCER_SPAWN_EGG);
             event.accept(ModItems.SKELETON_KING_SPAWN_EGG);
+            event.accept(ModItems.RED_STEVE_SPAWN_EGG);
             event.accept(ModItems.NECROMANCER_SUMMONER);
             event.accept(ModItems.NETHER_SPIDER_SPAWN_EGG);
             event.accept(ModItems.GOLDEN_ZOMBIE_SPAWN_EGG);
@@ -126,6 +130,7 @@ public class NetheriteSupremo {
             event.accept(ModItems.OBSIDIAN_SHOVEL);
             event.accept(ModItems.OBSIDIAN_HOE);
         } else if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
+            event.accept(ModItems.BLACK_SOIL);
             event.accept(ModItems.CRYSTAL_LOG);
             event.accept(ModItems.CRYSTAL_WOOD);
             event.accept(ModItems.STRIPPED_CRYSTAL_LOG);

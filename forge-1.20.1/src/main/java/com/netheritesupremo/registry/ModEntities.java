@@ -59,6 +59,13 @@ public final class ModEntities {
                     .updateInterval(2)
                     .build("skeleton_king"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.entity.RedSteve>> RED_STEVE = ENTITIES.register(
+            "red_steve",
+            () -> EntityType.Builder.of(com.netheritesupremo.entity.RedSteve::new, MobCategory.CREATURE)
+                    .sized(0.6F, 1.8F)
+                    .clientTrackingRange(10)
+                    .build("red_steve"));
+
     public static final RegistryObject<EntityType<NetherSpider>> NETHER_SPIDER = ENTITIES.register(
             "nether_spider",
             () -> EntityType.Builder.of(NetherSpider::new, MobCategory.MONSTER)

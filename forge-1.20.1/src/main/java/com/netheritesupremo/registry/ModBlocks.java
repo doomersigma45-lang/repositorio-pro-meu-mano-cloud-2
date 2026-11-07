@@ -17,6 +17,9 @@ public final class ModBlocks {
             () -> new GiantGlowSquidEggBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_CYAN)
                     .strength(0.5F).sound(SoundType.FROGSPAWN).noOcclusion().lightLevel(state -> 8)));
 
+    public static final RegistryObject<Block> BLACK_SOIL = BLOCKS.register("black_soil",
+            () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).strength(0.6F).sound(SoundType.GRAVEL)));
+
     public static final RegistryObject<Block> SPECTRITE_ORE = BLOCKS.register("spectrite_ore",
             () -> new net.minecraft.world.level.block.DropExperienceBlock(BlockBehaviour.Properties.of()
                     .mapColor(MapColor.STONE).strength(4.5F, 6.0F).requiresCorrectToolForDrops().lightLevel(state -> 7),
