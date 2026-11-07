@@ -207,6 +207,10 @@ def main():
                         m = _re.search(r"filled (\d+)", out)
                         dia += int(m.group(1)) if m else 0
             sp.append(f"diamante vanilla (referencia): {dia} blocos nos mesmos 36 chunks")
+            rate = []
+            for ty in ("netheritesupremo:red_steve", "minecraft:sheep", "minecraft:cow", "minecraft:pig", "minecraft:chicken"):
+                rate.append(f"{ty}: " + r.cmd(f"execute if entity @e[type={ty},x=6000,y=-64,z=6000,dx=96,dy=500,dz=96]"))
+            sp.append("spawn natural em 36 chunks gerados -> " + " | ".join(rate))
             r.cmd("forceload remove 6000 6000 6095 6095")
             for t in ['summon minecraft:zombie 60 100 60 {CustomName:\'"spectro"\',PersistenceRequired:1b,ArmorItems:[{id:"netheritesupremo:spectrite_boots",Count:1b},{id:"netheritesupremo:spectrite_leggings",Count:1b},{id:"netheritesupremo:spectrite_chestplate",Count:1b},{id:"netheritesupremo:spectrite_helmet",Count:1b}]}',
                       "attribute @e[type=minecraft:zombie,name=spectro,limit=1] minecraft:generic.max_health get",
@@ -458,7 +462,8 @@ def main():
             annotate("notice", "mods incorporados", im)
             # ---- Steve Vermelho + Terra Negra
             bl = []
-            for t in ["summon netheritesupremo:red_steve 80 100 80 {CustomName:'\"steve\"',PersistenceRequired:1b}",
+            for t in ["fill 74 98 74 90 98 90 minecraft:stone", "fill 74 99 74 90 108 90 minecraft:air",
+                      "summon netheritesupremo:red_steve 80 100 80 {CustomName:'\"steve\"',PersistenceRequired:1b}",
                       "attribute @e[type=netheritesupremo:red_steve,limit=1] minecraft:generic.max_health get",
                       "attribute @e[type=netheritesupremo:red_steve,limit=1] minecraft:generic.attack_damage get",
                       "execute in netheritesupremo:black_realm run forceload add 0 0 63 63",
@@ -485,7 +490,7 @@ def main():
             for t in ["execute in netheritesupremo:black_realm if entity @e[type=minecraft:husk,name=assassino]",
                       "execute in minecraft:overworld if entity @e[type=minecraft:husk,name=assassino]",
                       "execute in netheritesupremo:black_realm run data get entity @e[type=minecraft:husk,name=assassino,limit=1] Pos",
-                      "execute if entity @e[type=netheritesupremo:red_steve]"]:
+                      "execute if entity @e[type=netheritesupremo:red_steve,name=steve]"]:
                 bl.append(f"> {t}\n  {r.cmd(t)}")
             r.cmd("execute in netheritesupremo:black_realm run forceload remove 0 0 63 63")
             annotate("notice", "steve vermelho / terra negra", bl)
