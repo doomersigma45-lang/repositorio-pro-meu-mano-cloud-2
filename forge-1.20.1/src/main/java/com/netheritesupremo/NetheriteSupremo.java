@@ -65,6 +65,8 @@ public class NetheriteSupremo {
             event.accept(ModItems.NETHERITE_GOLEM_SPAWN_EGG);
             event.accept(ModItems.NETHERITE_KNIGHT_SPAWN_EGG);
             event.accept(ModItems.NECROMANCER_SPAWN_EGG);
+            event.accept(ModItems.SKELETON_KING_SPAWN_EGG);
+            event.accept(ModItems.NECROMANCER_SUMMONER);
             event.accept(ModItems.NETHER_SPIDER_SPAWN_EGG);
             event.accept(ModItems.GOLDEN_ZOMBIE_SPAWN_EGG);
             event.accept(ModItems.UMBRAL_MERCHANT_SPAWN_EGG);

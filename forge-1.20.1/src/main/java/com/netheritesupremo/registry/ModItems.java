@@ -267,6 +267,13 @@ public final class ModItems {
             "opabinia_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.OPABINIA, 0xDE9696, 0xFFEEDD, new Item.Properties()));
 
+    public static final RegistryObject<Item> SKELETON_KING_SPAWN_EGG = ITEMS.register(
+            "skeleton_king_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.SKELETON_KING, 0xE8E2C8, 0xE3B52A, new Item.Properties()));
+
+    public static final RegistryObject<Item> NECROMANCER_SUMMONER = ITEMS.register("necromancer_summoner",
+            () -> new com.netheritesupremo.item.NecromancerSummonItem(new Item.Properties().stacksTo(16).rarity(net.minecraft.world.item.Rarity.EPIC)));
+
     public static final RegistryObject<Item> SPECTRITE_GEM = ITEMS.register("spectrite_gem",
             () -> new Item(new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
 

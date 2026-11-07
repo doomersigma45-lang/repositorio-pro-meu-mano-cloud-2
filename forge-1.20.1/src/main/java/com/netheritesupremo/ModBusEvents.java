@@ -33,6 +33,7 @@ public final class ModBusEvents {
         event.put(ModEntities.NETHERITE_KNIGHT.get(), NetheriteKnight.createKnightAttributes().build());
         event.put(ModEntities.NETHER_SPIDER.get(), NetherSpider.createNetherSpiderAttributes().build());
         event.put(ModEntities.NECROMANCER.get(), Necromancer.createNecromancerAttributes().build());
+        event.put(ModEntities.SKELETON_KING.get(), com.netheritesupremo.entity.SkeletonKing.createAttributes().build());
         event.put(ModEntities.UMBRAL_MERCHANT.get(),
                 Villager.createAttributes().add(Attributes.MAX_HEALTH, 40.0D).build());
         event.put(ModEntities.BOMB_ROBOT.get(), NetheriteBombRobot.createBombRobotAttributes().build());

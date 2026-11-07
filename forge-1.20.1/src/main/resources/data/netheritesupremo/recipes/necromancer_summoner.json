@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "CNC",
+    "OAO",
+    "BRB"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:coal"
+    },
+    "N": {
+      "item": "minecraft:nether_star"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    },
+    "A": {
+      "item": "netheritesupremo:ash_sigil"
+    },
+    "B": {
+      "item": "minecraft:bone"
+    },
+    "R": {
+      "item": "netheritesupremo:rooted_core"
+    }
+  },
+  "result": {
+    "item": "netheritesupremo:necromancer_summoner"
+  }
+}

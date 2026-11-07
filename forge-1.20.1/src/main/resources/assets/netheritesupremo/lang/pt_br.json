@@ -177,5 +177,9 @@
   "item.netheritesupremo.chefe_villager_spawn_egg": "Ovo de Chefe Villager",
   "entity.netheritesupremo.filhote_chefe_villager": "Filhote de Chefe Villager",
   "advancement.netheritesupremo.derrotar_chefe.title": "Fim do Chefe da Vila",
-  "advancement.netheritesupremo.derrotar_chefe.description": "Derrote o Chefe Villager e ganhe a lealdade do seu filhote"
+  "advancement.netheritesupremo.derrotar_chefe.description": "Derrote o Chefe Villager e ganhe a lealdade do seu filhote",
+  "entity.netheritesupremo.skeleton_king": "Rei Esqueleto",
+  "item.netheritesupremo.skeleton_king_spawn_egg": "Ovo de Rei Esqueleto",
+  "item.netheritesupremo.necromancer_summoner": "Invocador do Necromante",
+  "tooltip.netheritesupremo.necromancer_summoner": "Use em um bloco para invocar o Necromante."
 }

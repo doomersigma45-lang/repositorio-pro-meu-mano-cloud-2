@@ -436,6 +436,23 @@ def main():
                 im.append(f"> existe {e}\n  {r.cmd('execute if entity @e[type=netheritesupremo:' + e + ']')}")
             r.cmd("kill @e[type=netheritesupremo:ash_reaper]"); r.cmd("kill @e[type=netheritesupremo:moss_colossus]")
             annotate("notice", "mods incorporados", im)
+            # ---- Rei Esqueleto + invocador do necromante
+            kg = []
+            for t in ["summon netheritesupremo:skeleton_king 70 100 70 {CustomName:'\"rei\"',NoAI:1b}",
+                      "give @a netheritesupremo:necromancer_summoner"]:
+                kg.append(f"> {t}\n  {r.cmd(t)}")
+            time.sleep(3)
+            for t in ["attribute @e[type=netheritesupremo:skeleton_king,limit=1] minecraft:generic.max_health get",
+                      "attribute @e[type=netheritesupremo:skeleton_king,limit=1] minecraft:generic.attack_damage get",
+                      "execute if entity @e[type=#forge:bosses,type=netheritesupremo:skeleton_king]",
+                      "data modify entity @e[type=netheritesupremo:skeleton_king,limit=1] Health set value 3000f",
+                      "recipe give @a netheritesupremo:necromancer_summoner"]:
+                kg.append(f"> {t}\n  {r.cmd(t)}")
+            time.sleep(3)
+            kg.append("> fase 2 (necromantes)\n  " + r.cmd("execute if entity @e[type=netheritesupremo:necromancer]"))
+            kg.append("> dano fase 2\n  " + r.cmd("attribute @e[type=netheritesupremo:skeleton_king,limit=1] minecraft:generic.attack_damage get"))
+            r.cmd("kill @e[type=netheritesupremo:skeleton_king]"); r.cmd("kill @e[type=netheritesupremo:necromancer]")
+            annotate("notice", "rei esqueleto", kg)
             # ---- nado rapido dos guerreiros/chefe
             sw = []
             for t in ["attribute @e[type=netheritesupremo:guerreiro_villager,limit=1] forge:swim_speed get",

@@ -18,6 +18,9 @@ public class NecromancerSkull extends WitherSkull {
     public static final int WITHER_TICKS = 200;
     public static final int WITHER_AMPLIFIER = 1;
 
+    /** Fracao do dano de ataque do dono aplicada pela cabeca (o Rei Esqueleto usa 0,5). */
+    public float damageScale = 1.0F;
+
     public NecromancerSkull(Level level, LivingEntity shooter, double dx, double dy, double dz) {
         super(level, shooter, dx, dy, dz);
     }
@@ -26,6 +29,7 @@ public class NecromancerSkull extends WitherSkull {
     protected boolean canHitEntity(Entity entity) {
         return super.canHitEntity(entity)
                 && !(entity instanceof Necromancer)
+                && !SkeletonKing.isKingSide(entity)
                 && !entity.getTags().contains(Necromancer.MINION_TAG);
     }
 
@@ -37,7 +41,7 @@ public class NecromancerSkull extends WitherSkull {
         Entity target = result.getEntity();
         Entity owner = this.getOwner();
         float damage = owner instanceof LivingEntity living
-                ? (float) living.getAttributeValue(Attributes.ATTACK_DAMAGE)
+                ? (float) living.getAttributeValue(Attributes.ATTACK_DAMAGE) * this.damageScale
                 : 8.0F;
         if (target.hurt(this.damageSources().witherSkull(this, owner), damage) && target instanceof LivingEntity victim) {
             victim.addEffect(new MobEffectInstance(MobEffects.WITHER, WITHER_TICKS, WITHER_AMPLIFIER), owner);

@@ -310,3 +310,9 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 Os mods **Claude Content** e **Vila de Ferro** agora fazem parte deste mod (mesmo jar, namespace `netheritesupremo`; os IDs mudaram, ex.: `/summon netheritesupremo:mossling`).
 - **Claude Content:** Ceifador de Cinzas (boss, invocado com o Selo de Cinzas), Musgolim, Lumiléu, Colosso de Musgo (guardião do Altar das Raízes), Espreitador de Brasa, armadura de Brasa (bônus de conjunto), Núcleo Enraizado, Broto Antigo, Altar das Raízes, Santuário das Raízes (estrutura em florestas) e uma aba própria no criativo.
 - **Vila de Ferro:** Villager Guerreiro (neutro, espada ou arco, nada 4x mais rápido), Chefe Villager (invoca guerreiros e golems, totem, equipamento de diamante) e o Filhote do Chefe (pet leal ao jogador, cresce com o tempo). Vilas ganham um Chefe e guerreiros quando o jogador chega perto; ao derrotar o Chefe sai a conquista "Fim do Chefe da Vila".
+
+### Invocador do Necromante e Rei Esqueleto (1.48.0)
+- **Invocador do Necromante:** clique em um bloco para invocar o Necromante (consome o item). Receita (3x3): `carvão | estrela do Nether | carvão` / `obsidiana | Selo de Cinzas | obsidiana` / `osso | Núcleo Enraizado | osso`.
+- **Rei Esqueleto (boss, só por ovo de geração):** esqueleto 60% maior que um jogador, de coroa dourada, **7500 de vida e 100 de dano**, imune a fogo e a Wither. Invoca as três variantes (esqueleto, stray e wither) com **armadura e espada de Spectrite** (até 9 vivos, somem em 2 min, sem drops) e arremessa **bolas de fogo** e **cabeças de wither** (50% do dano dele, sem quebrar blocos).
+- **Fase 2 (metade da vida):** invoca **dois Necromantes** (sem drops), causa **3x mais dano** (300) e recebe **1/3 do dano**. A barra de boss fica vermelha.
+- Drops: 2–3 estrelas do Nether, 6–12 gemas de Spectrite, 3–6 blocos de diamante, 2–4 maçãs douradas encantadas, 1–2 totens e blocos de osso. Está na tag `forge:bosses`.

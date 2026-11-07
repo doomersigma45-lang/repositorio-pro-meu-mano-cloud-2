@@ -177,5 +177,9 @@
   "item.netheritesupremo.chefe_villager_spawn_egg": "Villager Chief Spawn Egg",
   "entity.netheritesupremo.filhote_chefe_villager": "Villager Chief Cub",
   "advancement.netheritesupremo.derrotar_chefe.title": "End of the Village Chief",
-  "advancement.netheritesupremo.derrotar_chefe.description": "Defeat the Villager Chief and earn the loyalty of its cub"
+  "advancement.netheritesupremo.derrotar_chefe.description": "Defeat the Villager Chief and earn the loyalty of its cub",
+  "entity.netheritesupremo.skeleton_king": "Skeleton King",
+  "item.netheritesupremo.skeleton_king_spawn_egg": "Skeleton King Spawn Egg",
+  "item.netheritesupremo.necromancer_summoner": "Necromancer Summoner",
+  "tooltip.netheritesupremo.necromancer_summoner": "Use on a block to summon the Necromancer."
 }
