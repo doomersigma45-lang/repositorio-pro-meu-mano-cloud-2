@@ -188,6 +188,18 @@ def main():
                         out = r.cmd(f"place feature netheritesupremo:spectrite_ore {x} {y} {z}")
                         placed += 1 if "Placed" in out else 0
             sp.append(f"minerio: {placed} de 36 tentativas colocaram veio")
+            # geracao natural: gera 3x3 chunks novos e conta os minerios (fill replace nao mexe fora dos chunks carregados)
+            sp.append("> forceload natural\n  " + r.cmd("forceload add 6000 6000 6047 6047"))
+            time.sleep(25)
+            total = 0
+            for cx in (6000, 6016, 6032):
+                for cz in (6000, 6016, 6032):
+                    out = r.cmd(f"fill {cx} -64 {cz} {cx + 15} 32 {cz + 15} minecraft:stone replace netheritesupremo:spectrite_ore")
+                    import re as _re
+                    m = _re.search(r"filled (\d+)", out)
+                    total += int(m.group(1)) if m else 0
+            sp.append(f"minerio natural: {total} blocos em 9 chunks gerados")
+            r.cmd("forceload remove 6000 6000 6047 6047")
             for t in ['summon minecraft:zombie 60 100 60 {CustomName:\'"spectro"\',PersistenceRequired:1b,ArmorItems:[{id:"netheritesupremo:spectrite_boots",Count:1b},{id:"netheritesupremo:spectrite_leggings",Count:1b},{id:"netheritesupremo:spectrite_chestplate",Count:1b},{id:"netheritesupremo:spectrite_helmet",Count:1b}]}',
                       "attribute @e[type=minecraft:zombie,name=spectro,limit=1] minecraft:generic.max_health get",
                       "attribute @e[type=minecraft:zombie,name=spectro,limit=1] minecraft:generic.armor get",
