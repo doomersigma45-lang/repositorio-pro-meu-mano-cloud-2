@@ -67,6 +67,20 @@ public class SkeletonKing extends Monster implements RangedAttackMob {
         this.setPersistenceRequired();
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.SPECTRITE_SWORD.get()));
         this.setDropChance(EquipmentSlot.MAINHAND, 0.0F);
+        this.applyDamage(ATTACK_DAMAGE);
+    }
+
+    /** Dano total (inclui o bonus da espada na mao): ajusta o valor base para o total pedido. */
+    private void applyDamage(double total) {
+        var dmg = this.getAttribute(Attributes.ATTACK_DAMAGE);
+        if (dmg == null) {
+            return;
+        }
+        double bonus = 0.0D;
+        for (var m : this.getMainHandItem().getAttributeModifiers(EquipmentSlot.MAINHAND).get(Attributes.ATTACK_DAMAGE)) {
+            bonus += m.getAmount();
+        }
+        dmg.setBaseValue(total - bonus);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -204,10 +218,7 @@ public class SkeletonKing extends Monster implements RangedAttackMob {
     }
 
     private void applyPhase2Stats() {
-        var dmg = this.getAttribute(Attributes.ATTACK_DAMAGE);
-        if (dmg != null) {
-            dmg.setBaseValue(ATTACK_DAMAGE * PHASE2_MULTIPLIER);
-        }
+        this.applyDamage(ATTACK_DAMAGE * PHASE2_MULTIPLIER);
     }
 
     /** Fase 2: recebe 1/3 do dano (3x mais resistente). */

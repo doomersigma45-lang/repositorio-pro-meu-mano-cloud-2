@@ -438,7 +438,7 @@ def main():
             annotate("notice", "mods incorporados", im)
             # ---- Rei Esqueleto + invocador do necromante
             kg = []
-            for t in ["summon netheritesupremo:skeleton_king 70 100 70 {CustomName:'\"rei\"',NoAI:1b}",
+            for t in ["summon netheritesupremo:skeleton_king 70 100 70 {CustomName:'\"rei\"'}",
                       "give @a netheritesupremo:necromancer_summoner"]:
                 kg.append(f"> {t}\n  {r.cmd(t)}")
             time.sleep(3)
