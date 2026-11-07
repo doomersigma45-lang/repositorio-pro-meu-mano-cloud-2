@@ -462,7 +462,7 @@ def main():
                       "attribute @e[type=netheritesupremo:red_steve,limit=1] minecraft:generic.max_health get",
                       "attribute @e[type=netheritesupremo:red_steve,limit=1] minecraft:generic.attack_damage get",
                       "execute in netheritesupremo:black_realm run forceload add 0 0 63 63",
-                      "summon minecraft:zombie 82 100 80 {CustomName:'\"assassino\"',PersistenceRequired:1b}"]:
+                      "summon minecraft:husk 82 100 80 {CustomName:'\"assassino\"',PersistenceRequired:1b}"]:
                 bl.append(f"> {t}\n  {r.cmd(t)}")
             time.sleep(40)
             for t in ["execute in netheritesupremo:black_realm run setblock 5 150 5 netheritesupremo:black_liquid",
@@ -472,12 +472,19 @@ def main():
                       "execute in netheritesupremo:black_realm run locate structure netheritesupremo:ruin_house",
                       "execute in netheritesupremo:black_realm run locate structure netheritesupremo:ruin_tower",
                       "execute in netheritesupremo:black_realm run locate structure netheritesupremo:ruin_hall",
-                      "damage @e[type=netheritesupremo:red_steve,limit=1] 1000 minecraft:mob_attack by @e[type=minecraft:zombie,name=assassino,limit=1]"]:
+                      "damage @e[type=netheritesupremo:red_steve,limit=1] 1000 minecraft:mob_attack by @e[type=minecraft:husk,name=assassino,limit=1]"]:
                 bl.append(f"> {t}\n  {r.cmd(t)}")
             time.sleep(8)
-            for t in ["execute in netheritesupremo:black_realm if entity @e[type=minecraft:zombie,name=assassino]",
-                      "execute in minecraft:overworld if entity @e[type=minecraft:zombie,name=assassino]",
-                      "execute in netheritesupremo:black_realm run data get entity @e[type=minecraft:zombie,name=assassino,limit=1] Pos",
+            liq = 0
+            for cx in range(0, 64, 16):
+                for cz in range(0, 64, 16):
+                    out = r.cmd(f"execute in netheritesupremo:black_realm run fill {cx} 0 {cz} {cx + 15} 100 {cz + 15} minecraft:stone replace netheritesupremo:black_liquid")
+                    m = _re.search(r"filled (\d+)", out)
+                    liq += int(m.group(1)) if m else 0
+            bl.append(f"liquido negro: {liq} blocos em 16 chunks")
+            for t in ["execute in netheritesupremo:black_realm if entity @e[type=minecraft:husk,name=assassino]",
+                      "execute in minecraft:overworld if entity @e[type=minecraft:husk,name=assassino]",
+                      "execute in netheritesupremo:black_realm run data get entity @e[type=minecraft:husk,name=assassino,limit=1] Pos",
                       "execute if entity @e[type=netheritesupremo:red_steve]"]:
                 bl.append(f"> {t}\n  {r.cmd(t)}")
             r.cmd("execute in netheritesupremo:black_realm run forceload remove 0 0 63 63")
