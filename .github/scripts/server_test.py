@@ -557,7 +557,9 @@ def main():
             # esqueletos defendem quando um deles e atacado (o villager leva um golpe de um porco)
             scmd("summon minecraft:pig 108 100 108 {PersistenceRequired:1b,CustomName:'\"agressor\"'}")
             time.sleep(1)
-            scmd("damage @e[type=netheritesupremo:skeleton_villager,limit=1] 1 minecraft:mob_attack by @e[type=minecraft:pig,name=agressor,limit=1]")
+            scmd("data get entity @e[name=vila,limit=1] Health")
+            scmd("damage @e[name=vila,limit=1] 4 minecraft:mob_attack by @e[type=minecraft:pig,name=agressor,limit=1]")
+            scmd("data get entity @e[name=vila,limit=1] Health")
             time.sleep(12)
             scmd("execute if entity @e[type=minecraft:pig,name=agressor]")
             scmd("kill @e[x=96,y=98,z=96,dx=16,dy=12,dz=16,type=!minecraft:player]")
@@ -576,7 +578,7 @@ def main():
             wcmd("forceload add 90 90 170 170")
             time.sleep(25)
             wcmd("fill 90 99 90 170 99 170 minecraft:stone")
-            wcmd("fill 90 100 90 170 108 170 minecraft:air")
+            wcmd("fill 90 100 90 170 103 170 minecraft:air")
             for (vx, vz) in ((128, 128), (132, 130), (130, 133)):
                 wcmd(f"summon minecraft:villager {vx} 100 {vz} {{PersistenceRequired:1b}}")
             wcmd("skeletonwar reset")
@@ -589,14 +591,24 @@ def main():
                     break
             wr.append("status final: " + state)
             wcmd("execute if entity @e[type=minecraft:villager,x=130,y=100,z=130,distance=..50]")
+            wcmd("execute if entity @e[tag=netheritesupremo_war_skeleton,x=130,y=100,z=130,distance=..80]")
+            # os moradores morrem: o lugar tem que ser conquistado
+            wcmd("kill @e[type=minecraft:villager,x=130,y=100,z=130,distance=..80]")
+            for _ in range(12):
+                time.sleep(3)
+                state = r.cmd("skeletonwar status")
+                if "CONQUERED" in state:
+                    break
+            wr.append("status apos matar moradores: " + state)
             # lugar conquistado: esqueletos passam a surgir sozinhos
             wcmd("kill @e[type=minecraft:skeleton,x=130,y=100,z=130,distance=..80]")
             wcmd("kill @e[type=minecraft:stray,x=130,y=100,z=130,distance=..80]")
             wcmd("kill @e[type=minecraft:wither_skeleton,x=130,y=100,z=130,distance=..80]")
-            time.sleep(45)
+            time.sleep(60)
             wcmd("execute if entity @e[type=minecraft:skeleton,x=130,y=100,z=130,distance=..80]")
             wcmd("execute if entity @e[type=netheritesupremo:skeleton_villager,x=130,y=100,z=130,distance=..80]")
             wcmd("execute if entity @e[type=minecraft:stray,x=130,y=100,z=130,distance=..80]")
+            wcmd("skeletonwar status")
             wcmd("skeletonwar reset")
             wcmd("kill @e[x=90,y=99,z=90,dx=80,dy=12,dz=80,type=!minecraft:player]")
             wcmd("forceload remove 90 90 170 170")
@@ -612,23 +624,25 @@ def main():
                 out = r.cmd(t)
                 vl.append(f"> {t}\n  {out}")
                 return out
-            vcmd("forceload add 210 170 350 310")
+            VBOX = "x=700,y=-64,z=700,dx=100,dy=400,dz=120"
+            vcmd("forceload add 700 700 820 840")
             time.sleep(60)
-            vcmd("place structure netheritesupremo:skeleton_village 280 70 240")
-            time.sleep(6)
-            vcmd("execute if entity @e[type=netheritesupremo:skeleton_villager,x=280,y=70,z=240,distance=..110]")
-            kout = vcmd("data get entity @e[type=netheritesupremo:skeleton_king,x=280,y=70,z=240,distance=..110,limit=1] Pos")
-            vcmd("data get entity @e[type=netheritesupremo:skeleton_king,x=280,y=70,z=240,distance=..110,limit=1] VillageKing")
-            mm = _re.findall(r"(-?[\d.]+)d", kout)
-            if len(mm) == 3:
-                ky = int(round(float(mm[1]) - 8.07))
-                kx, kz = int(float(mm[0])), int(float(mm[2]))
-                vcmd(f"fill {kx - 45} {ky + 6} {kz - 45} {kx + 45} {ky + 6} {kz + 45} minecraft:air replace minecraft:red_bed[part=foot]")
-                vcmd(f"fill {kx - 45} {ky + 5} {kz - 45} {kx + 45} {ky + 5} {kz + 45} minecraft:stone replace minecraft:black_concrete")
+            vcmd("place structure netheritesupremo:skeleton_village 750 70 750")
+            for espera in (1, 4, 10):
+                time.sleep(espera)
+                vl.append(f"--- depois de ~{espera}s")
+                vcmd(f"execute if entity @e[type=netheritesupremo:skeleton_villager,{VBOX}]")
+                vcmd(f"execute if entity @e[type=netheritesupremo:skeleton_king,{VBOX}]")
+            vcmd("execute if entity @e[type=netheritesupremo:skeleton_villager]")
+            vcmd("execute if entity @e[type=netheritesupremo:skeleton_king]")
+            vcmd(f"data get entity @e[type=netheritesupremo:skeleton_king,{VBOX},limit=1] Pos")
+            vcmd(f"data get entity @e[type=netheritesupremo:skeleton_king,{VBOX},limit=1] VillageKing")
+            vcmd(f"data get entity @e[type=netheritesupremo:skeleton_king,{VBOX},limit=1] Health")
+            vcmd(f"data get entity @e[type=netheritesupremo:skeleton_villager,{VBOX},limit=1] Pos")
             vcmd("execute in minecraft:overworld run locate structure netheritesupremo:skeleton_village")
             vcmd("kill @e[type=netheritesupremo:skeleton_king]")
             vcmd("kill @e[type=netheritesupremo:skeleton_villager]")
-            vcmd("forceload remove 210 170 350 310")
+            vcmd("forceload remove 700 700 820 840")
             annotate("notice", "vila de esqueletos", vl)
             # ---- aliados alienigenas, soldados vs saqueadores/piglins, hibridos
             al = []
