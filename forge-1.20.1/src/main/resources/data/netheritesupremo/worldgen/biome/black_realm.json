@@ -11,7 +11,7 @@
     "grass_color": 1052688,
     "mood_sound": {
       "sound": "minecraft:ambient.cave",
-      "tick_delay": 6000,
+      "tick_delay": 400,
       "block_search_extent": 8,
       "offset": 2.0
     },
@@ -20,35 +20,15 @@
       "min_delay": 100,
       "max_delay": 400,
       "replace_current_music": true
+    },
+    "ambient_sound": "minecraft:ambient.soul_sand_valley.loop",
+    "additions_sound": {
+      "sound": "netheritesupremo:ambient.black_realm.strange",
+      "tick_chance": 0.006
     }
   },
   "spawners": {
-    "monster": [
-      {
-        "type": "minecraft:zombie",
-        "weight": 100,
-        "minCount": 2,
-        "maxCount": 4
-      },
-      {
-        "type": "minecraft:skeleton",
-        "weight": 100,
-        "minCount": 2,
-        "maxCount": 4
-      },
-      {
-        "type": "minecraft:spider",
-        "weight": 60,
-        "minCount": 1,
-        "maxCount": 3
-      },
-      {
-        "type": "minecraft:enderman",
-        "weight": 10,
-        "minCount": 1,
-        "maxCount": 2
-      }
-    ],
+    "monster": [],
     "creature": [],
     "ambient": [],
     "axolotls": [],
@@ -78,5 +58,5 @@
     ],
     []
   ],
-  "creature_spawn_probability": 0.05
+  "creature_spawn_probability": 0.0
 }

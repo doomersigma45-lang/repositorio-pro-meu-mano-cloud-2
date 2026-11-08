@@ -14,6 +14,10 @@ public final class ModSounds {
     public static final RegistryObject<SoundEvent> BLACK_REALM_MUSIC = SOUNDS.register("music.black_realm",
             () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(NetheriteSupremo.MODID, "music.black_realm")));
 
+    /** Sons estranhos aleatorios da Terra Negra (gemidos, sussurros, batidas, arranhoes). */
+    public static final RegistryObject<SoundEvent> BLACK_REALM_STRANGE = SOUNDS.register("ambient.black_realm.strange",
+            () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(NetheriteSupremo.MODID, "ambient.black_realm.strange")));
+
     private ModSounds() {
     }
 }

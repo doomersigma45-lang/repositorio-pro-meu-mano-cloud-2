@@ -6,5 +6,29 @@
         "stream": true
       }
     ]
+  },
+  "ambient.black_realm.strange": {
+    "sounds": [
+      {
+        "name": "netheritesupremo:ambient/strange_1",
+        "volume": 0.9
+      },
+      {
+        "name": "netheritesupremo:ambient/strange_2",
+        "volume": 0.9
+      },
+      {
+        "name": "netheritesupremo:ambient/strange_3",
+        "volume": 0.9
+      },
+      {
+        "name": "netheritesupremo:ambient/strange_4",
+        "volume": 0.9
+      },
+      {
+        "name": "netheritesupremo:ambient/strange_5",
+        "volume": 0.9
+      }
+    ]
   }
 }
