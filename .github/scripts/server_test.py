@@ -624,7 +624,7 @@ def main():
                 out = r.cmd(t)
                 vl.append(f"> {t}\n  {out}")
                 return out
-            VBOX = "x=700,y=-64,z=700,dx=100,dy=400,dz=120"
+            VBOX = "x=500,y=-64,z=500,dx=500,dy=400,dz=500"
             vcmd("forceload add 700 700 820 840")
             time.sleep(60)
             vcmd("place structure netheritesupremo:skeleton_village 750 70 750")
@@ -635,10 +635,11 @@ def main():
                 vcmd(f"execute if entity @e[type=netheritesupremo:skeleton_king,{VBOX}]")
             vcmd("execute if entity @e[type=netheritesupremo:skeleton_villager]")
             vcmd("execute if entity @e[type=netheritesupremo:skeleton_king]")
-            vcmd(f"data get entity @e[type=netheritesupremo:skeleton_king,{VBOX},limit=1] Pos")
-            vcmd(f"data get entity @e[type=netheritesupremo:skeleton_king,{VBOX},limit=1] VillageKing")
-            vcmd(f"data get entity @e[type=netheritesupremo:skeleton_king,{VBOX},limit=1] Health")
-            vcmd(f"data get entity @e[type=netheritesupremo:skeleton_villager,{VBOX},limit=1] Pos")
+            vcmd("data get entity @e[type=netheritesupremo:skeleton_king,limit=1] Pos")
+            vcmd("data get entity @e[type=netheritesupremo:skeleton_king,limit=1] VillageKing")
+            vcmd("data get entity @e[type=netheritesupremo:skeleton_king,limit=1] Health")
+            vcmd("execute as @e[type=netheritesupremo:skeleton_villager] run data get entity @s Pos")
+            vcmd("execute as @e[type=netheritesupremo:skeleton_villager] run data get entity @s Health")
             vcmd("execute in minecraft:overworld run locate structure netheritesupremo:skeleton_village")
             vcmd("kill @e[type=netheritesupremo:skeleton_king]")
             vcmd("kill @e[type=netheritesupremo:skeleton_villager]")
