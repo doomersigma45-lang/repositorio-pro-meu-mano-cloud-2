@@ -638,8 +638,6 @@ def main():
             vcmd("data get entity @e[type=netheritesupremo:skeleton_king,limit=1] Pos")
             vcmd("data get entity @e[type=netheritesupremo:skeleton_king,limit=1] VillageKing")
             vcmd("data get entity @e[type=netheritesupremo:skeleton_king,limit=1] Health")
-            vcmd("execute as @e[type=netheritesupremo:skeleton_villager] run data get entity @s Pos")
-            vcmd("execute as @e[type=netheritesupremo:skeleton_villager] run data get entity @s Health")
             # vila natural (gerada sozinha perto de x=170,z=270): carrega a area toda e confere se o rei nasceu la
             NBOX = "x=120,y=-64,z=220,dx=120,dy=400,dz=160"
             vcmd(f"execute if entity @e[type=netheritesupremo:skeleton_king,{NBOX}]")
