@@ -7,6 +7,10 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -29,6 +33,11 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = "netheritesupremo")
 public final class SkeletonFaction {
     public static final String WAR_TAG = "netheritesupremo_war_skeleton";
+    public static final String WAR_HORSE_TAG = "netheritesupremo_war_horse";
+    public static final String TOUGH_TAG = "netheritesupremo_tough_skeleton";
+    public static final float SKELETON_HEALTH = 45.0F;
+    private static final EquipmentSlot[] ARMOR_SLOTS = {EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
+    private static final Item[] IRON_ARMOR = {Items.IRON_HELMET, Items.IRON_CHESTPLATE, Items.IRON_LEGGINGS, Items.IRON_BOOTS};
     public static final double ALERT_RADIUS = 40.0D;
 
     private SkeletonFaction() {
@@ -105,10 +114,44 @@ public final class SkeletonFaction {
                 }
             }
             skeleton.goalSelector.addGoal(2, new GunAttackGoal(skeleton, 1.0D, 4.0D, 22.0D));
+            skeleton.goalSelector.addGoal(6, new SkeletonGroupGoal(skeleton, 0.9D));
+        }
+        if (skeleton.getType() == EntityType.SKELETON) {
+            toughen(skeleton);
         }
         if (!skeleton.getMainHandItem().is(ModItems.OLD_GUN.get())) {
             skeleton.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.OLD_GUN.get()));
             skeleton.setDropChance(EquipmentSlot.MAINHAND, 0.05F);
+        }
+    }
+
+    /**
+     * Esqueleto normal: 45 de vida, armadura de ferro completa (inquebravel, entao o sol nao o queima nem
+     * quebra o capacete) e imune ao fogo do sol.
+     */
+    public static void toughen(AbstractSkeleton skeleton) {
+        if (!skeleton.getTags().contains(TOUGH_TAG)) {
+            skeleton.addTag(TOUGH_TAG);
+            var hp = skeleton.getAttribute(Attributes.MAX_HEALTH);
+            if (hp != null) {
+                hp.setBaseValue(SKELETON_HEALTH);
+                skeleton.setHealth(Math.min(SKELETON_HEALTH, skeleton.getHealth() + (SKELETON_HEALTH - 20.0F)));
+            }
+        }
+        for (int i = 0; i < ARMOR_SLOTS.length; i++) {
+            ItemStack worn = skeleton.getItemBySlot(ARMOR_SLOTS[i]);
+            if (!worn.is(IRON_ARMOR[i])) {
+                worn = new ItemStack(IRON_ARMOR[i]);
+                skeleton.setItemSlot(ARMOR_SLOTS[i], worn);
+            }
+            if (!worn.getOrCreateTag().getBoolean("Unbreakable")) {
+                worn.getOrCreateTag().putBoolean("Unbreakable", true);
+            }
+            skeleton.setDropChance(ARMOR_SLOTS[i], 0.05F);
+        }
+        if (skeleton.isOnFire() && skeleton.level().isDay() && skeleton.level().canSeeSky(skeleton.blockPosition())
+                && !skeleton.isInLava()) {
+            skeleton.clearFire();
         }
     }
 

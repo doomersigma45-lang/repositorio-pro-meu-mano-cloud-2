@@ -1,5 +1,7 @@
 package com.netheritesupremo.skeleton;
 
+import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.Multimap;
 import java.util.List;
 import javax.annotation.Nullable;
 import net.minecraft.network.chat.Component;
@@ -8,6 +10,10 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -18,6 +24,14 @@ import net.minecraft.world.level.Level;
 /** Old Gun: um tiro de 50 a 150 de dano, mas demora 5 segundos para recarregar. */
 public class OldGunItem extends Item {
     public static final int RELOAD_TICKS = 100;
+    /** Corpo a corpo: a arma em si da 6 de dano (1 da mao + 5). Os tiros continuam com 50 a 150. */
+    public static final double MELEE_BONUS = 5.0D;
+    private static final Multimap<Attribute, AttributeModifier> MELEE = ImmutableMultimap.<Attribute, AttributeModifier>builder()
+            .put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", MELEE_BONUS,
+                    AttributeModifier.Operation.ADDITION))
+            .put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", -2.4D,
+                    AttributeModifier.Operation.ADDITION))
+            .build();
 
     public OldGunItem(Properties properties) {
         super(properties);
@@ -40,6 +54,11 @@ public class OldGunItem extends Item {
         player.getCooldowns().addCooldown(this, RELOAD_TICKS);
         player.awardStat(Stats.ITEM_USED.get(this));
         return InteractionResultHolder.sidedSuccess(stack, level.isClientSide());
+    }
+
+    @Override
+    public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
+        return slot == EquipmentSlot.MAINHAND ? MELEE : super.getDefaultAttributeModifiers(slot);
     }
 
     @Override

@@ -526,6 +526,8 @@ def main():
                 return out
             scmd("fill 96 98 96 110 98 110 minecraft:stone")
             scmd("fill 96 99 96 110 108 110 minecraft:air")
+            scmd("time set 6000")
+            scmd("weather clear")
             helm = 'ArmorItems:[{},{},{},{id:"minecraft:iron_helmet",Count:1b}]'
             scmd(f"summon minecraft:skeleton 98 100 98 {{PersistenceRequired:1b,Invulnerable:1b,{helm},CustomName:'\"esq\"'}}")
             scmd(f"summon minecraft:skeleton 98 100 100 {{PersistenceRequired:1b,Invulnerable:1b,{helm},CustomName:'\"esq2\"'}}")
@@ -537,6 +539,17 @@ def main():
             time.sleep(4)
             for who in ("esq", "gelo", "wither"):
                 scmd(f"data get entity @e[name={who},limit=1] HandItems[0].id")
+            time.sleep(8)
+            scmd("attribute @e[name=esq,limit=1] minecraft:generic.max_health get")
+            scmd("data get entity @e[name=esq,limit=1] Health")
+            scmd("attribute @e[name=esq,limit=1] minecraft:generic.attack_damage get")
+            scmd("data get entity @e[name=esq,limit=1] ArmorItems[0].id")
+            scmd("data get entity @e[name=esq,limit=1] ArmorItems[1].id")
+            scmd("data get entity @e[name=esq,limit=1] ArmorItems[2].id")
+            scmd("data get entity @e[name=esq,limit=1] ArmorItems[3].id")
+            scmd("data get entity @e[name=esq,limit=1] ArmorItems[0].tag.Unbreakable")
+            scmd("data get entity @e[name=esq,limit=1] Fire")
+            scmd("data get entity @e[name=esq,limit=1] Tags")
             scmd("data get entity @e[type=netheritesupremo:skeleton_villager,limit=1] HandItems[0].id")
             scmd("data get entity @e[type=netheritesupremo:skeleton_villager,limit=1] Health")
             scmd("data get entity @e[type=netheritesupremo:skeleton_villager,limit=1] Offers.Recipes[0]")
@@ -583,6 +596,13 @@ def main():
                 wcmd(f"summon minecraft:villager {vx} 100 {vz} {{PersistenceRequired:1b}}")
             wcmd("skeletonwar reset")
             wcmd("skeletonwar test 130 100 130")
+            time.sleep(14)
+            wcmd("execute if entity @e[type=minecraft:skeleton_horse,x=130,y=100,z=130,distance=..80]")
+            wcmd("data get entity @e[tag=netheritesupremo_war_skeleton,x=130,y=100,z=130,sort=furthest,limit=1] RootVehicle.Entity.id")
+            wcmd("data get entity @e[tag=netheritesupremo_war_skeleton,x=130,y=100,z=130,sort=furthest,limit=1] ArmorItems[3].id")
+            wcmd("data get entity @e[tag=netheritesupremo_war_skeleton,x=130,y=100,z=130,sort=furthest,limit=1] Pos")
+            time.sleep(4)
+            wcmd("data get entity @e[tag=netheritesupremo_war_skeleton,x=130,y=100,z=130,sort=furthest,limit=1] Pos")
             state = ""
             for _ in range(24):
                 time.sleep(5)
@@ -600,6 +620,15 @@ def main():
                 if "CONQUERED" in state:
                     break
             wr.append("status apos matar moradores: " + state)
+            # lugar conquistado: cavalos somem e aldeoes/saqueadores nao voltam
+            wcmd("execute if entity @e[type=minecraft:skeleton_horse,x=130,y=100,z=130,distance=..90]")
+            wcmd("summon minecraft:villager 128 100 128 {PersistenceRequired:1b}")
+            wcmd("summon minecraft:pillager 131 100 131 {PersistenceRequired:1b}")
+            wcmd("summon minecraft:iron_golem 133 100 128 {PersistenceRequired:1b}")
+            time.sleep(6)
+            wcmd("execute if entity @e[type=minecraft:villager,x=130,y=100,z=130,distance=..60]")
+            wcmd("execute if entity @e[type=minecraft:pillager,x=130,y=100,z=130,distance=..60]")
+            wcmd("execute if entity @e[type=minecraft:iron_golem,x=130,y=100,z=130,distance=..60]")
             # lugar conquistado: esqueletos passam a surgir sozinhos
             wcmd("kill @e[type=minecraft:skeleton,x=130,y=100,z=130,distance=..80]")
             wcmd("kill @e[type=minecraft:stray,x=130,y=100,z=130,distance=..80]")

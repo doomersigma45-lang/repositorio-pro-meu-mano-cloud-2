@@ -28,6 +28,12 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraft.world.entity.animal.horse.SkeletonHorse;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.monster.Evoker;
 import net.minecraft.world.entity.monster.Pillager;
@@ -62,6 +68,7 @@ public final class SkeletonWar {
     public static final int AREA = 44;          // raio da area do lugar atacado
     public static final int FORCED_RADIUS = 2;  // chunks mantidos carregados durante o ataque
     public static final int MAX_ALIVE = 12;
+    public static final int MAX_RESIDENTS = 12;
     public static final int WAVES = 4;
     public static final int WAVE_SIZE = 5;
     public static final long MAX_ATTACK_TICKS = 24000L;
@@ -400,6 +407,7 @@ public final class SkeletonWar {
         s.state = CONQUERED;
         s.stateTick = ow.getGameTime();
         setForced(ow, s, false);
+        clearHorses(ow, s);
         for (AbstractSkeleton a : attackers) {
             a.removeTag(SkeletonFaction.WAR_TAG);
             a.setTarget(null);
@@ -417,6 +425,7 @@ public final class SkeletonWar {
         for (AbstractSkeleton a : attackers) {
             a.kill();
         }
+        clearHorses(ow, s);
         broadcast(server, Component.translatable("message.netheritesupremo.skeleton_war.defended",
                 Component.translatable("message.netheritesupremo.skeleton_war.kind." + s.kind),
                 s.center.getX(), s.center.getZ()));
@@ -512,27 +521,90 @@ public final class SkeletonWar {
                 mob.setTarget(target);
             }
             ow.addFreshEntity(mob);
+            mount(ow, mob, pos);
         }
     }
 
-    /** Lugar conquistado: de tempos em tempos surge um esqueleto (ou esqueleto villager) por la. */
-    private static void tickConquered(ServerLevel ow, Site s) {
-        boolean test = "test".equals(s.kind);
-        if (!test && ow.getNearestPlayer(s.center.getX(), s.center.getY(), s.center.getZ(), 128.0D, false) == null) {
+    /** Cada atacante chega montado num cavalo esqueleto (so durante a guerra). */
+    private static void mount(ServerLevel ow, AbstractSkeleton rider, BlockPos pos) {
+        SkeletonHorse horse = EntityType.SKELETON_HORSE.create(ow);
+        if (horse == null) {
             return;
         }
-        if (!ow.hasChunkAt(s.center)) {
+        horse.moveTo(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, rider.getYRot(), 0.0F);
+        horse.finalizeSpawn(ow, ow.getCurrentDifficultyAt(pos), MobSpawnType.EVENT, null, null);
+        horse.setTamed(true);
+        horse.equipSaddle(SoundSource.NEUTRAL);
+        horse.addTag(SkeletonFaction.WAR_HORSE_TAG);
+        horse.setPersistenceRequired();
+        ow.addFreshEntity(horse);
+        rider.startRiding(horse, true);
+    }
+
+    private static void clearHorses(ServerLevel ow, Site s) {
+        for (SkeletonHorse h : ow.getEntitiesOfClass(SkeletonHorse.class, area(s, 70),
+                e -> e.getTags().contains(SkeletonFaction.WAR_HORSE_TAG))) {
+            h.ejectPassengers();
+            h.discard();
+        }
+    }
+
+    /** O cavalo de guerra corre ate o alvo do cavaleiro e para a uma distancia de tiro. */
+    @SubscribeEvent
+    public static void onHorseTick(LivingEvent.LivingTickEvent event) {
+        if (!(event.getEntity() instanceof SkeletonHorse horse) || horse.level().isClientSide
+                || !horse.getTags().contains(SkeletonFaction.WAR_HORSE_TAG)) {
             return;
         }
-        List<Mob> residents = ow.getEntitiesOfClass(Mob.class, area(s, 8),
-                m -> m.isAlive() && SkeletonFaction.isFaction(m) && !(m instanceof SkeletonKing)
-                        && !m.getTags().contains(SkeletonFaction.WAR_TAG));
-        if (residents.size() >= 8 || ow.random.nextFloat() > 0.6F) {
+        if (!(horse.getFirstPassenger() instanceof Mob rider) || rider.getTarget() == null) {
             return;
         }
-        double angle = ow.random.nextDouble() * Math.PI * 2.0D;
-        double r = 6.0D + ow.random.nextDouble() * 18.0D;
-        BlockPos pos = surface(ow, s, s.center.getX() + 0.5D + Math.cos(angle) * r, s.center.getZ() + 0.5D + Math.sin(angle) * r);
+        LivingEntity t = rider.getTarget();
+        Vec3 d = new Vec3(t.getX() - horse.getX(), 0.0D, t.getZ() - horse.getZ());
+        double dist = d.length();
+        Vec3 motion = horse.getDeltaMovement();
+        if (dist > 9.0D) {
+            Vec3 dir = d.scale(1.0D / dist);
+            double speed = 0.32D;
+            horse.setDeltaMovement(dir.x * speed, motion.y, dir.z * speed);
+            float yaw = (float) (Math.toDegrees(Math.atan2(-dir.x, dir.z)));
+            horse.setYRot(yaw);
+            horse.yRotO = yaw;
+            horse.setYBodyRot(yaw);
+            rider.setYRot(yaw);
+            if (horse.horizontalCollision && horse.onGround()) {
+                horse.setDeltaMovement(horse.getDeltaMovement().x, 0.55D, horse.getDeltaMovement().z);
+            }
+        } else {
+            horse.setDeltaMovement(motion.x * 0.3D, motion.y, motion.z * 0.3D);
+        }
+    }
+
+    /** Lugar conquistado: os moradores e saqueadores nao voltam (nao nascem nem carregam la). */
+    @SubscribeEvent
+    public static void onJoin(EntityJoinLevelEvent event) {
+        if (event.getLevel().isClientSide() || !(event.getLevel() instanceof ServerLevel level)
+                || level.dimension() != net.minecraft.world.level.Level.OVERWORLD
+                || !(event.getEntity() instanceof LivingEntity living) || !isDefender(living)) {
+            return;
+        }
+        if (isConquered(level, living.blockPosition())) {
+            event.setCanceled(true);
+        }
+    }
+
+    public static boolean isConquered(ServerLevel ow, BlockPos pos) {
+        for (Site s : Data.get(ow).sites) {
+            if (s.state == CONQUERED && Math.abs(s.center.getX() - pos.getX()) <= AREA + 20
+                    && Math.abs(s.center.getZ() - pos.getZ()) <= AREA + 20) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static void spawnResident(ServerLevel ow, Site s, double x, double z) {
+        BlockPos pos = surface(ow, s, x, z);
         if (pos == null) {
             return;
         }
@@ -555,6 +627,36 @@ public final class SkeletonWar {
         ow.addFreshEntity(mob);
     }
 
+    /** Lugar conquistado: de tempos em tempos surge um esqueleto (ou esqueleto villager) por la. */
+    private static void tickConquered(ServerLevel ow, Site s) {
+        boolean test = "test".equals(s.kind);
+        if (!ow.hasChunkAt(s.center)) {
+            return;
+        }
+        // aldeoes, golems e saqueadores que sobraram (ou voltaram) somem: o lugar agora e dos esqueletos
+        for (LivingEntity e : ow.getEntitiesOfClass(LivingEntity.class, area(s, 20), SkeletonWar::isDefender)) {
+            e.discard();
+        }
+        if (!test && ow.getNearestPlayer(s.center.getX(), s.center.getY(), s.center.getZ(), 128.0D, false) == null) {
+            return;
+        }
+        List<Mob> residents = ow.getEntitiesOfClass(Mob.class, area(s, 8),
+                m -> m.isAlive() && SkeletonFaction.isFaction(m) && !(m instanceof SkeletonKing)
+                        && !m.getTags().contains(SkeletonFaction.WAR_TAG));
+        if (residents.size() >= MAX_RESIDENTS - 1 || ow.random.nextFloat() > 0.6F) {
+            return;
+        }
+        // eles vivem em grupos: surgem de 2 a 4 juntos
+        double angle = ow.random.nextDouble() * Math.PI * 2.0D;
+        double r = 6.0D + ow.random.nextDouble() * 18.0D;
+        double cx = s.center.getX() + 0.5D + Math.cos(angle) * r;
+        double cz = s.center.getZ() + 0.5D + Math.sin(angle) * r;
+        int group = Math.min(2 + ow.random.nextInt(3), MAX_RESIDENTS - residents.size());
+        for (int i = 0; i < group; i++) {
+            spawnResident(ow, s, cx + (ow.random.nextDouble() - 0.5D) * 6.0D, cz + (ow.random.nextDouble() - 0.5D) * 6.0D);
+        }
+    }
+
     // ============================================================== util
     private static void broadcast(MinecraftServer server, Component message) {
         server.getPlayerList().broadcastSystemMessage(message, false);
@@ -568,6 +670,7 @@ public final class SkeletonWar {
                 for (AbstractSkeleton a : attackers(ow, s)) {
                     a.kill();
                 }
+                clearHorses(ow, s);
                 data.sites.remove(s);
             }
         }
