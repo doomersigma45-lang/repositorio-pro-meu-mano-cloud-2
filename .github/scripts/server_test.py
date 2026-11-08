@@ -638,17 +638,22 @@ def main():
             vcmd("data get entity @e[type=netheritesupremo:skeleton_king,limit=1] Pos")
             vcmd("data get entity @e[type=netheritesupremo:skeleton_king,limit=1] VillageKing")
             vcmd("data get entity @e[type=netheritesupremo:skeleton_king,limit=1] Health")
-            # vila natural (gerada sozinha perto de x=170,z=270): carrega a area toda e confere se o rei nasceu la
-            NBOX = "x=120,y=-64,z=220,dx=120,dy=400,dz=160"
-            vcmd(f"execute if entity @e[type=netheritesupremo:skeleton_king,{NBOX}]")
-            vcmd("forceload add 120 220 240 380")
-            time.sleep(50)
-            vcmd(f"execute if entity @e[type=netheritesupremo:skeleton_villager,{NBOX}]")
-            vcmd(f"execute if entity @e[type=netheritesupremo:skeleton_king,{NBOX}]")
-            vcmd(f"data get entity @e[type=netheritesupremo:skeleton_king,{NBOX},limit=1] Pos")
-            vcmd(f"data get entity @e[type=netheritesupremo:skeleton_king,{NBOX},limit=1] VillageKing")
-            vcmd("forceload remove 120 220 240 380")
-            vcmd("execute in minecraft:overworld run locate structure netheritesupremo:skeleton_village")
+            # vila natural: acha com locate, carrega a area toda e confere se o rei nasceu la
+            lo = vcmd("execute in minecraft:overworld positioned 0 70 0 run locate structure netheritesupremo:skeleton_village")
+            ml = _re.search(r"\[(-?\d+), ~, (-?\d+)\]", lo)
+            if ml:
+                nx, nz = int(ml.group(1)), int(ml.group(2))
+                if abs(nx - 750) > 200 or abs(nz - 750) > 200:
+                    NBOX = f"x={nx - 70},y=-64,z={nz - 70},dx=140,dy=400,dz=140"
+                    vcmd("kill @e[type=netheritesupremo:skeleton_king]")
+                    vcmd("kill @e[type=netheritesupremo:skeleton_villager]")
+                    vcmd(f"forceload add {nx - 70} {nz - 70} {nx + 70} {nz + 70}")
+                    time.sleep(50)
+                    vcmd(f"execute if entity @e[type=netheritesupremo:skeleton_villager,{NBOX}]")
+                    vcmd(f"execute if entity @e[type=netheritesupremo:skeleton_king,{NBOX}]")
+                    vcmd(f"data get entity @e[type=netheritesupremo:skeleton_king,{NBOX},limit=1] Pos")
+                    vcmd(f"data get entity @e[type=netheritesupremo:skeleton_king,{NBOX},limit=1] VillageKing")
+                    vcmd(f"forceload remove {nx - 70} {nz - 70} {nx + 70} {nz + 70}")
             vcmd("kill @e[type=netheritesupremo:skeleton_king]")
             vcmd("kill @e[type=netheritesupremo:skeleton_villager]")
             vcmd("forceload remove 700 700 820 840")
