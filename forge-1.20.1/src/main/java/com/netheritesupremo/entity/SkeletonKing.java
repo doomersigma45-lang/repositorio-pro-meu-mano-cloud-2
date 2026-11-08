@@ -60,6 +60,8 @@ public class SkeletonKing extends Monster implements RangedAttackMob {
     private final ServerBossEvent bossEvent = new ServerBossEvent(this.getDisplayName(),
             BossEvent.BossBarColor.YELLOW, BossEvent.BossBarOverlay.NOTCHED_10);
     private boolean phase2;
+    /** Rei de uma vila de esqueletos: fica calmo ate ser atacado. */
+    private boolean peaceful;
 
     public SkeletonKing(EntityType<? extends Monster> type, Level level) {
         super(type, level);
@@ -98,6 +100,14 @@ public class SkeletonKing extends Monster implements RangedAttackMob {
         return e instanceof SkeletonKing || e.getTags().contains(MINION_TAG) || e.getTags().contains(NECRO_TAG);
     }
 
+    public boolean isPeaceful() {
+        return peaceful;
+    }
+
+    public void setPeaceful(boolean peaceful) {
+        this.peaceful = peaceful;
+    }
+
     public boolean isPhase2() {
         return phase2;
     }
@@ -109,11 +119,12 @@ public class SkeletonKing extends Monster implements RangedAttackMob {
         this.goalSelector.addGoal(1, new SummonMinionsGoal(this));
         this.goalSelector.addGoal(2, new ProjectileGoal(this));
         this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.0D, true));
+        this.goalSelector.addGoal(5, new net.minecraft.world.entity.ai.goal.MoveTowardsRestrictionGoal(this, 0.8D));
         this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 0.8D));
         this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 16.0F));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, 10, false, false, null));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, 10, false, false, p -> !this.peaceful));
     }
 
     @Override
@@ -227,6 +238,20 @@ public class SkeletonKing extends Monster implements RangedAttackMob {
         super.actuallyHurt(source, this.phase2 ? amount / PHASE2_MULTIPLIER : amount);
     }
 
+    /** Atacado por alguem de fora: o rei deixa de ser calmo e os esqueletos por perto o defendem. */
+    @Override
+    public boolean hurt(DamageSource source, float amount) {
+        boolean hurt = super.hurt(source, amount);
+        if (hurt && !this.level().isClientSide && source.getEntity() instanceof LivingEntity attacker
+                && !com.netheritesupremo.skeleton.SkeletonFaction.isFaction(attacker)) {
+            this.peaceful = false;
+            if (this.getTarget() == null) {
+                this.setTarget(attacker);
+            }
+        }
+        return hurt;
+    }
+
     @Override
     public boolean canBeAffected(MobEffectInstance effect) {
         return effect.getEffect() != MobEffects.WITHER && super.canBeAffected(effect);
@@ -236,6 +261,9 @@ public class SkeletonKing extends Monster implements RangedAttackMob {
     protected void customServerAiStep() {
         super.customServerAiStep();
         this.bossEvent.setProgress(this.getHealth() / this.getMaxHealth());
+        if (this.peaceful && this.tickCount == 40 && !this.hasRestriction()) {
+            this.restrictTo(this.blockPosition(), 20);
+        }
         if (!this.phase2 && this.getHealth() <= this.getMaxHealth() / 2.0F) {
             this.enterPhase2();
         }
@@ -252,6 +280,9 @@ public class SkeletonKing extends Monster implements RangedAttackMob {
     public void die(DamageSource source) {
         super.die(source);
         if (!this.level().isClientSide) {
+            if (this.level() instanceof ServerLevel server) {
+                com.netheritesupremo.skeleton.SkeletonWar.onKingDied(server, this, source);
+            }
             for (Mob m : this.minions()) {
                 m.kill();
             }
@@ -266,12 +297,14 @@ public class SkeletonKing extends Monster implements RangedAttackMob {
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
         tag.putBoolean("Phase2", this.phase2);
+        tag.putBoolean("VillageKing", this.peaceful);
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
         this.phase2 = tag.getBoolean("Phase2");
+        this.peaceful = tag.getBoolean("VillageKing");
         if (this.phase2) {
             this.applyPhase2Stats();
             this.bossEvent.setColor(BossEvent.BossBarColor.RED);

@@ -185,5 +185,18 @@
   "entity.netheritesupremo.red_steve": "Red Steve",
   "item.netheritesupremo.red_steve_spawn_egg": "Red Steve Spawn Egg",
   "block.netheritesupremo.black_soil": "Black Soil",
-  "block.netheritesupremo.black_liquid": "Black Liquid"
+  "block.netheritesupremo.black_liquid": "Black Liquid",
+  "item.netheritesupremo.old_gun": "Old Gun",
+  "tooltip.netheritesupremo.old_gun": "Fires a projectile dealing 50 to 150 damage. Slow reload (5 s).",
+  "entity.netheritesupremo.old_gun_bullet": "Old Gun Bullet",
+  "entity.netheritesupremo.skeleton_villager": "Skeleton Villager",
+  "item.netheritesupremo.skeleton_villager_spawn_egg": "Skeleton Villager Spawn Egg",
+  "message.netheritesupremo.skeleton_war.declared": "%s killed the Skeleton King! The skeletons have declared war!",
+  "message.netheritesupremo.skeleton_war.target": "War target: %s at %s, %s",
+  "message.netheritesupremo.skeleton_war.none": "No village or outpost found nearby; the war did not start.",
+  "message.netheritesupremo.skeleton_war.conquered": "The skeletons conquered %s at %s, %s!",
+  "message.netheritesupremo.skeleton_war.defended": "%s at %s, %s withstood the skeleton attack!",
+  "message.netheritesupremo.skeleton_war.kind.village": "the village",
+  "message.netheritesupremo.skeleton_war.kind.outpost": "the outpost",
+  "message.netheritesupremo.skeleton_war.kind.test": "the test site"
 }

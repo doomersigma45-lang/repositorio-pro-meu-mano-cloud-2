@@ -278,6 +278,13 @@ public final class ModItems {
             "red_steve_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.RED_STEVE, 0xB01818, 0x4A3A2A, new Item.Properties()));
 
+    public static final RegistryObject<Item> OLD_GUN = ITEMS.register("old_gun",
+            () -> new com.netheritesupremo.skeleton.OldGunItem(new Item.Properties().stacksTo(1).durability(250)));
+
+    public static final RegistryObject<Item> SKELETON_VILLAGER_SPAWN_EGG = ITEMS.register(
+            "skeleton_villager_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.SKELETON_VILLAGER, 0xC9C9C9, 0x1A1A1F, new Item.Properties()));
+
     public static final RegistryObject<Item> BLACK_SOIL = ITEMS.register("black_soil",
             () -> new net.minecraft.world.item.BlockItem(ModBlocks.BLACK_SOIL.get(), new Item.Properties()));
 

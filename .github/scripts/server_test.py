@@ -518,6 +518,118 @@ def main():
                       "attribute @e[type=netheritesupremo:chefe_villager,limit=1] forge:swim_speed get"]:
                 sw.append(f"> {t}\n  {r.cmd(t)}")
             annotate("notice", "nado", sw)
+            # ---- Old Gun, esqueletos neutros, esqueleto villager
+            sk = []
+            def scmd(t):
+                out = r.cmd(t)
+                sk.append(f"> {t}\n  {out}")
+                return out
+            scmd("fill 96 98 96 110 98 110 minecraft:stone")
+            scmd("fill 96 99 96 110 108 110 minecraft:air")
+            helm = 'ArmorItems:[{},{},{},{id:"minecraft:iron_helmet",Count:1b}]'
+            scmd(f"summon minecraft:skeleton 98 100 98 {{PersistenceRequired:1b,Invulnerable:1b,{helm},CustomName:'\"esq\"'}}")
+            scmd(f"summon minecraft:skeleton 98 100 100 {{PersistenceRequired:1b,Invulnerable:1b,{helm},CustomName:'\"esq2\"'}}")
+            scmd(f"summon minecraft:skeleton 98 100 102 {{PersistenceRequired:1b,Invulnerable:1b,{helm},CustomName:'\"esq3\"'}}")
+            scmd("summon minecraft:stray 100 100 98 {PersistenceRequired:1b,Invulnerable:1b,CustomName:'\"gelo\"'}")
+            scmd("summon minecraft:wither_skeleton 100 100 100 {PersistenceRequired:1b,Invulnerable:1b,CustomName:'\"wither\"'}")
+            scmd("summon netheritesupremo:skeleton_villager 102 100 98 {PersistenceRequired:1b,CustomName:'\"vila\"'}")
+            scmd("summon minecraft:item 104 100 98 {Item:{id:\"netheritesupremo:old_gun\",Count:1b}}")
+            time.sleep(4)
+            for who in ("esq", "gelo", "wither"):
+                scmd(f"data get entity @e[name={who},limit=1] HandItems[0].id")
+            scmd("data get entity @e[type=netheritesupremo:skeleton_villager,limit=1] HandItems[0].id")
+            scmd("data get entity @e[type=netheritesupremo:skeleton_villager,limit=1] Health")
+            scmd("data get entity @e[type=netheritesupremo:skeleton_villager,limit=1] Offers.Recipes[0]")
+            scmd("data get entity @e[type=netheritesupremo:skeleton_villager,limit=1] Offers.Recipes[1].buy")
+            # dano da bala: cavalo com 1000 de vida, 6 tiros
+            scmd("summon minecraft:horse 105 100 108 {NoAI:1b,PersistenceRequired:1b,Attributes:[{Name:\"generic.max_health\",Base:1000d}],Health:1000f,CustomName:'\"alvo\"'}")
+            time.sleep(1)
+            prev = 1000.0
+            dmgs = []
+            for _ in range(6):
+                r.cmd("summon netheritesupremo:old_gun_bullet 105 100.6 103 {Motion:[0.0d,0.0d,2.0d]}")
+                time.sleep(1.6)
+                out = r.cmd("data get entity @e[name=alvo,limit=1] Health")
+                m = _re.search(r"(-?[\d.]+)f?$", out.strip())
+                hp = float(m.group(1)) if m else prev
+                dmgs.append(round(prev - hp, 1)); prev = hp
+            sk.append(f"dano da bala (6 tiros): {dmgs} min={min(dmgs)} max={max(dmgs)}")
+            # esqueletos defendem quando um deles e atacado (o villager leva um golpe de um porco)
+            scmd("summon minecraft:pig 108 100 108 {PersistenceRequired:1b,CustomName:'\"agressor\"'}")
+            time.sleep(1)
+            scmd("damage @e[type=netheritesupremo:skeleton_villager,limit=1] 1 minecraft:mob_attack by @e[type=minecraft:pig,name=agressor,limit=1]")
+            time.sleep(12)
+            scmd("execute if entity @e[type=minecraft:pig,name=agressor]")
+            scmd("kill @e[x=96,y=98,z=96,dx=16,dy=12,dz=16,type=!minecraft:player]")
+            # Rei de vila: calmo ate ser atacado
+            scmd("summon netheritesupremo:skeleton_king 100 100 106 {VillageKing:1b,PersistenceRequired:1b,CustomName:'\"reivila\"'}")
+            time.sleep(2)
+            scmd("data get entity @e[name=reivila,limit=1] VillageKing")
+            scmd("kill @e[name=reivila]")
+            annotate("notice", "old gun / esqueletos", sk)
+            # ---- guerra dos esqueletos (modo de teste: sem jogador, 2 ondas de 3)
+            wr = []
+            def wcmd(t):
+                out = r.cmd(t)
+                wr.append(f"> {t}\n  {out}")
+                return out
+            wcmd("forceload add 90 90 170 170")
+            time.sleep(25)
+            wcmd("fill 90 99 90 170 99 170 minecraft:stone")
+            wcmd("fill 90 100 90 170 108 170 minecraft:air")
+            for (vx, vz) in ((128, 128), (132, 130), (130, 133)):
+                wcmd(f"summon minecraft:villager {vx} 100 {vz} {{PersistenceRequired:1b}}")
+            wcmd("skeletonwar reset")
+            wcmd("skeletonwar test 130 100 130")
+            state = ""
+            for _ in range(24):
+                time.sleep(5)
+                state = r.cmd("skeletonwar status")
+                if "CONQUERED" in state or "DEFENDED" in state:
+                    break
+            wr.append("status final: " + state)
+            wcmd("execute if entity @e[type=minecraft:villager,x=130,y=100,z=130,distance=..50]")
+            # lugar conquistado: esqueletos passam a surgir sozinhos
+            wcmd("kill @e[type=minecraft:skeleton,x=130,y=100,z=130,distance=..80]")
+            wcmd("kill @e[type=minecraft:stray,x=130,y=100,z=130,distance=..80]")
+            wcmd("kill @e[type=minecraft:wither_skeleton,x=130,y=100,z=130,distance=..80]")
+            time.sleep(45)
+            wcmd("execute if entity @e[type=minecraft:skeleton,x=130,y=100,z=130,distance=..80]")
+            wcmd("execute if entity @e[type=netheritesupremo:skeleton_villager,x=130,y=100,z=130,distance=..80]")
+            wcmd("execute if entity @e[type=minecraft:stray,x=130,y=100,z=130,distance=..80]")
+            wcmd("skeletonwar reset")
+            wcmd("kill @e[x=90,y=99,z=90,dx=80,dy=12,dz=80,type=!minecraft:player]")
+            wcmd("forceload remove 90 90 170 170")
+            # declaracao real (procura vilas/outposts de verdade) e encerra logo
+            wcmd("execute positioned 0 100 0 run skeletonwar declare")
+            time.sleep(2)
+            wcmd("skeletonwar status")
+            wcmd("skeletonwar reset")
+            annotate("notice", "guerra dos esqueletos", wr)
+            # ---- vila de esqueletos (9 casas, 9 moradores, rei)
+            vl = []
+            def vcmd(t):
+                out = r.cmd(t)
+                vl.append(f"> {t}\n  {out}")
+                return out
+            vcmd("forceload add 210 170 350 310")
+            time.sleep(60)
+            vcmd("place structure netheritesupremo:skeleton_village 280 70 240")
+            time.sleep(6)
+            vcmd("execute if entity @e[type=netheritesupremo:skeleton_villager,x=280,y=70,z=240,distance=..110]")
+            kout = vcmd("data get entity @e[type=netheritesupremo:skeleton_king,x=280,y=70,z=240,distance=..110,limit=1] Pos")
+            vcmd("data get entity @e[type=netheritesupremo:skeleton_king,x=280,y=70,z=240,distance=..110,limit=1] VillageKing")
+            mm = _re.findall(r"(-?[\d.]+)d", kout)
+            if len(mm) == 3:
+                ky = int(round(float(mm[1]) - 8.07))
+                kx, kz = int(float(mm[0])), int(float(mm[2]))
+                vcmd(f"fill {kx - 45} {ky + 6} {kz - 45} {kx + 45} {ky + 6} {kz + 45} minecraft:air replace minecraft:red_bed[part=foot]")
+                vcmd(f"fill {kx - 45} {ky + 5} {kz - 45} {kx + 45} {ky + 5} {kz + 45} minecraft:stone replace minecraft:black_concrete")
+            vcmd("execute in minecraft:overworld run locate structure netheritesupremo:skeleton_village")
+            vcmd("kill @e[type=netheritesupremo:skeleton_king]")
+            vcmd("kill @e[type=netheritesupremo:skeleton_villager]")
+            vcmd("forceload remove 210 170 350 310")
+            annotate("notice", "vila de esqueletos", vl)
             # ---- aliados alienigenas, soldados vs saqueadores/piglins, hibridos
             al = []
             for t in ["fill 18 99 18 34 99 34 minecraft:stone",

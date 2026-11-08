@@ -28,6 +28,9 @@ public final class ClientEvents {
         event.registerEntityRenderer(ModEntities.NECROMANCER.get(), NecromancerRenderer::new);
         event.registerEntityRenderer(ModEntities.RED_STEVE.get(), RedSteveRenderer::new);
         event.registerEntityRenderer(ModEntities.SKELETON_KING.get(), SkeletonKingRenderer::new);
+        event.registerEntityRenderer(ModEntities.SKELETON_VILLAGER.get(), SkeletonVillagerRenderer::new);
+        event.registerEntityRenderer(ModEntities.OLD_GUN_BULLET.get(),
+                ctx -> new net.minecraft.client.renderer.entity.ThrownItemRenderer<>(ctx, 0.6F, true));
         event.registerEntityRenderer(ModEntities.BOMB_ROBOT.get(), ctx -> new PlayerRobotRenderer<NetheriteBombRobot>(ctx,
                 new ResourceLocation(NetheriteSupremo.MODID, "textures/entity/bomb_robot.png"), 1.0F));
         event.registerEntityRenderer(ModEntities.NETHERBOT.get(), ctx -> new PlayerRobotRenderer<Netherbot>(ctx,

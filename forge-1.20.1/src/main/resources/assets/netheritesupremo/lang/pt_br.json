@@ -185,5 +185,18 @@
   "entity.netheritesupremo.red_steve": "Steve Vermelho",
   "item.netheritesupremo.red_steve_spawn_egg": "Ovo de Steve Vermelho",
   "block.netheritesupremo.black_soil": "Terra Preta",
-  "block.netheritesupremo.black_liquid": "Líquido Negro"
+  "block.netheritesupremo.black_liquid": "Líquido Negro",
+  "item.netheritesupremo.old_gun": "Old Gun",
+  "tooltip.netheritesupremo.old_gun": "Dispara um projétil de 50 a 150 de dano. Recarga lenta (5 s).",
+  "entity.netheritesupremo.old_gun_bullet": "Projétil da Old Gun",
+  "entity.netheritesupremo.skeleton_villager": "Esqueleto Villager",
+  "item.netheritesupremo.skeleton_villager_spawn_egg": "Ovo de Esqueleto Villager",
+  "message.netheritesupremo.skeleton_war.declared": "%s matou o Rei Esqueleto! Os esqueletos declararam guerra!",
+  "message.netheritesupremo.skeleton_war.target": "Alvo da guerra: %s em %s, %s",
+  "message.netheritesupremo.skeleton_war.none": "Nenhuma vila ou outpost foi encontrado por perto; a guerra não começou.",
+  "message.netheritesupremo.skeleton_war.conquered": "Os esqueletos conquistaram %s em %s, %s!",
+  "message.netheritesupremo.skeleton_war.defended": "%s em %s, %s resistiu ao ataque dos esqueletos!",
+  "message.netheritesupremo.skeleton_war.kind.village": "a vila",
+  "message.netheritesupremo.skeleton_war.kind.outpost": "o outpost",
+  "message.netheritesupremo.skeleton_war.kind.test": "o local de teste"
 }

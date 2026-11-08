@@ -47,6 +47,7 @@ public class NetheriteSupremo {
         MinecraftForge.EVENT_BUS.register(new AvaritiaCompat());
         MinecraftForge.EVENT_BUS.register(new SpectriteEvents());
         MinecraftForge.EVENT_BUS.register(new com.netheritesupremo.blackrealm.BlackRealmCommand());
+        MinecraftForge.EVENT_BUS.register(new com.netheritesupremo.skeleton.SkeletonWarCommand());
         MinecraftForge.EVENT_BUS.register(new com.netheritesupremo.entity.TamedSpiderProtection());
         MinecraftForge.EVENT_BUS.register(new com.netheritesupremo.entity.AlienAllies());
         MinecraftForge.EVENT_BUS.register(new com.netheritesupremo.invasion.HybridEvents());
@@ -70,6 +71,7 @@ public class NetheriteSupremo {
             event.accept(ModItems.NECROMANCER_SPAWN_EGG);
             event.accept(ModItems.SKELETON_KING_SPAWN_EGG);
             event.accept(ModItems.RED_STEVE_SPAWN_EGG);
+            event.accept(ModItems.SKELETON_VILLAGER_SPAWN_EGG);
             event.accept(ModItems.NECROMANCER_SUMMONER);
             event.accept(ModItems.NETHER_SPIDER_SPAWN_EGG);
             event.accept(ModItems.GOLDEN_ZOMBIE_SPAWN_EGG);
@@ -122,6 +124,7 @@ public class NetheriteSupremo {
             event.accept(ModItems.SPECTRITE_PICKAXE_SPECIAL);
             event.accept(ModItems.SPECTRITE_AXE_SPECIAL);
             event.accept(ModItems.SPECTRITE_SHOVEL_SPECIAL);
+            event.accept(ModItems.OLD_GUN);
             event.accept(ModItems.KATANA);
             event.accept(ModItems.SHURIKEN);
             event.accept(ModItems.KUNAI);

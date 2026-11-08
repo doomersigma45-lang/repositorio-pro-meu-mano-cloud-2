@@ -243,6 +243,21 @@ public final class ModEntities {
                     .clientTrackingRange(10)
                     .build("precursor_villager"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.skeleton.SkeletonVillager>> SKELETON_VILLAGER = ENTITIES.register(
+            "skeleton_villager",
+            () -> EntityType.Builder.of(com.netheritesupremo.skeleton.SkeletonVillager::new, MobCategory.CREATURE)
+                    .sized(0.6F, 1.99F)
+                    .clientTrackingRange(10)
+                    .build("skeleton_villager"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.skeleton.OldGunBullet>> OLD_GUN_BULLET = ENTITIES.register(
+            "old_gun_bullet",
+            () -> EntityType.Builder.<com.netheritesupremo.skeleton.OldGunBullet>of(com.netheritesupremo.skeleton.OldGunBullet::new, MobCategory.MISC)
+                    .sized(0.25F, 0.25F)
+                    .clientTrackingRange(4)
+                    .updateInterval(5)
+                    .build("old_gun_bullet"));
+
     private ModEntities() {
     }
 }
