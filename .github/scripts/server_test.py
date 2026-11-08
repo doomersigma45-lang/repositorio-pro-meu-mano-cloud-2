@@ -645,8 +645,6 @@ def main():
                 nx, nz = int(ml.group(1)), int(ml.group(2))
                 if abs(nx - 750) > 200 or abs(nz - 750) > 200:
                     NBOX = f"x={nx - 70},y=-64,z={nz - 70},dx=140,dy=400,dz=140"
-                    vcmd("kill @e[type=netheritesupremo:skeleton_king]")
-                    vcmd("kill @e[type=netheritesupremo:skeleton_villager]")
                     vcmd(f"forceload add {nx - 70} {nz - 70} {nx + 70} {nz + 70}")
                     time.sleep(50)
                     vcmd(f"execute if entity @e[type=netheritesupremo:skeleton_villager,{NBOX}]")
