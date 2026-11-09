@@ -522,7 +522,8 @@ def main():
             sk = []
             def scmd(t):
                 out = r.cmd(t)
-                sk.append(f"> {t}\n  {out}")
+                if not t.startswith(("summon", "fill", "kill", "time ", "weather")):
+                    sk.append(f"> {t}\n  {out}")
                 return out
             scmd("fill 96 98 96 110 98 110 minecraft:stone")
             scmd("fill 96 99 96 110 108 110 minecraft:air")
@@ -593,7 +594,8 @@ def main():
             wr = []
             def wcmd(t):
                 out = r.cmd(t)
-                wr.append(f"> {t}\n  {out}")
+                if not t.startswith(("summon", "fill", "kill", "forceload")):
+                    wr.append(f"> {t}\n  {out}")
                 return out
             wcmd("forceload add 90 90 170 170")
             time.sleep(25)
