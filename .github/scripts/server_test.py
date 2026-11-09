@@ -648,6 +648,20 @@ def main():
             wcmd("skeletonwar status")
             wcmd("skeletonwar reset")
             wcmd("kill @e[x=90,y=99,z=90,dx=80,dy=12,dz=80,type=!minecraft:player]")
+            # tanque isolado: tem que andar ate o aldeao parado a ~35 blocos e mata-lo com o obus
+            wcmd("summon minecraft:villager 100 100 140 {NoAI:1b,PersistenceRequired:1b,CustomName:'\"alvotank\"'}")
+            wcmd("summon netheritesupremo:war_tank 100 100 105 {PersistenceRequired:1b}")
+            time.sleep(3)
+            wcmd("data get entity @e[type=netheritesupremo:war_tank,limit=1] Pos")
+            time.sleep(4)
+            wcmd("data get entity @e[type=netheritesupremo:war_tank,limit=1] Pos")
+            wcmd("execute if entity @e[name=alvotank]")
+            time.sleep(10)
+            wcmd("data get entity @e[type=netheritesupremo:war_tank,limit=1] Pos")
+            wcmd("execute if entity @e[name=alvotank]")
+            wcmd("kill @e[type=netheritesupremo:war_tank]")
+            wcmd("kill @e[name=alvotank]")
+
             wcmd("forceload remove 90 90 170 170")
             # declaracao real (procura vilas/outposts de verdade) e encerra logo
             wcmd("execute positioned 0 100 0 run skeletonwar declare")

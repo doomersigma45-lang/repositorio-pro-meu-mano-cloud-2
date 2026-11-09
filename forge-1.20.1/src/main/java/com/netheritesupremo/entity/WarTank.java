@@ -168,7 +168,18 @@ public class WarTank extends PathfinderMob {
             boolean sees = this.tank.getSensing().hasLineOfSight(t);
             this.tank.getLookControl().setLookAt(t, 40.0F, 40.0F);
             if (d > this.near || !sees) {
-                this.tank.getNavigation().moveTo(t, this.speed);
+                if (this.tank.tickCount % 10 == 0 || this.tank.getNavigation().isDone()) {
+                    this.tank.getNavigation().moveTo(t, this.speed);
+                }
+                if (this.tank.getNavigation().isDone() && d > this.near) {
+                    // sem caminho: avanca em linha reta (o tanque e pesado e passa por cima do que da)
+                    Vec3 dir = new Vec3(t.getX() - this.tank.getX(), 0.0D, t.getZ() - this.tank.getZ()).normalize();
+                    Vec3 m = this.tank.getDeltaMovement();
+                    this.tank.setDeltaMovement(dir.x * 0.17D, m.y, dir.z * 0.17D);
+                    float yaw = (float) Math.toDegrees(Math.atan2(-dir.x, dir.z));
+                    this.tank.setYRot(yaw);
+                    this.tank.yBodyRot = yaw;
+                }
             } else {
                 this.tank.getNavigation().stop();
             }
