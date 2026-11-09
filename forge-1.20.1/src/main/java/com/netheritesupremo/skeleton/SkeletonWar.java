@@ -212,8 +212,10 @@ public final class SkeletonWar {
         p.addEffect(new MobEffectInstance(ModEffects.WAR_MARK.get(), MobEffectInstance.INFINITE_DURATION, 0, false, true, true));
     }
 
-    /** Vila ou outpost de pilhagem em volta de {@code pos}: devolve {centro, tipo} ou null. */
-    public static Pair<BlockPos, String> siteAt(ServerLevel level, BlockPos pos) {
+    /** Raio (em blocos) em que a chegada a uma vila/outpost ja conta como "chegar". */
+    public static final int ARRIVE_RADIUS = 48;
+
+    private static Pair<BlockPos, String> pieceAt(ServerLevel level, BlockPos pos) {
         var sm = level.structureManager();
         var village = sm.getStructureWithPieceAt(pos, StructureTags.VILLAGE);
         if (village.isValid()) {
@@ -224,6 +226,34 @@ public final class SkeletonWar {
             return Pair.of(outpost.getBoundingBox().getCenter(), "outpost");
         }
         return null;
+    }
+
+    /** Vila ou outpost de pilhagem em volta de {@code pos} (ate ARRIVE_RADIUS blocos): devolve {centro, tipo} ou null. */
+    public static Pair<BlockPos, String> siteAt(ServerLevel level, BlockPos pos) {
+        Pair<BlockPos, String> best = null;
+        double bestD = Double.MAX_VALUE;
+        for (int dx = -ARRIVE_RADIUS; dx <= ARRIVE_RADIUS; dx += 12) {
+            for (int dz = -ARRIVE_RADIUS; dz <= ARRIVE_RADIUS; dz += 12) {
+                int x = pos.getX() + dx;
+                int z = pos.getZ() + dz;
+                if (!level.hasChunkAt(new BlockPos(x, pos.getY(), z))) {
+                    continue;
+                }
+                int surface = level.getHeight(Heightmap.Types.WORLD_SURFACE, x, z);
+                for (int y : new int[] {pos.getY(), surface - 1, surface + 2}) {
+                    Pair<BlockPos, String> found = pieceAt(level, new BlockPos(x, y, z));
+                    if (found != null) {
+                        double d = dx * (double) dx + dz * (double) dz;
+                        if (d < bestD) {
+                            bestD = d;
+                            best = found;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+        return best;
     }
 
     /** Um jogador marcado chegou a um lugar: tira a marca e comeca a guerra ali (se o lugar ainda nao foi atacado). */

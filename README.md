@@ -346,5 +346,5 @@ Os mods **Claude Content** e **Vila de Ferro** agora fazem parte deste mod (mesm
 ### Marca de Guerra (1.53.0)
 - Quem **matar o Rei Esqueleto** recebe o efeito **Marca de Guerra** (duração infinita, ícone de caveira vermelha). Ela **não some** com leite, `/effect clear` nem morte.
 - A guerra **começa quando o jogador marcado chegar a uma vila ou a um outpost de pilhagem**; nesse momento a marca some e os esqueletos atacam aquele lugar (ondas, cavalos e tanques, como antes). Se o lugar já foi atacado ou conquistado, a marca some sem guerra nova.
-- Ops: `/skeletonwar mark <jogador>`, `/skeletonwar unmark <jogador>`, `/skeletonwar arrive <x y z>` (simula a chegada). O `/skeletonwar declare` antigo continua existindo.
+- Ops: `/skeletonwar mark <jogador>`, `/skeletonwar unmark <jogador>`, `/skeletonwar arrive <x y z>` (simula a chegada); chegar = ficar a até 48 blocos de uma vila ou outpost. O `/skeletonwar declare` antigo continua existindo.
 - O ícone do efeito foi pintado por mim por código (`tools/gerar_icone_marca.py`).
