@@ -506,6 +506,16 @@ public final class SkeletonWar {
                 }
             }
         }
+        for (WarTank tank : ow.getEntitiesOfClass(WarTank.class, area(s, 60), t -> t.isAlive()
+                && t.getTags().contains(SkeletonFaction.WAR_HORSE_TAG))) {
+            LivingEntity t = tank.getTarget();
+            if (t == null || !t.isAlive() || !isDefender(t) && !(t instanceof net.minecraft.world.entity.player.Player)) {
+                LivingEntity nearest = nearest(tank, defenders);
+                if (nearest != null) {
+                    tank.setTarget(nearest);
+                }
+            }
+        }
         return dirty;
     }
 

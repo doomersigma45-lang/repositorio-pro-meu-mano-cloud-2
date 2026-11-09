@@ -351,3 +351,6 @@ Os mods **Claude Content** e **Vila de Ferro** agora fazem parte deste mod (mesm
 
 ### Esqueletos abrem portas e escalam (1.54.0)
 - Todos os esqueletos (comum, stray, wither, atacantes de guerra) **abrem portas** e **escalam paredes** como aranhas quando vão atrás de um alvo e batem num muro.
+
+### Tanques atacam moradores (1.54.1)
+- Os tanques de guerra miram **aldeões, saqueadores (pillager, vindicator, evoker) e golems de ferro** sem precisar enxergá-los, e a guerra escolhe sempre o mais próximo como alvo.

@@ -47,7 +47,7 @@ public class WarTank extends PathfinderMob {
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new TankAttackGoal(this, 1.0D, 18.0D, 36.0D));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false,
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 2, false, false,
                 e -> (e instanceof Player p && !p.isCreative() && !p.isSpectator()) || SkeletonWar.isDefender(e)));
     }
 
