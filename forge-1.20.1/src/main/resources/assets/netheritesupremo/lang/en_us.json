@@ -198,5 +198,8 @@
   "message.netheritesupremo.skeleton_war.defended": "%s at %s, %s withstood the skeleton attack!",
   "message.netheritesupremo.skeleton_war.kind.village": "the village",
   "message.netheritesupremo.skeleton_war.kind.outpost": "the outpost",
-  "message.netheritesupremo.skeleton_war.kind.test": "the test site"
+  "message.netheritesupremo.skeleton_war.kind.test": "the test site",
+  "entity.netheritesupremo.war_tank": "War Tank",
+  "entity.netheritesupremo.tank_shell": "Tank Shell",
+  "item.netheritesupremo.war_tank_spawn_egg": "War Tank Spawn Egg"
 }

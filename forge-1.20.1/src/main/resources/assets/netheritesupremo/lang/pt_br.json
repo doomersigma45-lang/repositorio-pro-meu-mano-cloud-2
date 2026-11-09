@@ -198,5 +198,8 @@
   "message.netheritesupremo.skeleton_war.defended": "%s em %s, %s resistiu ao ataque dos esqueletos!",
   "message.netheritesupremo.skeleton_war.kind.village": "a vila",
   "message.netheritesupremo.skeleton_war.kind.outpost": "o outpost",
-  "message.netheritesupremo.skeleton_war.kind.test": "o local de teste"
+  "message.netheritesupremo.skeleton_war.kind.test": "o local de teste",
+  "entity.netheritesupremo.war_tank": "Tanque de Guerra",
+  "entity.netheritesupremo.tank_shell": "Obus do Tanque",
+  "item.netheritesupremo.war_tank_spawn_egg": "Ovo de Tanque de Guerra"
 }

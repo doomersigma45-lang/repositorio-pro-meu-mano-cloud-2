@@ -2,6 +2,7 @@ package com.netheritesupremo.skeleton;
 
 import com.mojang.datafixers.util.Pair;
 import com.netheritesupremo.entity.SkeletonKing;
+import com.netheritesupremo.entity.WarTank;
 import com.netheritesupremo.registry.ModEntities;
 import java.util.ArrayList;
 import java.util.List;
@@ -363,7 +364,7 @@ public final class SkeletonWar {
             conquer(server, ow, s, attackers);
             return true;
         }
-        if (s.wave >= s.maxWaves && attackers.isEmpty()) {
+        if (s.wave >= s.maxWaves && attackers.isEmpty() && tanksAlive(ow, s) == 0) {
             defend(server, ow, s, attackers);
             return true;
         }
@@ -374,6 +375,9 @@ public final class SkeletonWar {
         boolean dirty = false;
         if (s.wave < s.maxWaves && attackers.size() < MAX_ALIVE && (attackers.size() <= 2 || now - s.lastWave >= 1200)) {
             spawnWave(ow, s, defenders);
+            if (s.wave >= 1 || "test".equals(s.kind)) {
+                spawnTank(ow, s, defenders);
+            }
             s.wave++;
             s.lastWave = now;
             dirty = true;
@@ -407,7 +411,7 @@ public final class SkeletonWar {
         s.state = CONQUERED;
         s.stateTick = ow.getGameTime();
         setForced(ow, s, false);
-        clearHorses(ow, s);
+        clearVehicles(ow, s, false);
         for (AbstractSkeleton a : attackers) {
             a.removeTag(SkeletonFaction.WAR_TAG);
             a.setTarget(null);
@@ -425,7 +429,7 @@ public final class SkeletonWar {
         for (AbstractSkeleton a : attackers) {
             a.kill();
         }
-        clearHorses(ow, s);
+        clearVehicles(ow, s, true);
         broadcast(server, Component.translatable("message.netheritesupremo.skeleton_war.defended",
                 Component.translatable("message.netheritesupremo.skeleton_war.kind." + s.kind),
                 s.center.getX(), s.center.getZ()));
@@ -448,7 +452,8 @@ public final class SkeletonWar {
 
     public static List<AbstractSkeleton> attackers(ServerLevel ow, Site s) {
         return ow.getEntitiesOfClass(AbstractSkeleton.class, area(s, 40),
-                m -> m.isAlive() && m.getTags().contains(SkeletonFaction.WAR_TAG));
+                m -> m.isAlive() && m.getTags().contains(SkeletonFaction.WAR_TAG)
+                        && !m.getTags().contains(WarTank.CREW_TAG));
     }
 
     private static void setForced(ServerLevel ow, Site s, boolean forced) {
@@ -541,11 +546,65 @@ public final class SkeletonWar {
         rider.startRiding(horse, true);
     }
 
-    private static void clearHorses(ServerLevel ow, Site s) {
-        for (SkeletonHorse h : ow.getEntitiesOfClass(SkeletonHorse.class, area(s, 70),
-                e -> e.getTags().contains(SkeletonFaction.WAR_HORSE_TAG))) {
-            h.ejectPassengers();
-            h.discard();
+    /** Fim da guerra: cavalos e tanques somem. Os tripulantes morrem se o ataque foi derrotado; senao ficam como moradores. */
+    private static void clearVehicles(ServerLevel ow, Site s, boolean killCrew) {
+        for (Mob v : ow.getEntitiesOfClass(Mob.class, area(s, 70), e -> e.getTags().contains(SkeletonFaction.WAR_HORSE_TAG))) {
+            for (Entity passenger : new ArrayList<>(v.getPassengers())) {
+                if (passenger instanceof Mob crew && crew.getTags().contains(WarTank.CREW_TAG)) {
+                    if (killCrew) {
+                        crew.kill();
+                    } else {
+                        crew.setNoAi(false);
+                        crew.removeTag(WarTank.CREW_TAG);
+                        crew.removeTag(SkeletonFaction.WAR_TAG);
+                        crew.setPersistenceRequired();
+                    }
+                }
+            }
+            v.ejectPassengers();
+            v.discard();
+        }
+    }
+
+    private static int tanksAlive(ServerLevel ow, Site s) {
+        return ow.getEntitiesOfClass(WarTank.class, area(s, 60), t -> t.isAlive() && t.getTags().contains(SkeletonFaction.WAR_HORSE_TAG)).size();
+    }
+
+    /** Tanque de guerra com um esqueleto de tripulante: surge a partir da segunda onda (e logo de cara no teste). */
+    private static void spawnTank(ServerLevel ow, Site s, List<LivingEntity> defenders) {
+        if (tanksAlive(ow, s) >= 2) {
+            return;
+        }
+        for (int attempt = 0; attempt < 6; attempt++) {
+            double angle = ow.random.nextDouble() * Math.PI * 2.0D;
+            double r = 24.0D + ow.random.nextDouble() * 10.0D;
+            BlockPos pos = surface(ow, s, s.center.getX() + 0.5D + Math.cos(angle) * r, s.center.getZ() + 0.5D + Math.sin(angle) * r);
+            if (pos == null) {
+                continue;
+            }
+            WarTank tank = ModEntities.WAR_TANK.get().create(ow);
+            AbstractSkeleton crew = EntityType.SKELETON.create(ow);
+            if (tank == null || crew == null) {
+                return;
+            }
+            tank.moveTo(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, ow.random.nextFloat() * 360.0F, 0.0F);
+            tank.addTag(SkeletonFaction.WAR_HORSE_TAG);
+            tank.setPersistenceRequired();
+            LivingEntity target = nearest(tank, defenders);
+            if (target != null) {
+                tank.setTarget(target);
+            }
+            ow.addFreshEntity(tank);
+            crew.moveTo(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, tank.getYRot(), 0.0F);
+            crew.finalizeSpawn(ow, ow.getCurrentDifficultyAt(pos), MobSpawnType.EVENT, null, null);
+            crew.addTag(SkeletonFaction.WAR_TAG);
+            crew.addTag(WarTank.CREW_TAG);
+            crew.setPersistenceRequired();
+            SkeletonFaction.prepare(crew);
+            crew.setNoAi(true);
+            ow.addFreshEntity(crew);
+            crew.startRiding(tank, true);
+            return;
         }
     }
 
@@ -670,7 +729,7 @@ public final class SkeletonWar {
                 for (AbstractSkeleton a : attackers(ow, s)) {
                     a.kill();
                 }
-                clearHorses(ow, s);
+                clearVehicles(ow, s, true);
                 data.sites.remove(s);
             }
         }

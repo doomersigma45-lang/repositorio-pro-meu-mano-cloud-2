@@ -567,6 +567,13 @@ def main():
                 hp = float(m.group(1)) if m else prev
                 dmgs.append(round(prev - hp, 1)); prev = hp
             sk.append(f"dano da bala (6 tiros): {dmgs} min={min(dmgs)} max={max(dmgs)}")
+            # obus do tanque: 750 de dano num alvo parado
+            scmd("summon minecraft:horse 100 100 112 {NoAI:1b,PersistenceRequired:1b,Attributes:[{Name:\"generic.max_health\",Base:1000d}],Health:1000f,CustomName:'\"alvo2\"'}")
+            time.sleep(1)
+            scmd("summon netheritesupremo:tank_shell 100 100.9 104 {Motion:[0.0d,0.0d,1.5d]}")
+            time.sleep(3)
+            scmd("data get entity @e[name=alvo2,limit=1] Health")
+            scmd("kill @e[name=alvo2]")
             # esqueletos defendem quando um deles e atacado (o villager leva um golpe de um porco)
             scmd("summon minecraft:pig 108 100 108 {PersistenceRequired:1b,CustomName:'\"agressor\"'}")
             time.sleep(1)
@@ -596,20 +603,19 @@ def main():
                 wcmd(f"summon minecraft:villager {vx} 100 {vz} {{PersistenceRequired:1b}}")
             wcmd("skeletonwar reset")
             wcmd("skeletonwar test 130 100 130")
-            time.sleep(14)
+            time.sleep(8)
             wcmd("execute if entity @e[type=minecraft:skeleton_horse,x=130,y=100,z=130,distance=..80]")
-            wcmd("data get entity @e[tag=netheritesupremo_war_skeleton,x=130,y=100,z=130,sort=furthest,limit=1] RootVehicle.Entity.id")
-            wcmd("data get entity @e[tag=netheritesupremo_war_skeleton,x=130,y=100,z=130,sort=furthest,limit=1] ArmorItems[3].id")
-            wcmd("data get entity @e[tag=netheritesupremo_war_skeleton,x=130,y=100,z=130,sort=furthest,limit=1] Pos")
-            time.sleep(4)
-            wcmd("data get entity @e[tag=netheritesupremo_war_skeleton,x=130,y=100,z=130,sort=furthest,limit=1] Pos")
-            state = ""
-            for _ in range(24):
-                time.sleep(5)
-                state = r.cmd("skeletonwar status")
-                if "CONQUERED" in state or "DEFENDED" in state:
-                    break
-            wr.append("status final: " + state)
+            wcmd("execute as @e[type=minecraft:skeleton_horse,x=130,y=100,z=130,distance=..80] run data get entity @s Passengers[0].id")
+            wcmd("data get entity @e[type=minecraft:skeleton_horse,x=130,y=100,z=130,sort=furthest,limit=1] Pos")
+            wcmd("execute if entity @e[type=netheritesupremo:war_tank,x=130,y=100,z=130,distance=..90]")
+            wcmd("attribute @e[type=netheritesupremo:war_tank,limit=1] minecraft:generic.max_health get")
+            wcmd("data get entity @e[type=netheritesupremo:war_tank,limit=1] Passengers[0].id")
+            wcmd("data get entity @e[type=netheritesupremo:war_tank,limit=1] Pos")
+            wcmd("execute if entity @e[type=netheritesupremo:tank_shell,x=130,y=100,z=130,distance=..90]")
+            time.sleep(3)
+            wcmd("data get entity @e[type=minecraft:skeleton_horse,x=130,y=100,z=130,sort=furthest,limit=1] Pos")
+            wcmd("data get entity @e[type=netheritesupremo:war_tank,limit=1] Pos")
+            wcmd("execute if entity @e[type=minecraft:villager,x=130,y=100,z=130,distance=..50]")
             wcmd("execute if entity @e[type=minecraft:villager,x=130,y=100,z=130,distance=..50]")
             wcmd("execute if entity @e[tag=netheritesupremo_war_skeleton,x=130,y=100,z=130,distance=..80]")
             # os moradores morrem: o lugar tem que ser conquistado
@@ -622,6 +628,8 @@ def main():
             wr.append("status apos matar moradores: " + state)
             # lugar conquistado: cavalos somem e aldeoes/saqueadores nao voltam
             wcmd("execute if entity @e[type=minecraft:skeleton_horse,x=130,y=100,z=130,distance=..90]")
+            wcmd("execute if entity @e[type=netheritesupremo:war_tank,x=130,y=100,z=130,distance=..90]")
+            wcmd("execute if entity @e[tag=netheritesupremo_tank_crew]")
             wcmd("summon minecraft:villager 128 100 128 {PersistenceRequired:1b}")
             wcmd("summon minecraft:pillager 131 100 131 {PersistenceRequired:1b}")
             wcmd("summon minecraft:iron_golem 133 100 128 {PersistenceRequired:1b}")

@@ -29,6 +29,9 @@ public final class ClientEvents {
         event.registerEntityRenderer(ModEntities.RED_STEVE.get(), RedSteveRenderer::new);
         event.registerEntityRenderer(ModEntities.SKELETON_KING.get(), SkeletonKingRenderer::new);
         event.registerEntityRenderer(ModEntities.SKELETON_VILLAGER.get(), SkeletonVillagerRenderer::new);
+        event.registerEntityRenderer(ModEntities.WAR_TANK.get(), WarTankRenderer::new);
+        event.registerEntityRenderer(ModEntities.TANK_SHELL.get(),
+                ctx -> new net.minecraft.client.renderer.entity.ThrownItemRenderer<>(ctx, 1.4F, true));
         event.registerEntityRenderer(ModEntities.OLD_GUN_BULLET.get(),
                 ctx -> new net.minecraft.client.renderer.entity.ThrownItemRenderer<>(ctx, 0.6F, true));
         event.registerEntityRenderer(ModEntities.BOMB_ROBOT.get(), ctx -> new PlayerRobotRenderer<NetheriteBombRobot>(ctx,
@@ -69,6 +72,7 @@ public final class ClientEvents {
     @SubscribeEvent
     public static void onRegisterLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(SaucerRenderer.LAYER, SaucerModel::createLayer);
+        event.registerLayerDefinition(WarTankRenderer.LAYER, WarTankModel::createLayer);
         event.registerLayerDefinition(CambrianRenderer.ANOMALOCARIS_LAYER, () -> SegmentedModel.createLayer(SegmentedModel.ANOMALOCARIS));
         event.registerLayerDefinition(CambrianRenderer.TRILOBITE_LAYER, () -> SegmentedModel.createLayer(SegmentedModel.TRILOBITE));
         event.registerLayerDefinition(CambrianRenderer.OPABINIA_LAYER, () -> SegmentedModel.createLayer(SegmentedModel.OPABINIA));

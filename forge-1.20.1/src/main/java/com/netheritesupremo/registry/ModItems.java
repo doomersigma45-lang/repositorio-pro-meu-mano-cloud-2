@@ -278,6 +278,10 @@ public final class ModItems {
             "red_steve_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.RED_STEVE, 0xB01818, 0x4A3A2A, new Item.Properties()));
 
+    public static final RegistryObject<Item> WAR_TANK_SPAWN_EGG = ITEMS.register(
+            "war_tank_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.WAR_TANK, 0x4A523A, 0x1E1E20, new Item.Properties()));
+
     public static final RegistryObject<Item> OLD_GUN = ITEMS.register("old_gun",
             () -> new com.netheritesupremo.skeleton.OldGunItem(new Item.Properties().stacksTo(1).durability(250)));
 

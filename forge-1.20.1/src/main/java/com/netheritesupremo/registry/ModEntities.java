@@ -258,6 +258,22 @@ public final class ModEntities {
                     .updateInterval(5)
                     .build("old_gun_bullet"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.entity.WarTank>> WAR_TANK = ENTITIES.register(
+            "war_tank",
+            () -> EntityType.Builder.of(com.netheritesupremo.entity.WarTank::new, MobCategory.MISC)
+                    .sized(2.2F, 2.0F)
+                    .fireImmune()
+                    .clientTrackingRange(10)
+                    .build("war_tank"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.entity.TankShell>> TANK_SHELL = ENTITIES.register(
+            "tank_shell",
+            () -> EntityType.Builder.<com.netheritesupremo.entity.TankShell>of(com.netheritesupremo.entity.TankShell::new, MobCategory.MISC)
+                    .sized(0.4F, 0.4F)
+                    .clientTrackingRange(6)
+                    .updateInterval(5)
+                    .build("tank_shell"));
+
     private ModEntities() {
     }
 }
