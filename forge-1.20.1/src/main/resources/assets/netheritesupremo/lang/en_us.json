@@ -204,5 +204,11 @@
   "item.netheritesupremo.war_tank_spawn_egg": "War Tank Spawn Egg",
   "effect.netheritesupremo.war_mark": "War Mark",
   "message.netheritesupremo.skeleton_war.marked": "The skeletons marked you for war! When you reach a village or outpost, they will attack it.",
-  "message.netheritesupremo.skeleton_war.faded": "The War Mark faded: this place was already attacked."
+  "message.netheritesupremo.skeleton_war.faded": "The War Mark faded: this place was already attacked.",
+  "item.netheritesupremo.netherite_apple": "Netherite Apple",
+  "item.netheritesupremo.enchanted_netherite_apple": "Enchanted Netherite Apple",
+  "block.netheritesupremo.netherite_cake": "Netherite Cake",
+  "message.netheritesupremo.armor_adapted": "Your netherite armor adapted to a stronger armor!",
+  "tooltip.netheritesupremo.adapt_resist": "Adapted Resistance: level %s",
+  "tooltip.netheritesupremo.adapt_strength": "Adapted Strength: level %s"
 }

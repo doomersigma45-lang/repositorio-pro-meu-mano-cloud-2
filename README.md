@@ -354,3 +354,10 @@ Os mods **Claude Content** e **Vila de Ferro** agora fazem parte deste mod (mesm
 
 ### Tanques atacam moradores (1.54.1)
 - Os tanques de guerra miram **aldeões, saqueadores (pillager, vindicator, evoker) e golems de ferro** sem precisar enxergá-los, e a guerra escolhe sempre o mais próximo como alvo.
+
+### Maçãs de netherite, bolo de netherite e armadura adaptativa (1.55.0)
+- **Maçã de Netherite:** `NNN / NAN / NNN` (N = lingote de netherite, A = maçã). Efeitos: Regeneração IV 30 s, Absorção X 2 min, Resistência III 5 min, Resistência ao Fogo 5 min, Força II 3 min, Aumento de Vida III 5 min. Sempre dá para comer.
+- **Maçã de Netherite Encantada:** `BSB / SAS / BSB` (B = bloco de netherite, S = estrela do Nether, A = maçã de netherite). Brilha. Regeneração V 1 min, Absorção XX 3 min, Resistência IV 10 min, Resistência ao Fogo 10 min, Força III 5 min, Aumento de Vida X 10 min, Velocidade II 5 min.
+- **Bolo de Netherite:** `MMM / SAS / NNN` (M = balde de leite, S = açúcar, A = maçã de netherite, N = lingote de netherite). Bolo cinza com **cobertura vermelha**, 7 fatias como o bolo comum; cada fatia dá Regeneração II 15 s, Absorção IV 1 min e Resistência I 1 min (como o bolo comum, só dá para comer com fome).
+- **Armadura de netherite adaptativa:** com o conjunto de netherite vestido (jogador, mob ou qualquer um), se por perto (24 blocos) houver um jogador ou mob **que não use o conjunto de netherite** com armadura **superior**, as peças se adaptam: ganham armadura e resistência da armadura para passar a dele, e Resistência/Força sobem acima das dele (Resistência até V, Força até VII). **Só melhora o que a outra armadura tem de superior; contra armaduras iguais ou mais fracas nada muda.** A adaptação fica gravada em cada peça (NBT `NetheriteAdapt`), nunca diminui, aparece na dica do item e tem uma pausa de 5 s entre melhorias. Dois conjuntos de netherite não se adaptam um ao outro (evita uma corrida infinita).
+- Texturas de maçãs e bolo **pintadas por mim por código** (`tools/gerar_comidas.py`), não são arte sua.

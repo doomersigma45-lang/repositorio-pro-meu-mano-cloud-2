@@ -204,5 +204,11 @@
   "item.netheritesupremo.war_tank_spawn_egg": "Ovo de Tanque de Guerra",
   "effect.netheritesupremo.war_mark": "Marca de Guerra",
   "message.netheritesupremo.skeleton_war.marked": "Os esqueletos marcaram você para a guerra! Quando você chegar a uma vila ou outpost, eles vão atacar o lugar.",
-  "message.netheritesupremo.skeleton_war.faded": "A Marca de Guerra se dissipou: este lugar já tinha sido atacado."
+  "message.netheritesupremo.skeleton_war.faded": "A Marca de Guerra se dissipou: este lugar já tinha sido atacado.",
+  "item.netheritesupremo.netherite_apple": "Maçã de Netherite",
+  "item.netheritesupremo.enchanted_netherite_apple": "Maçã de Netherite Encantada",
+  "block.netheritesupremo.netherite_cake": "Bolo de Netherite",
+  "message.netheritesupremo.armor_adapted": "Sua armadura de netherite se adaptou a uma armadura mais forte!",
+  "tooltip.netheritesupremo.adapt_resist": "Resistência adaptada: nível %s",
+  "tooltip.netheritesupremo.adapt_strength": "Força adaptada: nível %s"
 }

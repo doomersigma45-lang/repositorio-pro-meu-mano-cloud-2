@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "bites=0": {
+      "model": "netheritesupremo:block/netherite_cake"
+    },
+    "bites=1": {
+      "model": "netheritesupremo:block/netherite_cake_slice1"
+    },
+    "bites=2": {
+      "model": "netheritesupremo:block/netherite_cake_slice2"
+    },
+    "bites=3": {
+      "model": "netheritesupremo:block/netherite_cake_slice3"
+    },
+    "bites=4": {
+      "model": "netheritesupremo:block/netherite_cake_slice4"
+    },
+    "bites=5": {
+      "model": "netheritesupremo:block/netherite_cake_slice5"
+    },
+    "bites=6": {
+      "model": "netheritesupremo:block/netherite_cake_slice6"
+    }
+  }
+}

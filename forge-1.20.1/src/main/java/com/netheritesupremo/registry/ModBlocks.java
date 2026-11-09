@@ -17,6 +17,11 @@ public final class ModBlocks {
             () -> new GiantGlowSquidEggBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_CYAN)
                     .strength(0.5F).sound(SoundType.FROGSPAWN).noOcclusion().lightLevel(state -> 8)));
 
+    public static final RegistryObject<Block> NETHERITE_CAKE = BLOCKS.register("netherite_cake",
+            () -> new com.netheritesupremo.block.NetheriteCakeBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_GRAY).forceSolidOn().strength(0.5F).sound(SoundType.WOOL)
+                    .pushReaction(net.minecraft.world.level.material.PushReaction.DESTROY)));
+
     public static final RegistryObject<Block> BLACK_SOIL = BLOCKS.register("black_soil",
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).strength(0.6F).sound(SoundType.GRAVEL)));
 

@@ -289,6 +289,34 @@ public final class ModItems {
             "skeleton_villager_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.SKELETON_VILLAGER, 0xC9C9C9, 0x1A1A1F, new Item.Properties()));
 
+    /** Maca de netherite: bem melhor que a maca dourada. */
+    public static final RegistryObject<Item> NETHERITE_APPLE = ITEMS.register("netherite_apple",
+            () -> new Item(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC).fireResistant()
+                    .food(new net.minecraft.world.food.FoodProperties.Builder().nutrition(10).saturationMod(1.4F).alwaysEat()
+                            .effect(() -> new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.REGENERATION, 600, 3), 1.0F)
+                            .effect(() -> new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.ABSORPTION, 2400, 9), 1.0F)
+                            .effect(() -> new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.DAMAGE_RESISTANCE, 6000, 2), 1.0F)
+                            .effect(() -> new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.FIRE_RESISTANCE, 6000, 0), 1.0F)
+                            .effect(() -> new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.DAMAGE_BOOST, 3600, 1), 1.0F)
+                            .effect(() -> new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.HEALTH_BOOST, 6000, 2), 1.0F)
+                            .build())));
+
+    /** Maca de netherite encantada: ainda mais forte (brilha como a maca dourada encantada). */
+    public static final RegistryObject<Item> ENCHANTED_NETHERITE_APPLE = ITEMS.register("enchanted_netherite_apple",
+            () -> new com.netheritesupremo.item.EnchantedNetheriteAppleItem(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC).fireResistant()
+                    .food(new net.minecraft.world.food.FoodProperties.Builder().nutrition(14).saturationMod(1.6F).alwaysEat()
+                            .effect(() -> new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.REGENERATION, 1200, 4), 1.0F)
+                            .effect(() -> new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.ABSORPTION, 3600, 19), 1.0F)
+                            .effect(() -> new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.DAMAGE_RESISTANCE, 12000, 3), 1.0F)
+                            .effect(() -> new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.FIRE_RESISTANCE, 12000, 0), 1.0F)
+                            .effect(() -> new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.DAMAGE_BOOST, 6000, 2), 1.0F)
+                            .effect(() -> new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.HEALTH_BOOST, 12000, 9), 1.0F)
+                            .effect(() -> new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.MOVEMENT_SPEED, 6000, 1), 1.0F)
+                            .build())));
+
+    public static final RegistryObject<Item> NETHERITE_CAKE = ITEMS.register("netherite_cake",
+            () -> new net.minecraft.world.item.BlockItem(ModBlocks.NETHERITE_CAKE.get(), new Item.Properties().stacksTo(1)));
+
     public static final RegistryObject<Item> BLACK_SOIL = ITEMS.register("black_soil",
             () -> new net.minecraft.world.item.BlockItem(ModBlocks.BLACK_SOIL.get(), new Item.Properties()));
 

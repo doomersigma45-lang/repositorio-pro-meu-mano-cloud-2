@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "BSB",
+    "SAS",
+    "BSB"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:netherite_block"
+    },
+    "S": {
+      "item": "minecraft:nether_star"
+    },
+    "A": {
+      "item": "netheritesupremo:netherite_apple"
+    }
+  },
+  "result": {
+    "item": "netheritesupremo:enchanted_netherite_apple"
+  }
+}

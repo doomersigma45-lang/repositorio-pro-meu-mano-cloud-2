@@ -720,6 +720,39 @@ def main():
             vcmd("kill @e[type=netheritesupremo:skeleton_villager]")
             vcmd("forceload remove 700 700 820 840")
             annotate("notice", "vila de esqueletos", vl)
+            # ---- macas e bolo de netherite + adaptacao da armadura
+            ad = []
+            def acmd(t):
+                out = r.cmd(t)
+                if not t.startswith(("summon", "fill", "kill", "time ")):
+                    ad.append(f"> {t}\n  {out}")
+                return out
+            acmd("fill 118 98 94 160 98 112 minecraft:stone")
+            acmd("summon minecraft:item 120 100 96 {Item:{id:\"netheritesupremo:netherite_apple\",Count:1b}}")
+            acmd("summon minecraft:item 121 100 96 {Item:{id:\"netheritesupremo:enchanted_netherite_apple\",Count:1b}}")
+            acmd("summon minecraft:item 122 100 96 {Item:{id:\"netheritesupremo:netherite_cake\",Count:1b}}")
+            acmd("setblock 124 99 96 netheritesupremo:netherite_cake[bites=3]")
+            acmd("execute if block 124 99 96 netheritesupremo:netherite_cake[bites=3]")
+            acmd("execute if entity @e[type=minecraft:item,x=118,y=99,z=94,dx=8,dy=4,dz=4,nbt={Item:{id:\"netheritesupremo:netherite_apple\"}}]")
+            acmd("execute if entity @e[type=minecraft:item,x=118,y=99,z=94,dx=8,dy=4,dz=4,nbt={Item:{id:\"netheritesupremo:enchanted_netherite_apple\"}}]")
+            acmd("execute if entity @e[type=minecraft:item,x=118,y=99,z=94,dx=8,dy=4,dz=4,nbt={Item:{id:\"netheritesupremo:netherite_cake\"}}]")
+            arm = 'ArmorItems:[{id:"minecraft:netherite_boots",Count:1b},{id:"minecraft:netherite_leggings",Count:1b},{id:"minecraft:netherite_chestplate",Count:1b},{id:"minecraft:netherite_helmet",Count:1b}]'
+            # A: perto de uma armadura MUITO superior; B: perto de uma armadura mais fraca; C: sozinha
+            acmd(f"summon minecraft:armor_stand 130 99 100 {{NoGravity:1b,CustomName:'\"adaptA\"',{arm}}}")
+            acmd(f"summon minecraft:armor_stand 150 99 100 {{NoGravity:1b,CustomName:'\"adaptB\"',{arm}}}")
+            acmd(f"summon minecraft:armor_stand 140 99 108 {{NoGravity:1b,CustomName:'\"adaptC\"',{arm}}}")
+            acmd("summon minecraft:zombie 134 99 100 {NoAI:1b,Invulnerable:1b,PersistenceRequired:1b,CustomName:'\"forte\"',Attributes:[{Name:\"generic.armor\",Base:300d},{Name:\"generic.armor_toughness\",Base:150d}],ActiveEffects:[{Id:11,Amplifier:3b,Duration:100000},{Id:5,Amplifier:3b,Duration:100000}]}")
+            acmd("summon minecraft:zombie 154 99 100 {NoAI:1b,Invulnerable:1b,PersistenceRequired:1b,CustomName:'\"fraco\"',Attributes:[{Name:\"generic.armor\",Base:2d}]}")
+            time.sleep(6)
+            for who in ("adaptA", "adaptB", "adaptC"):
+                acmd(f"attribute @e[name={who},limit=1] minecraft:generic.armor get")
+                acmd(f"attribute @e[name={who},limit=1] minecraft:generic.armor_toughness get")
+                acmd(f"data get entity @e[name={who},limit=1] ArmorItems[2].tag.NetheriteAdapt")
+            acmd("attribute @e[name=forte,limit=1] minecraft:generic.armor get")
+            acmd("kill @e[name=forte]")
+            acmd("kill @e[name=fraco]")
+            acmd("kill @e[type=minecraft:armor_stand,x=118,y=99,z=94,dx=50,dy=6,dz=20]")
+            annotate("notice", "macas, bolo e adaptacao", ad)
             # ---- aliados alienigenas, soldados vs saqueadores/piglins, hibridos
             al = []
             for t in ["fill 18 99 18 34 99 34 minecraft:stone",

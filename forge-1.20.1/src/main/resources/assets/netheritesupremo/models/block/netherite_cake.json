@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cake",
+  "textures": {
+    "particle": "netheritesupremo:block/netherite_cake_side",
+    "bottom": "netheritesupremo:block/netherite_cake_bottom",
+    "top": "netheritesupremo:block/netherite_cake_top",
+    "side": "netheritesupremo:block/netherite_cake_side"
+  }
+}

@@ -150,6 +150,10 @@ public class NetheriteSupremo {
             event.accept(ModItems.CRYSTAL_FENCE_GATE);
             event.accept(ModItems.CRYSTAL_BUTTON);
             event.accept(ModItems.CRYSTAL_PRESSURE_PLATE);
+        } else if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
+            event.accept(ModItems.NETHERITE_APPLE);
+            event.accept(ModItems.ENCHANTED_NETHERITE_APPLE);
+            event.accept(ModItems.NETHERITE_CAKE);
         } else if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(ModItems.OBSIDIAN_INGOT);
             event.accept(ModItems.RAINBOW_GEM);
