@@ -650,19 +650,30 @@ def main():
             wcmd("skeletonwar status")
             wcmd("skeletonwar reset")
             wcmd("kill @e[x=90,y=99,z=90,dx=80,dy=12,dz=80,type=!minecraft:player]")
-            # tanque isolado: tem que andar ate o aldeao parado a ~35 blocos e mata-lo com o obus
-            wcmd("summon minecraft:villager 100 100 140 {NoAI:1b,PersistenceRequired:1b,CustomName:'\"alvotank\"'}")
-            wcmd("summon netheritesupremo:war_tank 100 100 105 {PersistenceRequired:1b}")
-            time.sleep(3)
-            wcmd("data get entity @e[type=netheritesupremo:war_tank,limit=1] Pos")
-            time.sleep(4)
-            wcmd("data get entity @e[type=netheritesupremo:war_tank,limit=1] Pos")
-            wcmd("execute if entity @e[name=alvotank]")
-            time.sleep(10)
-            wcmd("data get entity @e[type=netheritesupremo:war_tank,limit=1] Pos")
-            wcmd("execute if entity @e[name=alvotank]")
-            wcmd("kill @e[type=netheritesupremo:war_tank]")
-            wcmd("kill @e[name=alvotank]")
+            # tanques isolados (um sem tripulante e um com): tem que andar ate o aldeao parado e mata-lo com o obus
+            tk = []
+            def tcmd(t):
+                out = r.cmd(t)
+                if not t.startswith(("summon", "kill")):
+                    tk.append(f"> {t}\n  {out}")
+                return out
+            tcmd("summon minecraft:villager 100 100 140 {NoAI:1b,PersistenceRequired:1b,CustomName:'\"vilaA\"'}")
+            tcmd("summon minecraft:villager 115 100 140 {NoAI:1b,PersistenceRequired:1b,CustomName:'\"vilaB\"'}")
+            tcmd("summon netheritesupremo:war_tank 100 100 105 {PersistenceRequired:1b,CustomName:'\"tanqueA\"'}")
+            tcmd("summon netheritesupremo:war_tank 115 100 105 {PersistenceRequired:1b,CustomName:'\"tanqueB\"',Passengers:[{id:\"minecraft:skeleton\",NoAI:1b,PersistenceRequired:1b}]}")
+            for espera in (3, 4, 10):
+                time.sleep(espera)
+                tk.append(f"--- +{espera}s")
+                tcmd("data get entity @e[name=tanqueA,limit=1] Pos")
+                tcmd("data get entity @e[name=tanqueB,limit=1] Pos")
+                tcmd("execute if entity @e[name=vilaA]")
+                tcmd("execute if entity @e[name=vilaB]")
+            tcmd("data get entity @e[name=tanqueB,limit=1] Passengers[0].id")
+            tcmd("kill @e[type=netheritesupremo:war_tank]")
+            tcmd("kill @e[name=vilaA]")
+            tcmd("kill @e[name=vilaB]")
+            tcmd("kill @e[type=minecraft:skeleton,x=100,y=99,z=100,dx=30,dy=12,dz=30]")
+            annotate("notice", "tanque isolado", tk)
 
             wcmd("forceload remove 90 90 170 170")
             # declaracao real (procura vilas/outposts de verdade) e encerra logo

@@ -26,6 +26,7 @@ import net.minecraft.world.phys.Vec3;
 public class WarTank extends PathfinderMob {
     public static final String CREW_TAG = "netheritesupremo_tank_crew";
     public static final int FIRE_INTERVAL = 70;
+    public static final double APPROACH_DISTANCE = 18.0D;
 
     public WarTank(EntityType<? extends WarTank> type, Level level) {
         super(type, level);
@@ -48,6 +49,30 @@ public class WarTank extends PathfinderMob {
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false,
                 e -> (e instanceof Player p && !p.isCreative() && !p.isSpectator()) || SkeletonWar.isDefender(e)));
+    }
+
+    /** O tanque avanca em linha reta ate o alvo (sem depender da navegacao, que trava com tripulante) e para a distancia de tiro. */
+    @Override
+    public void aiStep() {
+        LivingEntity t = this.getTarget();
+        if (!this.level().isClientSide && t != null && t.isAlive() && this.isAlive()) {
+            double dx = t.getX() - this.getX();
+            double dz = t.getZ() - this.getZ();
+            double dist = Math.sqrt(dx * dx + dz * dz);
+            Vec3 m = this.getDeltaMovement();
+            if (dist > APPROACH_DISTANCE || !this.getSensing().hasLineOfSight(t)) {
+                if (dist > 3.0D) {
+                    double speed = this.getAttributeValue(Attributes.MOVEMENT_SPEED) * 0.75D;
+                    this.setDeltaMovement(dx / dist * speed, m.y, dz / dist * speed);
+                    float yaw = (float) Math.toDegrees(Math.atan2(-dx, dz));
+                    this.setYRot(yaw);
+                    this.yBodyRot = yaw;
+                }
+            } else {
+                this.setDeltaMovement(m.x * 0.5D, m.y, m.z * 0.5D);
+            }
+        }
+        super.aiStep();
     }
 
     @Override
@@ -154,11 +179,6 @@ public class WarTank extends PathfinderMob {
         }
 
         @Override
-        public void stop() {
-            this.tank.getNavigation().stop();
-        }
-
-        @Override
         public void tick() {
             LivingEntity t = this.tank.getTarget();
             if (t == null) {
@@ -167,22 +187,6 @@ public class WarTank extends PathfinderMob {
             double d = this.tank.distanceTo(t);
             boolean sees = this.tank.getSensing().hasLineOfSight(t);
             this.tank.getLookControl().setLookAt(t, 40.0F, 40.0F);
-            if (d > this.near || !sees) {
-                if (this.tank.tickCount % 10 == 0 || this.tank.getNavigation().isDone()) {
-                    this.tank.getNavigation().moveTo(t, this.speed);
-                }
-                if (this.tank.getNavigation().isDone() && d > this.near) {
-                    // sem caminho: avanca em linha reta (o tanque e pesado e passa por cima do que da)
-                    Vec3 dir = new Vec3(t.getX() - this.tank.getX(), 0.0D, t.getZ() - this.tank.getZ()).normalize();
-                    Vec3 m = this.tank.getDeltaMovement();
-                    this.tank.setDeltaMovement(dir.x * 0.17D, m.y, dir.z * 0.17D);
-                    float yaw = (float) Math.toDegrees(Math.atan2(-dir.x, dir.z));
-                    this.tank.setYRot(yaw);
-                    this.tank.yBodyRot = yaw;
-                }
-            } else {
-                this.tank.getNavigation().stop();
-            }
             if (this.cooldown > 0) {
                 this.cooldown--;
             }
