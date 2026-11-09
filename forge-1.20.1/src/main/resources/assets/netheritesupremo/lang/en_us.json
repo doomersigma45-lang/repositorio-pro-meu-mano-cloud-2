@@ -201,5 +201,8 @@
   "message.netheritesupremo.skeleton_war.kind.test": "the test site",
   "entity.netheritesupremo.war_tank": "War Tank",
   "entity.netheritesupremo.tank_shell": "Tank Shell",
-  "item.netheritesupremo.war_tank_spawn_egg": "War Tank Spawn Egg"
+  "item.netheritesupremo.war_tank_spawn_egg": "War Tank Spawn Egg",
+  "effect.netheritesupremo.war_mark": "War Mark",
+  "message.netheritesupremo.skeleton_war.marked": "The skeletons marked you for war! When you reach a village or outpost, they will attack it.",
+  "message.netheritesupremo.skeleton_war.faded": "The War Mark faded: this place was already attacked."
 }

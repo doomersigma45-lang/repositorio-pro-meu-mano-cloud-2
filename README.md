@@ -342,3 +342,9 @@ Os mods **Claude Content** e **Vila de Ferro** agora fazem parte deste mod (mesm
 - **Tanque de Guerra:** 270 de vida, armadura 12, resistente a empurrão e a fogo. Dispara **obuses explosivos de 750 de dano** (raio de 3,5 blocos, a cada ~3,5 s, alcance até 36 blocos) que **não destroem blocos**; não ferem esqueletos, cavalos esqueleto nem outros tanques. Ataca jogadores (fora do criativo) e os moradores das vilas.
 - **Nas guerras:** a partir da segunda onda um tanque chega com um esqueleto de tripulante em cima (no máximo 2 ao mesmo tempo). O ataque só termina quando os tanques também forem destruídos. Se os esqueletos vencem, o tanque some e o tripulante fica como morador; se perdem, os dois morrem. Dropa ferro, pólvora e às vezes um bloco de ferro. Também tem ovo de geração.
 - **Visual:** modelo próprio (casco, duas esteiras e torre que gira) com **textura que eu pintei por código** (`tools/gerar_tanque.py`), não é arte sua: se quiser outra, é só me mandar.
+
+### Marca de Guerra (1.53.0)
+- Quem **matar o Rei Esqueleto** recebe o efeito **Marca de Guerra** (duração infinita, ícone de caveira vermelha). Ela **não some** com leite, `/effect clear` nem morte.
+- A guerra **começa quando o jogador marcado chegar a uma vila ou a um outpost de pilhagem**; nesse momento a marca some e os esqueletos atacam aquele lugar (ondas, cavalos e tanques, como antes). Se o lugar já foi atacado ou conquistado, a marca some sem guerra nova.
+- Ops: `/skeletonwar mark <jogador>`, `/skeletonwar unmark <jogador>`, `/skeletonwar arrive <x y z>` (simula a chegada). O `/skeletonwar declare` antigo continua existindo.
+- O ícone do efeito foi pintado por mim por código (`tools/gerar_icone_marca.py`).

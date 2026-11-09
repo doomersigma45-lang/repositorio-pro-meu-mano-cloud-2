@@ -3,14 +3,17 @@ package com.netheritesupremo.skeleton;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.commands.arguments.coordinates.BlockPosArgument;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-/** /skeletonwar declare|test <pos>|status|stop|reset (so operadores). */
+/** /skeletonwar declare|test <pos>|arrive <pos>|mark <jogador>|unmark <jogador>|status|stop|reset (so operadores). */
 public class SkeletonWarCommand {
     @SubscribeEvent
     public void register(RegisterCommandsEvent event) {
@@ -26,6 +29,29 @@ public class SkeletonWarCommand {
                     BlockPos pos = BlockPosArgument.getLoadedBlockPos(c, "pos");
                     SkeletonWar.addTestSite(c.getSource().getServer().overworld(), pos);
                     c.getSource().sendSuccess(() -> Component.literal("teste iniciado em " + pos.toShortString()), false);
+                    return 1;
+                })))
+                .then(Commands.literal("arrive").then(Commands.argument("pos", BlockPosArgument.blockPos()).executes(c -> {
+                    // simula a chegada de um jogador marcado a vila/outpost em x,z (usa a altura da superficie)
+                    BlockPos in = BlockPosArgument.getLoadedBlockPos(c, "pos");
+                    ServerLevel ow = c.getSource().getServer().overworld();
+                    BlockPos at = new BlockPos(in.getX(), ow.getHeight(Heightmap.Types.WORLD_SURFACE, in.getX(), in.getZ()) - 1, in.getZ());
+                    var site = SkeletonWar.siteAt(ow, at);
+                    if (site == null) {
+                        c.getSource().sendSuccess(() -> Component.literal("nenhuma vila/outpost em " + at.toShortString()), false);
+                        return 0;
+                    }
+                    boolean started = SkeletonWar.arrive(c.getSource().getServer(), site, c.getSource().getTextName());
+                    c.getSource().sendSuccess(() -> Component.literal("lugar=" + site.getSecond() + " guerra=" + started), false);
+                    return started ? 1 : 0;
+                })))
+                .then(Commands.literal("mark").then(Commands.argument("player", EntityArgument.player()).executes(c -> {
+                    ServerPlayer p = EntityArgument.getPlayer(c, "player");
+                    SkeletonWar.mark(p);
+                    return 1;
+                })))
+                .then(Commands.literal("unmark").then(Commands.argument("player", EntityArgument.player()).executes(c -> {
+                    SkeletonWar.unmark(EntityArgument.getPlayer(c, "player"));
                     return 1;
                 })))
                 .then(Commands.literal("status").executes(c -> {

@@ -27,6 +27,7 @@ public class NetheriteSupremo {
         com.netheritesupremo.claudecontent.ClaudeContent.register(modBus);
         com.netheritesupremo.blackrealm.ModFluids.register(modBus);
         com.netheritesupremo.blackrealm.ModSounds.SOUNDS.register(modBus);
+        com.netheritesupremo.skeleton.ModEffects.EFFECTS.register(modBus);
         com.netheritesupremo.viladeferro.VilaDeFerro.register(modBus);
         com.netheritesupremo.network.ModNetwork.register();
         modBus.addListener(this::commonSetup);

@@ -168,7 +168,9 @@ public final class SkeletonWar {
     }
 
     // ============================================================ declaracao
-    /** Chamado quando o Rei morre: so vale se um jogador o matou. */
+    public static final String MARK_KEY = "netheritesupremo_war_mark";
+
+    /** Chamado quando o Rei morre: o jogador que o matou recebe a Marca de Guerra (a guerra comeca quando ele chegar a uma vila ou outpost). */
     public static void onKingDied(ServerLevel level, SkeletonKing king, DamageSource source) {
         ServerPlayer killer = null;
         if (source.getEntity() instanceof ServerPlayer p) {
@@ -179,10 +181,93 @@ public final class SkeletonWar {
         if (killer == null) {
             return;
         }
-        MinecraftServer server = level.getServer();
-        BlockPos origin = level.dimension() == net.minecraft.world.level.Level.OVERWORLD ? killer.blockPosition()
-                : server.overworld().getSharedSpawnPos();
-        declare(server, origin, killer.getGameProfile().getName());
+        mark(killer);
+        killer.sendSystemMessage(Component.translatable("message.netheritesupremo.skeleton_war.marked"));
+    }
+
+    // ------------------------------------------------------------- marca de guerra
+    private static CompoundTag persisted(net.minecraft.world.entity.player.Player p) {
+        CompoundTag root = p.getPersistentData();
+        if (!root.contains(net.minecraft.world.entity.player.Player.PERSISTED_NBT_TAG, 10)) {
+            root.put(net.minecraft.world.entity.player.Player.PERSISTED_NBT_TAG, new CompoundTag());
+        }
+        return root.getCompound(net.minecraft.world.entity.player.Player.PERSISTED_NBT_TAG);
+    }
+
+    public static boolean isMarked(net.minecraft.world.entity.player.Player p) {
+        return persisted(p).getBoolean(MARK_KEY);
+    }
+
+    public static void mark(ServerPlayer p) {
+        persisted(p).putBoolean(MARK_KEY, true);
+        applyMarkEffect(p);
+    }
+
+    public static void unmark(ServerPlayer p) {
+        persisted(p).remove(MARK_KEY);
+        p.removeEffect(ModEffects.WAR_MARK.get());
+    }
+
+    private static void applyMarkEffect(ServerPlayer p) {
+        p.addEffect(new MobEffectInstance(ModEffects.WAR_MARK.get(), MobEffectInstance.INFINITE_DURATION, 0, false, true, true));
+    }
+
+    /** Vila ou outpost de pilhagem em volta de {@code pos}: devolve {centro, tipo} ou null. */
+    public static Pair<BlockPos, String> siteAt(ServerLevel level, BlockPos pos) {
+        var sm = level.structureManager();
+        var village = sm.getStructureWithPieceAt(pos, StructureTags.VILLAGE);
+        if (village.isValid()) {
+            return Pair.of(village.getBoundingBox().getCenter(), "village");
+        }
+        var outpost = sm.getStructureWithPieceAt(pos, BuiltinStructures.PILLAGER_OUTPOST);
+        if (outpost.isValid()) {
+            return Pair.of(outpost.getBoundingBox().getCenter(), "outpost");
+        }
+        return null;
+    }
+
+    /** Um jogador marcado chegou a um lugar: tira a marca e comeca a guerra ali (se o lugar ainda nao foi atacado). */
+    public static boolean arrive(MinecraftServer server, Pair<BlockPos, String> site, String by) {
+        ServerLevel ow = server.overworld();
+        Data data = Data.get(ow);
+        for (Site s : data.sites) {
+            if (horizontal(s.center, site.getFirst()) < 200) {
+                return false;
+            }
+        }
+        Site s = newSite(site.getFirst(), site.getSecond());
+        broadcast(server, Component.translatable("message.netheritesupremo.skeleton_war.declared", by));
+        broadcast(server, Component.translatable("message.netheritesupremo.skeleton_war.target",
+                Component.translatable("message.netheritesupremo.skeleton_war.kind." + s.kind),
+                s.center.getX(), s.center.getZ()));
+        begin(ow, data, s);
+        return true;
+    }
+
+    @SubscribeEvent
+    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END || event.side.isClient() || !(event.player instanceof ServerPlayer p)
+                || p.tickCount % 20 != 0) {
+            return;
+        }
+        if (!isMarked(p)) {
+            return;
+        }
+        if (!p.hasEffect(ModEffects.WAR_MARK.get())) {
+            applyMarkEffect(p); // leite, /effect clear ou morte nao tiram a marca
+        }
+        ServerLevel level = p.serverLevel();
+        if (level.dimension() != net.minecraft.world.level.Level.OVERWORLD) {
+            return;
+        }
+        Pair<BlockPos, String> site = siteAt(level, p.blockPosition());
+        if (site == null) {
+            return;
+        }
+        unmark(p);
+        if (!arrive(level.getServer(), site, p.getGameProfile().getName())) {
+            p.sendSystemMessage(Component.translatable("message.netheritesupremo.skeleton_war.faded"));
+        }
     }
 
     /** Declara a guerra: procura ate 2 vilas e 1 outpost perto de {@code origin}. Devolve quantos alvos achou. */
