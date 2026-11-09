@@ -348,3 +348,6 @@ Os mods **Claude Content** e **Vila de Ferro** agora fazem parte deste mod (mesm
 - A guerra **começa quando o jogador marcado chegar a uma vila ou a um outpost de pilhagem**; nesse momento a marca some e os esqueletos atacam aquele lugar (ondas, cavalos e tanques, como antes). Se o lugar já foi atacado ou conquistado, a marca some sem guerra nova.
 - Ops: `/skeletonwar mark <jogador>`, `/skeletonwar unmark <jogador>`, `/skeletonwar arrive <x y z>` (simula a chegada); chegar = ficar a até 48 blocos de uma vila ou outpost. O `/skeletonwar declare` antigo continua existindo.
 - O ícone do efeito foi pintado por mim por código (`tools/gerar_icone_marca.py`).
+
+### Esqueletos abrem portas e escalam (1.54.0)
+- Todos os esqueletos (comum, stray, wither, atacantes de guerra) **abrem portas** e **escalam paredes** como aranhas quando vão atrás de um alvo e batem num muro.

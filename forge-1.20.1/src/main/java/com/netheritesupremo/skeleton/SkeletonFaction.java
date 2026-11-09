@@ -14,7 +14,10 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.goal.OpenDoorGoal;
 import net.minecraft.world.entity.ai.goal.WrappedGoal;
+import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.player.Player;
@@ -89,14 +92,42 @@ public final class SkeletonFaction {
         if (!(event.getEntity() instanceof AbstractSkeleton skeleton) || skeleton.level().isClientSide) {
             return;
         }
+        climb(skeleton);
         if ((skeleton.tickCount + skeleton.getId()) % 20 != 0) {
             return;
         }
         prepare(skeleton);
     }
 
+    /** Esqueletos escalam paredes como aranhas quando estao indo atras de algo e batem num muro. */
+    private static void climb(AbstractSkeleton skeleton) {
+        if (!skeleton.horizontalCollision || skeleton.isPassenger() || skeleton.isInWater()) {
+            return;
+        }
+        if (skeleton.getTarget() == null && skeleton.getNavigation().isDone()) {
+            return;
+        }
+        Vec3 m = skeleton.getDeltaMovement();
+        skeleton.setDeltaMovement(m.x, Math.max(m.y, 0.2D), m.z);
+        skeleton.fallDistance = 0.0F;
+    }
+
+    /** Esqueletos abrem portas. */
+    private static void doors(AbstractSkeleton skeleton) {
+        if (skeleton.getNavigation() instanceof GroundPathNavigation nav) {
+            nav.setCanOpenDoors(true);
+            for (WrappedGoal w : skeleton.goalSelector.getAvailableGoals()) {
+                if (w.getGoal() instanceof OpenDoorGoal) {
+                    return;
+                }
+            }
+            skeleton.goalSelector.addGoal(4, new OpenDoorGoal(skeleton, true));
+        }
+    }
+
     /** Aplica o comportamento da faccao (neutro + Old Gun); idempotente. */
     public static void prepare(AbstractSkeleton skeleton) {
+        doors(skeleton);
         if (isBossMinion(skeleton)) {
             return; // esqueletos invocados por bosses continuam com a arma e hostis
         }
