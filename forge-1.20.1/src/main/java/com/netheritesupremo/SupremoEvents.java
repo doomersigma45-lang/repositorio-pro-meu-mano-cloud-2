@@ -119,8 +119,8 @@ public class SupremoEvents {
 
         if (entity.tickCount % 10 == 0 && hasSetBonus(entity)) {
             entity.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 40, 0, true, false, false));
-            entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 40, ArmorAdaptation.bonusAmp(entity, ArmorAdaptation.STRENGTH, 1), true, false, false)); // Forca II (ou a adaptada)
-            entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 40, ArmorAdaptation.bonusAmp(entity, ArmorAdaptation.RESIST, 3), true, false, false)); // Resistencia IV (ou a adaptada)
+            entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 40, ArmorAdaptation.effectAmp(entity, ArmorAdaptation.STRENGTH, 1, ArmorAdaptation.EFFECT_CAP_STRENGTH), true, false, false)); // Forca II (ou a adaptada)
+            entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 40, ArmorAdaptation.effectAmp(entity, ArmorAdaptation.RESIST, 3, ArmorAdaptation.MAX_RESIST), true, false, false)); // Resistencia IV (ou a adaptada)
         }
     }
 

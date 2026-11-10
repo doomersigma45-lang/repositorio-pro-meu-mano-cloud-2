@@ -749,7 +749,20 @@ def main():
                 acmd(f"attribute @e[name={who},limit=1] minecraft:generic.armor_toughness get")
                 acmd(f"data get entity @e[name={who},limit=1] ArmorItems[2].tag.NetheriteAdapt")
             acmd("attribute @e[name=forte,limit=1] minecraft:generic.armor get")
+            # a adaptacao fica depois que a armadura superior morre
             acmd("kill @e[name=forte]")
+            time.sleep(4)
+            ad.append("--- depois da morte do portador da armadura superior")
+            acmd("attribute @e[name=adaptA,limit=1] minecraft:generic.armor get")
+            acmd("data get entity @e[name=adaptA,limit=1] ArmorItems[2].tag.NetheriteAdapt")
+            # armadura encantada 2x: os valores e os efeitos escalam
+            ench = 'tag:{Enchantments:[{id:"netheritesupremo:multiplier_2x",lvl:1s}]}'
+            arm2 = f'ArmorItems:[{{id:"minecraft:netherite_boots",Count:1b,{ench}}},{{id:"minecraft:netherite_leggings",Count:1b,{ench}}},{{id:"minecraft:netherite_chestplate",Count:1b,{ench}}},{{id:"minecraft:netherite_helmet",Count:1b,{ench}}}]'
+            acmd(f"summon minecraft:zombie 160 99 108 {{NoAI:1b,Invulnerable:1b,PersistenceRequired:1b,CustomName:'\"adaptD\"',{arm2}}}")
+            time.sleep(4)
+            acmd("attribute @e[name=adaptD,limit=1] minecraft:generic.armor get")
+            acmd("data get entity @e[name=adaptD,limit=1] ActiveEffects")
+            acmd("kill @e[name=adaptD]")
             acmd("kill @e[name=fraco]")
             acmd("kill @e[type=minecraft:armor_stand,x=118,y=99,z=94,dx=50,dy=6,dz=20]")
             annotate("notice", "macas, bolo e adaptacao", ad)

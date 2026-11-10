@@ -42,8 +42,9 @@ public final class ArmorAdaptation {
     private static final String COOLDOWN = "netheritesupremo_adapt_cd";
     private static final double SCAN_RADIUS = 24.0D;
     private static final int COOLDOWN_TICKS = 100;
-    private static final int MAX_RESIST = 4;   // Resistencia V = imune a dano
+    public static final int MAX_RESIST = 4;   // Resistencia V = imune a dano
     private static final int MAX_STRENGTH = 6;
+    public static final int EFFECT_CAP_STRENGTH = 127; // limite do byte do amplificador
     private static final EquipmentSlot[] SLOTS = {EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
 
     private ArmorAdaptation() {
@@ -57,6 +58,24 @@ public final class ArmorAdaptation {
 
     private static UUID id(String what, EquipmentSlot slot) {
         return UUID.nameUUIDFromBytes(("netheritesupremo_adapt_" + what + "_" + slot.getName()).getBytes(StandardCharsets.UTF_8));
+    }
+
+    /** Maior multiplicador (2x, 4x, 8x, 16x) entre as pecas de netherite vestidas; 1 sem encantamento. */
+    public static int multiplier(LivingEntity entity) {
+        int m = 1;
+        for (EquipmentSlot slot : SLOTS) {
+            ItemStack stack = entity.getItemBySlot(slot);
+            if (isNetherite(stack)) {
+                m = Math.max(m, com.netheritesupremo.enchant.ModEnchantments.multiplierOf(stack));
+            }
+        }
+        return m;
+    }
+
+    /** Amplificador final do efeito: nivel adaptado vezes o multiplicador do encantamento, ate {@code cap}. */
+    public static int effectAmp(LivingEntity entity, String key, int base, int cap) {
+        long level = (long) (bonusAmp(entity, key, base) + 1) * multiplier(entity);
+        return (int) Math.min(cap, level - 1);
     }
 
     /** Maior valor adaptado (ou {@code base}) entre as pecas vestidas. */
@@ -74,8 +93,11 @@ public final class ArmorAdaptation {
         return amp;
     }
 
-    /** Roda por ultimo, depois de SupremoEvents (que redefine a armadura base da peca). */
-    @SubscribeEvent(priority = EventPriority.LOWEST)
+    /**
+     * Roda depois de SupremoEvents (que redefine a armadura base da peca) e ANTES do multiplicador
+     * (LOWEST), que assim multiplica tambem a adaptacao: encantamento 2x/4x/8x/16x vale para ela.
+     */
+    @SubscribeEvent(priority = EventPriority.LOW)
     public static void onAttributes(ItemAttributeModifierEvent event) {
         ItemStack stack = event.getItemStack();
         if (!isNetherite(stack) || !stack.hasTag() || !(stack.getItem() instanceof ArmorItem armor)
@@ -148,15 +170,25 @@ public final class ArmorAdaptation {
         }
         double ownArmor = wearer.getAttributeValue(Attributes.ARMOR);
         double ownTough = wearer.getAttributeValue(Attributes.ARMOR_TOUGHNESS);
-        int ownResist = bonusAmp(wearer, RESIST, 3);
-        int ownStrength = bonusAmp(wearer, STRENGTH, 1);
+        int mult = multiplier(wearer);
+        int ownResist = effectAmp(wearer, RESIST, 3, MAX_RESIST);
+        int ownStrength = effectAmp(wearer, STRENGTH, 1, EFFECT_CAP_STRENGTH);
         // so melhora o que a outra armadura tem de SUPERIOR; o resto fica igual
         double addArmor = bestArmor > ownArmor ? Math.min(bestArmor - ownArmor + 1.0D, 1000.0D) : 0.0D;
         double addTough = bestTough > ownTough ? Math.min(bestTough - ownTough + 1.0D, 1000.0D) : 0.0D;
-        int newResist = bestResist >= ownResist ? Math.min(MAX_RESIST, bestResist + 1) : ownResist;
-        int newStrength = bestStrength >= ownStrength ? Math.min(MAX_STRENGTH, bestStrength + 1) : ownStrength;
-        boolean upResist = newResist > ownResist;
-        boolean upStrength = newStrength > ownStrength;
+        // nivel guardado na peca (antes do multiplicador) que, vezes o multiplicador, passa a outra armadura
+        int storedResist = -1;
+        if (bestResist >= ownResist && ownResist < MAX_RESIST) {
+            int target = Math.min(MAX_RESIST, bestResist + 1);
+            storedResist = Math.max(3, (target + 1 + mult - 1) / mult - 1);
+        }
+        int storedStrength = -1;
+        if (bestStrength >= ownStrength && ownStrength < EFFECT_CAP_STRENGTH) {
+            int target = Math.min(MAX_STRENGTH, bestStrength + 1);
+            storedStrength = Math.max(1, (target + 1 + mult - 1) / mult - 1);
+        }
+        boolean upResist = storedResist > bonusAmp(wearer, RESIST, 3);
+        boolean upStrength = storedStrength > bonusAmp(wearer, STRENGTH, 1);
         if (addArmor <= 0.0D && addTough <= 0.0D && !upResist && !upStrength) {
             return;
         }
@@ -169,17 +201,19 @@ public final class ArmorAdaptation {
         }
         for (ItemStack stack : worn) {
             CompoundTag tag = stack.getOrCreateTagElement(KEY);
+            // o multiplicador da propria peca multiplica o que ela guarda, entao guardamos o valor dividido
+            int pieceMult = Math.max(1, com.netheritesupremo.enchant.ModEnchantments.multiplierOf(stack));
             if (addArmor > 0.0D) {
-                tag.putDouble(ARMOR, tag.getDouble(ARMOR) + addArmor / worn.size());
+                tag.putDouble(ARMOR, tag.getDouble(ARMOR) + addArmor / worn.size() / pieceMult);
             }
             if (addTough > 0.0D) {
-                tag.putDouble(TOUGHNESS, tag.getDouble(TOUGHNESS) + addTough / worn.size());
+                tag.putDouble(TOUGHNESS, tag.getDouble(TOUGHNESS) + addTough / worn.size() / pieceMult);
             }
             if (upResist) {
-                tag.putInt(RESIST, newResist);
+                tag.putInt(RESIST, storedResist);
             }
             if (upStrength) {
-                tag.putInt(STRENGTH, newStrength);
+                tag.putInt(STRENGTH, storedStrength);
             }
         }
         wearer.getPersistentData().putLong(COOLDOWN, now + COOLDOWN_TICKS);
