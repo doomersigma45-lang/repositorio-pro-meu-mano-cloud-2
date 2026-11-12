@@ -25,7 +25,7 @@ import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
 
 /**
@@ -142,7 +142,7 @@ public class ColossalBeetle extends Monster {
     }
 
     /** So em cavernas profundas (abaixo de y=0) e no escuro. */
-    public static boolean checkSpawnRules(EntityType<ColossalBeetle> type, LevelAccessor level, MobSpawnType reason,
+    public static boolean checkSpawnRules(EntityType<ColossalBeetle> type, ServerLevelAccessor level, MobSpawnType reason,
             BlockPos pos, RandomSource random) {
         if (reason == MobSpawnType.SPAWN_EGG || reason == MobSpawnType.COMMAND || reason == MobSpawnType.SPAWNER) {
             return true;
