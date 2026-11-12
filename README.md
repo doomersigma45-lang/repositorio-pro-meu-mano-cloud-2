@@ -365,3 +365,9 @@ Os mods **Claude Content** e **Vila de Ferro** agora fazem parte deste mod (mesm
 ### Adaptação e encantamentos multiplicadores (1.55.1)
 - A adaptação fica gravada nas peças (NBT `NetheriteAdapt`): **continua mesmo depois que o mob/jogador com a armadura superior morre** (ou que você se afasta).
 - **Encantamentos 2x, 4x, 8x, 16x** agora também valem para a adaptação: o multiplicador multiplica a armadura e a resistência da armadura adaptadas, e **os efeitos do conjunto escalam**: nível de Força/Resistência × multiplicador (Resistência até V, Força até o limite do jogo). Ao se comparar com outra armadura, o sistema já conta os valores multiplicados.
+
+### Ganso, Galinha de Netherite e Aranha Colossal (1.56.0)
+**Não testado no jogo** (só compilação/servidor de teste no CI). Texturas e modelos feitos por mim (IA), não enviados por você.
+- **Ganso**: neutro, 10 HP, 3,5 de dano, rápido, planeia ao cair (sem dano de queda). Spawna perto de água (rios, planícies, pântanos, florestas). Sementes domesticam (1/3 de chance; domesticado segue o dono, clique com a mão vazia senta/levanta); pão reproduz. Drop: 3 carnes de frango e 2 penas.
+- **Galinha de Netherite**: clique com uma maçã de netherite (ou encantada) numa galinha adulta. 250 HP, 25 de dano, revida. Drop: 25 frangos assados e 1 maçã de netherite. Ovo de spawn no criativo.
+- **Aranha Colossal** (mini boss, barra de boss roxa): 450 HP, 50 de dano. Spawna raramente em taigas/pinheiros. Coloca teias no chão e em árvores; quem encosta numa teia dela vira alvo. Tem medo de fogo, tochas, lanternas, fogueiras, lava e de quem segura tocha/isqueiro. Em combate atira teias (lentidão + teia) e agarra o alvo de perto dando 5 golpes. As teias somem quando ela morre.

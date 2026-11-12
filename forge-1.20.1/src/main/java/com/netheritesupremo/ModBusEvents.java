@@ -36,6 +36,9 @@ public final class ModBusEvents {
         event.put(ModEntities.SKELETON_KING.get(), com.netheritesupremo.entity.SkeletonKing.createAttributes().build());
         event.put(ModEntities.SKELETON_VILLAGER.get(), com.netheritesupremo.skeleton.SkeletonVillager.createAttributes().build());
         event.put(ModEntities.WAR_TANK.get(), com.netheritesupremo.entity.WarTank.createAttributes().build());
+        event.put(ModEntities.GOOSE.get(), com.netheritesupremo.mob.Goose.createAttributes().build());
+        event.put(ModEntities.NETHERITE_CHICKEN.get(), com.netheritesupremo.mob.NetheriteChicken.createAttributes().build());
+        event.put(ModEntities.COLOSSAL_SPIDER.get(), com.netheritesupremo.mob.ColossalSpider.createAttributes().build());
         event.put(ModEntities.RED_STEVE.get(), com.netheritesupremo.entity.RedSteve.createAttributes().build());
         event.put(ModEntities.UMBRAL_MERCHANT.get(),
                 Villager.createAttributes().add(Attributes.MAX_HEALTH, 40.0D).build());
@@ -62,6 +65,12 @@ public final class ModBusEvents {
 
     @SubscribeEvent
     public static void onSpawnPlacements(SpawnPlacementRegisterEvent event) {
+        event.register(ModEntities.GOOSE.get(), SpawnPlacements.Type.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, com.netheritesupremo.mob.Goose::checkSpawnRules,
+                SpawnPlacementRegisterEvent.Operation.OR);
+        event.register(ModEntities.COLOSSAL_SPIDER.get(), SpawnPlacements.Type.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules,
+                SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.RED_STEVE.get(), SpawnPlacements.Type.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, com.netheritesupremo.entity.RedSteve::checkSpawnRules,
                 SpawnPlacementRegisterEvent.Operation.OR);

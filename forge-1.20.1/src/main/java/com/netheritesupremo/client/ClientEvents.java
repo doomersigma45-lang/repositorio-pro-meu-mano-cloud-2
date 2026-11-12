@@ -30,6 +30,11 @@ public final class ClientEvents {
         event.registerEntityRenderer(ModEntities.SKELETON_KING.get(), SkeletonKingRenderer::new);
         event.registerEntityRenderer(ModEntities.SKELETON_VILLAGER.get(), SkeletonVillagerRenderer::new);
         event.registerEntityRenderer(ModEntities.WAR_TANK.get(), WarTankRenderer::new);
+        event.registerEntityRenderer(ModEntities.GOOSE.get(), GooseRenderer::new);
+        event.registerEntityRenderer(ModEntities.NETHERITE_CHICKEN.get(), NetheriteChickenRenderer::new);
+        event.registerEntityRenderer(ModEntities.COLOSSAL_SPIDER.get(), ColossalSpiderRenderer::new);
+        event.registerEntityRenderer(ModEntities.WEB_SHOT.get(),
+                ctx -> new net.minecraft.client.renderer.entity.ThrownItemRenderer<>(ctx, 1.0F, true));
         event.registerEntityRenderer(ModEntities.TANK_SHELL.get(),
                 ctx -> new net.minecraft.client.renderer.entity.ThrownItemRenderer<>(ctx, 1.4F, true));
         event.registerEntityRenderer(ModEntities.OLD_GUN_BULLET.get(),
@@ -73,6 +78,8 @@ public final class ClientEvents {
     public static void onRegisterLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(SaucerRenderer.LAYER, SaucerModel::createLayer);
         event.registerLayerDefinition(WarTankRenderer.LAYER, WarTankModel::createLayer);
+        event.registerLayerDefinition(GooseRenderer.LAYER, GooseModel::createLayer);
+        event.registerLayerDefinition(ColossalSpiderRenderer.LAYER, ColossalSpiderModel::createLayer);
         event.registerLayerDefinition(CambrianRenderer.ANOMALOCARIS_LAYER, () -> SegmentedModel.createLayer(SegmentedModel.ANOMALOCARIS));
         event.registerLayerDefinition(CambrianRenderer.TRILOBITE_LAYER, () -> SegmentedModel.createLayer(SegmentedModel.TRILOBITE));
         event.registerLayerDefinition(CambrianRenderer.OPABINIA_LAYER, () -> SegmentedModel.createLayer(SegmentedModel.OPABINIA));

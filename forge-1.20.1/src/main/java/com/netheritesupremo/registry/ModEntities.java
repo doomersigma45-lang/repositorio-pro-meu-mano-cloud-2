@@ -274,6 +274,36 @@ public final class ModEntities {
                     .updateInterval(5)
                     .build("tank_shell"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.mob.Goose>> GOOSE = ENTITIES.register(
+            "goose",
+            () -> EntityType.Builder.of(com.netheritesupremo.mob.Goose::new, MobCategory.CREATURE)
+                    .sized(0.6F, 0.9F)
+                    .clientTrackingRange(8)
+                    .build("goose"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.mob.NetheriteChicken>> NETHERITE_CHICKEN = ENTITIES.register(
+            "netherite_chicken",
+            () -> EntityType.Builder.of(com.netheritesupremo.mob.NetheriteChicken::new, MobCategory.CREATURE)
+                    .sized(0.6F, 1.05F)
+                    .fireImmune()
+                    .clientTrackingRange(10)
+                    .build("netherite_chicken"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.mob.ColossalSpider>> COLOSSAL_SPIDER = ENTITIES.register(
+            "colossal_spider",
+            () -> EntityType.Builder.of(com.netheritesupremo.mob.ColossalSpider::new, MobCategory.MONSTER)
+                    .sized(2.9F, 1.7F)
+                    .clientTrackingRange(12)
+                    .build("colossal_spider"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.mob.WebShot>> WEB_SHOT = ENTITIES.register(
+            "web_shot",
+            () -> EntityType.Builder.<com.netheritesupremo.mob.WebShot>of(com.netheritesupremo.mob.WebShot::new, MobCategory.MISC)
+                    .sized(0.4F, 0.4F)
+                    .clientTrackingRange(6)
+                    .updateInterval(5)
+                    .build("web_shot"));
+
     private ModEntities() {
     }
 }

@@ -282,6 +282,18 @@ public final class ModItems {
             "war_tank_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.WAR_TANK, 0x4A523A, 0x1E1E20, new Item.Properties()));
 
+    public static final RegistryObject<Item> GOOSE_SPAWN_EGG = ITEMS.register(
+            "goose_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.GOOSE, 0xF2F2F2, 0xE8861A, new Item.Properties()));
+
+    public static final RegistryObject<Item> NETHERITE_CHICKEN_SPAWN_EGG = ITEMS.register(
+            "netherite_chicken_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.NETHERITE_CHICKEN, 0x4B3F44, 0xD9A33A, new Item.Properties()));
+
+    public static final RegistryObject<Item> COLOSSAL_SPIDER_SPAWN_EGG = ITEMS.register(
+            "colossal_spider_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.COLOSSAL_SPIDER, 0x1E1714, 0xB3241F, new Item.Properties()));
+
     public static final RegistryObject<Item> OLD_GUN = ITEMS.register("old_gun",
             () -> new com.netheritesupremo.skeleton.OldGunItem(new Item.Properties().stacksTo(1).durability(250)));
 

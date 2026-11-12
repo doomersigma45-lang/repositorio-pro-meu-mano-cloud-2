@@ -210,5 +210,12 @@
   "block.netheritesupremo.netherite_cake": "Netherite Cake",
   "message.netheritesupremo.armor_adapted": "Your netherite armor adapted to a stronger armor!",
   "tooltip.netheritesupremo.adapt_resist": "Adapted Resistance: level %s",
-  "tooltip.netheritesupremo.adapt_strength": "Adapted Strength: level %s"
+  "tooltip.netheritesupremo.adapt_strength": "Adapted Strength: level %s",
+  "entity.netheritesupremo.goose": "Goose",
+  "entity.netheritesupremo.netherite_chicken": "Netherite Chicken",
+  "entity.netheritesupremo.colossal_spider": "Colossal Spider",
+  "entity.netheritesupremo.web_shot": "Web Shot",
+  "item.netheritesupremo.goose_spawn_egg": "Goose Spawn Egg",
+  "item.netheritesupremo.netherite_chicken_spawn_egg": "Netherite Chicken Spawn Egg",
+  "item.netheritesupremo.colossal_spider_spawn_egg": "Colossal Spider Spawn Egg"
 }

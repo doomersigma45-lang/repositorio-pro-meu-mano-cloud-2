@@ -210,5 +210,12 @@
   "block.netheritesupremo.netherite_cake": "Bolo de Netherite",
   "message.netheritesupremo.armor_adapted": "Sua armadura de netherite se adaptou a uma armadura mais forte!",
   "tooltip.netheritesupremo.adapt_resist": "Resistência adaptada: nível %s",
-  "tooltip.netheritesupremo.adapt_strength": "Força adaptada: nível %s"
+  "tooltip.netheritesupremo.adapt_strength": "Força adaptada: nível %s",
+  "entity.netheritesupremo.goose": "Ganso",
+  "entity.netheritesupremo.netherite_chicken": "Galinha de Netherite",
+  "entity.netheritesupremo.colossal_spider": "Aranha Colossal",
+  "entity.netheritesupremo.web_shot": "Teia Atirada",
+  "item.netheritesupremo.goose_spawn_egg": "Ovo de Geração de Ganso",
+  "item.netheritesupremo.netherite_chicken_spawn_egg": "Ovo de Geração de Galinha de Netherite",
+  "item.netheritesupremo.colossal_spider_spawn_egg": "Ovo de Geração de Aranha Colossal"
 }

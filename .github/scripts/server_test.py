@@ -813,6 +813,29 @@ def main():
             icmd("execute if entity @e[type=netheritesupremo:precursor_villager,x=400,y=64,z=400,distance=..70]")
             icmd("invasion reset")
             annotate("notice", "invasion", inv)
+            # novos mobs: ganso, galinha de netherite, aranha colossal
+            mob = []
+            def mcmd(t):
+                mob.append(f"> {t}\n  {r.cmd(t)}")
+            r.cmd("forceload add 900 900")
+            r.cmd("fill 895 59 895 920 59 920 minecraft:grass_block")
+            r.cmd("fill 895 60 895 920 75 920 minecraft:air")
+            for ty in ("goose", "netherite_chicken", "colossal_spider"):
+                r.cmd(f"summon netheritesupremo:{ty} 905 60 905")
+            time.sleep(2)
+            for ty, at in (("goose", "max_health"), ("goose", "attack_damage"), ("netherite_chicken", "max_health"),
+                           ("netherite_chicken", "attack_damage"), ("colossal_spider", "max_health"),
+                           ("colossal_spider", "attack_damage")):
+                mcmd(f"attribute @e[type=netheritesupremo:{ty},limit=1] minecraft:generic.{at} get")
+            mcmd("execute if entity @e[type=netheritesupremo:colossal_spider,x=905,y=60,z=905,distance=..60]")
+            r.cmd("fill 896 60 896 903 62 903 minecraft:cobweb")
+            mcmd("fill 896 60 896 903 62 903 minecraft:air replace minecraft:cobweb")
+            r.cmd("summon minecraft:chicken 910 60 910")
+            r.cmd("kill @e[type=netheritesupremo:goose]")
+            time.sleep(1)
+            mcmd("execute if entity @e[type=minecraft:item,nbt={Item:{id:\"minecraft:feather\"}}]")
+            r.cmd("kill @e[type=minecraft:item]")
+            annotate("notice", "novos mobs", mob)
             time.sleep(3)
             try:
                 r.cmd("stop")
