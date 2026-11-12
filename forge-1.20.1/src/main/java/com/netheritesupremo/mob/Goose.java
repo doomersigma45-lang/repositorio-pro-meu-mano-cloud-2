@@ -184,7 +184,12 @@ public class Goose extends TamableAnimal {
         if (!Animal.checkAnimalSpawnRules(type, level, reason, pos, random)) {
             return false;
         }
-        for (BlockPos p : BlockPos.betweenClosed(pos.offset(-8, -2, -8), pos.offset(8, 1, 8))) {
+        // So olha dentro do proprio chunk (na geracao do mundo, chunks vizinhos nao estao disponiveis).
+        int minX = Math.max(pos.getX() - 8, (pos.getX() >> 4) << 4);
+        int maxX = Math.min(pos.getX() + 8, ((pos.getX() >> 4) << 4) + 15);
+        int minZ = Math.max(pos.getZ() - 8, (pos.getZ() >> 4) << 4);
+        int maxZ = Math.min(pos.getZ() + 8, ((pos.getZ() >> 4) << 4) + 15);
+        for (BlockPos p : BlockPos.betweenClosed(minX, pos.getY() - 2, minZ, maxX, pos.getY() + 1, maxZ)) {
             if (level.getFluidState(p).is(FluidTags.WATER)) {
                 return true;
             }
