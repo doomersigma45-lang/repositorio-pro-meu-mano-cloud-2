@@ -371,3 +371,9 @@ Os mods **Claude Content** e **Vila de Ferro** agora fazem parte deste mod (mesm
 - **Ganso**: neutro, 10 HP, 3,5 de dano, rápido, planeia ao cair (sem dano de queda). Spawna perto de água (rios, planícies, pântanos, florestas). Sementes domesticam (1/3 de chance; domesticado segue o dono, clique com a mão vazia senta/levanta); pão reproduz. Drop: 3 carnes de frango e 2 penas.
 - **Galinha de Netherite**: clique com uma maçã de netherite (ou encantada) numa galinha adulta. 250 HP, 25 de dano, revida. Drop: 25 frangos assados e 1 maçã de netherite. Ovo de spawn no criativo.
 - **Aranha Colossal** (mini boss, barra de boss roxa): 450 HP, 50 de dano. Spawna raramente em taigas/pinheiros. Coloca teias no chão e em árvores; quem encosta numa teia dela vira alvo. Tem medo de fogo, tochas, lanternas, fogueiras, lava e de quem segura tocha/isqueiro. Em combate atira teias (lentidão + teia) e agarra o alvo de perto dando 5 golpes. As teias somem quando ela morre.
+
+### Mosquito Gigante e Strongest Zombie (1.57.0)
+**Não testado no jogo.** Texturas/modelos feitos por mim (IA).
+- **Mosquito Gigante** (do tamanho de um cavalo, voa): 120 HP, 5 de dano na mordida. Ataca qualquer mob (jogadores só se o atacarem) e **gruda** no alvo, chupando 7 de dano por segundo até o alvo morrer. Domestica com carne podre (1/3 de chance). O dono monta (clique direito, voo rápido seguindo para onde olha) e abre o inventário próprio de 27 espaços com Shift + clique direito. Spawna em pântanos.
+- **Strongest Zombie**: zumbi grande, 150 HP, 10 de dano, corre e nada rápido, dá grandes saltos, arremessa quem acerta e invoca zumbis para defendê-lo. Spawna raramente (qualquer lugar do overworld, à noite) ou quando um zumbi comum é atingido por um raio. Drop: **Cabeça do Strongest Zombie**.
+- **Cabeça**: usável como capacete (clique direito ou no slot). Quando quem a usa é atacado, invoca 3 zumbis defensores (dura 60 s, recarga 15 s) que atacam o agressor e nunca o dono.

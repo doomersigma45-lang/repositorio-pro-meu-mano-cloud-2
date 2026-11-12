@@ -217,5 +217,10 @@
   "entity.netheritesupremo.web_shot": "Web Shot",
   "item.netheritesupremo.goose_spawn_egg": "Goose Spawn Egg",
   "item.netheritesupremo.netherite_chicken_spawn_egg": "Netherite Chicken Spawn Egg",
-  "item.netheritesupremo.colossal_spider_spawn_egg": "Colossal Spider Spawn Egg"
+  "item.netheritesupremo.colossal_spider_spawn_egg": "Colossal Spider Spawn Egg",
+  "entity.netheritesupremo.giant_mosquito": "Giant Mosquito",
+  "entity.netheritesupremo.strongest_zombie": "Strongest Zombie",
+  "item.netheritesupremo.giant_mosquito_spawn_egg": "Giant Mosquito Spawn Egg",
+  "item.netheritesupremo.strongest_zombie_spawn_egg": "Strongest Zombie Spawn Egg",
+  "item.netheritesupremo.strongest_zombie_head": "Strongest Zombie Head"
 }

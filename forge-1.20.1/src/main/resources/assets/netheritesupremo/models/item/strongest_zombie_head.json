@@ -1,0 +1,22 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "netheritesupremo:item/strongest_zombie_head_side",
+    "front": "netheritesupremo:item/strongest_zombie_head_front",
+    "side": "netheritesupremo:item/strongest_zombie_head_side"
+  },
+  "elements": [
+    {
+      "from": [0, 0, 0],
+      "to": [16, 16, 16],
+      "faces": {
+        "north": {"uv": [0, 0, 16, 16], "texture": "#side"},
+        "south": {"uv": [0, 0, 16, 16], "texture": "#front"},
+        "east": {"uv": [0, 0, 16, 16], "texture": "#side"},
+        "west": {"uv": [0, 0, 16, 16], "texture": "#side"},
+        "up": {"uv": [0, 0, 16, 16], "texture": "#side"},
+        "down": {"uv": [0, 0, 16, 16], "texture": "#side"}
+      }
+    }
+  ]
+}

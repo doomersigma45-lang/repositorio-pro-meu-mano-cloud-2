@@ -304,6 +304,20 @@ public final class ModEntities {
                     .updateInterval(5)
                     .build("web_shot"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.mob.GiantMosquito>> GIANT_MOSQUITO = ENTITIES.register(
+            "giant_mosquito",
+            () -> EntityType.Builder.of(com.netheritesupremo.mob.GiantMosquito::new, MobCategory.CREATURE)
+                    .sized(1.4F, 1.2F)
+                    .clientTrackingRange(10)
+                    .build("giant_mosquito"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.mob.StrongestZombie>> STRONGEST_ZOMBIE = ENTITIES.register(
+            "strongest_zombie",
+            () -> EntityType.Builder.of(com.netheritesupremo.mob.StrongestZombie::new, MobCategory.MONSTER)
+                    .sized(0.9F, 2.9F)
+                    .clientTrackingRange(10)
+                    .build("strongest_zombie"));
+
     private ModEntities() {
     }
 }

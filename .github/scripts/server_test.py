@@ -836,6 +836,29 @@ def main():
             mcmd("execute if entity @e[type=minecraft:item,nbt={Item:{id:\"minecraft:feather\"}}]")
             r.cmd("kill @e[type=minecraft:item]")
             annotate("notice", "novos mobs", mob)
+            # mosquito gigante e strongest zombie
+            mq = []
+            def qcmd(t):
+                mq.append(f"> {t}\n  {r.cmd(t)}")
+            r.cmd("summon netheritesupremo:giant_mosquito 905 61 905")
+            r.cmd("summon netheritesupremo:strongest_zombie 912 60 905")
+            r.cmd("summon minecraft:zombie 900 60 912")
+            r.cmd("summon minecraft:sheep 906 61 905")
+            time.sleep(1)
+            for ty, at in (("giant_mosquito", "max_health"), ("giant_mosquito", "attack_damage"),
+                           ("strongest_zombie", "max_health"), ("strongest_zombie", "attack_damage")):
+                qcmd(f"attribute @e[type=netheritesupremo:{ty},limit=1] minecraft:generic.{at} get")
+            r.cmd("summon minecraft:lightning_bolt 900 60 912")
+            time.sleep(2)
+            qcmd("execute if entity @e[type=netheritesupremo:strongest_zombie,x=900,y=60,z=912,distance=..4]")
+            time.sleep(6)
+            qcmd("data get entity @e[type=minecraft:sheep,limit=1] Health")
+            qcmd("execute if entity @e[type=netheritesupremo:giant_mosquito]")
+            r.cmd("kill @e[type=minecraft:item]")
+            r.cmd("kill @e[type=netheritesupremo:strongest_zombie]")
+            time.sleep(1)
+            qcmd("execute if entity @e[type=minecraft:item,nbt={Item:{id:\"netheritesupremo:strongest_zombie_head\"}}]")
+            annotate("notice", "mosquito e zumbi forte", mq)
             time.sleep(3)
             try:
                 r.cmd("stop")

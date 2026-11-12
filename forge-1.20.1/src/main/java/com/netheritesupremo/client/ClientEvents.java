@@ -31,6 +31,8 @@ public final class ClientEvents {
         event.registerEntityRenderer(ModEntities.SKELETON_VILLAGER.get(), SkeletonVillagerRenderer::new);
         event.registerEntityRenderer(ModEntities.WAR_TANK.get(), WarTankRenderer::new);
         event.registerEntityRenderer(ModEntities.GOOSE.get(), GooseRenderer::new);
+        event.registerEntityRenderer(ModEntities.GIANT_MOSQUITO.get(), GiantMosquitoRenderer::new);
+        event.registerEntityRenderer(ModEntities.STRONGEST_ZOMBIE.get(), StrongestZombieRenderer::new);
         event.registerEntityRenderer(ModEntities.NETHERITE_CHICKEN.get(), NetheriteChickenRenderer::new);
         event.registerEntityRenderer(ModEntities.COLOSSAL_SPIDER.get(), ColossalSpiderRenderer::new);
         event.registerEntityRenderer(ModEntities.WEB_SHOT.get(),
@@ -79,6 +81,7 @@ public final class ClientEvents {
         event.registerLayerDefinition(SaucerRenderer.LAYER, SaucerModel::createLayer);
         event.registerLayerDefinition(WarTankRenderer.LAYER, WarTankModel::createLayer);
         event.registerLayerDefinition(GooseRenderer.LAYER, GooseModel::createLayer);
+        event.registerLayerDefinition(GiantMosquitoRenderer.LAYER, GiantMosquitoModel::createLayer);
         event.registerLayerDefinition(ColossalSpiderRenderer.LAYER, ColossalSpiderModel::createLayer);
         event.registerLayerDefinition(CambrianRenderer.ANOMALOCARIS_LAYER, () -> SegmentedModel.createLayer(SegmentedModel.ANOMALOCARIS));
         event.registerLayerDefinition(CambrianRenderer.TRILOBITE_LAYER, () -> SegmentedModel.createLayer(SegmentedModel.TRILOBITE));

@@ -75,6 +75,8 @@ public class NetheriteSupremo {
             event.accept(ModItems.SKELETON_VILLAGER_SPAWN_EGG);
             event.accept(ModItems.WAR_TANK_SPAWN_EGG);
             event.accept(ModItems.GOOSE_SPAWN_EGG);
+            event.accept(ModItems.GIANT_MOSQUITO_SPAWN_EGG);
+            event.accept(ModItems.STRONGEST_ZOMBIE_SPAWN_EGG);
             event.accept(ModItems.NETHERITE_CHICKEN_SPAWN_EGG);
             event.accept(ModItems.COLOSSAL_SPIDER_SPAWN_EGG);
             event.accept(ModItems.NECROMANCER_SUMMONER);
@@ -99,6 +101,7 @@ public class NetheriteSupremo {
             event.accept(ModItems.HYBRID_VILLAGER_SPAWN_EGG);
             event.accept(ModItems.GIANT_GLOW_SQUID_SPAWN_EGG);
         } else if (event.getTabKey() == CreativeModeTabs.COMBAT) {
+            event.accept(ModItems.STRONGEST_ZOMBIE_HEAD);
             event.accept(ModItems.OBSIDIAN_SWORD);
             event.accept(ModItems.OBSIDIAN_AXE);
             event.accept(ModItems.OBSIDIAN_HELMET);

@@ -294,6 +294,19 @@ public final class ModItems {
             "colossal_spider_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.COLOSSAL_SPIDER, 0x1E1714, 0xB3241F, new Item.Properties()));
 
+    public static final RegistryObject<Item> GIANT_MOSQUITO_SPAWN_EGG = ITEMS.register(
+            "giant_mosquito_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.GIANT_MOSQUITO, 0x3A3A2E, 0xB82A2A, new Item.Properties()));
+
+    public static final RegistryObject<Item> STRONGEST_ZOMBIE_SPAWN_EGG = ITEMS.register(
+            "strongest_zombie_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.STRONGEST_ZOMBIE, 0x2F5A2A, 0x6B1A1A, new Item.Properties()));
+
+    /** Cabeca do zumbi mais forte: capacete que invoca zumbis defensores. */
+    public static final RegistryObject<Item> STRONGEST_ZOMBIE_HEAD = ITEMS.register("strongest_zombie_head",
+            () -> new com.netheritesupremo.item.StrongestZombieHeadItem(new Item.Properties().stacksTo(1)
+                    .rarity(net.minecraft.world.item.Rarity.EPIC)));
+
     public static final RegistryObject<Item> OLD_GUN = ITEMS.register("old_gun",
             () -> new com.netheritesupremo.skeleton.OldGunItem(new Item.Properties().stacksTo(1).durability(250)));
 
