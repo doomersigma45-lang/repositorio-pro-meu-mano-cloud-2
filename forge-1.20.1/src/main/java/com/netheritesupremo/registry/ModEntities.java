@@ -318,6 +318,27 @@ public final class ModEntities {
                     .clientTrackingRange(10)
                     .build("strongest_zombie"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.mob.Stalker>> STALKER = ENTITIES.register(
+            "stalker",
+            () -> EntityType.Builder.of(com.netheritesupremo.mob.Stalker::new, MobCategory.MONSTER)
+                    .sized(0.6F, 3.0F)
+                    .clientTrackingRange(10)
+                    .build("stalker"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.mob.ColossalBeetle>> COLOSSAL_BEETLE = ENTITIES.register(
+            "colossal_beetle",
+            () -> EntityType.Builder.of(com.netheritesupremo.mob.ColossalBeetle::new, MobCategory.MONSTER)
+                    .sized(1.6F, 2.0F)
+                    .clientTrackingRange(10)
+                    .build("colossal_beetle"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.mob.Fungus>> FUNGUS = ENTITIES.register(
+            "fungus",
+            () -> EntityType.Builder.of(com.netheritesupremo.mob.Fungus::new, MobCategory.MONSTER)
+                    .sized(1.3F, 2.0F)
+                    .clientTrackingRange(10)
+                    .build("fungus"));
+
     private ModEntities() {
     }
 }

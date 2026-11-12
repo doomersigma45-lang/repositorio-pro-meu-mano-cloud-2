@@ -307,6 +307,18 @@ public final class ModItems {
             () -> new com.netheritesupremo.item.StrongestZombieHeadItem(new Item.Properties().stacksTo(1)
                     .rarity(net.minecraft.world.item.Rarity.EPIC)));
 
+    public static final RegistryObject<Item> STALKER_SPAWN_EGG = ITEMS.register(
+            "stalker_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.STALKER, 0x1C1C20, 0xF0F0F0, new Item.Properties()));
+
+    public static final RegistryObject<Item> COLOSSAL_BEETLE_SPAWN_EGG = ITEMS.register(
+            "colossal_beetle_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.COLOSSAL_BEETLE, 0x3B2418, 0x8A5A32, new Item.Properties()));
+
+    public static final RegistryObject<Item> FUNGUS_SPAWN_EGG = ITEMS.register(
+            "fungus_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.FUNGUS, 0x6B4A32, 0xC23A3A, new Item.Properties()));
+
     public static final RegistryObject<Item> OLD_GUN = ITEMS.register("old_gun",
             () -> new com.netheritesupremo.skeleton.OldGunItem(new Item.Properties().stacksTo(1).durability(250)));
 

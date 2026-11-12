@@ -222,5 +222,11 @@
   "entity.netheritesupremo.strongest_zombie": "Strongest Zombie",
   "item.netheritesupremo.giant_mosquito_spawn_egg": "Giant Mosquito Spawn Egg",
   "item.netheritesupremo.strongest_zombie_spawn_egg": "Strongest Zombie Spawn Egg",
-  "item.netheritesupremo.strongest_zombie_head": "Strongest Zombie Head"
+  "item.netheritesupremo.strongest_zombie_head": "Strongest Zombie Head",
+  "entity.netheritesupremo.stalker": "Stalker",
+  "entity.netheritesupremo.colossal_beetle": "Colossal Beetle",
+  "entity.netheritesupremo.fungus": "Fungus",
+  "item.netheritesupremo.stalker_spawn_egg": "Stalker Spawn Egg",
+  "item.netheritesupremo.colossal_beetle_spawn_egg": "Colossal Beetle Spawn Egg",
+  "item.netheritesupremo.fungus_spawn_egg": "Fungus Spawn Egg"
 }

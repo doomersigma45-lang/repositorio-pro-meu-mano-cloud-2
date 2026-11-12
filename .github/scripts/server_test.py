@@ -859,6 +859,19 @@ def main():
             time.sleep(1)
             qcmd("execute if entity @e[type=minecraft:item,nbt={Item:{id:\"netheritesupremo:strongest_zombie_head\"}}]")
             annotate("notice", "mosquito e zumbi forte", mq)
+            # perseguidor, besouro colossal, fungus
+            h3 = []
+            def hcmd(t):
+                h3.append(f"> {t}\n  {r.cmd(t)}")
+            for ty in ("stalker", "colossal_beetle", "fungus"):
+                r.cmd(f"summon netheritesupremo:{ty} 905 60 890")
+            time.sleep(1)
+            for ty, at in (("stalker", "max_health"), ("stalker", "attack_damage"), ("colossal_beetle", "max_health"),
+                           ("colossal_beetle", "attack_damage"), ("fungus", "max_health"), ("fungus", "attack_damage")):
+                hcmd(f"attribute @e[type=netheritesupremo:{ty},limit=1] minecraft:generic.{at} get")
+            hcmd("damage @e[type=netheritesupremo:colossal_beetle,limit=1] 20 minecraft:generic")
+            hcmd("data get entity @e[type=netheritesupremo:colossal_beetle,limit=1] Health")
+            annotate("notice", "perseguidor besouro fungus", h3)
             time.sleep(3)
             try:
                 r.cmd("stop")
