@@ -399,3 +399,6 @@ Os mods **Claude Content** e **Vila de Ferro** agora fazem parte deste mod (mesm
 **Não testado no jogo.** Texturas/modelos feitos por mim (IA).
 - **Escavador**: pernas reposicionadas (estavam soltas do corpo); agora tem espinhos nas costas, dentes na boca, garras nas mãos, mandíbula maior e pele com veias/costelas.
 - **Devorador do Nether** (antigo Guardião Ancestral; só o nome de exibição mudou, o id interno continua `ancient_guardian`): 2.500 HP, 45 de dano, impacto em área de 27, **solta bolas de fogo** (explosão 2, a cada 3 s) e continua invocando Guardiões de Pedra. Com **metade da vida fica mais agressivo**: mais rápido, ataques mais frequentes e 3 bolas de fogo por vez (a barra de vida fica roxa). **Spawna em fortalezas do Nether** (raro, um por vez; o ovo de spawn cria em qualquer lugar). Substitui o spawn antigo no Deep Dark.
+
+### Armadura de obsidiana: efeitos (1.61.1)
+**Não testado no jogo.** O conjunto completo de obsidiana agora dá Resistência IV e Força I (além da imunidade a explosões).
