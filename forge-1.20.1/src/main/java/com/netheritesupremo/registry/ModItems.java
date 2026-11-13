@@ -319,6 +319,14 @@ public final class ModItems {
             "fungus_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.FUNGUS, 0x6B4A32, 0xC23A3A, new Item.Properties()));
 
+    public static final RegistryObject<Item> ANCIENT_GUARDIAN_SPAWN_EGG = ITEMS.register(
+            "ancient_guardian_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.ANCIENT_GUARDIAN, 0x3A2A26, 0xFF7A1A, new Item.Properties()));
+
+    public static final RegistryObject<Item> STONE_GUARDIAN_SPAWN_EGG = ITEMS.register(
+            "stone_guardian_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.STONE_GUARDIAN, 0x7A7A7E, 0xFF7A1A, new Item.Properties()));
+
     public static final RegistryObject<Item> OLD_GUN = ITEMS.register("old_gun",
             () -> new com.netheritesupremo.skeleton.OldGunItem(new Item.Properties().stacksTo(1).durability(250)));
 

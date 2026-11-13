@@ -267,7 +267,7 @@ Ambos são **imunes a fogo, explosões e projéteis** (e a dano de queda).
 
 ## Alienígenas aquáticos e animais do Cambriano (1.20.1)
 - **Alienígena Aquático** (40 vida, 6 de dano): humanoide que nada e ataca como um afogado, sem tridente; dropa cristais/lascas de prismarinho e raramente um Coração do Mar.
-- **Anomalocaris** (60 vida, 8 de dano): predador do Cambriano, ataca jogadores. **Trilobita** (6 vida) e **Opabínia** (14 vida): pacíficos, fogem do jogador.
+- **Anomalocaris** (160 vida, 16 de dano desde a 1.59.0): predador; nada muito rápido em oceanos profundos, caça peixes, lulas e axolotes, evita jogadores mas ataca se provocado. **Trilobita** (6 vida) e **Opabínia** (14 vida): pacíficos, fogem do jogador.
 - Todos nascem **só nos oceanos de Plutão** (dentro d'água, qualquer luz). Os modelos dos animais são feitos em código (corpo segmentado) e as texturas foram geradas por mim, então dá para trocar por texturas suas. Cada um tem ovo de geração.
 
 ## Cidades futuristas de Plutão (1.20.1)
@@ -383,3 +383,8 @@ Os mods **Claude Content** e **Vila de Ferro** agora fazem parte deste mod (mesm
 - **Perseguidor** (3 blocos, humanoide magro, braços longos de 3 pontas, pernas invertidas, olhos brancos brilhantes): 120 HP, 12 de dano. Aparece à noite em florestas/taigas e persegue jogadores de longe (alcance 64). Mais rápido que um zumbi. Fica invisível enquanto o alvo está a mais de 24 blocos. Não atravessa água. Ao amanhecer foge e some. Drop: ossos e, às vezes, pérola do fim.
 - **Besouro Colossal** (estilo besouro-rinoceronte, chifre grande, 6 patas): 250 HP, 18 de dano. Spawna em cavernas profundas (abaixo de y=0). A carapaça reduz 50% do dano recebido. Ataca qualquer criatura que entre em 18 blocos de onde nasceu e dá investidas que empurram. Drop: ferro e, às vezes, diamante.
 - **Fungus** (tronco apodrecido com chapéu de cogumelo, 4 raízes, cogumelos nas costas): 90 HP, 7 de dano. Spawna em pântanos e florestas escuras, ataca principalmente à noite. Esporos causam Lentidão II e Fraqueza (na mordida e em explosão de esporos num raio de 6). Regenera perto de cogumelos gigantes. Drop: cogumelos e farinha de ossos.
+
+### Anomalocaris reformulado e Guardião Ancestral (1.59.0)
+**Não testado no jogo.** Ideia do GPT; texturas/modelos feitos por mim (IA).
+- **Anomalocaris**: 160 HP, 16 de dano, velocidade de natação bem maior. Spawna também em oceanos profundos. Caça peixes, lulas e axolotes; foge de jogadores, mas se for atacado revida e não foge mais.
+- **Guardião Ancestral** (boss, 5 blocos, 4 braços, 2 chifres, rachaduras de magma brilhantes): 1.500 HP, 35 de dano. Nasce adormecido nas profundezas (spawn raríssimo no bioma Deep Dark, abaixo de y=-10; ovo de spawn o cria acordado) e acorda quando um jogador chega a 10 blocos ou ele leva dano. Ataque de impacto em área (raio 7, 21 de dano e arremesso) a cada 5 s, invoca 3 **Guardiões de Pedra** (40 HP, 8 de dano, até 8) a cada 20 s e recebe só 25% do dano de flechas/projéteis. Drops (escolha minha): sucata de netherite, diamantes, obsidiana e bloco de magma.

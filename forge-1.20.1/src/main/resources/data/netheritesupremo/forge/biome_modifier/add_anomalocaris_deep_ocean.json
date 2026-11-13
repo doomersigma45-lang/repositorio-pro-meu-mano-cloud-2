@@ -1,0 +1,1 @@
+{"type":"forge:add_spawns","biomes":["minecraft:deep_ocean","minecraft:deep_cold_ocean","minecraft:deep_lukewarm_ocean","minecraft:deep_frozen_ocean"],"spawners":{"type":"netheritesupremo:anomalocaris","weight":5,"minCount":1,"maxCount":1}}

@@ -31,6 +31,8 @@ public final class ClientEvents {
         event.registerEntityRenderer(ModEntities.SKELETON_VILLAGER.get(), SkeletonVillagerRenderer::new);
         event.registerEntityRenderer(ModEntities.WAR_TANK.get(), WarTankRenderer::new);
         event.registerEntityRenderer(ModEntities.GOOSE.get(), GooseRenderer::new);
+        event.registerEntityRenderer(ModEntities.ANCIENT_GUARDIAN.get(), AncientGuardianRenderer::new);
+        event.registerEntityRenderer(ModEntities.STONE_GUARDIAN.get(), StoneGuardianRenderer::new);
         event.registerEntityRenderer(ModEntities.STALKER.get(), StalkerRenderer::new);
         event.registerEntityRenderer(ModEntities.COLOSSAL_BEETLE.get(), BeetleRenderer::new);
         event.registerEntityRenderer(ModEntities.FUNGUS.get(), FungusRenderer::new);
@@ -84,6 +86,7 @@ public final class ClientEvents {
         event.registerLayerDefinition(SaucerRenderer.LAYER, SaucerModel::createLayer);
         event.registerLayerDefinition(WarTankRenderer.LAYER, WarTankModel::createLayer);
         event.registerLayerDefinition(GooseRenderer.LAYER, GooseModel::createLayer);
+        event.registerLayerDefinition(AncientGuardianRenderer.LAYER, AncientGuardianModel::createLayer);
         event.registerLayerDefinition(StalkerRenderer.LAYER, StalkerModel::createLayer);
         event.registerLayerDefinition(BeetleRenderer.LAYER, BeetleModel::createLayer);
         event.registerLayerDefinition(FungusRenderer.LAYER, FungusModel::createLayer);

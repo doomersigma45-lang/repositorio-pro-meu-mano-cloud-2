@@ -339,6 +339,21 @@ public final class ModEntities {
                     .clientTrackingRange(10)
                     .build("fungus"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.mob.AncientGuardian>> ANCIENT_GUARDIAN = ENTITIES.register(
+            "ancient_guardian",
+            () -> EntityType.Builder.of(com.netheritesupremo.mob.AncientGuardian::new, MobCategory.MONSTER)
+                    .sized(1.9F, 5.0F)
+                    .fireImmune()
+                    .clientTrackingRange(16)
+                    .build("ancient_guardian"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.mob.StoneGuardian>> STONE_GUARDIAN = ENTITIES.register(
+            "stone_guardian",
+            () -> EntityType.Builder.of(com.netheritesupremo.mob.StoneGuardian::new, MobCategory.MONSTER)
+                    .sized(0.8F, 1.5F)
+                    .clientTrackingRange(10)
+                    .build("stone_guardian"));
+
     private ModEntities() {
     }
 }

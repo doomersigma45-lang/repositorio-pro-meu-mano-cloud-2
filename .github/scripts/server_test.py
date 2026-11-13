@@ -872,6 +872,20 @@ def main():
             hcmd("damage @e[type=netheritesupremo:colossal_beetle,limit=1] 20 minecraft:generic")
             hcmd("data get entity @e[type=netheritesupremo:colossal_beetle,limit=1] Health")
             annotate("notice", "perseguidor besouro fungus", h3)
+            # anomalocaris novo e guardiao ancestral
+            g4 = []
+            def gcmd(t):
+                g4.append(f"> {t}\n  {r.cmd(t)}")
+            r.cmd("summon netheritesupremo:ancient_guardian 905 60 870")
+            r.cmd("summon netheritesupremo:stone_guardian 910 60 870")
+            r.cmd("summon netheritesupremo:anomalocaris 905 60 860 {NoAI:1b}")
+            time.sleep(1)
+            for ty, at in (("anomalocaris", "max_health"), ("anomalocaris", "attack_damage"), ("ancient_guardian", "max_health"),
+                           ("ancient_guardian", "attack_damage"), ("stone_guardian", "max_health")):
+                gcmd(f"attribute @e[type=netheritesupremo:{ty},limit=1] minecraft:generic.{at} get")
+            gcmd("damage @e[type=netheritesupremo:ancient_guardian,limit=1] 100 minecraft:arrow")
+            gcmd("data get entity @e[type=netheritesupremo:ancient_guardian,limit=1] Health")
+            annotate("notice", "anomalocaris e guardiao", g4)
             time.sleep(3)
             try:
                 r.cmd("stop")

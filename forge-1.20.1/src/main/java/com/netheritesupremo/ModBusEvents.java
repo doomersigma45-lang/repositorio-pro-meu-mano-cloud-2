@@ -41,6 +41,8 @@ public final class ModBusEvents {
         event.put(ModEntities.STALKER.get(), com.netheritesupremo.mob.Stalker.createAttributes().build());
         event.put(ModEntities.COLOSSAL_BEETLE.get(), com.netheritesupremo.mob.ColossalBeetle.createAttributes().build());
         event.put(ModEntities.FUNGUS.get(), com.netheritesupremo.mob.Fungus.createAttributes().build());
+        event.put(ModEntities.ANCIENT_GUARDIAN.get(), com.netheritesupremo.mob.AncientGuardian.createAttributes().build());
+        event.put(ModEntities.STONE_GUARDIAN.get(), com.netheritesupremo.mob.StoneGuardian.createAttributes().build());
         event.put(ModEntities.GOOSE.get(), com.netheritesupremo.mob.Goose.createAttributes().build());
         event.put(ModEntities.NETHERITE_CHICKEN.get(), com.netheritesupremo.mob.NetheriteChicken.createAttributes().build());
         event.put(ModEntities.COLOSSAL_SPIDER.get(), com.netheritesupremo.mob.ColossalSpider.createAttributes().build());
@@ -84,6 +86,9 @@ public final class ModBusEvents {
                 SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.COLOSSAL_BEETLE.get(), SpawnPlacements.Type.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, com.netheritesupremo.mob.ColossalBeetle::checkSpawnRules,
+                SpawnPlacementRegisterEvent.Operation.OR);
+        event.register(ModEntities.ANCIENT_GUARDIAN.get(), SpawnPlacements.Type.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, com.netheritesupremo.mob.AncientGuardian::checkSpawnRules,
                 SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.GOOSE.get(), SpawnPlacements.Type.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, com.netheritesupremo.mob.Goose::checkSpawnRules,
