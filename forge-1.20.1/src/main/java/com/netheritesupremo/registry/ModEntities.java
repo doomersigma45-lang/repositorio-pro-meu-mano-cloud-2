@@ -354,6 +354,27 @@ public final class ModEntities {
                     .clientTrackingRange(10)
                     .build("stone_guardian"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.mob.Digger>> DIGGER = ENTITIES.register(
+            "digger",
+            () -> EntityType.Builder.of(com.netheritesupremo.mob.Digger::new, MobCategory.MONSTER)
+                    .sized(0.9F, 1.5F)
+                    .clientTrackingRange(10)
+                    .build("digger"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.mob.Automaton>> AUTOMATON = ENTITIES.register(
+            "automaton",
+            () -> EntityType.Builder.of(com.netheritesupremo.mob.Automaton::new, MobCategory.CREATURE)
+                    .sized(1.2F, 2.5F)
+                    .clientTrackingRange(10)
+                    .build("automaton"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.mob.AncientTurtle>> ANCIENT_TURTLE = ENTITIES.register(
+            "ancient_turtle",
+            () -> EntityType.Builder.of(com.netheritesupremo.mob.AncientTurtle::new, MobCategory.WATER_CREATURE)
+                    .sized(2.4F, 1.8F)
+                    .clientTrackingRange(10)
+                    .build("ancient_turtle"));
+
     private ModEntities() {
     }
 }

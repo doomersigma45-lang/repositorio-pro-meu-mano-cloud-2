@@ -75,6 +75,9 @@ public class NetheriteSupremo {
             event.accept(ModItems.SKELETON_VILLAGER_SPAWN_EGG);
             event.accept(ModItems.WAR_TANK_SPAWN_EGG);
             event.accept(ModItems.GOOSE_SPAWN_EGG);
+            event.accept(ModItems.DIGGER_SPAWN_EGG);
+            event.accept(ModItems.AUTOMATON_SPAWN_EGG);
+            event.accept(ModItems.ANCIENT_TURTLE_SPAWN_EGG);
             event.accept(ModItems.ANCIENT_GUARDIAN_SPAWN_EGG);
             event.accept(ModItems.STONE_GUARDIAN_SPAWN_EGG);
             event.accept(ModItems.STALKER_SPAWN_EGG);

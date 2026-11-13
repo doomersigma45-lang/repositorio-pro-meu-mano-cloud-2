@@ -232,5 +232,11 @@
   "entity.netheritesupremo.ancient_guardian": "Ancient Guardian",
   "entity.netheritesupremo.stone_guardian": "Stone Guardian",
   "item.netheritesupremo.ancient_guardian_spawn_egg": "Ancient Guardian Spawn Egg",
-  "item.netheritesupremo.stone_guardian_spawn_egg": "Stone Guardian Spawn Egg"
+  "item.netheritesupremo.stone_guardian_spawn_egg": "Stone Guardian Spawn Egg",
+  "entity.netheritesupremo.digger": "Digger",
+  "entity.netheritesupremo.automaton": "Automaton",
+  "entity.netheritesupremo.ancient_turtle": "Ancient Turtle",
+  "item.netheritesupremo.digger_spawn_egg": "Digger Spawn Egg",
+  "item.netheritesupremo.automaton_spawn_egg": "Automaton Spawn Egg",
+  "item.netheritesupremo.ancient_turtle_spawn_egg": "Ancient Turtle Spawn Egg"
 }

@@ -886,6 +886,18 @@ def main():
             gcmd("damage @e[type=netheritesupremo:ancient_guardian,limit=1] 100 minecraft:arrow")
             gcmd("data get entity @e[type=netheritesupremo:ancient_guardian,limit=1] Health")
             annotate("notice", "anomalocaris e guardiao", g4)
+            # escavador, automato, tartaruga ancestral
+            t5 = []
+            def tcmd(c):
+                t5.append(f"> {c}\n  {r.cmd(c)}")
+            for ty in ("digger", "automaton"):
+                r.cmd(f"summon netheritesupremo:{ty} 905 60 850")
+            r.cmd("summon netheritesupremo:ancient_turtle 905 60 840 {NoAI:1b}")
+            time.sleep(1)
+            for ty, at in (("digger", "max_health"), ("digger", "attack_damage"), ("automaton", "max_health"),
+                           ("automaton", "attack_damage"), ("ancient_turtle", "max_health"), ("ancient_turtle", "attack_damage")):
+                tcmd(f"attribute @e[type=netheritesupremo:{ty},limit=1] minecraft:generic.{at} get")
+            annotate("notice", "escavador automato tartaruga", t5)
             time.sleep(3)
             try:
                 r.cmd("stop")

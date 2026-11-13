@@ -232,5 +232,11 @@
   "entity.netheritesupremo.ancient_guardian": "Guardião Ancestral",
   "entity.netheritesupremo.stone_guardian": "Guardião de Pedra",
   "item.netheritesupremo.ancient_guardian_spawn_egg": "Ovo de Geração de Guardião Ancestral",
-  "item.netheritesupremo.stone_guardian_spawn_egg": "Ovo de Geração de Guardião de Pedra"
+  "item.netheritesupremo.stone_guardian_spawn_egg": "Ovo de Geração de Guardião de Pedra",
+  "entity.netheritesupremo.digger": "Escavador",
+  "entity.netheritesupremo.automaton": "Autômato",
+  "entity.netheritesupremo.ancient_turtle": "Tartaruga Ancestral",
+  "item.netheritesupremo.digger_spawn_egg": "Ovo de Geração de Escavador",
+  "item.netheritesupremo.automaton_spawn_egg": "Ovo de Geração de Autômato",
+  "item.netheritesupremo.ancient_turtle_spawn_egg": "Ovo de Geração de Tartaruga Ancestral"
 }

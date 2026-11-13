@@ -327,6 +327,18 @@ public final class ModItems {
             "stone_guardian_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.STONE_GUARDIAN, 0x7A7A7E, 0xFF7A1A, new Item.Properties()));
 
+    public static final RegistryObject<Item> DIGGER_SPAWN_EGG = ITEMS.register(
+            "digger_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.DIGGER, 0x8F857A, 0x1A1010, new Item.Properties()));
+
+    public static final RegistryObject<Item> AUTOMATON_SPAWN_EGG = ITEMS.register(
+            "automaton_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.AUTOMATON, 0x8A929C, 0x3FB6FF, new Item.Properties()));
+
+    public static final RegistryObject<Item> ANCIENT_TURTLE_SPAWN_EGG = ITEMS.register(
+            "ancient_turtle_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.ANCIENT_TURTLE, 0x2B2B26, 0x7FA35A, new Item.Properties()));
+
     public static final RegistryObject<Item> OLD_GUN = ITEMS.register("old_gun",
             () -> new com.netheritesupremo.skeleton.OldGunItem(new Item.Properties().stacksTo(1).durability(250)));
 
