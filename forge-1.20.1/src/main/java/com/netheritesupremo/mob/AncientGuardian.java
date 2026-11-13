@@ -38,14 +38,14 @@ import net.minecraft.world.phys.Vec3;
 import com.netheritesupremo.registry.ModEntities;
 
 /**
- * Guardiao Ancestral (boss): 1500 HP, 35 de dano, 5 blocos. Nasce adormecido (nas profundezas), acorda
+ * Devorador do Nether (boss; id interno ancient_guardian): 2500 HP, 45 de dano, 5 blocos, solta bolas de fogo, enfurece com metade da vida. Nasce adormecido (em fortalezas do Nether), acorda
  * quando um jogador chega perto ou ele leva dano. Ataque de impacto em area, invoca guardioes de pedra e
  * recebe so 25% do dano de flechas e outros projeteis.
  */
 public class AncientGuardian extends Monster {
-    public static final double MAX_HEALTH = 1500.0D;
-    public static final double DAMAGE = 35.0D;
-    public static final float SLAM_DAMAGE = 21.0F;
+    public static final double MAX_HEALTH = 2500.0D;
+    public static final double DAMAGE = 45.0D;
+    public static final float SLAM_DAMAGE = 27.0F;
     public static final double SLAM_RADIUS = 7.0D;
     public static final int MAX_MINIONS = 8;
 
@@ -56,6 +56,8 @@ public class AncientGuardian extends Monster {
             BossEvent.BossBarColor.RED, BossEvent.BossBarOverlay.NOTCHED_10);
     private int slamCooldown = 80;
     private int summonCooldown = 160;
+    private int fireCooldown = 60;
+    private boolean enraged;
 
     public AncientGuardian(EntityType<? extends AncientGuardian> type, Level level) {
         super(type, level);
@@ -146,8 +148,14 @@ public class AncientGuardian extends Monster {
             }
             return;
         }
+        if (!this.enraged && this.getHealth() <= this.getMaxHealth() / 2.0F) {
+            this.enrage(level);
+        }
         if (this.slamCooldown > 0) {
             this.slamCooldown--;
+        }
+        if (this.fireCooldown > 0) {
+            this.fireCooldown--;
         }
         if (this.summonCooldown > 0) {
             this.summonCooldown--;
@@ -157,13 +165,44 @@ public class AncientGuardian extends Monster {
             return;
         }
         if (this.slamCooldown <= 0 && this.distanceTo(target) < SLAM_RADIUS + 1.0D) {
-            this.slamCooldown = 100;
+            this.slamCooldown = this.enraged ? 60 : 100;
             this.slam(level);
         }
         if (this.summonCooldown <= 0) {
-            this.summonCooldown = 400;
+            this.summonCooldown = this.enraged ? 250 : 400;
             this.summonGuardians(level, target);
         }
+        double dist = this.distanceTo(target);
+        if (this.fireCooldown <= 0 && dist > 6.0D && dist < 30.0D && this.hasLineOfSight(target)) {
+            this.fireCooldown = this.enraged ? 30 : 60;
+            this.shootFire(level, target);
+        }
+    }
+
+    /** Abaixo de metade da vida: mais rapido, ataques mais frequentes e 3 bolas de fogo por vez. */
+    private void enrage(ServerLevel level) {
+        this.enraged = true;
+        this.applyEnrageStats();
+        this.bossEvent.setColor(BossEvent.BossBarColor.PURPLE);
+        this.playSound(SoundEvents.RAVAGER_ROAR, 3.0F, 0.4F);
+        level.sendParticles(ParticleTypes.FLAME, this.getX(), this.getY() + 2.5D, this.getZ(), 80, 1.5D, 2.5D, 1.5D, 0.1D);
+    }
+
+    private void applyEnrageStats() {
+        this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.36D);
+    }
+
+    private void shootFire(ServerLevel level, LivingEntity target) {
+        int balls = this.enraged ? 3 : 1;
+        for (int i = 0; i < balls; i++) {
+            double dx = target.getX() - this.getX() + (i - (balls - 1) / 2.0D) * 3.0D;
+            double dy = target.getY(0.5D) - this.getY(0.7D);
+            double dz = target.getZ() - this.getZ();
+            DevourerFireball ball = new DevourerFireball(level, this, dx, dy, dz, 2);
+            ball.setPos(this.getX() + this.getLookAngle().x * 2.0D, this.getY(0.7D), this.getZ() + this.getLookAngle().z * 2.0D);
+            level.addFreshEntity(ball);
+        }
+        this.playSound(SoundEvents.GHAST_SHOOT, 2.0F, 0.6F);
     }
 
     private void slam(ServerLevel level) {
@@ -206,16 +245,17 @@ public class AncientGuardian extends Monster {
         }
     }
 
-    /** So nas profundezas (abaixo de y=-10), raro, e nunca dois bosses por perto. */
+    /** So em fortalezas do Nether, raro, e nunca dois bosses por perto. */
     public static boolean checkSpawnRules(EntityType<AncientGuardian> type, ServerLevelAccessor level, MobSpawnType reason,
             BlockPos pos, RandomSource random) {
         if (reason == MobSpawnType.SPAWN_EGG || reason == MobSpawnType.COMMAND || reason == MobSpawnType.SPAWNER) {
             return true;
         }
-        return pos.getY() < -10 && random.nextInt(30) == 0
-                && Monster.checkAnyLightMonsterSpawnRules(type, level, reason, pos, random)
+        return reason == MobSpawnType.NATURAL && random.nextInt(20) == 0
+                && level.getLevel().structureManager().getStructureWithPieceAt(pos,
+                        net.minecraft.world.level.levelgen.structure.BuiltinStructures.FORTRESS).isValid()
                 && level.getLevel().getEntitiesOfClass(AncientGuardian.class,
-                        new net.minecraft.world.phys.AABB(pos).inflate(96.0D)).isEmpty();
+                        new net.minecraft.world.phys.AABB(pos).inflate(128.0D)).isEmpty();
     }
 
     // ------------------------------------------------------------------ dados e barra de boss
@@ -223,12 +263,18 @@ public class AncientGuardian extends Monster {
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
         tag.putBoolean("Dormant", this.isDormant());
+        tag.putBoolean("Enraged", this.enraged);
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
         this.setDormant(tag.getBoolean("Dormant"));
+        this.enraged = tag.getBoolean("Enraged");
+        if (this.enraged) {
+            this.applyEnrageStats();
+            this.bossEvent.setColor(BossEvent.BossBarColor.PURPLE);
+        }
         if (this.hasCustomName()) {
             this.bossEvent.setName(this.getDisplayName());
         }

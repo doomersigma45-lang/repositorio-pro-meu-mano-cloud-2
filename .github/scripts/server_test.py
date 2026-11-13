@@ -884,6 +884,9 @@ def main():
                            ("ancient_guardian", "attack_damage"), ("stone_guardian", "max_health")):
                 gcmd(f"attribute @e[type=netheritesupremo:{ty},limit=1] minecraft:generic.{at} get")
             gcmd("damage @e[type=netheritesupremo:ancient_guardian,limit=1] 100 minecraft:arrow")
+            gcmd("damage @e[type=netheritesupremo:ancient_guardian,limit=1] 1300 minecraft:generic")
+            time.sleep(2)
+            gcmd("data get entity @e[type=netheritesupremo:ancient_guardian,limit=1] Enraged")
             gcmd("data get entity @e[type=netheritesupremo:ancient_guardian,limit=1] Health")
             annotate("notice", "anomalocaris e guardiao", g4)
             # escavador, automato, tartaruga ancestral

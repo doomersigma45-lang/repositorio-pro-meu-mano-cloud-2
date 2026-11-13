@@ -13,17 +13,19 @@ def box(img, u, v, w, h, d, c, n=8): fill(img, u, v, 2 * d + 2 * w, d + h, c, n)
 
 # escavador 64x64
 d = Image.new("RGBA", (64, 64), (0, 0, 0, 0))
-SK = (148, 138, 126)
-for (u, v, w, h, dd) in [(0,0,6,6,16),(0,24,4,3,8),(26,24,5,4,8),(0,38,4,2,7),(24,38,3,16,3),(40,38,4,8,4)]:
-    box(d, u, v, w, h, dd, SK, 8)
-fill(d, 39, 24, 5, 8, (110, 30, 30), 6)      # boca (parte de baixo da cabeca)
-fill(d, 0 + 7, 38, 4, 7, (110, 30, 30), 6)   # boca (parte de cima da mandibula)
-for x in range(39, 44, 2):
-    d.putpixel((x, 24), (235, 230, 215, 255)); d.putpixel((x, 31), (235, 230, 215, 255))
-for p in [(35, 34), (38, 34), (35, 35), (38, 35)]:
+SK = (138, 128, 118)
+for (u, v, w, h, dd) in [(0,0,6,6,16),(0,24,4,3,8),(26,24,5,4,9),(0,38,4,2,9),(28,38,3,16,3),(42,38,5,11,5)]:
+    box(d, u, v, w, h, dd, SK, 9)
+for _ in range(50):   # manchas e veias escuras
+    d.putpixel((random.randint(0, 44), random.randint(0, 22)), (88, 76, 70, 255))
+for y in range(6, 22, 3):  # costelas
+    fill(d, 0, y, 44, 1, (92, 82, 76), 4)
+fill(d, 40, 24, 5, 9, (120, 20, 20), 6)   # boca (baixo da cabeca)
+fill(d, 9, 38, 4, 9, (120, 20, 20), 6)    # boca (cima da mandibula)
+fill(d, 0, 52, 4, 3, (235, 230, 215), 4)  # dentes / espinhos
+fill(d, 8, 52, 6, 3, (60, 54, 50), 4)     # garras
+for p in [(36, 35), (39, 35), (36, 36), (39, 36)]:
     d.putpixel(p, (0, 0, 0, 255))
-for _ in range(25):
-    d.putpixel((random.randint(0, 40), random.randint(0, 20)), (118, 108, 98, 255))
 d.save(R + "digger.png")
 
 # automato 64x64
