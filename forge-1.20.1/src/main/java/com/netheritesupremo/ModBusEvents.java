@@ -45,6 +45,8 @@ public final class ModBusEvents {
         event.put(ModEntities.ANCESTRAL_GUARDIAN.get(), com.netheritesupremo.mob.AncestralGuardian.createAttributes().build());
         event.put(ModEntities.THE_ABYSS.get(), com.netheritesupremo.mob.TheAbyss.createAttributes().build());
         event.put(ModEntities.ABYSS_SPAWN.get(), com.netheritesupremo.mob.AbyssSpawn.createAttributes().build());
+        event.put(ModEntities.ANCIENT_WOOD.get(), com.netheritesupremo.mob.AncientWood.createAttributes().build());
+        event.put(ModEntities.FUNGUS_STALKER.get(), com.netheritesupremo.mob.FungusStalker.createAttributes().build());
         event.put(ModEntities.WOOD_STALKER.get(), com.netheritesupremo.mob.WoodStalker.createAttributes().build());
         event.put(ModEntities.STONE_GUARDIAN.get(), com.netheritesupremo.mob.StoneGuardian.createAttributes().build());
         event.put(ModEntities.DIGGER.get(), com.netheritesupremo.mob.Digger.createAttributes().build());
@@ -96,6 +98,12 @@ public final class ModBusEvents {
                 SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.ANCIENT_GUARDIAN.get(), SpawnPlacements.Type.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, com.netheritesupremo.mob.AncientGuardian::checkSpawnRules,
+                SpawnPlacementRegisterEvent.Operation.OR);
+        event.register(ModEntities.ANCIENT_WOOD.get(), SpawnPlacements.Type.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, com.netheritesupremo.mob.AncientWood::checkSpawnRules,
+                SpawnPlacementRegisterEvent.Operation.OR);
+        event.register(ModEntities.FUNGUS_STALKER.get(), SpawnPlacements.Type.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, com.netheritesupremo.mob.WoodStalker::checkSpawnRules,
                 SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.WOOD_STALKER.get(), SpawnPlacements.Type.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, com.netheritesupremo.mob.WoodStalker::checkSpawnRules,

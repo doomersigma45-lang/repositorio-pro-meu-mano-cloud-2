@@ -246,5 +246,9 @@
   "entity.netheritesupremo.abyss_spawn": "Abyss Spawn",
   "item.netheritesupremo.abyss_spawn_spawn_egg": "Abyss Spawn Spawn Egg",
   "entity.netheritesupremo.wood_stalker": "Wood Stalker",
-  "item.netheritesupremo.wood_stalker_spawn_egg": "Wood Stalker Spawn Egg"
+  "item.netheritesupremo.wood_stalker_spawn_egg": "Wood Stalker Spawn Egg",
+  "entity.netheritesupremo.ancient_wood": "Ancient Wood",
+  "item.netheritesupremo.ancient_wood_spawn_egg": "Ancient Wood Spawn Egg",
+  "entity.netheritesupremo.fungus_stalker": "Fungus Stalker",
+  "item.netheritesupremo.fungus_stalker_spawn_egg": "Fungus Stalker Spawn Egg"
 }

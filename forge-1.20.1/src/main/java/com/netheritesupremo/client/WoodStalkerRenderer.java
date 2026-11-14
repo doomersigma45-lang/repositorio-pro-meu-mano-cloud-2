@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.entity.layers.EyesLayer;
 import net.minecraft.resources.ResourceLocation;
 
 /** Wood Stalker 1,55x (3 blocos de altura em pe; agachado fica achatado). Olhos verde-palido brilham. */
-public class WoodStalkerRenderer extends MobRenderer<WoodStalker, WoodStalkerModel> {
+public class WoodStalkerRenderer extends MobRenderer<WoodStalker, WoodStalkerModel<WoodStalker>> {
     public static final ModelLayerLocation LAYER =
             new ModelLayerLocation(new ResourceLocation(NetheriteSupremo.MODID, "wood_stalker"), "main");
     private static final ResourceLocation TEXTURE =
@@ -20,8 +20,8 @@ public class WoodStalkerRenderer extends MobRenderer<WoodStalker, WoodStalkerMod
             new ResourceLocation(NetheriteSupremo.MODID, "textures/entity/wood_stalker_eyes.png");
 
     public WoodStalkerRenderer(EntityRendererProvider.Context context) {
-        super(context, new WoodStalkerModel(context.bakeLayer(LAYER)), 0.5F);
-        this.addLayer(new EyesLayer<WoodStalker, WoodStalkerModel>(this) {
+        super(context, new WoodStalkerModel<WoodStalker>(context.bakeLayer(LAYER)), 0.5F);
+        this.addLayer(new EyesLayer<WoodStalker, WoodStalkerModel<WoodStalker>>(this) {
             @Override
             public RenderType renderType() {
                 return RenderType.eyes(EYES);

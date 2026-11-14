@@ -60,7 +60,7 @@ public class Fungus extends Monster {
     }
 
     private static boolean isSporeVictim(LivingEntity e) {
-        if (e instanceof Fungus || !e.isAlive()) {
+        if (e instanceof Fungus || e instanceof WoodStalker || !e.isAlive()) {
             return false;
         }
         return e instanceof Player p ? !p.isCreative() && !p.isSpectator() : !(e instanceof Enemy);

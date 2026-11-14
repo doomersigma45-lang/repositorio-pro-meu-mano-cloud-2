@@ -246,5 +246,9 @@
   "entity.netheritesupremo.abyss_spawn": "Cria do Abismo",
   "item.netheritesupremo.abyss_spawn_spawn_egg": "Ovo de Geração de Cria do Abismo",
   "entity.netheritesupremo.wood_stalker": "Wood Stalker",
-  "item.netheritesupremo.wood_stalker_spawn_egg": "Ovo de Geração de Wood Stalker"
+  "item.netheritesupremo.wood_stalker_spawn_egg": "Ovo de Geração de Wood Stalker",
+  "entity.netheritesupremo.ancient_wood": "Ancient Wood",
+  "item.netheritesupremo.ancient_wood_spawn_egg": "Ovo de Geração de Ancient Wood",
+  "entity.netheritesupremo.fungus_stalker": "Fungus Stalker",
+  "item.netheritesupremo.fungus_stalker_spawn_egg": "Ovo de Geração de Fungus Stalker"
 }

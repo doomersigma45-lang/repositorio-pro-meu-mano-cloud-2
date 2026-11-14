@@ -30,6 +30,33 @@ public final class MobEvents {
         }
     }
 
+    /** Dar flor ou cogumelo a um Wood Stalker e a um Fungus proximos faz nascer um Fungus Stalker. */
+    @SubscribeEvent
+    public static void onFeedCross(PlayerInteractEvent.EntityInteract event) {
+        net.minecraft.world.entity.Entity t = event.getTarget();
+        boolean ok = t instanceof Fungus || (t instanceof WoodStalker && t.getType() == ModEntities.WOOD_STALKER.get());
+        if (!ok || event.getLevel().isClientSide()) {
+            return;
+        }
+        ItemStack stack = event.getItemStack();
+        if (!(stack.is(net.minecraft.tags.ItemTags.FLOWERS) || stack.is(net.minecraft.world.item.Items.RED_MUSHROOM)
+                || stack.is(net.minecraft.world.item.Items.BROWN_MUSHROOM))) {
+            return;
+        }
+        if (t.getPersistentData().getLong(WoodStalker.FED_TAG) > event.getLevel().getGameTime()) {
+            return;
+        }
+        t.getPersistentData().putLong(WoodStalker.FED_TAG, event.getLevel().getGameTime() + 1200L);
+        if (!event.getEntity().getAbilities().instabuild) {
+            stack.shrink(1);
+        }
+        if (event.getLevel() instanceof ServerLevel sl) {
+            sl.sendParticles(ParticleTypes.HEART, t.getX(), t.getY() + t.getBbHeight() * 0.8D, t.getZ(), 6, 0.4D, 0.4D, 0.4D, 0.0D);
+        }
+        event.setCanceled(true);
+        event.setCancellationResult(InteractionResult.SUCCESS);
+    }
+
     @SubscribeEvent
     public static void onInteract(PlayerInteractEvent.EntityInteract event) {
         if (!(event.getTarget() instanceof Chicken chicken) || chicken.getType() != EntityType.CHICKEN || chicken.isBaby()) {

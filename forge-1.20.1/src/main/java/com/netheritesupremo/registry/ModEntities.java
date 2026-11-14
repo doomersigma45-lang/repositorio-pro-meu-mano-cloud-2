@@ -376,6 +376,20 @@ public final class ModEntities {
                     .clientTrackingRange(10)
                     .build("wood_stalker"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.mob.AncientWood>> ANCIENT_WOOD = ENTITIES.register(
+            "ancient_wood",
+            () -> EntityType.Builder.of(com.netheritesupremo.mob.AncientWood::new, MobCategory.MONSTER)
+                    .sized(1.8F, 7.0F)
+                    .clientTrackingRange(16)
+                    .build("ancient_wood"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.mob.FungusStalker>> FUNGUS_STALKER = ENTITIES.register(
+            "fungus_stalker",
+            () -> EntityType.Builder.of(com.netheritesupremo.mob.FungusStalker::new, MobCategory.MONSTER)
+                    .sized(1.0F, 3.0F)
+                    .clientTrackingRange(10)
+                    .build("fungus_stalker"));
+
     public static final RegistryObject<EntityType<com.netheritesupremo.mob.StoneGuardian>> STONE_GUARDIAN = ENTITIES.register(
             "stone_guardian",
             () -> EntityType.Builder.of(com.netheritesupremo.mob.StoneGuardian::new, MobCategory.MONSTER)

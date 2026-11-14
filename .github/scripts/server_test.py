@@ -904,6 +904,16 @@ def main():
             for at in ("max_health", "attack_damage"):
                 gcmd(f"attribute @e[type=netheritesupremo:wood_stalker,limit=1] minecraft:generic.{at} get")
             gcmd("data get entity @e[type=netheritesupremo:wood_stalker,limit=1] Tame")
+            r.cmd("summon netheritesupremo:ancient_wood 945 60 870")
+            r.cmd("summon netheritesupremo:fungus_stalker 955 60 870")
+            time.sleep(1)
+            for ty in ("ancient_wood", "fungus_stalker"):
+                for at in ("max_health", "attack_damage"):
+                    gcmd(f"attribute @e[type=netheritesupremo:{ty},limit=1] minecraft:generic.{at} get")
+            gcmd("damage @e[type=netheritesupremo:ancient_wood,limit=1] 4700 minecraft:generic")
+            time.sleep(1)
+            gcmd("data get entity @e[type=netheritesupremo:ancient_wood,limit=1] Health")
+            gcmd("data get entity @e[type=netheritesupremo:ancient_wood,limit=1] TotemUsed")
             annotate("notice", "anomalocaris e guardiao", g4)
             # escavador, automato, tartaruga ancestral
             t5 = []
