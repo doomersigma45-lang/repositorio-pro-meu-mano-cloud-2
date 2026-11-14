@@ -21,6 +21,15 @@ public final class MobEvents {
     private MobEvents() {
     }
 
+    /** O Abismo so existe na Terra Negra: em qualquer outra dimensao ele nao entra no mundo. */
+    @SubscribeEvent
+    public static void onJoin(net.minecraftforge.event.entity.EntityJoinLevelEvent event) {
+        if (event.getEntity() instanceof TheAbyss && !event.getLevel().isClientSide()
+                && event.getLevel().dimension() != com.netheritesupremo.blackrealm.BlackRealm.KEY) {
+            event.setCanceled(true);
+        }
+    }
+
     @SubscribeEvent
     public static void onInteract(PlayerInteractEvent.EntityInteract event) {
         if (!(event.getTarget() instanceof Chicken chicken) || chicken.getType() != EntityType.CHICKEN || chicken.isBaby()) {

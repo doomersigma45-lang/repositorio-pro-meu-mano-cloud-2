@@ -80,6 +80,9 @@ public class NetheriteSupremo {
             event.accept(ModItems.ANCIENT_TURTLE_SPAWN_EGG);
             event.accept(ModItems.ANCIENT_GUARDIAN_SPAWN_EGG);
             event.accept(ModItems.STONE_GUARDIAN_SPAWN_EGG);
+            event.accept(ModItems.ANCESTRAL_GUARDIAN_SPAWN_EGG);
+            event.accept(ModItems.THE_ABYSS_SPAWN_EGG);
+            event.accept(ModItems.ABYSS_SPAWN_SPAWN_EGG);
             event.accept(ModItems.STALKER_SPAWN_EGG);
             event.accept(ModItems.COLOSSAL_BEETLE_SPAWN_EGG);
             event.accept(ModItems.FUNGUS_SPAWN_EGG);

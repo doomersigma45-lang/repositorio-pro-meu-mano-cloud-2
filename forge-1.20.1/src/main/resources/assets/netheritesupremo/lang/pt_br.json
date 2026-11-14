@@ -238,5 +238,11 @@
   "entity.netheritesupremo.ancient_turtle": "Tartaruga Ancestral",
   "item.netheritesupremo.digger_spawn_egg": "Ovo de Geração de Escavador",
   "item.netheritesupremo.automaton_spawn_egg": "Ovo de Geração de Autômato",
-  "item.netheritesupremo.ancient_turtle_spawn_egg": "Ovo de Geração de Tartaruga Ancestral"
+  "item.netheritesupremo.ancient_turtle_spawn_egg": "Ovo de Geração de Tartaruga Ancestral",
+  "entity.netheritesupremo.ancestral_guardian": "Guardião Ancestral",
+  "item.netheritesupremo.ancestral_guardian_spawn_egg": "Ovo de Geração de Guardião Ancestral",
+  "entity.netheritesupremo.the_abyss": "O Abismo",
+  "item.netheritesupremo.the_abyss_spawn_egg": "Ovo de Geração de O Abismo",
+  "entity.netheritesupremo.abyss_spawn": "Cria do Abismo",
+  "item.netheritesupremo.abyss_spawn_spawn_egg": "Ovo de Geração de Cria do Abismo"
 }

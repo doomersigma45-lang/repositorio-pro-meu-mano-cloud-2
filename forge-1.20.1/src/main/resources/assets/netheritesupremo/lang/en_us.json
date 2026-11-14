@@ -238,5 +238,11 @@
   "entity.netheritesupremo.ancient_turtle": "Ancient Turtle",
   "item.netheritesupremo.digger_spawn_egg": "Digger Spawn Egg",
   "item.netheritesupremo.automaton_spawn_egg": "Automaton Spawn Egg",
-  "item.netheritesupremo.ancient_turtle_spawn_egg": "Ancient Turtle Spawn Egg"
+  "item.netheritesupremo.ancient_turtle_spawn_egg": "Ancient Turtle Spawn Egg",
+  "entity.netheritesupremo.ancestral_guardian": "Ancestral Guardian",
+  "item.netheritesupremo.ancestral_guardian_spawn_egg": "Ancestral Guardian Spawn Egg",
+  "entity.netheritesupremo.the_abyss": "The Abyss",
+  "item.netheritesupremo.the_abyss_spawn_egg": "The Abyss Spawn Egg",
+  "entity.netheritesupremo.abyss_spawn": "Abyss Spawn",
+  "item.netheritesupremo.abyss_spawn_spawn_egg": "Abyss Spawn Spawn Egg"
 }

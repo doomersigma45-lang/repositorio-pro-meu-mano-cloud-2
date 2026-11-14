@@ -402,3 +402,14 @@ Os mods **Claude Content** e **Vila de Ferro** agora fazem parte deste mod (mesm
 
 ### Armadura de obsidiana: efeitos (1.61.1)
 **Não testado no jogo.** O conjunto completo de obsidiana agora dá Resistência IV e Força I (além da imunidade a explosões).
+
+### Guardião Ancestral (verdadeiro) e O Abismo (1.62.0)
+**Não testado no jogo.** Texturas, modelos e estruturas feitos por mim (IA). Drops, loot e detalhes não especificados foram escolha minha.
+- **Guardião Ancestral** (boss, golem de pedra de 7 blocos de altura, cabeça colada ao tronco, braços enormes quase no chão, pernas de camadas de rocha, blocos que flutuam levemente, olhos de fenda dourada e runas brilhantes): 1.500 HP, 35 de dano. Fica adormecido e acorda quando um jogador chega a 10 blocos ou ele leva dano. Impacto em área (raio 7, 21 de dano, arremesso) a cada 5 s, invoca 3 **Guardiões de Pedra** a cada 20 s (até 8) e recebe só 25% do dano de flechas/projéteis. Drops: pedra, blocos de ouro, diamantes, às vezes estrela do Nether e sucata de netherite. Não tem spawn natural solto: vive no **Templo Ancestral**.
+- **Templo Ancestral** (estrutura nova, **subterrânea**, rara, em qualquer bioma do overworld, por volta de y=-24): salão com pilares, runas de blackstone dourado, 4 baús, 4 guardiões de pedra de guarda e o Guardião dormindo no centro. Há um poço de 3x3 com escada subindo, mas a entrada **não chega à superfície** (você precisa cavar até ele ou achar por caverna). Use `/locate structure netheritesupremo:ancestral_temple`.
+- **O Abismo** (chefe secreto, 8 blocos, massa escura em gaiola aberta com **núcleo roxo que pulsa**, vários olhinhos, 6 tentáculos de tamanhos diferentes): 5.000 HP, 60 de dano. Só existe na **Terra Negra**: nasce adormecido no **Santuário do Abismo** (estrutura rara de lá) e, em qualquer outra dimensão, ele não entra no mundo (nem por ovo/comando). Acorda a 24 blocos.
+  - **Tentáculos**: cada um tem alcance e recarga próprios (11,5 a 7 blocos) e escolhe o próprio alvo, 24 de dano e arremesso.
+  - **Invoca Crias do Abismo** (endermites roxos de 20 HP, até 12).
+  - **3 fases** pela vida: >66% normal; ≤66% mais rápido, tentáculos mais frequentes, invoca mais e dá um **pulso** que puxa todos e escurece a visão; ≤33% ainda mais rápido e o pulso também causa dano. O núcleo pulsa mais rápido a cada fase.
+  - Drops: estrelas do Nether, netherite, cacos de eco, ametista, maçã dourada encantada.
+- Ovos de spawn: Guardião Ancestral, O Abismo (só funciona na Terra Negra) e Cria do Abismo.

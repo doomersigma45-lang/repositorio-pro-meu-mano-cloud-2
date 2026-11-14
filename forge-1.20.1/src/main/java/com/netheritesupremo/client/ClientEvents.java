@@ -36,6 +36,10 @@ public final class ClientEvents {
         event.registerEntityRenderer(ModEntities.ANCIENT_TURTLE.get(), AncientTurtleRenderer::new);
         event.registerEntityRenderer(ModEntities.ANCIENT_GUARDIAN.get(), AncientGuardianRenderer::new);
         event.registerEntityRenderer(ModEntities.STONE_GUARDIAN.get(), StoneGuardianRenderer::new);
+        event.registerEntityRenderer(ModEntities.ANCESTRAL_GUARDIAN.get(), AncestralGuardianRenderer::new);
+        event.registerEntityRenderer(ModEntities.THE_ABYSS.get(), TheAbyssRenderer::new);
+        event.<net.minecraft.world.entity.monster.Endermite>registerEntityRenderer(ModEntities.ABYSS_SPAWN.get(),
+                net.minecraft.client.renderer.entity.EndermiteRenderer::new);
         event.registerEntityRenderer(ModEntities.STALKER.get(), StalkerRenderer::new);
         event.registerEntityRenderer(ModEntities.COLOSSAL_BEETLE.get(), BeetleRenderer::new);
         event.registerEntityRenderer(ModEntities.FUNGUS.get(), FungusRenderer::new);
@@ -93,6 +97,8 @@ public final class ClientEvents {
         event.registerLayerDefinition(AutomatonRenderer.LAYER, AutomatonModel::createLayer);
         event.registerLayerDefinition(AncientTurtleRenderer.LAYER, AncientTurtleModel::createLayer);
         event.registerLayerDefinition(AncientGuardianRenderer.LAYER, AncientGuardianModel::createLayer);
+        event.registerLayerDefinition(AncestralGuardianRenderer.LAYER, AncestralGuardianModel::createLayer);
+        event.registerLayerDefinition(TheAbyssRenderer.LAYER, TheAbyssModel::createLayer);
         event.registerLayerDefinition(StalkerRenderer.LAYER, StalkerModel::createLayer);
         event.registerLayerDefinition(BeetleRenderer.LAYER, BeetleModel::createLayer);
         event.registerLayerDefinition(FungusRenderer.LAYER, FungusModel::createLayer);

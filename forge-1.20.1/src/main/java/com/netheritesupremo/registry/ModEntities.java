@@ -347,6 +347,28 @@ public final class ModEntities {
                     .clientTrackingRange(16)
                     .build("ancient_guardian"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.mob.AncestralGuardian>> ANCESTRAL_GUARDIAN = ENTITIES.register(
+            "ancestral_guardian",
+            () -> EntityType.Builder.of(com.netheritesupremo.mob.AncestralGuardian::new, MobCategory.MONSTER)
+                    .sized(3.0F, 7.0F)
+                    .clientTrackingRange(16)
+                    .build("ancestral_guardian"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.mob.TheAbyss>> THE_ABYSS = ENTITIES.register(
+            "the_abyss",
+            () -> EntityType.Builder.of(com.netheritesupremo.mob.TheAbyss::new, MobCategory.MONSTER)
+                    .sized(4.0F, 8.0F)
+                    .fireImmune()
+                    .clientTrackingRange(20)
+                    .build("the_abyss"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.mob.AbyssSpawn>> ABYSS_SPAWN = ENTITIES.register(
+            "abyss_spawn",
+            () -> EntityType.Builder.of(com.netheritesupremo.mob.AbyssSpawn::new, MobCategory.MONSTER)
+                    .sized(0.4F, 0.3F)
+                    .clientTrackingRange(8)
+                    .build("abyss_spawn"));
+
     public static final RegistryObject<EntityType<com.netheritesupremo.mob.StoneGuardian>> STONE_GUARDIAN = ENTITIES.register(
             "stone_guardian",
             () -> EntityType.Builder.of(com.netheritesupremo.mob.StoneGuardian::new, MobCategory.MONSTER)

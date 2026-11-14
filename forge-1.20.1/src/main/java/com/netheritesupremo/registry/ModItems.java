@@ -323,6 +323,18 @@ public final class ModItems {
             "ancient_guardian_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.ANCIENT_GUARDIAN, 0x3A2A26, 0xFF7A1A, new Item.Properties()));
 
+    public static final RegistryObject<Item> ANCESTRAL_GUARDIAN_SPAWN_EGG = ITEMS.register(
+            "ancestral_guardian_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.ANCESTRAL_GUARDIAN, 0x6E6C66, 0xFFCD46, new Item.Properties()));
+
+    public static final RegistryObject<Item> THE_ABYSS_SPAWN_EGG = ITEMS.register(
+            "the_abyss_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.THE_ABYSS, 0x180E22, 0xBE5AFF, new Item.Properties()));
+
+    public static final RegistryObject<Item> ABYSS_SPAWN_SPAWN_EGG = ITEMS.register(
+            "abyss_spawn_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.ABYSS_SPAWN, 0x180E22, 0xE68CFF, new Item.Properties()));
+
     public static final RegistryObject<Item> STONE_GUARDIAN_SPAWN_EGG = ITEMS.register(
             "stone_guardian_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.STONE_GUARDIAN, 0x7A7A7E, 0xFF7A1A, new Item.Properties()));

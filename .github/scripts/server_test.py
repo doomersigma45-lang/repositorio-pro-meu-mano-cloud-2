@@ -888,6 +888,17 @@ def main():
             time.sleep(2)
             gcmd("data get entity @e[type=netheritesupremo:ancient_guardian,limit=1] Enraged")
             gcmd("data get entity @e[type=netheritesupremo:ancient_guardian,limit=1] Health")
+            # guardiao ancestral verdadeiro e O Abismo
+            r.cmd("summon netheritesupremo:ancestral_guardian 915 60 870")
+            r.cmd("summon netheritesupremo:the_abyss 925 60 870")
+            r.cmd("execute in netheritesupremo:black_realm run summon netheritesupremo:the_abyss 0 100 0")
+            time.sleep(1)
+            for ty, at in (("ancestral_guardian", "max_health"), ("ancestral_guardian", "attack_damage"), ("the_abyss", "max_health"),
+                           ("the_abyss", "attack_damage"), ("abyss_spawn", "max_health")):
+                gcmd(f"attribute @e[type=netheritesupremo:{ty},limit=1] minecraft:generic.{at} get")
+            gcmd("execute if entity @e[type=netheritesupremo:the_abyss] run say abismo existe (esperado: so na terra negra)")
+            gcmd("locate structure netheritesupremo:ancestral_temple")
+            gcmd("execute in netheritesupremo:black_realm run locate structure netheritesupremo:abyss_sanctum")
             annotate("notice", "anomalocaris e guardiao", g4)
             # escavador, automato, tartaruga ancestral
             t5 = []

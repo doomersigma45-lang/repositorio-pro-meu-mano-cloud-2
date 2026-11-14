@@ -42,6 +42,9 @@ public final class ModBusEvents {
         event.put(ModEntities.COLOSSAL_BEETLE.get(), com.netheritesupremo.mob.ColossalBeetle.createAttributes().build());
         event.put(ModEntities.FUNGUS.get(), com.netheritesupremo.mob.Fungus.createAttributes().build());
         event.put(ModEntities.ANCIENT_GUARDIAN.get(), com.netheritesupremo.mob.AncientGuardian.createAttributes().build());
+        event.put(ModEntities.ANCESTRAL_GUARDIAN.get(), com.netheritesupremo.mob.AncestralGuardian.createAttributes().build());
+        event.put(ModEntities.THE_ABYSS.get(), com.netheritesupremo.mob.TheAbyss.createAttributes().build());
+        event.put(ModEntities.ABYSS_SPAWN.get(), com.netheritesupremo.mob.AbyssSpawn.createAttributes().build());
         event.put(ModEntities.STONE_GUARDIAN.get(), com.netheritesupremo.mob.StoneGuardian.createAttributes().build());
         event.put(ModEntities.DIGGER.get(), com.netheritesupremo.mob.Digger.createAttributes().build());
         event.put(ModEntities.AUTOMATON.get(), com.netheritesupremo.mob.Automaton.createAttributes().build());
