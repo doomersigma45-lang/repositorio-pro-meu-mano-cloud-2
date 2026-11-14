@@ -252,5 +252,13 @@
   "entity.netheritesupremo.fungus_stalker": "Fungus Stalker",
   "item.netheritesupremo.fungus_stalker_spawn_egg": "Fungus Stalker Spawn Egg",
   "entity.netheritesupremo.hunter": "Hunter",
-  "item.netheritesupremo.hunter_spawn_egg": "Hunter Spawn Egg"
+  "item.netheritesupremo.hunter_spawn_egg": "Hunter Spawn Egg",
+  "entity.netheritesupremo.headless_horseman": "Headless Horseman",
+  "entity.netheritesupremo.headless_pup": "Headless Pup",
+  "entity.netheritesupremo.horseman_steed": "Skeleton Steed",
+  "entity.netheritesupremo.pumpkin_bomb": "Pumpkin Bomb",
+  "item.netheritesupremo.horseman_sword": "Horseman's Sword",
+  "item.netheritesupremo.headless_horseman_spawn_egg": "Headless Horseman Spawn Egg",
+  "item.netheritesupremo.headless_pup_spawn_egg": "Headless Pup Spawn Egg",
+  "tooltip.netheritesupremo.horseman_sword": "Poisons for 5 seconds (Poison II). 57 damage."
 }

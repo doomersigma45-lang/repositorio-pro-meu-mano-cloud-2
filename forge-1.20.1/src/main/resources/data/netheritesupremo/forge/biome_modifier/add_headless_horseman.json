@@ -1,0 +1,1 @@
+{"type": "forge:add_spawns", "biomes": ["minecraft:dark_forest", "minecraft:swamp", "minecraft:taiga", "minecraft:old_growth_spruce_taiga"], "spawners": {"type": "netheritesupremo:headless_horseman", "weight": 1, "minCount": 1, "maxCount": 1}}

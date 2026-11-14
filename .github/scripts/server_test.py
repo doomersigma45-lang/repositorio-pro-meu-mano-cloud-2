@@ -920,6 +920,18 @@ def main():
                 gcmd(f"attribute @e[type=netheritesupremo:hunter,limit=1] minecraft:generic.{at} get")
             gcmd("data get entity @e[type=netheritesupremo:hunter,limit=1] HandItems[0].id")
             gcmd("locate structure netheritesupremo:hunter_cabin")
+            r.cmd("summon netheritesupremo:headless_horseman 975 60 870")
+            time.sleep(1)
+            for at in ("max_health", "attack_damage"):
+                gcmd(f"attribute @e[type=netheritesupremo:headless_horseman,limit=1] minecraft:generic.{at} get")
+            gcmd("attribute @e[type=netheritesupremo:hunter,limit=1] minecraft:generic.movement_speed get")
+            gcmd("execute if entity @e[type=netheritesupremo:horseman_steed] run say steed existe")
+            gcmd("data get entity @e[type=netheritesupremo:headless_horseman,limit=1] HandItems[0].id")
+            gcmd("kill @e[type=netheritesupremo:horseman_steed]")
+            gcmd("damage @e[type=netheritesupremo:headless_horseman,limit=1] 2500 minecraft:generic")
+            time.sleep(1)
+            gcmd("execute if entity @e[type=netheritesupremo:headless_pup] run say filhote nasceu")
+            gcmd("attribute @e[type=netheritesupremo:headless_pup,limit=1] minecraft:generic.max_health get")
             annotate("notice", "anomalocaris e guardiao", g4)
             # escavador, automato, tartaruga ancestral
             t5 = []

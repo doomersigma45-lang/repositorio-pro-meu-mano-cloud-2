@@ -52,7 +52,7 @@ import com.netheritesupremo.skeleton.SkeletonFaction;
 public class Hunter extends Monster {
     public static final double MAX_HEALTH = 250.0D;
     public static final double DAMAGE = 7.0D;
-    public static final double SPEED = 0.26D;      // ~2x a corrida de um jogador (0,13)
+    public static final double SPEED = 0.36D;      // ~2,8x a corrida de um jogador (0,13)
     private static final EntityDataAccessor<Byte> DATA_CLIMB = SynchedEntityData.defineId(Hunter.class, EntityDataSerializers.BYTE);
 
     private ItemStack stored = ItemStack.EMPTY;    // a arma que nao esta na mao
@@ -64,6 +64,8 @@ public class Hunter extends Monster {
     public Hunter(EntityType<? extends Hunter> type, Level level) {
         super(type, level);
         this.xpReward = 40;
+        this.setPathfindingMalus(net.minecraft.world.level.pathfinder.BlockPathTypes.WATER, 0.0F);
+        this.setPathfindingMalus(net.minecraft.world.level.pathfinder.BlockPathTypes.WATER_BORDER, 0.0F);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -71,12 +73,15 @@ public class Hunter extends Monster {
                 .add(Attributes.MAX_HEALTH, MAX_HEALTH)
                 .add(Attributes.ATTACK_DAMAGE, DAMAGE)
                 .add(Attributes.MOVEMENT_SPEED, SPEED)
-                .add(Attributes.FOLLOW_RANGE, 64.0D);
+                .add(Attributes.FOLLOW_RANGE, 64.0D)
+                .add(net.minecraftforge.common.ForgeMod.SWIM_SPEED.get(), 2.5D);
     }
 
     @Override
     protected PathNavigation createNavigation(Level level) {
-        return new WallClimberNavigation(this, level);
+        WallClimberNavigation nav = new WallClimberNavigation(this, level);
+        nav.setCanFloat(true);
+        return nav;
     }
 
     @Override

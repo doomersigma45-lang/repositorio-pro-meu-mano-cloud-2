@@ -48,6 +48,9 @@ public final class ModBusEvents {
         event.put(ModEntities.ANCIENT_WOOD.get(), com.netheritesupremo.mob.AncientWood.createAttributes().build());
         event.put(ModEntities.FUNGUS_STALKER.get(), com.netheritesupremo.mob.FungusStalker.createAttributes().build());
         event.put(ModEntities.HUNTER.get(), com.netheritesupremo.mob.Hunter.createAttributes().build());
+        event.put(ModEntities.HEADLESS_HORSEMAN.get(), com.netheritesupremo.mob.HeadlessHorseman.createAttributes().build());
+        event.put(ModEntities.HEADLESS_PUP.get(), com.netheritesupremo.mob.HeadlessPup.createAttributes().build());
+        event.put(ModEntities.HORSEMAN_STEED.get(), com.netheritesupremo.mob.HorsemanSteed.createSteedAttributes().build());
         event.put(ModEntities.WOOD_STALKER.get(), com.netheritesupremo.mob.WoodStalker.createAttributes().build());
         event.put(ModEntities.STONE_GUARDIAN.get(), com.netheritesupremo.mob.StoneGuardian.createAttributes().build());
         event.put(ModEntities.DIGGER.get(), com.netheritesupremo.mob.Digger.createAttributes().build());
@@ -105,6 +108,9 @@ public final class ModBusEvents {
                 SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.FUNGUS_STALKER.get(), SpawnPlacements.Type.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, com.netheritesupremo.mob.WoodStalker::checkSpawnRules,
+                SpawnPlacementRegisterEvent.Operation.OR);
+        event.register(ModEntities.HEADLESS_HORSEMAN.get(), SpawnPlacements.Type.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, com.netheritesupremo.mob.HeadlessHorseman::checkBossSpawn,
                 SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.WOOD_STALKER.get(), SpawnPlacements.Type.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, com.netheritesupremo.mob.WoodStalker::checkSpawnRules,

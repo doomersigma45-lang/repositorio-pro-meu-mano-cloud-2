@@ -441,3 +441,16 @@ A 1.63.0 e a 1.62.x com o Wood Stalker travavam ao criar/entrar no mundo: o arqu
 - **Escala paredes** e **quebra vidro, vidraças, portas e alçapões** que atrapalhem o caminho (respeita mobGriefing).
 - **Não desiste do alvo**: persegue sem esquecer e só para quando o alvo morre ou quando outro mob o ataca (aí ele revida nesse mob).
 - **Drops**: 1 bloco de spectrite, 4 barras de obsidiana e a **Old Gun encantada** (Unbreaking III, Mending, Sharpness V).
+
+### Hunter mais rápido e nadador; Cavaleiro sem Cabeça (1.66.0)
+**Não testado no jogo.** Texturas/modelos feitos por mim (IA). Drops, spawn e detalhes não especificados foram escolha minha.
+- **Hunter**: velocidade 0,26 → 0,36 (cerca de 2,8x a corrida de um jogador) e agora **nada rápido** (velocidade de nado 2,5x, não evita água ao perseguir).
+- **Cavaleiro sem Cabeça** (boss): esqueleto preto e alto (1,25x) com detalhes verdes brilhantes (costelas, coluna, juntas), **abóbora-lanterna no lugar da cabeça** (a cabeça do esqueleto é escondida) e armadura de obsidiana sem capacete. 2.500 HP. **Espada própria** (Espada do Cavaleiro): 57 de dano e Veneno II por 5 s.
+  - **Montado num cavalo esqueleto** (300 HP, rápido, não pode ser montado por jogadores): faz **investidas** (a cada 12 s, se o alvo estiver entre 6 e 30 blocos) que dão 25 de dano e **agarram** o alvo; também agarra de vez em quando no corpo a corpo. Agarrado, o alvo fica preso à frente dele por 3,5 s tomando 10 de dano e Veneno por segundo, e é arremessado no final.
+  - **Abóboras explosivas** (a cada ~4 s entre 7 e 30 blocos): explodem (força 2, quebram blocos só se mobGriefing estiver ligado) e dão Veneno II por 5 s num raio de 4.
+  - **Corrente**: se o alvo estiver longe (12 a 36 blocos), puxa ele para perto com uma corrente (partículas de corrente) a cada 8 s.
+  - **Quebra blocos** de dureza até 10 (não quebra obsidiana nem bedrock) numa área de 3x4 à frente.
+  - **Sem montaria**: se o cavalo morrer, ele procura qualquer mob próximo (até 24 blocos; sem chefes) e monta nele, guiando-o até o alvo. Se não houver mob por perto, continua a pé atacando.
+  - Spawn natural raríssimo (só à noite, florestas escuras, pântanos e taigas, um por região); o ovo cria em qualquer lugar (já vem montado).
+  - **Drops**: a **Espada do Cavaleiro** e um **Filhote do Cavaleiro**, que nasce já **domesticado por quem o matou**.
+- **Filhote do Cavaleiro**: 470 HP, 35 de dano, versão pequena (0,6x) com abóbora na cabeça. Age como lobo domesticado: segue o dono, senta/levanta com clique vazio, ataca quem ataca o dono e os monstros. **Troca de armadura sozinho** ao encontrar no chão uma melhor que a atual (ou se o dono der uma armadura na mão); a armadura antiga cai no chão. Osso cura 40 (e doma um filhote selvagem, 1/3 de chance).

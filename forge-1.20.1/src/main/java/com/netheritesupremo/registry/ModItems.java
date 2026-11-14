@@ -351,6 +351,18 @@ public final class ModItems {
             "hunter_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.HUNTER, 0x2B2B2B, 0xE07A1F, new Item.Properties()));
 
+    public static final RegistryObject<Item> HORSEMAN_SWORD = ITEMS.register(
+            "horseman_sword",
+            () -> new com.netheritesupremo.item.HorsemanSwordItem());
+
+    public static final RegistryObject<Item> HEADLESS_HORSEMAN_SPAWN_EGG = ITEMS.register(
+            "headless_horseman_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.HEADLESS_HORSEMAN, 0x14141A, 0x46FF6E, new Item.Properties()));
+
+    public static final RegistryObject<Item> HEADLESS_PUP_SPAWN_EGG = ITEMS.register(
+            "headless_pup_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.HEADLESS_PUP, 0x14141A, 0xE0801A, new Item.Properties()));
+
     public static final RegistryObject<Item> STONE_GUARDIAN_SPAWN_EGG = ITEMS.register(
             "stone_guardian_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.STONE_GUARDIAN, 0x7A7A7E, 0xFF7A1A, new Item.Properties()));

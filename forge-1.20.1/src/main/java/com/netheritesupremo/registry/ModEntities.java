@@ -397,6 +397,35 @@ public final class ModEntities {
                     .clientTrackingRange(10)
                     .build("hunter"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.mob.HeadlessHorseman>> HEADLESS_HORSEMAN = ENTITIES.register(
+            "headless_horseman",
+            () -> EntityType.Builder.of(com.netheritesupremo.mob.HeadlessHorseman::new, MobCategory.MONSTER)
+                    .sized(0.75F, 2.5F)
+                    .clientTrackingRange(16)
+                    .build("headless_horseman"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.mob.HeadlessPup>> HEADLESS_PUP = ENTITIES.register(
+            "headless_pup",
+            () -> EntityType.Builder.of(com.netheritesupremo.mob.HeadlessPup::new, MobCategory.CREATURE)
+                    .sized(0.45F, 1.2F)
+                    .clientTrackingRange(10)
+                    .build("headless_pup"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.mob.HorsemanSteed>> HORSEMAN_STEED = ENTITIES.register(
+            "horseman_steed",
+            () -> EntityType.Builder.of(com.netheritesupremo.mob.HorsemanSteed::new, MobCategory.CREATURE)
+                    .sized(1.3964844F, 1.6F)
+                    .clientTrackingRange(10)
+                    .build("horseman_steed"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.mob.PumpkinBomb>> PUMPKIN_BOMB = ENTITIES.register(
+            "pumpkin_bomb",
+            () -> EntityType.Builder.<com.netheritesupremo.mob.PumpkinBomb>of(com.netheritesupremo.mob.PumpkinBomb::new, MobCategory.MISC)
+                    .sized(0.4F, 0.4F)
+                    .clientTrackingRange(4)
+                    .updateInterval(10)
+                    .build("pumpkin_bomb"));
+
     public static final RegistryObject<EntityType<com.netheritesupremo.mob.StoneGuardian>> STONE_GUARDIAN = ENTITIES.register(
             "stone_guardian",
             () -> EntityType.Builder.of(com.netheritesupremo.mob.StoneGuardian::new, MobCategory.MONSTER)

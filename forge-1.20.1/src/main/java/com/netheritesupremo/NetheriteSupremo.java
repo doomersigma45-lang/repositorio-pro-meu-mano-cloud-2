@@ -81,6 +81,8 @@ public class NetheriteSupremo {
             event.accept(ModItems.ANCIENT_GUARDIAN_SPAWN_EGG);
             event.accept(ModItems.STONE_GUARDIAN_SPAWN_EGG);
             event.accept(ModItems.WOOD_STALKER_SPAWN_EGG);
+            event.accept(ModItems.HEADLESS_HORSEMAN_SPAWN_EGG);
+            event.accept(ModItems.HEADLESS_PUP_SPAWN_EGG);
             event.accept(ModItems.HUNTER_SPAWN_EGG);
             event.accept(ModItems.ANCIENT_WOOD_SPAWN_EGG);
             event.accept(ModItems.FUNGUS_STALKER_SPAWN_EGG);
@@ -117,6 +119,7 @@ public class NetheriteSupremo {
             event.accept(ModItems.GIANT_GLOW_SQUID_SPAWN_EGG);
         } else if (event.getTabKey() == CreativeModeTabs.COMBAT) {
             event.accept(ModItems.STRONGEST_ZOMBIE_HEAD);
+            event.accept(ModItems.HORSEMAN_SWORD);
             event.accept(ModItems.OBSIDIAN_SWORD);
             event.accept(ModItems.OBSIDIAN_AXE);
             event.accept(ModItems.OBSIDIAN_HELMET);
