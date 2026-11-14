@@ -37,6 +37,8 @@ public final class ClientEvents {
         event.registerEntityRenderer(ModEntities.ANCIENT_GUARDIAN.get(), AncientGuardianRenderer::new);
         event.registerEntityRenderer(ModEntities.STONE_GUARDIAN.get(), StoneGuardianRenderer::new);
         event.registerEntityRenderer(ModEntities.WOOD_STALKER.get(), WoodStalkerRenderer::new);
+        event.registerEntityRenderer(ModEntities.HUNTER.get(), ctx -> new PlayerRobotRenderer<com.netheritesupremo.mob.Hunter>(ctx,
+                new ResourceLocation(NetheriteSupremo.MODID, "textures/entity/hunter.png"), 1.0F));
         event.registerEntityRenderer(ModEntities.ANCIENT_WOOD.get(), AncientWoodRenderer::new);
         event.registerEntityRenderer(ModEntities.FUNGUS_STALKER.get(), FungusStalkerRenderer::new);
         event.registerEntityRenderer(ModEntities.ANCESTRAL_GUARDIAN.get(), AncestralGuardianRenderer::new);

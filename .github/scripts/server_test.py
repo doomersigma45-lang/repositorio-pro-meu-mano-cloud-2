@@ -914,6 +914,12 @@ def main():
             time.sleep(1)
             gcmd("data get entity @e[type=netheritesupremo:ancient_wood,limit=1] Health")
             gcmd("data get entity @e[type=netheritesupremo:ancient_wood,limit=1] TotemUsed")
+            r.cmd("summon netheritesupremo:hunter 965 60 870")
+            time.sleep(1)
+            for at in ("max_health", "attack_damage", "movement_speed"):
+                gcmd(f"attribute @e[type=netheritesupremo:hunter,limit=1] minecraft:generic.{at} get")
+            gcmd("data get entity @e[type=netheritesupremo:hunter,limit=1] HandItems[0].id")
+            gcmd("locate structure netheritesupremo:hunter_cabin")
             annotate("notice", "anomalocaris e guardiao", g4)
             # escavador, automato, tartaruga ancestral
             t5 = []

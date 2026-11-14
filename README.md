@@ -433,3 +433,11 @@ A 1.63.0 e a 1.62.x com o Wood Stalker travavam ao criar/entrar no mundo: o arqu
 - **Fungus Stalker** (híbrido: Wood Stalker bípede com 4 pernas, chapéu grande de cogumelo e cogumelos nas costas): **250 HP e 50 de dano** (o dobro de um Wood Stalker). Mantém todas as habilidades do Wood Stalker (agarrar e sugar, quebrar blocos, escalar, agachar, medo de fogo e água, regeneração) e ganha os esporos do Fungus: mordida e nuvem de esporos (a cada 3 s, raio 6) dão Lentidão II e Fraqueza, e regenera também perto de cogumelos.
   - **Cruzamento**: dê uma flor ou um cogumelo a um Wood Stalker e a um Fungus (a menos de ~8 blocos um do outro, em até 1 min) e eles se encontram e nasce um Fungus Stalker. **Spawn natural** raro em florestas, florestas escuras e pântanos.
 - **Wood Stalker x Fungus**: Wood Stalkers (e suas variantes) nunca atacam Fungus, e os esporos do Fungus não afetam eles. Raramente, um Wood Stalker selvagem sobe nas costas de um Fungus próximo e fica montado nele (pode descer se tiver medo).
+
+### Hunter (1.65.0)
+**Não testado no jogo.** Usa **a skin que você enviou**. Drops e detalhes não especificados foram escolha minha.
+- **Hunter** (hostil): 250 HP, 7 de dano base, velocidade 0,26 (cerca de 2x a corrida de um jogador). Mora numa **cabana pequena e isolada** (estrutura rara em florestas e taigas, com cama, baú, fornalha e o Hunter dentro; `/locate structure netheritesupremo:hunter_cabin`) e volta para perto dela quando não tem alvo.
+- **Armas**: de longe (mais de ~8 blocos) usa a **Old Gun** (mesmo tiro dela: 50 a 150 de dano, recarga de 5 s); de perto (menos de 5 blocos) troca para uma **espada de diamante com Sharpness VII**. Contando a espada e o Sharpness, o corpo a corpo dele passa bastante de 7.
+- **Escala paredes** e **quebra vidro, vidraças, portas e alçapões** que atrapalhem o caminho (respeita mobGriefing).
+- **Não desiste do alvo**: persegue sem esquecer e só para quando o alvo morre ou quando outro mob o ataca (aí ele revida nesse mob).
+- **Drops**: 1 bloco de spectrite, 4 barras de obsidiana e a **Old Gun encantada** (Unbreaking III, Mending, Sharpness V).

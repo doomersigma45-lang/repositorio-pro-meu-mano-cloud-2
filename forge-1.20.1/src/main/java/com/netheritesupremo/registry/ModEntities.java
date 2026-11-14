@@ -390,6 +390,13 @@ public final class ModEntities {
                     .clientTrackingRange(10)
                     .build("fungus_stalker"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.mob.Hunter>> HUNTER = ENTITIES.register(
+            "hunter",
+            () -> EntityType.Builder.of(com.netheritesupremo.mob.Hunter::new, MobCategory.MONSTER)
+                    .sized(0.6F, 1.95F)
+                    .clientTrackingRange(10)
+                    .build("hunter"));
+
     public static final RegistryObject<EntityType<com.netheritesupremo.mob.StoneGuardian>> STONE_GUARDIAN = ENTITIES.register(
             "stone_guardian",
             () -> EntityType.Builder.of(com.netheritesupremo.mob.StoneGuardian::new, MobCategory.MONSTER)

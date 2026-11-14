@@ -347,6 +347,10 @@ public final class ModItems {
             "fungus_stalker_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.FUNGUS_STALKER, 0x4A2E1C, 0xB22222, new Item.Properties()));
 
+    public static final RegistryObject<Item> HUNTER_SPAWN_EGG = ITEMS.register(
+            "hunter_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.HUNTER, 0x2B2B2B, 0xE07A1F, new Item.Properties()));
+
     public static final RegistryObject<Item> STONE_GUARDIAN_SPAWN_EGG = ITEMS.register(
             "stone_guardian_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.STONE_GUARDIAN, 0x7A7A7E, 0xFF7A1A, new Item.Properties()));

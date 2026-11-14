@@ -89,3 +89,32 @@ for _ in range(25):
 a.chest(21, 3, 31, 'north', 'netheritesupremo:chests/abyss_sanctum')
 a.ent('netheritesupremo:the_abyss', 21.5, 3.0, 21.5, {'Dormant': B(1)})
 a.save('abyss_sanctum')
+
+# ============ Cabana do Hunter: pequena e isolada (9x7x9), piso no y=2
+c = Tpl(11, 9, 11, 21); r = c.r
+LOG = 'minecraft:stripped_spruce_log[axis=y]'; PL = 'minecraft:spruce_planks'; DK = 'minecraft:dark_oak_planks'
+for x in range(11):
+    for z in range(11):
+        c.put(x, 0, z, 'minecraft:cobblestone'); c.put(x, 1, z, 'minecraft:dirt')
+for x in range(1, 10):
+    for z in range(1, 10): c.put(x, 2, z, DK)
+c.box(1, 3, 1, 9, 6, 9, AIR)
+for x in range(1, 10):                         # paredes
+    for z in range(1, 10):
+        if x in (1, 9) or z in (1, 9):
+            for y in range(3, 6): c.put(x, y, z, PL)
+for (x, z) in ((1, 1), (1, 9), (9, 1), (9, 9)): c.box(x, 3, z, x, 5, z, LOG)
+for y in (3, 4):                               # porta (sul, z=9) e janelas de vidro
+    c.put(5, y, 9, AIR)
+c.put(5, 3, 9, 'minecraft:spruce_door[facing=south,half=lower,hinge=left,open=false,powered=false]')
+c.put(5, 4, 9, 'minecraft:spruce_door[facing=south,half=upper,hinge=left,open=false,powered=false]')
+for (x, z) in ((1, 4), (1, 6), (9, 4), (9, 6), (4, 1), (6, 1)): c.put(x, 4, z, 'minecraft:glass_pane')
+for x in range(0, 11):                         # teto simples: lajes de abeto
+    for z in range(0, 11): c.put(x, 6, z, 'minecraft:spruce_slab[type=bottom,waterlogged=false]')
+c.box(2, 6, 2, 8, 6, 8, PL)
+c.put(2, 3, 2, 'minecraft:red_bed[facing=east,part=foot,occupied=false]'); c.put(3, 3, 2, 'minecraft:red_bed[facing=east,part=head,occupied=false]')
+c.chest(8, 3, 2, 'west', 'netheritesupremo:chests/hunter_cabin')
+c.put(8, 3, 8, 'minecraft:crafting_table'); c.put(7, 3, 8, 'minecraft:furnace[facing=north,lit=false]')
+c.put(5, 5, 5, 'minecraft:lantern[hanging=true,waterlogged=false]'); c.put(5, 6, 5, 'minecraft:spruce_planks')
+c.ent('netheritesupremo:hunter', 5.5, 3.0, 5.5)
+c.save('hunter_cabin')
