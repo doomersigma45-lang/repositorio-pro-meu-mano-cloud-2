@@ -100,7 +100,7 @@ public final class ModBusEvents {
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, com.netheritesupremo.mob.AncientGuardian::checkSpawnRules,
                 SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.ANCIENT_WOOD.get(), SpawnPlacements.Type.ON_GROUND,
-                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, com.netheritesupremo.mob.AncientWood::checkSpawnRules,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, com.netheritesupremo.mob.AncientWood::checkBossSpawn,
                 SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.FUNGUS_STALKER.get(), SpawnPlacements.Type.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, com.netheritesupremo.mob.WoodStalker::checkSpawnRules,

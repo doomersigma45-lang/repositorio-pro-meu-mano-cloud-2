@@ -35,7 +35,7 @@ public class AncientWoodRenderer extends MobRenderer<AncientWood, WoodStalkerMod
     }
 
     @Override
-    protected void scale(WoodStalker e, PoseStack poseStack, float partialTick) {
+    protected void scale(AncientWood e, PoseStack poseStack, float partialTick) {
         poseStack.scale(3.6F, e.isCrouched() ? 2.0F : 3.6F, 3.6F);
     }
 }

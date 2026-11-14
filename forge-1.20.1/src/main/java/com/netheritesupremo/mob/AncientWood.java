@@ -221,7 +221,7 @@ public class AncientWood extends WoodStalker {
     }
 
     /** Raro e unico: so um por regiao; nunca durante a geracao do mundo. */
-    public static boolean checkSpawnRules(EntityType<AncientWood> type, ServerLevelAccessor level, MobSpawnType reason,
+    public static boolean checkBossSpawn(EntityType<AncientWood> type, ServerLevelAccessor level, MobSpawnType reason,
             BlockPos pos, RandomSource random) {
         if (reason == MobSpawnType.SPAWN_EGG || reason == MobSpawnType.COMMAND || reason == MobSpawnType.SPAWNER) {
             return true;

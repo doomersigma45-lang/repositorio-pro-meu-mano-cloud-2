@@ -35,7 +35,7 @@ public class FungusStalkerRenderer extends MobRenderer<FungusStalker, WoodStalke
     }
 
     @Override
-    protected void scale(WoodStalker e, PoseStack poseStack, float partialTick) {
+    protected void scale(FungusStalker e, PoseStack poseStack, float partialTick) {
         poseStack.scale(1.55F, e.isCrouched() ? 0.9F : 1.55F, 1.55F);
     }
 }
