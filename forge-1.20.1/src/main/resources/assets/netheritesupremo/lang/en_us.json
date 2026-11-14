@@ -244,5 +244,7 @@
   "entity.netheritesupremo.the_abyss": "The Abyss",
   "item.netheritesupremo.the_abyss_spawn_egg": "The Abyss Spawn Egg",
   "entity.netheritesupremo.abyss_spawn": "Abyss Spawn",
-  "item.netheritesupremo.abyss_spawn_spawn_egg": "Abyss Spawn Spawn Egg"
+  "item.netheritesupremo.abyss_spawn_spawn_egg": "Abyss Spawn Spawn Egg",
+  "entity.netheritesupremo.wood_stalker": "Wood Stalker",
+  "item.netheritesupremo.wood_stalker_spawn_egg": "Wood Stalker Spawn Egg"
 }

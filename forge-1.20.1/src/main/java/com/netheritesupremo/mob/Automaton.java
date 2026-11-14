@@ -75,7 +75,7 @@ public class Automaton extends TamableAnimal {
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
         this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Mob.class, 5, false, false,
-                e -> this.isTame() && e instanceof Enemy && !(e instanceof Automaton)));
+                e -> this.isTame() && e instanceof Enemy && !(e instanceof Automaton) && !(e instanceof TamableAnimal t && t.isTame())));
     }
 
     @Override

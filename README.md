@@ -413,3 +413,12 @@ Os mods **Claude Content** e **Vila de Ferro** agora fazem parte deste mod (mesm
   - **3 fases** pela vida: >66% normal; ≤66% mais rápido, tentáculos mais frequentes, invoca mais e dá um **pulso** que puxa todos e escurece a visão; ≤33% ainda mais rápido e o pulso também causa dano. O núcleo pulsa mais rápido a cada fase.
   - Drops: estrelas do Nether, netherite, cacos de eco, ametista, maçã dourada encantada.
 - Ovos de spawn: Guardião Ancestral, O Abismo (só funciona na Terra Negra) e Cria do Abismo.
+
+### Wood Stalker (1.63.0)
+**Não testado no jogo.** Textura/modelo feitos por mim (IA). Drops (gravetos, tronco de carvalho escuro, 15% diamante) e detalhes não especificados foram escolha minha.
+- **Wood Stalker** (magro, 3 blocos, madeira escura com galhos e olhos verde-pálido brilhantes): 125 HP, 25 de dano. Hostil; spawna em florestas e taigas e ataca qualquer mob e jogador.
+- **Agarrar e sugar**: ao acertar, 1/3 de chance de agarrar a vítima por até 5 s (recarga 8 s): ela fica presa à frente dele e leva 12 de dano por segundo, que ele recupera como vida.
+- **Quebra blocos** (dureza até 5, respeita a regra mobGriefing) quando trava no caminho até o alvo, **escala paredes** e **se abaixa** sob tetos baixos (altura 1,6; automático, mas o pathfinding dele ainda trata túneis de 2 blocos como difíceis).
+- **Medo de fogo e água**: foge de fogo, lava, fogueira e água num raio de 3 blocos (e solta quem agarrou).
+- **Regenera** perto de árvores, folhas, tábuas, mudas, flores e plantações (até 6 HP por segundo com 6+ blocos num raio de 4).
+- **Domesticável com diamante** (1/3 de chance). Domesticado segue e protege o dono, ataca só monstros; clique vazio senta/levanta; diamante cura 30.

@@ -899,6 +899,11 @@ def main():
             gcmd("execute if entity @e[type=netheritesupremo:the_abyss] run say abismo existe (esperado: so na terra negra)")
             gcmd("locate structure netheritesupremo:ancestral_temple")
             gcmd("execute in netheritesupremo:black_realm run locate structure netheritesupremo:abyss_sanctum")
+            r.cmd("summon netheritesupremo:wood_stalker 935 60 870")
+            time.sleep(1)
+            for at in ("max_health", "attack_damage"):
+                gcmd(f"attribute @e[type=netheritesupremo:wood_stalker,limit=1] minecraft:generic.{at} get")
+            gcmd("data get entity @e[type=netheritesupremo:wood_stalker,limit=1] Tame")
             annotate("notice", "anomalocaris e guardiao", g4)
             # escavador, automato, tartaruga ancestral
             t5 = []

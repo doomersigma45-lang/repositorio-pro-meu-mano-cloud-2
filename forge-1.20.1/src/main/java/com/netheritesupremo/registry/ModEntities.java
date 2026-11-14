@@ -369,6 +369,13 @@ public final class ModEntities {
                     .clientTrackingRange(8)
                     .build("abyss_spawn"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.mob.WoodStalker>> WOOD_STALKER = ENTITIES.register(
+            "wood_stalker",
+            () -> EntityType.Builder.of(com.netheritesupremo.mob.WoodStalker::new, MobCategory.MONSTER)
+                    .sized(0.8F, 3.0F)
+                    .clientTrackingRange(10)
+                    .build("wood_stalker"));
+
     public static final RegistryObject<EntityType<com.netheritesupremo.mob.StoneGuardian>> STONE_GUARDIAN = ENTITIES.register(
             "stone_guardian",
             () -> EntityType.Builder.of(com.netheritesupremo.mob.StoneGuardian::new, MobCategory.MONSTER)
