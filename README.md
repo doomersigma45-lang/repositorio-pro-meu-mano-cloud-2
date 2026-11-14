@@ -423,3 +423,6 @@ Os mods **Claude Content** e **Vila de Ferro** agora fazem parte deste mod (mesm
 - **Regenera** perto de árvores, folhas, tábuas, mudas, flores e plantações (até 6 HP por segundo com 6+ blocos num raio de 4).
 - **Resistências**: recebe 25% do dano de flechas/projéteis, 25% do dano de queda e **não morre afogado** (mesmo assim ele tem medo de água e foge dela).
 - **Domesticável com diamante** (1/3 de chance). Domesticado segue e protege o dono, ataca só monstros; clique vazio senta/levanta; diamante cura 30.
+
+### Correção de crash ao criar mundo (1.63.1)
+A 1.63.0 e a 1.62.x com o Wood Stalker travavam ao criar/entrar no mundo: o arquivo de spawn do Wood Stalker tinha um erro (lista de biomas misturando tags, que o Minecraft não aceita). Agora usa uma lista normal de biomas de floresta/taiga. **Não testado no jogo** (o servidor de teste do CI é quem verifica que o mundo carrega).

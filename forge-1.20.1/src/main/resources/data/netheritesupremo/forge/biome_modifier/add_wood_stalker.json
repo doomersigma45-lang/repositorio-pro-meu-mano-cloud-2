@@ -1,1 +1,1 @@
-{"type":"forge:add_spawns","biomes":["#minecraft:is_forest","#minecraft:is_taiga"],"spawners":{"type":"netheritesupremo:wood_stalker","weight":10,"minCount":1,"maxCount":1}}
+{"type":"forge:add_spawns","biomes":["minecraft:forest","minecraft:birch_forest","minecraft:old_growth_birch_forest","minecraft:flower_forest","minecraft:dark_forest","minecraft:taiga","minecraft:old_growth_pine_taiga","minecraft:old_growth_spruce_taiga","minecraft:snowy_taiga","minecraft:grove"],"spawners":{"type":"netheritesupremo:wood_stalker","weight":10,"minCount":1,"maxCount":1}}
