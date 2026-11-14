@@ -418,6 +418,28 @@ public class WoodStalker extends TamableAnimal implements Enemy {
         }
     }
 
+    // ------------------------------------------------------------------ resistencias
+    @Override
+    public boolean hurt(DamageSource source, float amount) {
+        if (source.is(net.minecraft.world.damagesource.DamageTypes.DROWN)) {
+            return false;
+        }
+        if (source.is(net.minecraft.tags.DamageTypeTags.IS_PROJECTILE)) {
+            amount *= 0.25F;
+        }
+        return super.hurt(source, amount);
+    }
+
+    @Override
+    public boolean causeFallDamage(float distance, float multiplier, DamageSource source) {
+        return super.causeFallDamage(distance, multiplier * 0.25F, source);
+    }
+
+    @Override
+    public boolean canBreatheUnderwater() {
+        return true;
+    }
+
     // ------------------------------------------------------------------ misc
     @Override
     public boolean isFood(ItemStack stack) {

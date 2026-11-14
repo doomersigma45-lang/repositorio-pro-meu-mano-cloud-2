@@ -421,4 +421,5 @@ Os mods **Claude Content** e **Vila de Ferro** agora fazem parte deste mod (mesm
 - **Quebra blocos** (dureza até 5, respeita a regra mobGriefing) quando trava no caminho até o alvo, **escala paredes** e **se abaixa** sob tetos baixos (altura 1,6; automático, mas o pathfinding dele ainda trata túneis de 2 blocos como difíceis).
 - **Medo de fogo e água**: foge de fogo, lava, fogueira e água num raio de 3 blocos (e solta quem agarrou).
 - **Regenera** perto de árvores, folhas, tábuas, mudas, flores e plantações (até 6 HP por segundo com 6+ blocos num raio de 4).
+- **Resistências**: recebe 25% do dano de flechas/projéteis, 25% do dano de queda e **não morre afogado** (mesmo assim ele tem medo de água e foge dela).
 - **Domesticável com diamante** (1/3 de chance). Domesticado segue e protege o dono, ataca só monstros; clique vazio senta/levanta; diamante cura 30.
