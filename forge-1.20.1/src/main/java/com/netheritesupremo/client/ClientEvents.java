@@ -42,7 +42,7 @@ public final class ClientEvents {
         event.registerEntityRenderer(ModEntities.HEADLESS_PUP.get(),
                 ctx -> new HorsemanRenderer<com.netheritesupremo.mob.HeadlessPup>(ctx, 0.6F));
         event.<net.minecraft.world.entity.animal.horse.AbstractHorse>registerEntityRenderer(ModEntities.HORSEMAN_STEED.get(),
-                ctx -> new net.minecraft.client.renderer.entity.UndeadHorseRenderer(ctx, net.minecraft.client.model.geom.ModelLayers.SKELETON_HORSE));
+                SteedRenderer::new);
         event.registerEntityRenderer(ModEntities.PUMPKIN_BOMB.get(),
                 ctx -> new net.minecraft.client.renderer.entity.ThrownItemRenderer<>(ctx, 1.5F, true));
         event.registerEntityRenderer(ModEntities.HUNTER.get(), ctx -> new PlayerRobotRenderer<com.netheritesupremo.mob.Hunter>(ctx,

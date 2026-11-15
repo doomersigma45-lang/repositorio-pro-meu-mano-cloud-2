@@ -454,3 +454,6 @@ A 1.63.0 e a 1.62.x com o Wood Stalker travavam ao criar/entrar no mundo: o arqu
   - Spawn natural raríssimo (só à noite, florestas escuras, pântanos e taigas, um por região); o ovo cria em qualquer lugar (já vem montado).
   - **Drops**: a **Espada do Cavaleiro** e um **Filhote do Cavaleiro**, que nasce já **domesticado por quem o matou**.
 - **Filhote do Cavaleiro**: 470 HP, 35 de dano, versão pequena (0,6x) com abóbora na cabeça. Age como lobo domesticado: segue o dono, senta/levanta com clique vazio, ataca quem ataca o dono e os monstros. **Troca de armadura sozinho** ao encontrar no chão uma melhor que a atual (ou se o dono der uma armadura na mão); a armadura antiga cai no chão. Osso cura 40 (e doma um filhote selvagem, 1/3 de chance).
+
+### Correção de crash ao spawnar o Cavaleiro sem Cabeça (1.66.1)
+O cavalo esqueleto dele usava o renderer vanilla, que só tem textura para os cavalos do jogo e dava erro com o cavalo do mod ao desenhar. Agora usa um renderer próprio com a textura de esqueleto. **Não testado no jogo.** Se ainda travar, mande o arquivo de crash (pasta `crash-reports`).
