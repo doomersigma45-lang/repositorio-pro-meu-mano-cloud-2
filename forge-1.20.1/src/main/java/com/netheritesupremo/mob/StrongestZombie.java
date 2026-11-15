@@ -113,14 +113,19 @@ public class StrongestZombie extends Zombie {
         }
     }
 
-    private void summonMinions(LivingEntity target) {
+    /** Tipo de zumbi que ele invoca (a versao parasita troca por zumbis infectados). */
+    protected EntityType<? extends Zombie> minionType() {
+        return EntityType.ZOMBIE;
+    }
+
+    protected void summonMinions(LivingEntity target) {
         if (!(this.level() instanceof ServerLevel level)) {
             return;
         }
         int alive = level.getEntitiesOfClass(Zombie.class, this.getBoundingBox().inflate(28.0D),
                 z -> z.getTags().contains(MINION_TAG)).size();
         for (int i = 0; i < 4 && alive < 8; i++, alive++) {
-            Zombie z = EntityType.ZOMBIE.create(level);
+            Zombie z = this.minionType().create(level);
             if (z == null) {
                 return;
             }

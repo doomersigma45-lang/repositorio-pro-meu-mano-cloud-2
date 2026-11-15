@@ -24,6 +24,10 @@ import net.minecraft.client.renderer.entity.PigRenderer;
 import net.minecraft.client.renderer.entity.SkeletonRenderer;
 import net.minecraft.client.renderer.entity.SpiderRenderer;
 import net.minecraft.client.renderer.entity.ZombieRenderer;
+import net.minecraft.client.renderer.entity.SheepRenderer;
+import net.minecraft.client.renderer.entity.WolfRenderer;
+import net.minecraft.world.entity.animal.Sheep;
+import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.client.renderer.entity.IronGolemRenderer;
 import net.minecraft.client.renderer.entity.WitherBossRenderer;
 import net.minecraft.world.entity.animal.IronGolem;
@@ -216,6 +220,46 @@ public final class ParasiteRenderers {
             return r;
         });
         event.registerEntityRenderer(ModEntities.PARASITE_WARDEN.get(), ParasiteWardenRenderer::new);
+        event.<Sheep>registerEntityRenderer(ModEntities.PARASITE_SHEEP.get(), ctx -> new SheepRenderer(ctx) {
+            @Override
+            public ResourceLocation getTextureLocation(Sheep entity) {
+                return ParasiteTextures.SHEEP;
+            }
+
+            @Override
+            protected void scale(Sheep entity, PoseStack pose, float partialTick) {
+                super.scale(entity, pose, partialTick);
+                deform(pose, phase(entity));
+            }
+        });
+        event.<Wolf>registerEntityRenderer(ModEntities.PARASITE_WOLF.get(), ctx -> new WolfRenderer(ctx) {
+            @Override
+            public ResourceLocation getTextureLocation(Wolf entity) {
+                return ParasiteTextures.WOLF;
+            }
+
+            @Override
+            protected void scale(Wolf entity, PoseStack pose, float partialTick) {
+                super.scale(entity, pose, partialTick);
+                deform(pose, phase(entity));
+            }
+        });
+        event.<Zombie>registerEntityRenderer(ModEntities.PARASITE_STRONGEST_ZOMBIE.get(), ctx -> {
+            ZombieRenderer r = new ZombieRenderer(ctx) {
+                @Override
+                public ResourceLocation getTextureLocation(Zombie entity) {
+                    return ParasiteTextures.STRONG_ZOMBIE;
+                }
+
+                @Override
+                protected void scale(Zombie entity, PoseStack pose, float partialTick) {
+                    pose.scale(1.5F, 1.5F, 1.5F);
+                    deform(pose, phase(entity));
+                }
+            };
+            spikes(r, ctx, ParasiteSpikesModel.HUMANOID);
+            return r;
+        });
         event.<WitherBoss>registerEntityRenderer(ModEntities.PARASITE_WITHER.get(), ctx -> new WitherBossRenderer(ctx) {
             @Override
             public ResourceLocation getTextureLocation(WitherBoss entity) {

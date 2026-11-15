@@ -505,6 +505,24 @@ public final class ModEntities {
                     .sized(1.75F, 3.4F).fireImmune().clientTrackingRange(10)
                     .build("parasite_netherite_golem"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasiteSheep>> PARASITE_SHEEP = ENTITIES.register(
+            "parasite_sheep",
+            () -> EntityType.Builder.of(com.netheritesupremo.parasite.ParasiteSheep::new, MobCategory.MONSTER)
+                    .sized(0.9F, 1.3F).clientTrackingRange(8)
+                    .build("parasite_sheep"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasiteWolf>> PARASITE_WOLF = ENTITIES.register(
+            "parasite_wolf",
+            () -> EntityType.Builder.of(com.netheritesupremo.parasite.ParasiteWolf::new, MobCategory.MONSTER)
+                    .sized(0.6F, 0.85F).clientTrackingRange(8)
+                    .build("parasite_wolf"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasiteStrongestZombie>> PARASITE_STRONGEST_ZOMBIE = ENTITIES.register(
+            "parasite_strongest_zombie",
+            () -> EntityType.Builder.of(com.netheritesupremo.parasite.ParasiteStrongestZombie::new, MobCategory.MONSTER)
+                    .sized(0.9F, 2.9F).clientTrackingRange(16)
+                    .build("parasite_strongest_zombie"));
+
     public static final RegistryObject<EntityType<com.netheritesupremo.mob.HeadlessHorseman>> HEADLESS_HORSEMAN = ENTITIES.register(
             "headless_horseman",
             () -> EntityType.Builder.of(com.netheritesupremo.mob.HeadlessHorseman::new, MobCategory.MONSTER)

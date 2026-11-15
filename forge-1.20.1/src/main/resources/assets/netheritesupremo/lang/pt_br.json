@@ -297,5 +297,11 @@
   "entity.netheritesupremo.parasite_iron_golem": "Golem de Ferro Parasita",
   "item.netheritesupremo.parasite_iron_golem_spawn_egg": "Ovo de Geração de Golem de Ferro Parasita",
   "entity.netheritesupremo.parasite_netherite_golem": "Golem de Netherite Parasita",
-  "item.netheritesupremo.parasite_netherite_golem_spawn_egg": "Ovo de Geração de Golem de Netherite Parasita"
+  "item.netheritesupremo.parasite_netherite_golem_spawn_egg": "Ovo de Geração de Golem de Netherite Parasita",
+  "entity.netheritesupremo.parasite_sheep": "Ovelha Parasita",
+  "item.netheritesupremo.parasite_sheep_spawn_egg": "Ovo de Geração de Ovelha Parasita",
+  "entity.netheritesupremo.parasite_wolf": "Lobo Parasita",
+  "item.netheritesupremo.parasite_wolf_spawn_egg": "Ovo de Geração de Lobo Parasita",
+  "entity.netheritesupremo.parasite_strongest_zombie": "Zumbi Forte Parasita",
+  "item.netheritesupremo.parasite_strongest_zombie_spawn_egg": "Ovo de Geração de Zumbi Forte Parasita"
 }

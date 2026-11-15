@@ -297,5 +297,11 @@
   "entity.netheritesupremo.parasite_iron_golem": "Parasite Iron Golem",
   "item.netheritesupremo.parasite_iron_golem_spawn_egg": "Parasite Iron Golem Spawn Egg",
   "entity.netheritesupremo.parasite_netherite_golem": "Parasite Netherite Golem",
-  "item.netheritesupremo.parasite_netherite_golem_spawn_egg": "Parasite Netherite Golem Spawn Egg"
+  "item.netheritesupremo.parasite_netherite_golem_spawn_egg": "Parasite Netherite Golem Spawn Egg",
+  "entity.netheritesupremo.parasite_sheep": "Parasite Sheep",
+  "item.netheritesupremo.parasite_sheep_spawn_egg": "Parasite Sheep Spawn Egg",
+  "entity.netheritesupremo.parasite_wolf": "Parasite Wolf",
+  "item.netheritesupremo.parasite_wolf_spawn_egg": "Parasite Wolf Spawn Egg",
+  "entity.netheritesupremo.parasite_strongest_zombie": "Parasite Strongest Zombie",
+  "item.netheritesupremo.parasite_strongest_zombie_spawn_egg": "Parasite Strongest Zombie Spawn Egg"
 }

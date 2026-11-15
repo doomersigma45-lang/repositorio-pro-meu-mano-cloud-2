@@ -514,3 +514,11 @@ O cavalo esqueleto dele usava o renderer vanilla, que só tem textura para os ca
 - **Sem fogo amigo**: parasita não machuca parasita (valia só por não se atacarem; agora é garantido, inclusive para as caveiras do Wither e explosões).
 - Ovos de geração e drops (Wither: caveira de esqueleto Wither, Warden: catalisador de sculk, golens: ferro/restos de netherite, todos: slime).
 
+
+### Ovelha, Lobo e Zumbi Forte infectados + correção do Warden (1.71.0)
+**Não testado no jogo.** Visual e números feitos por mim (IA); texturas geradas na hora a partir das do jogo (vermelho/carne/spikes), sem modelos novos.
+- **Warden Parasita corrigido**: não se enterra nem some mais (persistente, sem "dig cooldown") e **agora ataca o Warden normal** (o comum ignorava o próprio tipo); continua ignorando parasitas.
+- **Ovelha Parasita**: 30 HP, 5 de dano, sem lã, hostil. **Lobo Parasita**: 30 HP, 7 de dano, rápido, não domesticável. Ambos infectam como os outros e seguem as fases.
+- **Zumbi Forte Parasita (quase um chefe)**: 1.500 HP, 45 de dano, armadura 12, resistência total a knockback, barra de chefe. Mantém os pulos/arremesso do Zumbi Forte, mas **invoca Zumbis Parasitas** em vez de zumbis comuns. **Com metade da vida**: +60% de dano, regeneração IV contínua, barra roxa e rugido.
+- O Zumbi Forte comum que morrer infectado vira a versão parasita. Ovos de geração e drops incluídos.
+

@@ -96,6 +96,9 @@ MOBS = {
     "wither": ("Parasite Wither", "Wither Parasita", "Parasite Wither Spawn Egg", "Ovo de Geração de Wither Parasita"),
     "iron_golem": ("Parasite Iron Golem", "Golem de Ferro Parasita", "Parasite Iron Golem Spawn Egg", "Ovo de Geração de Golem de Ferro Parasita"),
     "netherite_golem": ("Parasite Netherite Golem", "Golem de Netherite Parasita", "Parasite Netherite Golem Spawn Egg", "Ovo de Geração de Golem de Netherite Parasita"),
+    "sheep": ("Parasite Sheep", "Ovelha Parasita", "Parasite Sheep Spawn Egg", "Ovo de Geração de Ovelha Parasita"),
+    "wolf": ("Parasite Wolf", "Lobo Parasita", "Parasite Wolf Spawn Egg", "Ovo de Geração de Lobo Parasita"),
+    "strongest_zombie": ("Parasite Strongest Zombie", "Zumbi Forte Parasita", "Parasite Strongest Zombie Spawn Egg", "Ovo de Geração de Zumbi Forte Parasita"),
     "enderman": ("Parasite Enderman", "Enderman Parasita", "Parasite Enderman Spawn Egg", "Ovo de Geração de Enderman Parasita"),
 }
 DROPS = {
@@ -113,6 +116,9 @@ DROPS = {
     "wither": [("minecraft:wither_skeleton_skull", 0, 1), ("minecraft:slime_ball", 3, 6)],
     "iron_golem": [("minecraft:iron_ingot", 3, 6), ("minecraft:rotten_flesh", 1, 3), ("minecraft:slime_ball", 1, 3)],
     "netherite_golem": [("minecraft:netherite_scrap", 1, 3), ("minecraft:iron_ingot", 4, 8), ("minecraft:slime_ball", 2, 4)],
+    "sheep": [("minecraft:rotten_flesh", 1, 3), ("minecraft:mutton", 0, 2)],
+    "wolf": [("minecraft:rotten_flesh", 1, 3), ("minecraft:bone", 0, 2), ("minecraft:slime_ball", 0, 2)],
+    "strongest_zombie": [("minecraft:rotten_flesh", 4, 8), ("minecraft:slime_ball", 5, 10), ("minecraft:iron_ingot", 2, 6)],
     "enderman": [("minecraft:ender_pearl", 0, 1), ("minecraft:rotten_flesh", 1, 3), ("minecraft:slime_ball", 1, 3)],
     "player": [("minecraft:rotten_flesh", 2, 4), ("minecraft:bone", 1, 3), ("minecraft:slime_ball", 1, 3)],
 }

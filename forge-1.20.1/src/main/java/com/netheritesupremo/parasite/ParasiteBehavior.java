@@ -121,6 +121,15 @@ public final class ParasiteBehavior {
         if (t == EntityType.SPIDER) {
             return ModEntities.PARASITE_SPIDER.get();
         }
+        if (t == EntityType.SHEEP) {
+            return ModEntities.PARASITE_SHEEP.get();
+        }
+        if (t == EntityType.WOLF) {
+            return ModEntities.PARASITE_WOLF.get();
+        }
+        if (t == ModEntities.STRONGEST_ZOMBIE.get()) {
+            return ModEntities.PARASITE_STRONGEST_ZOMBIE.get();
+        }
         if (t == EntityType.WARDEN) {
             return ModEntities.PARASITE_WARDEN.get();
         }

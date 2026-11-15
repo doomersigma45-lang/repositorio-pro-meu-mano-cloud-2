@@ -25,6 +25,9 @@ public class ParasiteTextures implements ResourceManagerReloadListener {
     public static final ResourceLocation WARDEN = gen("parasite_warden_generated");
     public static final ResourceLocation WARDEN_GLOW = gen("parasite_warden_glow_generated");
     public static final ResourceLocation WITHER = gen("parasite_wither_generated");
+    public static final ResourceLocation SHEEP = gen("parasite_sheep_generated");
+    public static final ResourceLocation WOLF = gen("parasite_wolf_generated");
+    public static final ResourceLocation STRONG_ZOMBIE = gen("parasite_strongest_zombie_generated");
 
     private static ResourceLocation gen(String name) {
         return new ResourceLocation(NetheriteSupremo.MODID, "textures/entity/" + name);
@@ -37,6 +40,9 @@ public class ParasiteTextures implements ResourceManagerReloadListener {
         build(manager, new ResourceLocation("textures/entity/warden/warden.png"), WARDEN, 2);
         build(manager, new ResourceLocation("textures/entity/warden/warden_bioluminescent_layer.png"), WARDEN_GLOW, 3);
         build(manager, new ResourceLocation("textures/entity/wither/wither.png"), WITHER, 4);
+        build(manager, new ResourceLocation("textures/entity/sheep/sheep.png"), SHEEP, 0);
+        build(manager, new ResourceLocation("textures/entity/wolf/wolf.png"), WOLF, 0);
+        build(manager, new ResourceLocation(NetheriteSupremo.MODID, "textures/entity/strongest_zombie.png"), STRONG_ZOMBIE, 0);
     }
 
     private static void build(ResourceManager manager, ResourceLocation source, ResourceLocation target, int style) {

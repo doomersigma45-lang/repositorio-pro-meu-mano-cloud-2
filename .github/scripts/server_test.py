@@ -1001,6 +1001,21 @@ def main():
             gcmd("damage @e[type=minecraft:iron_golem,tag=parasite_test7,limit=1] 1000 minecraft:generic")
             time.sleep(1)
             gcmd("execute if entity @e[type=netheritesupremo:parasite_iron_golem] run say golem virou parasita")
+            # 1.71.0: ovelha, lobo e zumbi forte infectados + warden sem despawn
+            for i, ty in enumerate(("sheep", "wolf", "strongest_zombie", "warden")):
+                r.cmd(f"summon netheritesupremo:parasite_{ty} {1140 + i * 6} 60 870 {{NoAI:1b}}")
+            time.sleep(2)
+            for ty in ("sheep", "wolf", "strongest_zombie"):
+                gcmd(f"attribute @e[type=netheritesupremo:parasite_{ty},limit=1] minecraft:generic.max_health get")
+            r.cmd("summon netheritesupremo:parasite_warden 1180 60 870")
+            r.cmd("summon minecraft:warden 1186 60 870")
+            time.sleep(8)
+            gcmd("execute if entity @e[type=netheritesupremo:parasite_warden,x=1180,y=60,z=870,distance=..80] run say warden parasita ainda existe")
+            r.cmd("summon netheritesupremo:strongest_zombie 1200 60 870 {NoAI:1b,Tags:[\"parasite_test8\"]}")
+            time.sleep(1)
+            gcmd("effect give @e[type=netheritesupremo:strongest_zombie,tag=parasite_test8,limit=1] netheritesupremo:infestation 60 0")
+            gcmd("damage @e[type=netheritesupremo:strongest_zombie,tag=parasite_test8,limit=1] 1000 minecraft:generic")
+            time.sleep(1)
             annotate("notice", "anomalocaris e guardiao", g4)
             # escavador, automato, tartaruga ancestral
             t5 = []

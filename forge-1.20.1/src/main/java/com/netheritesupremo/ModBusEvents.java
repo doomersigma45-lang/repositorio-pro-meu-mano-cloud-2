@@ -64,6 +64,9 @@ public final class ModBusEvents {
         event.put(ModEntities.PARASITE_WITHER.get(), com.netheritesupremo.parasite.ParasiteWither.createAttributes().build());
         event.put(ModEntities.PARASITE_IRON_GOLEM.get(), com.netheritesupremo.parasite.ParasiteIronGolem.createAttributes().build());
         event.put(ModEntities.PARASITE_NETHERITE_GOLEM.get(), com.netheritesupremo.parasite.ParasiteNetheriteGolem.createAttributes().build());
+        event.put(ModEntities.PARASITE_SHEEP.get(), com.netheritesupremo.parasite.ParasiteSheep.createAttributes().build());
+        event.put(ModEntities.PARASITE_WOLF.get(), com.netheritesupremo.parasite.ParasiteWolf.createAttributes().build());
+        event.put(ModEntities.PARASITE_STRONGEST_ZOMBIE.get(), com.netheritesupremo.parasite.ParasiteStrongestZombie.createAttributes().build());
         event.put(ModEntities.HEADLESS_HORSEMAN.get(), com.netheritesupremo.mob.HeadlessHorseman.createAttributes().build());
         event.put(ModEntities.HEADLESS_PUP.get(), com.netheritesupremo.mob.HeadlessPup.createAttributes().build());
         event.put(ModEntities.HORSEMAN_STEED.get(), com.netheritesupremo.mob.HorsemanSteed.createSteedAttributes().build());
