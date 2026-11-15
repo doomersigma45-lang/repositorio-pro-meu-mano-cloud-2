@@ -953,6 +953,26 @@ def main():
             gcmd("execute if entity @e[type=minecraft:villager,tag=parasite_test2,nbt={ActiveEffects:[{Id:-1}]}] run say x")
             gcmd("data get entity @e[type=minecraft:villager,tag=parasite_test2,limit=1] ActiveEffects")
             gcmd("kill @e[type=netheritesupremo:parasite_worm]")
+            # liquido vermelho infecta mob que encosta; porco infestado que morre vira porco parasita
+            gcmd("setblock 1030 60 870 netheritesupremo:parasite_blood")
+            r.cmd("summon minecraft:pig 1030 60 870 {Tags:[\"parasite_test3\"]}")
+            time.sleep(2)
+            gcmd("data get entity @e[type=minecraft:pig,tag=parasite_test3,limit=1] ActiveEffects")
+            gcmd("damage @e[type=minecraft:pig,tag=parasite_test3,limit=1] 100 minecraft:generic")
+            time.sleep(1)
+            gcmd("execute if entity @e[type=netheritesupremo:parasite_pig] run say porco virou parasita")
+            # fases: passa 12 dias e o zumbi parasita deve estar na fase 3 (vida 40 -> 100)
+            r.cmd("summon netheritesupremo:parasite_zombie 1040 60 870 {NoAI:1b,Tags:[\"parasite_test4\"]}")
+            time.sleep(1)
+            gcmd("time add 12d")
+            time.sleep(2)
+            gcmd("attribute @e[type=netheritesupremo:parasite_zombie,tag=parasite_test4,limit=1] minecraft:generic.max_health get")
+            # jogador parasita: equipamento da fase 3 (espada de obsidiana) e fase atual
+            r.cmd("summon netheritesupremo:parasite_player 1050 60 870 {NoAI:1b,Tags:[\"parasite_test5\"]}")
+            time.sleep(2)
+            gcmd("data get entity @e[type=netheritesupremo:parasite_player,tag=parasite_test5,limit=1] HandItems[0].id")
+            gcmd("data get entity @e[type=netheritesupremo:parasite_player,tag=parasite_test5,limit=1] ArmorItems[2].id")
+            gcmd("time set 1000")
             annotate("notice", "anomalocaris e guardiao", g4)
             # escavador, automato, tartaruga ancestral
             t5 = []

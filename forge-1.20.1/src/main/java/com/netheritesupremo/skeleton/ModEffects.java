@@ -16,6 +16,9 @@ public final class ModEffects {
     public static final RegistryObject<MobEffect> PARASITIZED = EFFECTS.register("parasitized",
             com.netheritesupremo.parasite.ParasitizedEffect::new);
 
+    public static final RegistryObject<MobEffect> PARASITE_PHASE = EFFECTS.register("parasite_phase",
+            com.netheritesupremo.parasite.ParasitePhaseEffect::new);
+
     private ModEffects() {
     }
 }

@@ -1,0 +1,1 @@
+{"type": "minecraft:spring_feature", "config": {"state": {"Name": "netheritesupremo:parasite_blood", "Properties": {"falling": "true"}}, "requires_block_below": true, "rock_count": 4, "hole_count": 1, "valid_blocks": ["minecraft:stone", "minecraft:granite", "minecraft:diorite", "minecraft:andesite", "minecraft:deepslate", "minecraft:tuff", "minecraft:calcite"]}}

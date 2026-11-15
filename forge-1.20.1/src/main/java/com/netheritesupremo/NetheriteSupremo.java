@@ -28,6 +28,7 @@ public class NetheriteSupremo {
         com.netheritesupremo.blackrealm.ModFluids.register(modBus);
         com.netheritesupremo.blackrealm.ModSounds.SOUNDS.register(modBus);
         com.netheritesupremo.skeleton.ModEffects.EFFECTS.register(modBus);
+        com.netheritesupremo.parasite.ParasiteBlood.register(modBus);
         com.netheritesupremo.viladeferro.VilaDeFerro.register(modBus);
         com.netheritesupremo.network.ModNetwork.register();
         modBus.addListener(this::commonSetup);
@@ -165,6 +166,7 @@ public class NetheriteSupremo {
             event.accept(ModItems.SHURIKEN);
             event.accept(ModItems.KUNAI);
         } else if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
+            event.accept(com.netheritesupremo.parasite.ParasiteBlood.BUCKET);
             event.accept(ModItems.OBSIDIAN_PICKAXE);
             event.accept(ModItems.OBSIDIAN_SHOVEL);
             event.accept(ModItems.OBSIDIAN_HOE);

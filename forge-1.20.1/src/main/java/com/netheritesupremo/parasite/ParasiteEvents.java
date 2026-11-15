@@ -71,10 +71,20 @@ public final class ParasiteEvents {
     /** Mobs Parasitados ganham o objetivo de cacar e morder qualquer nao parasita. */
     @SubscribeEvent
     public static void onTick(LivingEvent.LivingTickEvent event) {
-        if (!(event.getEntity() instanceof Mob mob) || mob.level().isClientSide || mob instanceof ParasiteMob) {
+        if (!(event.getEntity() instanceof Mob mob) || mob.level().isClientSide) {
             return;
         }
-        if (mob.tickCount % 20 != 0 || !mob.hasEffect(ModEffects.PARASITIZED.get())) {
+        if (mob.tickCount % 10 == 0 && !(mob instanceof ParasiteMob) && mob.isInFluidType(ParasiteBlood.FLUID_TYPE.get())) {
+            ParasiteBehavior.infect(mob);
+        }
+        if (mob.tickCount % 20 != 0) {
+            return;
+        }
+        if (mob instanceof ParasiteMob) {
+            ParasiteBehavior.updatePhase(mob);
+            return;
+        }
+        if (!mob.hasEffect(ModEffects.PARASITIZED.get())) {
             return;
         }
         boolean chase = false;

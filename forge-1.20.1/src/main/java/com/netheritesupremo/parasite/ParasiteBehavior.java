@@ -35,7 +35,47 @@ public final class ParasiteBehavior {
             && !(e instanceof ArmorStand)
             && !(e instanceof Player p && (p.isCreative() || p.isSpectator()));
 
+    public static final String SINCE_TAG = "ParasiteSince";
+    public static final String APPLIED_TAG = "ParasitePhaseApplied";
+    public static final long DAY = 24000L;
+
     private ParasiteBehavior() {
+    }
+
+    /** Marca o dia (tempo do mundo) em que o mob foi infectado, se ainda nao tiver marca. */
+    public static void markInfected(Mob mob) {
+        if (!mob.getPersistentData().contains(SINCE_TAG)) {
+            mob.getPersistentData().putLong(SINCE_TAG, mob.level().getDayTime());
+        }
+    }
+
+    /** Fase da infeccao: dias 0-5 = 1, 5-11 = 2, 11 em diante = 3. */
+    public static int phaseOf(Mob mob) {
+        markInfected(mob);
+        long since = mob.getPersistentData().getLong(SINCE_TAG);
+        long now = mob.level().getDayTime();
+        if (now < since) {
+            mob.getPersistentData().putLong(SINCE_TAG, now);
+            return 1;
+        }
+        double days = (now - since) / (double) DAY;
+        return days < 5.0D ? 1 : (days < 11.0D ? 2 : 3);
+    }
+
+    /** Aplica (ou remove) o efeito escondido da fase e cura o parasita quando a fase muda. */
+    public static void updatePhase(Mob mob) {
+        int phase = phaseOf(mob);
+        if (phase >= 2) {
+            mob.addEffect(new MobEffectInstance(ModEffects.PARASITE_PHASE.get(), 100, phase - 2, false, false, false));
+        } else {
+            mob.removeEffect(ModEffects.PARASITE_PHASE.get());
+        }
+        if (mob.getPersistentData().getInt(APPLIED_TAG) != phase) {
+            mob.getPersistentData().putInt(APPLIED_TAG, phase);
+            if (phase >= 2) {
+                mob.setHealth(mob.getMaxHealth());
+            }
+        }
     }
 
     public static boolean isParasitic(Entity e) {
@@ -99,6 +139,7 @@ public final class ParasiteBehavior {
                 || mob instanceof EnderDragon || mob instanceof WitherBoss || mob.getMaxHealth() > 400.0F) {
             return false;
         }
+        markInfected(mob);
         boolean hasVersion = versionFor(mob.getType()) != null;
         mob.addEffect(new MobEffectInstance(hasVersion ? ModEffects.INFESTATION.get() : ModEffects.PARASITIZED.get(),
                 hasVersion ? INFESTATION_TICKS : PARASITIZED_TICKS, 0, false, true, true));
@@ -121,6 +162,9 @@ public final class ParasiteBehavior {
         }
         p.moveTo(victim.getX(), victim.getY(), victim.getZ(), victim.getYRot(), victim.getXRot());
         p.setYHeadRot(victim.getYHeadRot());
+        if (victim.getPersistentData().contains(SINCE_TAG)) {
+            p.getPersistentData().putLong(SINCE_TAG, victim.getPersistentData().getLong(SINCE_TAG));
+        }
         if (victim.hasCustomName()) {
             p.setCustomName(victim.getCustomName());
         }
@@ -144,6 +188,7 @@ public final class ParasiteBehavior {
             return;
         }
         p.moveTo(player.getX(), player.getY(), player.getZ(), player.getYRot(), 0.0F);
+        markInfected(p);
         sl.addFreshEntity(p);
         burst(sl, p);
     }

@@ -1,6 +1,10 @@
 package com.netheritesupremo.client;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
 import com.netheritesupremo.NetheriteSupremo;
+import com.netheritesupremo.skeleton.ModEffects;
+import net.minecraft.world.effect.MobEffectInstance;
 import com.netheritesupremo.parasite.ParasitePlayer;
 import com.netheritesupremo.registry.ModEntities;
 import net.minecraft.client.model.EntityModel;
@@ -40,52 +44,105 @@ public final class ParasiteRenderers {
         return new ResourceLocation(NetheriteSupremo.MODID, "textures/entity/" + name + ".png");
     }
 
+    /** Texturas das fases 1, 2 e 3. */
+    private static ResourceLocation[] phases(String name) {
+        return new ResourceLocation[] {tex(name), tex(name + "_2"), tex(name + "_3")};
+    }
+
+    /** Fase lida do efeito escondido que o servidor mantem no parasita (1 se nao houver). */
+    static int phase(LivingEntity entity) {
+        MobEffectInstance e = entity.getEffect(ModEffects.PARASITE_PHASE.get());
+        return e == null ? 1 : Math.min(3, e.getAmplifier() + 2);
+    }
+
+    /** Fase 2: mais magro e torto. Fase 3: ainda mais esticado, torto e curvado. */
+    static void deform(PoseStack pose, int phase) {
+        if (phase == 2) {
+            pose.scale(0.9F, 1.1F, 0.9F);
+            pose.mulPose(Axis.ZP.rotationDegrees(5.0F));
+        } else if (phase >= 3) {
+            pose.scale(0.82F, 1.22F, 0.82F);
+            pose.mulPose(Axis.ZP.rotationDegrees(11.0F));
+            pose.mulPose(Axis.XP.rotationDegrees(7.0F));
+        }
+    }
+
     private static <T extends LivingEntity, M extends EntityModel<T>> void spikes(LivingEntityRenderer<T, M> renderer,
             EntityRendererProvider.Context ctx, ModelLayerLocation layer) {
         renderer.addLayer(new ParasiteSpikesLayer<T, M>(renderer, ctx, layer, SPIKES));
     }
 
     public static void register(EntityRenderersEvent.RegisterRenderers event) {
-        final ResourceLocation worm = tex("parasite_worm");
-        final ResourceLocation cow = tex("parasite_cow");
-        final ResourceLocation pig = tex("parasite_pig");
-        final ResourceLocation chicken = tex("parasite_chicken");
-        final ResourceLocation zombie = tex("parasite_zombie");
-        final ResourceLocation skeleton = tex("parasite_skeleton");
-        final ResourceLocation creeper = tex("parasite_creeper");
-        final ResourceLocation spider = tex("parasite_spider");
-        final ResourceLocation enderman = tex("parasite_enderman");
+        final ResourceLocation[] worm = phases("parasite_worm");
+        final ResourceLocation[] cow = phases("parasite_cow");
+        final ResourceLocation[] pig = phases("parasite_pig");
+        final ResourceLocation[] chicken = phases("parasite_chicken");
+        final ResourceLocation[] zombie = phases("parasite_zombie");
+        final ResourceLocation[] skeleton = phases("parasite_skeleton");
+        final ResourceLocation[] creeper = phases("parasite_creeper");
+        final ResourceLocation[] spider = phases("parasite_spider");
+        final ResourceLocation[] enderman = phases("parasite_enderman");
 
         event.<Endermite>registerEntityRenderer(ModEntities.PARASITE_WORM.get(), ctx -> new EndermiteRenderer(ctx) {
             @Override
-            public ResourceLocation getTextureLocation(Endermite entity) {
-                return worm;
+                        public ResourceLocation getTextureLocation(Endermite entity) {
+                return worm[phase(entity) - 1];
+            }
+
+            @Override
+            protected void scale(Endermite entity, PoseStack pose, float partialTick) {
+                super.scale(entity, pose, partialTick);
+                deform(pose, phase(entity));
             }
         });
         event.<Cow>registerEntityRenderer(ModEntities.PARASITE_COW.get(), ctx -> new CowRenderer(ctx) {
             @Override
-            public ResourceLocation getTextureLocation(Cow entity) {
-                return cow;
+                        public ResourceLocation getTextureLocation(Cow entity) {
+                return cow[phase(entity) - 1];
+            }
+
+            @Override
+            protected void scale(Cow entity, PoseStack pose, float partialTick) {
+                super.scale(entity, pose, partialTick);
+                deform(pose, phase(entity));
             }
         });
         event.<Pig>registerEntityRenderer(ModEntities.PARASITE_PIG.get(), ctx -> new PigRenderer(ctx) {
             @Override
-            public ResourceLocation getTextureLocation(Pig entity) {
-                return pig;
+                        public ResourceLocation getTextureLocation(Pig entity) {
+                return pig[phase(entity) - 1];
+            }
+
+            @Override
+            protected void scale(Pig entity, PoseStack pose, float partialTick) {
+                super.scale(entity, pose, partialTick);
+                deform(pose, phase(entity));
             }
         });
         event.<Chicken>registerEntityRenderer(ModEntities.PARASITE_CHICKEN.get(), ctx -> new ChickenRenderer(ctx) {
             @Override
-            public ResourceLocation getTextureLocation(Chicken entity) {
-                return chicken;
+                        public ResourceLocation getTextureLocation(Chicken entity) {
+                return chicken[phase(entity) - 1];
+            }
+
+            @Override
+            protected void scale(Chicken entity, PoseStack pose, float partialTick) {
+                super.scale(entity, pose, partialTick);
+                deform(pose, phase(entity));
             }
         });
         event.<Zombie>registerEntityRenderer(ModEntities.PARASITE_ZOMBIE.get(), ctx -> {
             ZombieRenderer r = new ZombieRenderer(ctx) {
                 @Override
-                public ResourceLocation getTextureLocation(Zombie entity) {
-                    return zombie;
-                }
+                            public ResourceLocation getTextureLocation(Zombie entity) {
+                return zombie[phase(entity) - 1];
+            }
+
+            @Override
+            protected void scale(Zombie entity, PoseStack pose, float partialTick) {
+                super.scale(entity, pose, partialTick);
+                deform(pose, phase(entity));
+            }
             };
             spikes(r, ctx, ParasiteSpikesModel.HUMANOID);
             return r;
@@ -93,9 +150,15 @@ public final class ParasiteRenderers {
         event.<AbstractSkeleton>registerEntityRenderer(ModEntities.PARASITE_SKELETON.get(), ctx -> {
             SkeletonRenderer r = new SkeletonRenderer(ctx) {
                 @Override
-                public ResourceLocation getTextureLocation(AbstractSkeleton entity) {
-                    return skeleton;
-                }
+                            public ResourceLocation getTextureLocation(AbstractSkeleton entity) {
+                return skeleton[phase(entity) - 1];
+            }
+
+            @Override
+            protected void scale(AbstractSkeleton entity, PoseStack pose, float partialTick) {
+                super.scale(entity, pose, partialTick);
+                deform(pose, phase(entity));
+            }
             };
             spikes(r, ctx, ParasiteSpikesModel.HUMANOID);
             return r;
@@ -103,25 +166,43 @@ public final class ParasiteRenderers {
         event.<Creeper>registerEntityRenderer(ModEntities.PARASITE_CREEPER.get(), ctx -> {
             CreeperRenderer r = new CreeperRenderer(ctx) {
                 @Override
-                public ResourceLocation getTextureLocation(Creeper entity) {
-                    return creeper;
-                }
+                            public ResourceLocation getTextureLocation(Creeper entity) {
+                return creeper[phase(entity) - 1];
+            }
+
+            @Override
+            protected void scale(Creeper entity, PoseStack pose, float partialTick) {
+                super.scale(entity, pose, partialTick);
+                deform(pose, phase(entity));
+            }
             };
             spikes(r, ctx, ParasiteSpikesModel.CREEPER);
             return r;
         });
         event.<Spider>registerEntityRenderer(ModEntities.PARASITE_SPIDER.get(), ctx -> new SpiderRenderer<Spider>(ctx) {
             @Override
-            public ResourceLocation getTextureLocation(Spider entity) {
-                return spider;
+                        public ResourceLocation getTextureLocation(Spider entity) {
+                return spider[phase(entity) - 1];
+            }
+
+            @Override
+            protected void scale(Spider entity, PoseStack pose, float partialTick) {
+                super.scale(entity, pose, partialTick);
+                deform(pose, phase(entity));
             }
         });
         event.<EnderMan>registerEntityRenderer(ModEntities.PARASITE_ENDERMAN.get(), ctx -> {
             EndermanRenderer r = new EndermanRenderer(ctx) {
                 @Override
-                public ResourceLocation getTextureLocation(EnderMan entity) {
-                    return enderman;
-                }
+                            public ResourceLocation getTextureLocation(EnderMan entity) {
+                return enderman[phase(entity) - 1];
+            }
+
+            @Override
+            protected void scale(EnderMan entity, PoseStack pose, float partialTick) {
+                super.scale(entity, pose, partialTick);
+                deform(pose, phase(entity));
+            }
             };
             spikes(r, ctx, ParasiteSpikesModel.ENDER);
             return r;

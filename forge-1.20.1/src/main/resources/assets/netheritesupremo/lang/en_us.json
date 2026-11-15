@@ -282,5 +282,8 @@
   "effect.netheritesupremo.infestation": "Infestation",
   "effect.netheritesupremo.parasitized": "Parasitized",
   "entity.netheritesupremo.parasite_enderman": "Parasite Enderman",
-  "item.netheritesupremo.parasite_enderman_spawn_egg": "Parasite Enderman Spawn Egg"
+  "item.netheritesupremo.parasite_enderman_spawn_egg": "Parasite Enderman Spawn Egg",
+  "block.netheritesupremo.parasite_blood": "Parasite Blood",
+  "item.netheritesupremo.parasite_blood_bucket": "Parasite Blood Bucket",
+  "effect.netheritesupremo.parasite_phase": "Parasite Phase"
 }

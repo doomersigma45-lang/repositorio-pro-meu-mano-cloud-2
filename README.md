@@ -474,3 +474,20 @@ O cavalo esqueleto dele usava o renderer vanilla, que só tem textura para os ca
 - **Espinhos de carne** nas costas e ombros de zumbi, esqueleto, creeper e enderman (peças fixas: não se mexem com a animação). Vaca, porco, galinha, aranha e verme só têm a textura nova.
 - **Enderman Parasita** (80 HP, 12 de dano): preto com veias carmesim e tentáculos longos nas costas. Não pega blocos, caça tudo que não é parasita, infecta quem morde e ainda teletransporta. Enderman comum infestado que morre vira Enderman Parasita. Limitação: os olhos roxos brilhantes continuam sendo a camada vanilla do Enderman.
 
+### Fases dos parasitas, líquido vermelho e Jogador Parasita líder (1.68.0)
+**Não testado no jogo.** Interpretações e escolhas minhas estão marcadas abaixo. Texturas das fases e do líquido/balde feitas por mim (IA), geradas por `tools/gerar_parasitas_visual.py` e `tools/gerar_liquido_parasita.py`.
+- **Fases por dias do mundo** (contados desde a infecção; dormir e `/time add` contam): **dias 0-5 = fase 1** (como estava), **5-11 = fase 2**, **11 em diante = fase 3** (interpretei "11-22" como "a partir do dia 11").
+  - **Fase 2**: vida x1,5, dano x1,4, um pouco mais rápido, mais magro e torto (o modelo é esticado e inclinado) e textura com mais carne. Cura toda a vida ao mudar de fase.
+  - **Fase 3**: vida x2,5, dano x2,2, mais rápido ainda, bem mais esticado, curvado e torto, textura mais escura e carnuda.
+  - A deformação é **escala + inclinação do modelo vanilla**, não um modelo novo. O dia da infecção passa do mob normal para a versão parasita quando ele vira parasita.
+- **Líquido Parasita** (vermelho): nasce em **nascentes dentro de cavernas** (Overworld, y -56 a 40), raras, e só aparece exposto quando uma caverna corta a nascente. **Pega com balde** (Balde de Líquido Parasita, aba de ferramentas). **Todo mob que encosta nele é infectado** (Infestação nos que têm versão parasita, Parasitado nos outros). Jogadores não são infectados.
+- **Mudança**: o verme **não nasce mais sozinho**. A infecção começa no líquido; os parasitas continuam espalhando ao ferir (como no pedido original). Ovo de geração ainda existe.
+- **Jogador Parasita** (a forma **não muda** nas fases; só fica mais forte e muda o equipamento):
+  - **Fase 1**: espada e armadura de ferro (sem capacete). **Fase 2**: armadura de diamante (Proteção III, Inquebrável III) e espada de diamante (Afiação V, Inquebrável III). **Fase 3**: armadura e espada de **obsidiana** e **Old Gun**: usa a arma de fogo quando o alvo está longe (a partir de 8 blocos) e troca para a espada de perto. Os itens são os do mod; o equipamento só é dado ao mudar de fase.
+  - **Vê jogadores de longe** (alcance 96 blocos, sem precisar de linha de visão) e **foca em jogadores**.
+  - **Tocaia**: segue o jogador a 12-22 blocos sem atacar; ataca de repente depois de 20-50 s, ou se for ferido, se o jogador estiver com 4 corações ou menos, dormindo ou a menos de 6 blocos. Ataca por 60 s e volta a espreitar.
+  - **Coloca blocos** (cobblestone): sobe em pilar se o alvo está no alto e faz ponte sobre buracos. **Abre portas**, **quebra portas, alçapões, portões e vidro** no caminho. Usa e **pega do chão armaduras e ferramentas** melhores.
+  - **Vara de pesca**: puxa o alvo para perto (entre 8 e 24 blocos, a cada 10 s).
+  - **TNT**: joga TNT na casa do jogador quando não há caminho até ele ou ele está sob um teto (no máximo 1 por minuto, só com mobGriefing ligado).
+  - **Líder**: os outros infectados num raio de 32 blocos passam a atacar o mesmo alvo que ele.
+

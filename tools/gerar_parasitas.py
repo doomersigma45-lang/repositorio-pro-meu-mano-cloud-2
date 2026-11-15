@@ -112,10 +112,7 @@ for k, drops in DROPS.items():
     wjson(os.path.join(DATA, "loot_tables", "entities", "parasite_%s.json" % k), {"type": "minecraft:entity", "pools": pools})
     wjson(os.path.join(ASSETS, "models", "item", "parasite_%s_spawn_egg.json" % k), {"parent": "minecraft:item/template_spawn_egg"})
 
-# o verme surge raramente em qualquer lugar do Overworld
-wjson(os.path.join(DATA, "forge", "biome_modifier", "add_parasite_worm.json"), {
-    "type": "forge:add_spawns", "biomes": "#minecraft:is_overworld",
-    "spawners": {"type": "netheritesupremo:parasite_worm", "weight": 2, "minCount": 1, "maxCount": 2}})
+# (o verme nao tem mais spawn natural: a infeccao nasce do liquido vermelho; so ovo e propagacao)
 
 # ---------- lang ----------
 for fname, idx_mob, idx_egg, eff in (("en_us", 0, 2, ("Infestation", "Parasitized")), ("pt_br", 1, 3, ("Infestação", "Parasitado"))):
