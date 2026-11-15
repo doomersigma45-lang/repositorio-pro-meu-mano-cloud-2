@@ -280,5 +280,7 @@
   "entity.netheritesupremo.parasite_player": "Parasite Player",
   "item.netheritesupremo.parasite_player_spawn_egg": "Parasite Player Spawn Egg",
   "effect.netheritesupremo.infestation": "Infestation",
-  "effect.netheritesupremo.parasitized": "Parasitized"
+  "effect.netheritesupremo.parasitized": "Parasitized",
+  "entity.netheritesupremo.parasite_enderman": "Parasite Enderman",
+  "item.netheritesupremo.parasite_enderman_spawn_egg": "Parasite Enderman Spawn Egg"
 }

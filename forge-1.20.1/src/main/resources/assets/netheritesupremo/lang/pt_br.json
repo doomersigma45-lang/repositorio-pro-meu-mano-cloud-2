@@ -280,5 +280,7 @@
   "entity.netheritesupremo.parasite_player": "Jogador Parasita",
   "item.netheritesupremo.parasite_player_spawn_egg": "Ovo de Geração de Jogador Parasita",
   "effect.netheritesupremo.infestation": "Infestação",
-  "effect.netheritesupremo.parasitized": "Parasitado"
+  "effect.netheritesupremo.parasitized": "Parasitado",
+  "entity.netheritesupremo.parasite_enderman": "Enderman Parasita",
+  "item.netheritesupremo.parasite_enderman_spawn_egg": "Ovo de Geração de Enderman Parasita"
 }

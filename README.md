@@ -467,3 +467,10 @@ O cavalo esqueleto dele usava o renderer vanilla, que só tem textura para os ca
 - **Efeito Parasitado** (só em mobs, e só nos que **não têm versão parasita**, ex.: aldeão, ovelha, husk, vaca de cogumelo): dura 2 min; o mob ganha 20% de velocidade e passa a **caçar e morder tudo que não é parasita, infectando quem acerta** (com Infestação se a vítima tiver versão, ou Parasitado se não tiver). Não afeta jogadores nem parasitas.
 - Nunca são infectados: jogadores, parasitas, Ender Dragon, Wither e qualquer mob com mais de 400 HP (chefes).
 - Ovos de geração de todos na aba de ovos. Os efeitos têm ícones próprios.
+
+### Novo visual dos infectados e Enderman Parasita (1.67.1)
+**Não testado no jogo.** Texturas e espinhos feitos por mim (IA), com as suas 3 imagens como inspiração de estilo (carne vermelha, osso exposto, espinhos e tentáculos saindo das costas); nada foi copiado do mod. Gerados por `tools/gerar_parasitas_visual.py`.
+- Todos os infectados (verme, vaca, porco, galinha, zumbi, esqueleto, creeper, aranha) trocam a camada verde por **textura própria de carne, sangue e osso**. O **Jogador Parasita ficou como estava**.
+- **Espinhos de carne** nas costas e ombros de zumbi, esqueleto, creeper e enderman (peças fixas: não se mexem com a animação). Vaca, porco, galinha, aranha e verme só têm a textura nova.
+- **Enderman Parasita** (80 HP, 12 de dano): preto com veias carmesim e tentáculos longos nas costas. Não pega blocos, caça tudo que não é parasita, infecta quem morde e ainda teletransporta. Enderman comum infestado que morre vira Enderman Parasita. Limitação: os olhos roxos brilhantes continuam sendo a camada vanilla do Enderman.
+

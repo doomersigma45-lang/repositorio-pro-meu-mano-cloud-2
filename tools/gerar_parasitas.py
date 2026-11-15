@@ -90,6 +90,7 @@ MOBS = {
     "creeper": ("Parasite Creeper", "Creeper Parasita", "Parasite Creeper Spawn Egg", "Ovo de Geração de Creeper Parasita"),
     "spider": ("Parasite Spider", "Aranha Parasita", "Parasite Spider Spawn Egg", "Ovo de Geração de Aranha Parasita"),
     "player": ("Parasite Player", "Jogador Parasita", "Parasite Player Spawn Egg", "Ovo de Geração de Jogador Parasita"),
+    "enderman": ("Parasite Enderman", "Enderman Parasita", "Parasite Enderman Spawn Egg", "Ovo de Geração de Enderman Parasita"),
 }
 DROPS = {
     "worm": [("minecraft:slime_ball", 0, 1)],
@@ -100,6 +101,7 @@ DROPS = {
     "skeleton": [("minecraft:bone", 1, 3), ("minecraft:slime_ball", 0, 2)],
     "creeper": [("minecraft:gunpowder", 1, 3), ("minecraft:slime_ball", 0, 2)],
     "spider": [("minecraft:string", 1, 3), ("minecraft:spider_eye", 0, 2)],
+    "enderman": [("minecraft:ender_pearl", 0, 1), ("minecraft:rotten_flesh", 1, 3), ("minecraft:slime_ball", 1, 3)],
     "player": [("minecraft:rotten_flesh", 2, 4), ("minecraft:bone", 1, 3), ("minecraft:slime_ball", 1, 3)],
 }
 for k, drops in DROPS.items():

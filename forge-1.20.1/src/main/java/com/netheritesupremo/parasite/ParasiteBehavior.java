@@ -81,6 +81,9 @@ public final class ParasiteBehavior {
         if (t == EntityType.SPIDER) {
             return ModEntities.PARASITE_SPIDER.get();
         }
+        if (t == EntityType.ENDERMAN) {
+            return ModEntities.PARASITE_ENDERMAN.get();
+        }
         return null;
     }
 

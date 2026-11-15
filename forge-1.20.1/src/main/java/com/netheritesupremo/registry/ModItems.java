@@ -387,6 +387,10 @@ public final class ModItems {
             "parasite_player_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.PARASITE_PLAYER, 0x3A8A4A, 0x1E3A12, new Item.Properties()));
 
+    public static final RegistryObject<Item> PARASITE_ENDERMAN_SPAWN_EGG = ITEMS.register(
+            "parasite_enderman_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.PARASITE_ENDERMAN, 0x14101A, 0xC0204A, new Item.Properties()));
+
     public static final RegistryObject<Item> HORSEMAN_SWORD = ITEMS.register(
             "horseman_sword",
             () -> new com.netheritesupremo.item.HorsemanSwordItem());

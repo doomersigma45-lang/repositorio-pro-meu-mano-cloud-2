@@ -933,10 +933,10 @@ def main():
             gcmd("execute if entity @e[type=netheritesupremo:headless_pup] run say filhote nasceu")
             gcmd("attribute @e[type=netheritesupremo:headless_pup,limit=1] minecraft:generic.max_health get")
             # parasitas (1.67.0)
-            for i, ty in enumerate(("worm", "cow", "pig", "chicken", "zombie", "skeleton", "creeper", "spider", "player")):
+            for i, ty in enumerate(("worm", "cow", "pig", "chicken", "zombie", "skeleton", "creeper", "spider", "player", "enderman")):
                 r.cmd(f"summon netheritesupremo:parasite_{ty} {985 + i * 2} 60 870 {{NoAI:1b}}")
             time.sleep(1)
-            for ty in ("worm", "cow", "pig", "chicken", "zombie", "skeleton", "creeper", "spider", "player"):
+            for ty in ("worm", "cow", "pig", "chicken", "zombie", "skeleton", "creeper", "spider", "player", "enderman"):
                 gcmd(f"attribute @e[type=netheritesupremo:parasite_{ty},limit=1] minecraft:generic.max_health get")
             # infestacao: vaca infestada que morre vira vaca parasita
             gcmd("kill @e[type=netheritesupremo:parasite_cow]")
