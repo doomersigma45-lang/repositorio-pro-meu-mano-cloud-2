@@ -53,6 +53,7 @@ import net.minecraftforge.event.ForgeEventFactory;
  */
 public class ParasitePlayer extends Monster implements ParasiteMob {
     private static final String EQUIP_TAG = "ParasiteEquipPhase";
+    private static final String INHERIT_TAG = "ParasiteInheritedGear";
 
     private boolean aggressiveMode;
     private int stalkTicks;
@@ -85,11 +86,13 @@ public class ParasitePlayer extends Monster implements ParasiteMob {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new ParasiteRituals.RitualGoal(this));
         this.goalSelector.addGoal(1, new GunGoal());
         this.goalSelector.addGoal(2, new StalkGoal());
         this.goalSelector.addGoal(3, new GatedMelee(this));
         this.goalSelector.addGoal(4, new OpenDoorGoal(this, true));
         this.goalSelector.addGoal(4, new BreakDoorGoal(this, difficulty -> true));
+        this.goalSelector.addGoal(5, new ParasiteGolemBuildGoal(this));
         this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 0.9D));
         this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 16.0F));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
@@ -143,6 +146,41 @@ public class ParasitePlayer extends Monster implements ParasiteMob {
         }
     }
 
+    private boolean inherited() {
+        return this.getPersistentData().getBoolean(INHERIT_TAG);
+    }
+
+    /**
+     * Herda o equipamento do jogador que morreu: armadura, mao principal e secundaria, e uma segunda arma da mochila
+     * (a Old Gun fica de reserva se ele tinha espada, ou vice-versa). Nao derruba o equipamento herdado ao morrer, para
+     * nao duplicar os itens que o jogador deixa no chao.
+     */
+    public void inheritGear(Player player) {
+        this.getPersistentData().putBoolean(INHERIT_TAG, true);
+        for (EquipmentSlot slot : EquipmentSlot.values()) {
+            this.setItemSlot(slot, player.getItemBySlot(slot).copy());
+            this.setDropChance(slot, 0.0F);
+        }
+        ItemStack gun = ItemStack.EMPTY;
+        ItemStack melee = ItemStack.EMPTY;
+        List<ItemStack> all = new java.util.ArrayList<>(player.getInventory().items);
+        all.addAll(player.getInventory().offhand);
+        for (ItemStack s : all) {
+            if (gun.isEmpty() && s.is(ModItems.OLD_GUN.get())) {
+                gun = s.copy();
+            } else if (melee.isEmpty() && (s.getItem() instanceof net.minecraft.world.item.SwordItem || s.getItem() instanceof net.minecraft.world.item.AxeItem)) {
+                melee = s.copy();
+            }
+        }
+        ItemStack main = this.getMainHandItem();
+        if (main.isEmpty()) {
+            main = !melee.isEmpty() ? melee : gun;
+            this.setItemSlot(EquipmentSlot.MAINHAND, main.copy());
+            this.setDropChance(EquipmentSlot.MAINHAND, 0.0F);
+        }
+        this.stored = main.is(ModItems.OLD_GUN.get()) ? melee : gun;
+    }
+
     private boolean holdsGun() {
         return this.getMainHandItem().is(ModItems.OLD_GUN.get());
     }
@@ -173,11 +211,11 @@ public class ParasitePlayer extends Monster implements ParasiteMob {
             return;
         }
         int phase = ParasiteBehavior.phaseOf(this);
-        if (this.getPersistentData().getInt(EQUIP_TAG) != phase) {
+        if (!this.inherited() && this.getPersistentData().getInt(EQUIP_TAG) != phase) {
             this.getPersistentData().putInt(EQUIP_TAG, phase);
             this.equipFor(phase);
         }
-        if (phase >= 3 && this.stored.isEmpty()) {
+        if (phase >= 3 && !this.inherited() && this.stored.isEmpty()) {
             this.stored = this.holdsGun() ? new ItemStack(ModItems.OBSIDIAN_SWORD.get()) : new ItemStack(ModItems.OLD_GUN.get());
         }
         if (this.rodCooldown > 0) {
@@ -191,7 +229,7 @@ public class ParasitePlayer extends Monster implements ParasiteMob {
         }
         LivingEntity target = this.getTarget();
         this.updateMode(target);
-        if (phase >= 3 && this.tickCount % 5 == 0) {
+        if ((phase >= 3 || this.inherited()) && this.tickCount % 5 == 0) {
             double d = target == null ? 99.0D : this.distanceTo(target);
             if (this.holdsGun() && d < 6.0D) {
                 this.swapWeapon();

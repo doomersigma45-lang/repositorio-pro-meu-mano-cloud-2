@@ -523,6 +523,12 @@ public final class ModEntities {
                     .sized(0.9F, 2.9F).clientTrackingRange(16)
                     .build("parasite_strongest_zombie"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasiteMeteor>> PARASITE_METEOR = ENTITIES.register(
+            "parasite_meteor",
+            () -> EntityType.Builder.<com.netheritesupremo.parasite.ParasiteMeteor>of(com.netheritesupremo.parasite.ParasiteMeteor::new, MobCategory.MISC)
+                    .sized(1.2F, 1.2F).clientTrackingRange(16).updateInterval(1).fireImmune()
+                    .build("parasite_meteor"));
+
     public static final RegistryObject<EntityType<com.netheritesupremo.mob.HeadlessHorseman>> HEADLESS_HORSEMAN = ENTITIES.register(
             "headless_horseman",
             () -> EntityType.Builder.of(com.netheritesupremo.mob.HeadlessHorseman::new, MobCategory.MONSTER)

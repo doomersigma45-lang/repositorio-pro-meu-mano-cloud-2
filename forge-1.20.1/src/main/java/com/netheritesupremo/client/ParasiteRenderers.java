@@ -220,6 +220,8 @@ public final class ParasiteRenderers {
             return r;
         });
         event.registerEntityRenderer(ModEntities.PARASITE_WARDEN.get(), ParasiteWardenRenderer::new);
+        event.registerEntityRenderer(ModEntities.PARASITE_METEOR.get(),
+                ctx -> new net.minecraft.client.renderer.entity.ThrownItemRenderer<com.netheritesupremo.parasite.ParasiteMeteor>(ctx, 4.0F, true));
         event.<Sheep>registerEntityRenderer(ModEntities.PARASITE_SHEEP.get(), ctx -> new SheepRenderer(ctx) {
             @Override
             public ResourceLocation getTextureLocation(Sheep entity) {

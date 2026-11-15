@@ -87,6 +87,12 @@ public final class ParasiteBehavior {
 
     public static void addMeleeGoals(PathfinderMob mob, double speed) {
         mob.goalSelector.addGoal(0, new FloatGoal(mob));
+        if (mob instanceof net.minecraft.world.entity.monster.AbstractSkeleton || mob instanceof net.minecraft.world.entity.monster.EnderMan) {
+            mob.goalSelector.addGoal(1, new ParasiteRituals.RitualGoal(mob));
+        }
+        if (mob instanceof net.minecraft.world.entity.monster.EnderMan) {
+            mob.goalSelector.addGoal(4, new ParasiteGolemBuildGoal(mob));
+        }
         mob.goalSelector.addGoal(2, new MeleeAttackGoal(mob, speed, true));
         mob.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(mob, 0.9D));
         mob.goalSelector.addGoal(6, new LookAtPlayerGoal(mob, Player.class, 8.0F));
@@ -229,6 +235,9 @@ public final class ParasiteBehavior {
         }
         p.moveTo(player.getX(), player.getY(), player.getZ(), player.getYRot(), 0.0F);
         markInfected(p);
+        if (p instanceof ParasitePlayer pp) {
+            pp.inheritGear(player);
+        }
         sl.addFreshEntity(p);
         burst(sl, p);
     }

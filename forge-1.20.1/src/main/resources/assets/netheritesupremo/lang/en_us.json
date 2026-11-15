@@ -303,5 +303,6 @@
   "entity.netheritesupremo.parasite_wolf": "Parasite Wolf",
   "item.netheritesupremo.parasite_wolf_spawn_egg": "Parasite Wolf Spawn Egg",
   "entity.netheritesupremo.parasite_strongest_zombie": "Parasite Strongest Zombie",
-  "item.netheritesupremo.parasite_strongest_zombie_spawn_egg": "Parasite Strongest Zombie Spawn Egg"
+  "item.netheritesupremo.parasite_strongest_zombie_spawn_egg": "Parasite Strongest Zombie Spawn Egg",
+  "entity.netheritesupremo.parasite_meteor": "Parasite Meteor"
 }

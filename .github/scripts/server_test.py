@@ -1016,6 +1016,19 @@ def main():
             gcmd("effect give @e[type=netheritesupremo:strongest_zombie,tag=parasite_test8,limit=1] netheritesupremo:infestation 60 0")
             gcmd("damage @e[type=netheritesupremo:strongest_zombie,tag=parasite_test8,limit=1] 1000 minecraft:generic")
             time.sleep(1)
+            # 1.72.0: meteoro de sangue, ritual (lider + esqueletos/enderman) e golem feito por parasita
+            r.cmd("forceload add 1210 850 1270 890")
+            r.cmd("summon netheritesupremo:parasite_player 1240 60 870")
+            for i in range(3):
+                r.cmd(f"summon netheritesupremo:parasite_skeleton {1236 + i * 3} 60 874")
+            r.cmd("summon netheritesupremo:parasite_enderman 1244 60 866")
+            time.sleep(2)
+            gcmd("execute positioned 1240 60 870 run parasite ritual")
+            time.sleep(4)
+            gcmd("execute positioned 1240 60 870 run parasite ritual")
+            gcmd("execute positioned 1230 60 870 run parasite meteor")
+            time.sleep(8)
+            gcmd("execute if entity @e[type=netheritesupremo:parasite_meteor] run say meteoro ainda caindo")
             annotate("notice", "anomalocaris e guardiao", g4)
             # escavador, automato, tartaruga ancestral
             t5 = []

@@ -177,6 +177,17 @@ public final class OutbreakEvents {
                     ctx.getSource().sendSuccess(() -> Component.literal(msg), false);
                     return Command.SINGLE_SUCCESS;
                 }))
+                .then(Commands.literal("meteor").executes(ctx -> {
+                    net.minecraft.world.phys.Vec3 at = ctx.getSource().getPosition();
+                    boolean ok = ParasiteMeteorEvents.spawn(ctx.getSource().getLevel(), at.x + 20.0D, at.z + 20.0D);
+                    ctx.getSource().sendSuccess(() -> Component.literal(ok ? "Meteoro a caminho." : "Nao foi possivel (chunk descarregado ou sem altura)."), false);
+                    return Command.SINGLE_SUCCESS;
+                }))
+                .then(Commands.literal("ritual").executes(ctx -> {
+                    String msg = ParasiteRituals.forceStart(ctx.getSource().getLevel(), ctx.getSource().getPosition());
+                    ctx.getSource().sendSuccess(() -> Component.literal("Ritual: " + msg + " (ativos: " + ParasiteRituals.activeCount() + ")"), false);
+                    return Command.SINGLE_SUCCESS;
+                }))
                 .then(Commands.literal("reset").executes(ctx -> {
                     ParasiteOutbreak data = ParasiteOutbreak.get(ctx.getSource().getServer());
                     data.start = -1L;

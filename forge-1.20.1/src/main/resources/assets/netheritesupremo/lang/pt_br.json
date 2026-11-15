@@ -303,5 +303,6 @@
   "entity.netheritesupremo.parasite_wolf": "Lobo Parasita",
   "item.netheritesupremo.parasite_wolf_spawn_egg": "Ovo de Geração de Lobo Parasita",
   "entity.netheritesupremo.parasite_strongest_zombie": "Zumbi Forte Parasita",
-  "item.netheritesupremo.parasite_strongest_zombie_spawn_egg": "Ovo de Geração de Zumbi Forte Parasita"
+  "item.netheritesupremo.parasite_strongest_zombie_spawn_egg": "Ovo de Geração de Zumbi Forte Parasita",
+  "entity.netheritesupremo.parasite_meteor": "Meteoro Parasita"
 }
