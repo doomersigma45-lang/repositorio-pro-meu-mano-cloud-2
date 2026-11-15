@@ -351,6 +351,42 @@ public final class ModItems {
             "hunter_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.HUNTER, 0x2B2B2B, 0xE07A1F, new Item.Properties()));
 
+    public static final RegistryObject<Item> PARASITE_WORM_SPAWN_EGG = ITEMS.register(
+            "parasite_worm_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.PARASITE_WORM, 0x3B5A1A, 0xB8E04A, new Item.Properties()));
+
+    public static final RegistryObject<Item> PARASITE_COW_SPAWN_EGG = ITEMS.register(
+            "parasite_cow_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.PARASITE_COW, 0x4A3A2A, 0x7ACB3A, new Item.Properties()));
+
+    public static final RegistryObject<Item> PARASITE_PIG_SPAWN_EGG = ITEMS.register(
+            "parasite_pig_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.PARASITE_PIG, 0x8A6A5A, 0x7ACB3A, new Item.Properties()));
+
+    public static final RegistryObject<Item> PARASITE_CHICKEN_SPAWN_EGG = ITEMS.register(
+            "parasite_chicken_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.PARASITE_CHICKEN, 0xB8B8A0, 0x7ACB3A, new Item.Properties()));
+
+    public static final RegistryObject<Item> PARASITE_ZOMBIE_SPAWN_EGG = ITEMS.register(
+            "parasite_zombie_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.PARASITE_ZOMBIE, 0x2F6B3A, 0x9AE03A, new Item.Properties()));
+
+    public static final RegistryObject<Item> PARASITE_SKELETON_SPAWN_EGG = ITEMS.register(
+            "parasite_skeleton_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.PARASITE_SKELETON, 0xA8B89A, 0x7ACB3A, new Item.Properties()));
+
+    public static final RegistryObject<Item> PARASITE_CREEPER_SPAWN_EGG = ITEMS.register(
+            "parasite_creeper_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.PARASITE_CREEPER, 0x1E5A1E, 0x9AE03A, new Item.Properties()));
+
+    public static final RegistryObject<Item> PARASITE_SPIDER_SPAWN_EGG = ITEMS.register(
+            "parasite_spider_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.PARASITE_SPIDER, 0x2A2A22, 0x7ACB3A, new Item.Properties()));
+
+    public static final RegistryObject<Item> PARASITE_PLAYER_SPAWN_EGG = ITEMS.register(
+            "parasite_player_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.PARASITE_PLAYER, 0x3A8A4A, 0x1E3A12, new Item.Properties()));
+
     public static final RegistryObject<Item> HORSEMAN_SWORD = ITEMS.register(
             "horseman_sword",
             () -> new com.netheritesupremo.item.HorsemanSwordItem());

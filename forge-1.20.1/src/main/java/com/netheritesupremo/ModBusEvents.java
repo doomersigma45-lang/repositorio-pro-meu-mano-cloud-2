@@ -48,6 +48,15 @@ public final class ModBusEvents {
         event.put(ModEntities.ANCIENT_WOOD.get(), com.netheritesupremo.mob.AncientWood.createAttributes().build());
         event.put(ModEntities.FUNGUS_STALKER.get(), com.netheritesupremo.mob.FungusStalker.createAttributes().build());
         event.put(ModEntities.HUNTER.get(), com.netheritesupremo.mob.Hunter.createAttributes().build());
+        event.put(ModEntities.PARASITE_WORM.get(), com.netheritesupremo.parasite.ParasiteWorm.createAttributes().build());
+        event.put(ModEntities.PARASITE_COW.get(), com.netheritesupremo.parasite.ParasiteCow.createAttributes().build());
+        event.put(ModEntities.PARASITE_PIG.get(), com.netheritesupremo.parasite.ParasitePig.createAttributes().build());
+        event.put(ModEntities.PARASITE_CHICKEN.get(), com.netheritesupremo.parasite.ParasiteChicken.createAttributes().build());
+        event.put(ModEntities.PARASITE_ZOMBIE.get(), com.netheritesupremo.parasite.ParasiteZombie.createAttributes().build());
+        event.put(ModEntities.PARASITE_SKELETON.get(), com.netheritesupremo.parasite.ParasiteSkeleton.createAttributes().build());
+        event.put(ModEntities.PARASITE_CREEPER.get(), com.netheritesupremo.parasite.ParasiteCreeper.createAttributes().build());
+        event.put(ModEntities.PARASITE_SPIDER.get(), com.netheritesupremo.parasite.ParasiteSpider.createAttributes().build());
+        event.put(ModEntities.PARASITE_PLAYER.get(), com.netheritesupremo.parasite.ParasitePlayer.createAttributes().build());
         event.put(ModEntities.HEADLESS_HORSEMAN.get(), com.netheritesupremo.mob.HeadlessHorseman.createAttributes().build());
         event.put(ModEntities.HEADLESS_PUP.get(), com.netheritesupremo.mob.HeadlessPup.createAttributes().build());
         event.put(ModEntities.HORSEMAN_STEED.get(), com.netheritesupremo.mob.HorsemanSteed.createSteedAttributes().build());
@@ -85,6 +94,9 @@ public final class ModBusEvents {
 
     @SubscribeEvent
     public static void onSpawnPlacements(SpawnPlacementRegisterEvent event) {
+        event.register(ModEntities.PARASITE_WORM.get(), SpawnPlacements.Type.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules,
+                SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.GIANT_MOSQUITO.get(), SpawnPlacements.Type.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, net.minecraft.world.entity.Mob::checkMobSpawnRules,
                 SpawnPlacementRegisterEvent.Operation.OR);

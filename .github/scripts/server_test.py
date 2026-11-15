@@ -932,6 +932,27 @@ def main():
             time.sleep(1)
             gcmd("execute if entity @e[type=netheritesupremo:headless_pup] run say filhote nasceu")
             gcmd("attribute @e[type=netheritesupremo:headless_pup,limit=1] minecraft:generic.max_health get")
+            # parasitas (1.67.0)
+            for i, ty in enumerate(("worm", "cow", "pig", "chicken", "zombie", "skeleton", "creeper", "spider", "player")):
+                r.cmd(f"summon netheritesupremo:parasite_{ty} {985 + i * 2} 60 870 {{NoAI:1b}}")
+            time.sleep(1)
+            for ty in ("worm", "cow", "pig", "chicken", "zombie", "skeleton", "creeper", "spider", "player"):
+                gcmd(f"attribute @e[type=netheritesupremo:parasite_{ty},limit=1] minecraft:generic.max_health get")
+            # infestacao: vaca infestada que morre vira vaca parasita
+            gcmd("kill @e[type=netheritesupremo:parasite_cow]")
+            r.cmd("summon minecraft:cow 1010 60 870 {NoAI:1b,Tags:[\"parasite_test\"]}")
+            time.sleep(1)
+            gcmd("effect give @e[type=minecraft:cow,tag=parasite_test,limit=1] netheritesupremo:infestation 60 0")
+            gcmd("damage @e[type=minecraft:cow,tag=parasite_test,limit=1] 100 minecraft:generic")
+            time.sleep(1)
+            gcmd("execute if entity @e[type=netheritesupremo:parasite_cow] run say vaca virou parasita")
+            # mob sem versao parasita ganha Parasitado; jogador nao recebe os efeitos
+            r.cmd("summon minecraft:villager 1012 60 870 {NoAI:1b,Tags:[\"parasite_test2\"]}")
+            time.sleep(1)
+            gcmd("effect give @e[type=minecraft:villager,tag=parasite_test2,limit=1] netheritesupremo:parasitized 60 0")
+            gcmd("execute if entity @e[type=minecraft:villager,tag=parasite_test2,nbt={ActiveEffects:[{Id:-1}]}] run say x")
+            gcmd("data get entity @e[type=minecraft:villager,tag=parasite_test2,limit=1] ActiveEffects")
+            gcmd("kill @e[type=netheritesupremo:parasite_worm]")
             annotate("notice", "anomalocaris e guardiao", g4)
             # escavador, automato, tartaruga ancestral
             t5 = []

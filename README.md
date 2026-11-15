@@ -457,3 +457,13 @@ A 1.63.0 e a 1.62.x com o Wood Stalker travavam ao criar/entrar no mundo: o arqu
 
 ### Correção de crash ao spawnar o Cavaleiro sem Cabeça (1.66.1)
 O cavalo esqueleto dele usava o renderer vanilla, que só tem textura para os cavalos do jogo e dava erro com o cavalo do mod ao desenhar. Agora usa um renderer próprio com a textura de esqueleto. **Não testado no jogo.** Se ainda travar, mande o arquivo de crash (pasta `crash-reports`).
+
+### Parasitas (1.67.0)
+**Não testado no jogo.** Os visuais são **modelos de vanilla com uma camada verde translúcida por cima**, feitos por mim (IA); a skin do Jogador Parasita também é minha (gerada por `tools/gerar_parasitas.py`). Estatísticas, drops, spawn e detalhes não especificados foram escolha minha. Inspirado no mod Scape and Run: Parasites, sem copiar nada dele.
+- **Parasita** (verme, 12 HP): spawn natural raro no Overworld (peso baixo, em áreas escuras). Persegue qualquer mob que não seja parasita, **entra nele (o verme some)** e o infecta. Em jogadores só morde (2 de dano), **sem infectar**.
+- **Efeito Infestação** (só em mobs que têm versão parasita): dura 5 min, deixa o mob 20% mais lento e tira 1 de vida a cada 3 s. **Se o mob morrer com Infestação, ele é trocado pela sua versão parasita** (sem drops do original; a armadura vai junto).
+- **Versões parasitas**: Vaca (40 HP/6 de dano), Porco (30/5), Galinha (12/3), Zumbi (40/8; não queima no sol), Esqueleto (30/6; luta corpo a corpo, sem arco, não queima), Creeper (30; explosão infecta quem estiver perto), Aranha (30/5) e **Jogador Parasita** (60/8). São hostis a tudo que não é parasita, **infectam quem ferem** e dropam podridão/slime (veja os loot tables).
+- **Jogador Parasita**: surge quando um **jogador morre para um parasita** (ou para um mob Parasitado). Não há infecção de jogadores além disso.
+- **Efeito Parasitado** (só em mobs, e só nos que **não têm versão parasita**, ex.: aldeão, ovelha, husk, vaca de cogumelo): dura 2 min; o mob ganha 20% de velocidade e passa a **caçar e morder tudo que não é parasita, infectando quem acerta** (com Infestação se a vítima tiver versão, ou Parasitado se não tiver). Não afeta jogadores nem parasitas.
+- Nunca são infectados: jogadores, parasitas, Ender Dragon, Wither e qualquer mob com mais de 400 HP (chefes).
+- Ovos de geração de todos na aba de ovos. Os efeitos têm ícones próprios.

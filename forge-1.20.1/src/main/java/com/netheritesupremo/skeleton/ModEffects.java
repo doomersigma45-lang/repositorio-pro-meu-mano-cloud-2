@@ -11,6 +11,11 @@ public final class ModEffects {
 
     public static final RegistryObject<MobEffect> WAR_MARK = EFFECTS.register("war_mark", WarMarkEffect::new);
 
+    public static final RegistryObject<MobEffect> INFESTATION = EFFECTS.register("infestation",
+            com.netheritesupremo.parasite.InfestationEffect::new);
+    public static final RegistryObject<MobEffect> PARASITIZED = EFFECTS.register("parasitized",
+            com.netheritesupremo.parasite.ParasitizedEffect::new);
+
     private ModEffects() {
     }
 }

@@ -397,6 +397,69 @@ public final class ModEntities {
                     .clientTrackingRange(10)
                     .build("hunter"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasiteWorm>> PARASITE_WORM = ENTITIES.register(
+            "parasite_worm",
+            () -> EntityType.Builder.of(com.netheritesupremo.parasite.ParasiteWorm::new, MobCategory.MONSTER)
+                    .sized(0.4F, 0.3F)
+                    .clientTrackingRange(8)
+                    .build("parasite_worm"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasiteCow>> PARASITE_COW = ENTITIES.register(
+            "parasite_cow",
+            () -> EntityType.Builder.of(com.netheritesupremo.parasite.ParasiteCow::new, MobCategory.MONSTER)
+                    .sized(0.9F, 1.4F)
+                    .clientTrackingRange(8)
+                    .build("parasite_cow"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasitePig>> PARASITE_PIG = ENTITIES.register(
+            "parasite_pig",
+            () -> EntityType.Builder.of(com.netheritesupremo.parasite.ParasitePig::new, MobCategory.MONSTER)
+                    .sized(0.9F, 0.9F)
+                    .clientTrackingRange(8)
+                    .build("parasite_pig"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasiteChicken>> PARASITE_CHICKEN = ENTITIES.register(
+            "parasite_chicken",
+            () -> EntityType.Builder.of(com.netheritesupremo.parasite.ParasiteChicken::new, MobCategory.MONSTER)
+                    .sized(0.4F, 0.7F)
+                    .clientTrackingRange(8)
+                    .build("parasite_chicken"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasiteZombie>> PARASITE_ZOMBIE = ENTITIES.register(
+            "parasite_zombie",
+            () -> EntityType.Builder.of(com.netheritesupremo.parasite.ParasiteZombie::new, MobCategory.MONSTER)
+                    .sized(0.6F, 1.95F)
+                    .clientTrackingRange(8)
+                    .build("parasite_zombie"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasiteSkeleton>> PARASITE_SKELETON = ENTITIES.register(
+            "parasite_skeleton",
+            () -> EntityType.Builder.of(com.netheritesupremo.parasite.ParasiteSkeleton::new, MobCategory.MONSTER)
+                    .sized(0.6F, 1.99F)
+                    .clientTrackingRange(8)
+                    .build("parasite_skeleton"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasiteCreeper>> PARASITE_CREEPER = ENTITIES.register(
+            "parasite_creeper",
+            () -> EntityType.Builder.of(com.netheritesupremo.parasite.ParasiteCreeper::new, MobCategory.MONSTER)
+                    .sized(0.6F, 1.7F)
+                    .clientTrackingRange(8)
+                    .build("parasite_creeper"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasiteSpider>> PARASITE_SPIDER = ENTITIES.register(
+            "parasite_spider",
+            () -> EntityType.Builder.of(com.netheritesupremo.parasite.ParasiteSpider::new, MobCategory.MONSTER)
+                    .sized(1.4F, 0.9F)
+                    .clientTrackingRange(8)
+                    .build("parasite_spider"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasitePlayer>> PARASITE_PLAYER = ENTITIES.register(
+            "parasite_player",
+            () -> EntityType.Builder.of(com.netheritesupremo.parasite.ParasitePlayer::new, MobCategory.MONSTER)
+                    .sized(0.6F, 1.8F)
+                    .clientTrackingRange(8)
+                    .build("parasite_player"));
+
     public static final RegistryObject<EntityType<com.netheritesupremo.mob.HeadlessHorseman>> HEADLESS_HORSEMAN = ENTITIES.register(
             "headless_horseman",
             () -> EntityType.Builder.of(com.netheritesupremo.mob.HeadlessHorseman::new, MobCategory.MONSTER)

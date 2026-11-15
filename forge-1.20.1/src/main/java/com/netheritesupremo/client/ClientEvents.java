@@ -21,6 +21,7 @@ public final class ClientEvents {
 
     @SubscribeEvent
     public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        ParasiteRenderers.register(event);
         event.registerEntityRenderer(ModEntities.NETHERITE_GOLEM.get(), NetheriteGolemRenderer::new);
         event.registerEntityRenderer(ModEntities.NETHERITE_KNIGHT.get(), NetheriteKnightRenderer::new);
         event.registerEntityRenderer(ModEntities.NETHER_SPIDER.get(), NetherSpiderRenderer::new);
