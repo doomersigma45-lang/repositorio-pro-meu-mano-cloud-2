@@ -8,6 +8,10 @@ import net.minecraft.world.effect.MobEffectInstance;
 import com.netheritesupremo.parasite.ParasitePlayer;
 import com.netheritesupremo.registry.ModEntities;
 import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.PlayerModel;
+import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.entity.ChickenRenderer;
 import net.minecraft.client.renderer.entity.CowRenderer;
@@ -207,7 +211,17 @@ public final class ParasiteRenderers {
             spikes(r, ctx, ParasiteSpikesModel.ENDER);
             return r;
         });
-        event.registerEntityRenderer(ModEntities.PARASITE_PLAYER.get(), ctx -> new PlayerRobotRenderer<ParasitePlayer>(ctx,
-                tex("parasite_player"), 1.0F));
+        event.registerEntityRenderer(ModEntities.PARASITE_TOTEM.get(),
+                ctx -> new AirborneRenderer(ctx, AirborneRenderer.TOTEM_LAYER, tex("parasite_totem"), 0.9F));
+        event.registerEntityRenderer(ModEntities.PARASITE_BLOOM.get(),
+                ctx -> new AirborneRenderer(ctx, AirborneRenderer.BLOOM_LAYER, tex("parasite_bloom"), 0.8F));
+        event.registerEntityRenderer(ModEntities.PARASITE_PLAYER.get(), ctx -> {
+            PlayerRobotRenderer<ParasitePlayer> r = new PlayerRobotRenderer<ParasitePlayer>(ctx, tex("parasite_player"), 1.0F);
+            // armadura visivel (a do equipamento por fase)
+            r.addLayer(new HumanoidArmorLayer<ParasitePlayer, PlayerModel<ParasitePlayer>, HumanoidModel<ParasitePlayer>>(r,
+                    new HumanoidModel<ParasitePlayer>(ctx.bakeLayer(ModelLayers.PLAYER_INNER_ARMOR)),
+                    new HumanoidModel<ParasitePlayer>(ctx.bakeLayer(ModelLayers.PLAYER_OUTER_ARMOR)), ctx.getModelManager()));
+            return r;
+        });
     }
 }

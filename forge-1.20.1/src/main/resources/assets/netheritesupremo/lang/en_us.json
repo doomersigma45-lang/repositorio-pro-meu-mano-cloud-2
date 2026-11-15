@@ -285,5 +285,9 @@
   "item.netheritesupremo.parasite_enderman_spawn_egg": "Parasite Enderman Spawn Egg",
   "block.netheritesupremo.parasite_blood": "Parasite Blood",
   "item.netheritesupremo.parasite_blood_bucket": "Parasite Blood Bucket",
-  "effect.netheritesupremo.parasite_phase": "Parasite Phase"
+  "effect.netheritesupremo.parasite_phase": "Parasite Phase",
+  "entity.netheritesupremo.parasite_totem": "Parasite Totem",
+  "item.netheritesupremo.parasite_totem_spawn_egg": "Parasite Totem Spawn Egg",
+  "entity.netheritesupremo.parasite_bloom": "Parasite Bloom",
+  "item.netheritesupremo.parasite_bloom_spawn_egg": "Parasite Bloom Spawn Egg"
 }

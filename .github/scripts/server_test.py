@@ -973,6 +973,22 @@ def main():
             gcmd("data get entity @e[type=netheritesupremo:parasite_player,tag=parasite_test5,limit=1] HandItems[0].id")
             gcmd("data get entity @e[type=netheritesupremo:parasite_player,tag=parasite_test5,limit=1] ArmorItems[2].id")
             gcmd("time set 1000")
+            # 1.69.0: infectados do ar, vermes ao morrer, surto natural (mais de 10 infectados)
+            r.cmd("summon netheritesupremo:parasite_totem 1060 60 870 {NoAI:1b}")
+            r.cmd("summon netheritesupremo:parasite_bloom 1070 60 870 {NoAI:1b}")
+            r.cmd("summon minecraft:cow 1065 60 870 {NoAI:1b,Tags:[\"parasite_test6\"]}")
+            time.sleep(2)
+            for ty in ("totem", "bloom"):
+                gcmd(f"attribute @e[type=netheritesupremo:parasite_{ty},limit=1] minecraft:generic.max_health get")
+            gcmd("execute if entity @e[type=minecraft:cow,tag=parasite_test6] run say vaca nao virou")
+            gcmd("attribute @e[type=netheritesupremo:parasite_enderman,limit=1] minecraft:generic.max_health get")
+            gcmd("kill @e[type=netheritesupremo:parasite_zombie]")
+            time.sleep(1)
+            gcmd("execute if entity @e[type=netheritesupremo:parasite_worm] run say vermes sairam")
+            for i in range(11):
+                r.cmd(f"summon netheritesupremo:parasite_chicken {1080 + i} 60 870 {{NoAI:1b}}")
+            time.sleep(7)
+            gcmd("parasite status")
             annotate("notice", "anomalocaris e guardiao", g4)
             # escavador, automato, tartaruga ancestral
             t5 = []

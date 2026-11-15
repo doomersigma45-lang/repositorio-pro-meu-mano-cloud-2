@@ -467,6 +467,20 @@ public final class ModEntities {
                     .clientTrackingRange(8)
                     .build("parasite_enderman"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.AirborneParasite>> PARASITE_TOTEM = ENTITIES.register(
+            "parasite_totem",
+            () -> EntityType.Builder.of(com.netheritesupremo.parasite.AirborneParasite::new, MobCategory.MONSTER)
+                    .sized(1.4F, 3.6F)
+                    .clientTrackingRange(10)
+                    .build("parasite_totem"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.AirborneParasite>> PARASITE_BLOOM = ENTITIES.register(
+            "parasite_bloom",
+            () -> EntityType.Builder.of(com.netheritesupremo.parasite.AirborneParasite::new, MobCategory.MONSTER)
+                    .sized(1.2F, 3.6F)
+                    .clientTrackingRange(10)
+                    .build("parasite_bloom"));
+
     public static final RegistryObject<EntityType<com.netheritesupremo.mob.HeadlessHorseman>> HEADLESS_HORSEMAN = ENTITIES.register(
             "headless_horseman",
             () -> EntityType.Builder.of(com.netheritesupremo.mob.HeadlessHorseman::new, MobCategory.MONSTER)

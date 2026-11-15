@@ -2,6 +2,8 @@ package com.netheritesupremo.parasite;
 
 import com.netheritesupremo.NetheriteSupremo;
 import com.netheritesupremo.skeleton.ModEffects;
+import com.netheritesupremo.registry.ModEntities;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
@@ -53,6 +55,16 @@ public final class ParasiteEvents {
         LivingEntity victim = event.getEntity();
         if (victim.level().isClientSide) {
             return;
+        }
+        if (victim instanceof ParasiteMob && !(victim instanceof ParasiteWorm) && victim.level() instanceof ServerLevel sl) {
+            for (int i = 0; i < 3; i++) {
+                ParasiteWorm worm = ModEntities.PARASITE_WORM.get().create(sl);
+                if (worm != null) {
+                    worm.moveTo(victim.getX() + (sl.random.nextDouble() - 0.5D), victim.getY() + 0.2D,
+                            victim.getZ() + (sl.random.nextDouble() - 0.5D), sl.random.nextFloat() * 360.0F, 0.0F);
+                    sl.addFreshEntity(worm);
+                }
+            }
         }
         if (victim instanceof Mob mob && !(mob instanceof ParasiteMob) && mob.hasEffect(ModEffects.INFESTATION.get())
                 && ParasiteBehavior.versionFor(mob.getType()) != null) {

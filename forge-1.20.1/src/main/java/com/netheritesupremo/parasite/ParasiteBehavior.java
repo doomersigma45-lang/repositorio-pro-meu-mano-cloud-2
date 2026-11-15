@@ -131,12 +131,26 @@ public final class ParasiteBehavior {
      * Infecta um mob. Com versao parasita: Infestacao (ao morrer vira a versao parasita).
      * Sem versao: Parasitado (passa a agir como parasita). Nunca afeta jogadores.
      */
+    public static boolean canInfect(Mob mob) {
+        return !isParasitic(mob) && !mob.hasEffect(ModEffects.INFESTATION.get())
+                && !(mob instanceof EnderDragon) && !(mob instanceof WitherBoss) && mob.getMaxHealth() <= 400.0F;
+    }
+
+    /** Contagem pelo ar: quem tem versao parasita vira ela na hora; os outros ficam Parasitados. */
+    public static void infectNow(Mob mob) {
+        if (versionFor(mob.getType()) != null) {
+            markInfected(mob);
+            spawnVersion(mob);
+        } else {
+            infect(mob);
+        }
+    }
+
     public static boolean infect(LivingEntity victim) {
         if (!(victim instanceof Mob mob) || mob.level().isClientSide) {
             return false;
         }
-        if (isParasitic(mob) || mob.hasEffect(ModEffects.INFESTATION.get())
-                || mob instanceof EnderDragon || mob instanceof WitherBoss || mob.getMaxHealth() > 400.0F) {
+        if (!canInfect(mob)) {
             return false;
         }
         markInfected(mob);

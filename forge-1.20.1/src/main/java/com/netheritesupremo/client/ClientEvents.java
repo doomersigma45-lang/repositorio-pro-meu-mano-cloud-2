@@ -105,6 +105,8 @@ public final class ClientEvents {
     @SubscribeEvent
     public static void onRegisterLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(SaucerRenderer.LAYER, SaucerModel::createLayer);
+        event.registerLayerDefinition(AirborneRenderer.TOTEM_LAYER, AirborneModel::totem);
+        event.registerLayerDefinition(AirborneRenderer.BLOOM_LAYER, AirborneModel::bloom);
         event.registerLayerDefinition(ParasiteSpikesModel.HUMANOID, ParasiteSpikesModel::humanoid);
         event.registerLayerDefinition(ParasiteSpikesModel.CREEPER, ParasiteSpikesModel::creeper);
         event.registerLayerDefinition(ParasiteSpikesModel.ENDER, ParasiteSpikesModel::ender);

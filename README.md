@@ -491,3 +491,16 @@ O cavalo esqueleto dele usava o renderer vanilla, que só tem textura para os ca
   - **TNT**: joga TNT na casa do jogador quando não há caminho até ele ou ele está sob um teto (no máximo 1 por minuto, só com mobGriefing ligado).
   - **Líder**: os outros infectados num raio de 32 blocos passam a atacar o mesmo alvo que ele.
 
+### Surto natural, infectados do ar, Enderman forte e armadura visível (1.69.0)
+**Não testado no jogo.** Modelos e texturas do Totem e da Flor feitos por mim (IA), inspirados nas suas duas imagens (geradas por `tools/gerar_parasitas_ar.py`); estatísticas e frequências não especificadas foram escolha minha.
+- **Enderman Parasita mais forte**: 150 HP, 20 de dano, armadura 8, mais rápido (0,36). **Se o alvo está a mais de 16 blocos, ele se teletransporta para perto dele** (a cada 3 s, no máximo). Li "os endermans" como o Enderman Parasita; o enderman comum não mudou.
+- **Surto natural**: quando há **mais de 10 infectados carregados** no mundo, mobs que **nascem naturalmente** (só spawn natural e geração de chunk, não ovo nem comando) podem nascer infectados. O relógio do surto conta desde o momento em que passou de 10 pela primeira vez (`/parasite status` mostra, `/parasite reset` reinicia, só para operadores).
+  - Dias 0-5 do surto: **1 em cada 3**. Dias 5-25: **2 em cada 3** (você não disse nada para o dia 11-25, mantive 2/3). **Dia 25 em diante: todo mob hostil nasce infectado.**
+  - Mob com versão parasita nasce já como ela; os outros nascem com o efeito Parasitado (por 1 hora). Eles já nascem na fase do surto (fase 2 = 5 dias, fase 3 = 11 dias de infecção).
+  - Só conta infectados nos chunks carregados; chefes e Ender Dragon/Wither não entram.
+- **Quando um infectado morre, saem 3 parasitas (vermes)** de dentro dele (menos o próprio verme).
+- **Infectados do ar** (nova classe): **Totem Parasita** (tronco preto com crânios) e **Flor Parasita** (haste preta com copa amarela, tentáculos e base em estrela). 120 HP, lentos, quase imunes a empurrão, mordem fraco. **Todo mob (menos jogador) a até 8 blocos vira infectado na hora** (a cada 1 s; vira a versão parasita se houver, senão fica Parasitado). Soltam partículas verdes na área.
+  - Aparecem sozinhos (só no Overworld, de 24 a 48 blocos de um jogador) **só quando o surto está ativo**: **raros na fase 2** (1 chance em 60 a cada 10 s por jogador, no máximo 2 por região) e **um pouco mais comuns na fase 3** (1 em 20, no máximo 4). Têm ovo de geração.
+  - Modelos: peças fixas com um leve balanço; não têm animação de ataque.
+- **Jogador Parasita agora mostra a armadura** (ferro, diamante encantado ou obsidiana, conforme a fase).
+
