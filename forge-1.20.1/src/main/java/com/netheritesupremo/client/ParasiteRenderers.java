@@ -20,7 +20,7 @@ import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Endermite;
-import net.minecraft.world.entity.monster.Skeleton;
+import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -60,7 +60,7 @@ public final class ParasiteRenderers {
             tint(r, "textures/entity/zombie/zombie.png");
             return r;
         });
-        event.<Skeleton>registerEntityRenderer(ModEntities.PARASITE_SKELETON.get(), ctx -> {
+        event.<AbstractSkeleton>registerEntityRenderer(ModEntities.PARASITE_SKELETON.get(), ctx -> {
             SkeletonRenderer r = new SkeletonRenderer(ctx);
             tint(r, "textures/entity/skeleton/skeleton.png");
             return r;
