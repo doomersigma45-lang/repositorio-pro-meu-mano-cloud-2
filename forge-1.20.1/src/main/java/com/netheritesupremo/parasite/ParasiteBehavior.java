@@ -121,6 +121,18 @@ public final class ParasiteBehavior {
         if (t == EntityType.SPIDER) {
             return ModEntities.PARASITE_SPIDER.get();
         }
+        if (t == EntityType.WARDEN) {
+            return ModEntities.PARASITE_WARDEN.get();
+        }
+        if (t == EntityType.WITHER) {
+            return ModEntities.PARASITE_WITHER.get();
+        }
+        if (t == EntityType.IRON_GOLEM) {
+            return ModEntities.PARASITE_IRON_GOLEM.get();
+        }
+        if (t == ModEntities.NETHERITE_GOLEM.get()) {
+            return ModEntities.PARASITE_NETHERITE_GOLEM.get();
+        }
         if (t == EntityType.ENDERMAN) {
             return ModEntities.PARASITE_ENDERMAN.get();
         }
@@ -132,8 +144,13 @@ public final class ParasiteBehavior {
      * Sem versao: Parasitado (passa a agir como parasita). Nunca afeta jogadores.
      */
     public static boolean canInfect(Mob mob) {
-        return !isParasitic(mob) && !mob.hasEffect(ModEffects.INFESTATION.get())
-                && !(mob instanceof EnderDragon) && !(mob instanceof WitherBoss) && mob.getMaxHealth() <= 400.0F;
+        if (isParasitic(mob) || mob.hasEffect(ModEffects.INFESTATION.get())) {
+            return false;
+        }
+        if (versionFor(mob.getType()) != null) {
+            return true;
+        }
+        return !(mob instanceof EnderDragon) && !(mob instanceof WitherBoss) && mob.getMaxHealth() <= 400.0F;
     }
 
     /** Contagem pelo ar: quem tem versao parasita vira ela na hora; os outros ficam Parasitados. */

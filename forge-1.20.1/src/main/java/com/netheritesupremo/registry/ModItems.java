@@ -399,6 +399,22 @@ public final class ModItems {
             "parasite_bloom_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.PARASITE_BLOOM, 0x141416, 0xB4D81E, new Item.Properties()));
 
+    public static final RegistryObject<Item> PARASITE_WARDEN_SPAWN_EGG = ITEMS.register(
+            "parasite_warden_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.PARASITE_WARDEN, 0x0B1A1C, 0xC0202A, new Item.Properties()));
+
+    public static final RegistryObject<Item> PARASITE_WITHER_SPAWN_EGG = ITEMS.register(
+            "parasite_wither_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.PARASITE_WITHER, 0x141414, 0xB02030, new Item.Properties()));
+
+    public static final RegistryObject<Item> PARASITE_IRON_GOLEM_SPAWN_EGG = ITEMS.register(
+            "parasite_iron_golem_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.PARASITE_IRON_GOLEM, 0xD0C8BC, 0xA01820, new Item.Properties()));
+
+    public static final RegistryObject<Item> PARASITE_NETHERITE_GOLEM_SPAWN_EGG = ITEMS.register(
+            "parasite_netherite_golem_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.PARASITE_NETHERITE_GOLEM, 0x2A2426, 0xC03020, new Item.Properties()));
+
     public static final RegistryObject<Item> HORSEMAN_SWORD = ITEMS.register(
             "horseman_sword",
             () -> new com.netheritesupremo.item.HorsemanSwordItem());

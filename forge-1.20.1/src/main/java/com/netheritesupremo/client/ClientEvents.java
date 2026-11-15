@@ -110,6 +110,7 @@ public final class ClientEvents {
         event.registerLayerDefinition(ParasiteSpikesModel.HUMANOID, ParasiteSpikesModel::humanoid);
         event.registerLayerDefinition(ParasiteSpikesModel.CREEPER, ParasiteSpikesModel::creeper);
         event.registerLayerDefinition(ParasiteSpikesModel.ENDER, ParasiteSpikesModel::ender);
+        event.registerLayerDefinition(ParasiteSpikesModel.GOLEM, ParasiteSpikesModel::golem);
         event.registerLayerDefinition(WarTankRenderer.LAYER, WarTankModel::createLayer);
         event.registerLayerDefinition(GooseRenderer.LAYER, GooseModel::createLayer);
         event.registerLayerDefinition(DiggerRenderer.LAYER, DiggerModel::createLayer);
@@ -134,6 +135,7 @@ public final class ClientEvents {
     @SubscribeEvent
     public static void onRegisterReloadListeners(RegisterClientReloadListenersEvent event) {
         event.registerReloadListener(new GolemTexture());
+        event.registerReloadListener(new ParasiteTextures());
         event.registerReloadListener(new FusionArmorTextures());
     }
 }

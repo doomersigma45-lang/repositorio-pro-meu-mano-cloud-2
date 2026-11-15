@@ -504,3 +504,13 @@ O cavalo esqueleto dele usava o renderer vanilla, que só tem textura para os ca
   - Modelos: peças fixas com um leve balanço; não têm animação de ataque.
 - **Jogador Parasita agora mostra a armadura** (ferro, diamante encantado ou obsidiana, conforme a fase).
 
+### Infectados grandes: Warden, Wither, Golem de Ferro e Golem de Netherite (1.70.0)
+**Não testado no jogo.** Visual e números feitos por mim (IA), com as suas imagens como inspiração de estilo (golens de carne vermelha e pele branca com tentáculos pretos; Warden escuro com boca vermelha). As texturas são **geradas na hora a partir das texturas do próprio jogo** (mesma técnica do golem de netherite), então as peças do modelo ficam no lugar certo; nada de arte do outro mod foi copiado.
+- **Golem de Ferro Parasita**: 200 HP, 22 de dano; pele clara manchada de sangue, carne viva, pontos pretos e espinhos de carne nas costas e ombros. Não defende aldeões e não se cura com ferro.
+- **Golem de Netherite Parasita**: 2.600 HP, 600 de dano, mais rápido (0,42), imune a projéteis, explosões e Wither como o original; netherite carbonizado com sangue e brasas e os mesmos espinhos. Não tem as bolas de fogo/aura do original.
+- **Warden Parasita**: 600 HP, 40 de dano; Warden com textura escura e carne, e **o turquesa vira vermelho** (inclusive o brilho). Ele se enfurece sozinho com qualquer não parasita a até 32 blocos e não considera parasitas como alvo. **Não fiz os chifres/antenas da sua imagem** (o modelo é o do Warden).
+- **Wither Parasita**: 450 HP, armadura 6; Wither com ossos sujos, carne e preto. Ataca tudo que não é parasita. Herda o comportamento do Wither original de **soltar uma Estrela do Nether ao morrer**.
+- **Todos viram infectados da mesma forma** que os outros: Infestação (ao morrer viram a versão parasita), contato com o líquido vermelho, mordida, infectados do ar e Parasitado. Para esses quatro, o limite de "mais de 400 HP não infecta" não vale. Eles seguem as **fases** (mais HP/dano, deformação por escala e inclinação) e soltam **3 vermes** ao morrer.
+- **Sem fogo amigo**: parasita não machuca parasita (valia só por não se atacarem; agora é garantido, inclusive para as caveiras do Wither e explosões).
+- Ovos de geração e drops (Wither: caveira de esqueleto Wither, Warden: catalisador de sculk, golens: ferro/restos de netherite, todos: slime).
+

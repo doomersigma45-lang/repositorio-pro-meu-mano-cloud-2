@@ -11,6 +11,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.WrappedGoal;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -47,6 +48,15 @@ public final class ParasiteEvents {
         DamageSource source = event.getSource();
         if (ParasiteBehavior.isParasitic(source.getEntity()) || ParasiteBehavior.isParasitic(source.getDirectEntity())) {
             ParasiteBehavior.infect(victim);
+        }
+    }
+
+    /** Sem fogo amigo: parasita nao machuca parasita (skulls do Wither, explosoes, mordidas). */
+    @SubscribeEvent
+    public static void onAttack(LivingAttackEvent event) {
+        Entity source = event.getSource().getEntity();
+        if (source != null && ParasiteBehavior.isParasitic(source) && ParasiteBehavior.isParasitic(event.getEntity())) {
+            event.setCanceled(true);
         }
     }
 

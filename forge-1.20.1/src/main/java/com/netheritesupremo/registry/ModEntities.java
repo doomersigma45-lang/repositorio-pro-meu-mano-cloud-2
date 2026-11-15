@@ -481,6 +481,30 @@ public final class ModEntities {
                     .clientTrackingRange(10)
                     .build("parasite_bloom"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasiteWarden>> PARASITE_WARDEN = ENTITIES.register(
+            "parasite_warden",
+            () -> EntityType.Builder.of(com.netheritesupremo.parasite.ParasiteWarden::new, MobCategory.MONSTER)
+                    .sized(0.9F, 2.9F).fireImmune().clientTrackingRange(16)
+                    .build("parasite_warden"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasiteWither>> PARASITE_WITHER = ENTITIES.register(
+            "parasite_wither",
+            () -> EntityType.Builder.of(com.netheritesupremo.parasite.ParasiteWither::new, MobCategory.MONSTER)
+                    .sized(0.9F, 3.5F).fireImmune().clientTrackingRange(16)
+                    .build("parasite_wither"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasiteIronGolem>> PARASITE_IRON_GOLEM = ENTITIES.register(
+            "parasite_iron_golem",
+            () -> EntityType.Builder.of(com.netheritesupremo.parasite.ParasiteIronGolem::new, MobCategory.MONSTER)
+                    .sized(1.4F, 2.7F).clientTrackingRange(10)
+                    .build("parasite_iron_golem"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasiteNetheriteGolem>> PARASITE_NETHERITE_GOLEM = ENTITIES.register(
+            "parasite_netherite_golem",
+            () -> EntityType.Builder.of(com.netheritesupremo.parasite.ParasiteNetheriteGolem::new, MobCategory.MONSTER)
+                    .sized(1.75F, 3.4F).fireImmune().clientTrackingRange(10)
+                    .build("parasite_netherite_golem"));
+
     public static final RegistryObject<EntityType<com.netheritesupremo.mob.HeadlessHorseman>> HEADLESS_HORSEMAN = ENTITIES.register(
             "headless_horseman",
             () -> EntityType.Builder.of(com.netheritesupremo.mob.HeadlessHorseman::new, MobCategory.MONSTER)

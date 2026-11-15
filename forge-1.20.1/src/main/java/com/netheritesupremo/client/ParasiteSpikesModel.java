@@ -19,6 +19,7 @@ public class ParasiteSpikesModel<T extends LivingEntity> extends EntityModel<T> 
     public static final ModelLayerLocation HUMANOID = loc("humanoid");
     public static final ModelLayerLocation CREEPER = loc("creeper");
     public static final ModelLayerLocation ENDER = loc("ender");
+    public static final ModelLayerLocation GOLEM = loc("golem");
 
     private final ModelPart root;
 
@@ -63,6 +64,17 @@ public class ParasiteSpikesModel<T extends LivingEntity> extends EntityModel<T> 
             {5.5F, 0F, 0F, 1.1F, 1.4F, 0F, 9F, 1.5F},
     };
 
+    private static final float[][] GOLEM_BODY = {
+            {-6F, -7F, 5F, 0.9F, -0.2F, 0F, 12F, 2.5F},
+            {6F, -7F, 5F, 0.9F, 0.2F, 0F, 12F, 2.5F},
+            {0F, -5F, 5F, 0.5F, 0F, 0F, 14F, 3F},
+            {-6F, -1F, 5F, 0.3F, -0.2F, 0F, 11F, 2.5F},
+            {6F, -1F, 5F, 0.3F, 0.2F, 0F, 11F, 2.5F},
+            {0F, 1F, 5F, -0.1F, 0F, 0F, 10F, 2.5F},
+            {-10F, -8F, 0F, 1.1F, -1.4F, 0F, 9F, 2F},
+            {10F, -8F, 0F, 1.1F, 1.4F, 0F, 9F, 2F},
+    };
+
     private static LayerDefinition build(float[][] spikes, float yTop, float lengthScale) {
         MeshDefinition mesh = new MeshDefinition();
         PartDefinition root = mesh.getRoot();
@@ -82,6 +94,10 @@ public class ParasiteSpikesModel<T extends LivingEntity> extends EntityModel<T> 
 
     public static LayerDefinition creeper() {
         return build(BODY, 6.0F, 0.85F);
+    }
+
+    public static LayerDefinition golem() {
+        return build(GOLEM_BODY, 0.0F, 1.0F);
     }
 
     public static LayerDefinition ender() {

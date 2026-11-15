@@ -289,5 +289,13 @@
   "entity.netheritesupremo.parasite_totem": "Parasite Totem",
   "item.netheritesupremo.parasite_totem_spawn_egg": "Parasite Totem Spawn Egg",
   "entity.netheritesupremo.parasite_bloom": "Parasite Bloom",
-  "item.netheritesupremo.parasite_bloom_spawn_egg": "Parasite Bloom Spawn Egg"
+  "item.netheritesupremo.parasite_bloom_spawn_egg": "Parasite Bloom Spawn Egg",
+  "entity.netheritesupremo.parasite_warden": "Parasite Warden",
+  "item.netheritesupremo.parasite_warden_spawn_egg": "Parasite Warden Spawn Egg",
+  "entity.netheritesupremo.parasite_wither": "Parasite Wither",
+  "item.netheritesupremo.parasite_wither_spawn_egg": "Parasite Wither Spawn Egg",
+  "entity.netheritesupremo.parasite_iron_golem": "Parasite Iron Golem",
+  "item.netheritesupremo.parasite_iron_golem_spawn_egg": "Parasite Iron Golem Spawn Egg",
+  "entity.netheritesupremo.parasite_netherite_golem": "Parasite Netherite Golem",
+  "item.netheritesupremo.parasite_netherite_golem_spawn_egg": "Parasite Netherite Golem Spawn Egg"
 }

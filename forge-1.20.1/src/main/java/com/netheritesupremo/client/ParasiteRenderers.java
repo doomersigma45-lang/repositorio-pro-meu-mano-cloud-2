@@ -24,6 +24,10 @@ import net.minecraft.client.renderer.entity.PigRenderer;
 import net.minecraft.client.renderer.entity.SkeletonRenderer;
 import net.minecraft.client.renderer.entity.SpiderRenderer;
 import net.minecraft.client.renderer.entity.ZombieRenderer;
+import net.minecraft.client.renderer.entity.IronGolemRenderer;
+import net.minecraft.client.renderer.entity.WitherBossRenderer;
+import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Chicken;
@@ -209,6 +213,51 @@ public final class ParasiteRenderers {
             }
             };
             spikes(r, ctx, ParasiteSpikesModel.ENDER);
+            return r;
+        });
+        event.registerEntityRenderer(ModEntities.PARASITE_WARDEN.get(), ParasiteWardenRenderer::new);
+        event.<WitherBoss>registerEntityRenderer(ModEntities.PARASITE_WITHER.get(), ctx -> new WitherBossRenderer(ctx) {
+            @Override
+            public ResourceLocation getTextureLocation(WitherBoss entity) {
+                return ParasiteTextures.WITHER;
+            }
+
+            @Override
+            protected void scale(WitherBoss entity, PoseStack pose, float partialTick) {
+                super.scale(entity, pose, partialTick);
+                deform(pose, phase(entity));
+            }
+        });
+        event.<IronGolem>registerEntityRenderer(ModEntities.PARASITE_IRON_GOLEM.get(), ctx -> {
+            IronGolemRenderer r = new IronGolemRenderer(ctx) {
+                @Override
+                public ResourceLocation getTextureLocation(IronGolem entity) {
+                    return ParasiteTextures.IRON_GOLEM;
+                }
+
+                @Override
+                protected void scale(IronGolem entity, PoseStack pose, float partialTick) {
+                    super.scale(entity, pose, partialTick);
+                    deform(pose, phase(entity));
+                }
+            };
+            spikes(r, ctx, ParasiteSpikesModel.GOLEM);
+            return r;
+        });
+        event.<IronGolem>registerEntityRenderer(ModEntities.PARASITE_NETHERITE_GOLEM.get(), ctx -> {
+            IronGolemRenderer r = new IronGolemRenderer(ctx) {
+                @Override
+                public ResourceLocation getTextureLocation(IronGolem entity) {
+                    return ParasiteTextures.NETHERITE_GOLEM;
+                }
+
+                @Override
+                protected void scale(IronGolem entity, PoseStack pose, float partialTick) {
+                    pose.scale(1.25F, 1.25F, 1.25F);
+                    deform(pose, phase(entity));
+                }
+            };
+            spikes(r, ctx, ParasiteSpikesModel.GOLEM);
             return r;
         });
         event.registerEntityRenderer(ModEntities.PARASITE_TOTEM.get(),

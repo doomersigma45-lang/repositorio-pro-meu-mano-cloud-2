@@ -989,6 +989,18 @@ def main():
                 r.cmd(f"summon netheritesupremo:parasite_chicken {1080 + i} 60 870 {{NoAI:1b}}")
             time.sleep(7)
             gcmd("parasite status")
+            # 1.70.0: warden, wither, golem de ferro e de netherite infectados
+            for i, ty in enumerate(("warden", "wither", "iron_golem", "netherite_golem")):
+                r.cmd(f"summon netheritesupremo:parasite_{ty} {1100 + i * 6} 60 870 {{NoAI:1b}}")
+            time.sleep(2)
+            for ty in ("warden", "wither", "iron_golem", "netherite_golem"):
+                gcmd(f"attribute @e[type=netheritesupremo:parasite_{ty},limit=1] minecraft:generic.max_health get")
+            r.cmd("summon minecraft:iron_golem 1130 60 870 {NoAI:1b,Tags:[\"parasite_test7\"]}")
+            time.sleep(1)
+            gcmd("effect give @e[type=minecraft:iron_golem,tag=parasite_test7,limit=1] netheritesupremo:infestation 60 0")
+            gcmd("damage @e[type=minecraft:iron_golem,tag=parasite_test7,limit=1] 1000 minecraft:generic")
+            time.sleep(1)
+            gcmd("execute if entity @e[type=netheritesupremo:parasite_iron_golem] run say golem virou parasita")
             annotate("notice", "anomalocaris e guardiao", g4)
             # escavador, automato, tartaruga ancestral
             t5 = []
