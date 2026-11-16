@@ -310,5 +310,7 @@
   "entity.netheritesupremo.parasite_wandering_trader": "Vendedor Ambulante Parasita",
   "item.netheritesupremo.parasite_wandering_trader_spawn_egg": "Ovo de Geração de Vendedor Ambulante Parasita",
   "entity.netheritesupremo.parasite_hunter": "Hunter Parasita",
-  "item.netheritesupremo.parasite_hunter_spawn_egg": "Ovo de Geração de Hunter Parasita"
+  "item.netheritesupremo.parasite_hunter_spawn_egg": "Ovo de Geração de Hunter Parasita",
+  "item.netheritesupremo.parasite_accelerator_serum": "Soro Acelerador Parasita",
+  "item.netheritesupremo.parasite_retarder_serum": "Soro Retardador Parasita"
 }

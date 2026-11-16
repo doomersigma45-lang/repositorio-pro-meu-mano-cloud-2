@@ -1054,6 +1054,14 @@ def main():
             gcmd("attribute @e[type=netheritesupremo:parasite_hunter,limit=1] minecraft:generic.max_health get")
             gcmd("effect give @e[type=netheritesupremo:robot,tag=parasite_test10,limit=1] netheritesupremo:infestation 30 0")
             gcmd("execute if entity @e[type=netheritesupremo:robot,tag=parasite_test10,nbt={ActiveEffects:[{}]}] run say robo recebeu efeito (deveria ser imune)")
+            # 1.76.0: meteoro maior com parasitas e soros de fase
+            r.cmd("forceload add 1380 850 1420 890")
+            r.cmd("summon netheritesupremo:parasite_zombie 1400 60 870 {NoAI:1b}")
+            time.sleep(1)
+            gcmd("give @a netheritesupremo:parasite_accelerator_serum 1")
+            gcmd("execute positioned 1400 60 870 run parasite meteor")
+            time.sleep(10)
+            gcmd("execute if entity @e[type=netheritesupremo:parasite_worm,x=1420,y=60,z=890,distance=..40] run say meteoro soltou vermes")
             annotate("notice", "anomalocaris e guardiao", g4)
             # escavador, automato, tartaruga ancestral
             t5 = []

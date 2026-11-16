@@ -555,3 +555,9 @@ O cavalo esqueleto dele usava o renderer vanilla, que só tem textura para os ca
 - **Robôs e Precursores**: Robot, robôs voadores (Bomba, Netherbot, Boss Arco-íris, Precursor), Soldado Precursor e Aldeão Precursor (e o Híbrido) **não podem ser infectados** (nem pelo líquido, mordida, ar ou efeitos) e **os infectados não os escolhem como alvo** (só revidam se forem atacados por eles).
 - **Ladrões e Slimes**: também **não podem ser infectados**, mas os infectados **os atacam**. Durante um surto o vírus os expulsa: o **spawn natural** (e na geração do mundo) deles é **cancelado em 30% na fase 1, 70% na fase 2 e 100% na fase 3**. Slimes pequenos que nascem de uma divisão e Ladrões de estruturas/ovos não são afetados.
 
+
+### Meteoros maiores com parasitas e Soros Acelerador/Retardador (1.76.0)
+**Não testado no jogo.** Números meus (IA); os ícones dos soros são pixel art que eu desenhei.
+- **Meteoro**: explosão bem maior (poder 9, antes 4; ainda sem fogo nem dano em blocos), cratera de raio ~6 (só com mobGriefing), até 16 fontes de líquido vermelho e infecção de mobs num raio de 10 blocos. Agora **libera parasitas**: 3 vermes + 4 parasitas (6 na fase 2 do surto, 8 na fase 3), já na fase do surto. Tipos: zumbi, esqueleto, aranha e creeper; a partir da fase 2 também Enderman, Aldeão e Lobo; na fase 3 também Jogador Parasita.
+- **Soro Acelerador Parasita**: leva o parasita para o **começo da fase seguinte** (a 3 é a última). **Soro Retardador Parasita**: **volta uma fase** (a 1 é a primeira). Clique num parasita (afeta só ele) ou use no ar (afeta todos num raio de 6 blocos). Consome 1 item no survival. Receitas (sem forma): garrafa de vidro + bola de slime + olho de aranha fermentado + redstone (acelerador); garrafa de vidro + bola de slime + cenoura dourada + farinha de osso (retardador). Ao mudar de fase para cima o parasita é curado por completo (regra existente das fases).
+

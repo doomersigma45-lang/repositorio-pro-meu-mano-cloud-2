@@ -114,7 +114,7 @@ public final class OutbreakEvents {
     }
 
     /** Faz o infectado nascer ja na fase do surto (fase 2 = 5 dias de infeccao, fase 3 = 11). */
-    private static void stampStage(Mob mob, int stage) {
+    public static void stampStage(Mob mob, int stage) {
         long offset = stage >= 3 ? 11L : (stage == 2 ? 5L : 0L);
         mob.getPersistentData().putLong(ParasiteBehavior.SINCE_TAG, mob.level().getDayTime() - offset * ParasiteBehavior.DAY);
     }

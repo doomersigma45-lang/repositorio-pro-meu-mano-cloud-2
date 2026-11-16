@@ -310,5 +310,7 @@
   "entity.netheritesupremo.parasite_wandering_trader": "Parasite Wandering Trader",
   "item.netheritesupremo.parasite_wandering_trader_spawn_egg": "Parasite Wandering Trader Spawn Egg",
   "entity.netheritesupremo.parasite_hunter": "Parasite Hunter",
-  "item.netheritesupremo.parasite_hunter_spawn_egg": "Parasite Hunter Spawn Egg"
+  "item.netheritesupremo.parasite_hunter_spawn_egg": "Parasite Hunter Spawn Egg",
+  "item.netheritesupremo.parasite_accelerator_serum": "Parasite Accelerator Serum",
+  "item.netheritesupremo.parasite_retarder_serum": "Parasite Retarder Serum"
 }
