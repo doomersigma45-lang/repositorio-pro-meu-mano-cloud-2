@@ -1017,7 +1017,7 @@ def main():
             gcmd("damage @e[type=netheritesupremo:strongest_zombie,tag=parasite_test8,limit=1] 1000 minecraft:generic")
             time.sleep(1)
             # 1.72.0: meteoro de sangue, ritual (lider + esqueletos/enderman) e golem feito por parasita
-            r.cmd("forceload add 1210 850 1310 890")
+            r.cmd("forceload add 1210 850 1340 890")
             r.cmd("summon netheritesupremo:parasite_player 1240 60 870")
             for i in range(3):
                 r.cmd(f"summon netheritesupremo:parasite_skeleton {1236 + i * 3} 60 874")
@@ -1042,6 +1042,11 @@ def main():
             gcmd("damage @e[type=minecraft:villager,tag=parasite_test9,limit=1] 1000 minecraft:generic")
             time.sleep(1)
             gcmd("execute if entity @e[type=netheritesupremo:parasite_villager,x=1300,y=60,z=870,distance=..6] run say aldeao virou parasita")
+            # 1.74.0: jogador parasita com totens/macas/pocoes (so confirma que nasce e guarda os dados)
+            r.cmd("summon netheritesupremo:parasite_player 1320 60 870 {NoAI:1b}")
+            time.sleep(3)
+            gcmd("data get entity @e[type=netheritesupremo:parasite_player,x=1320,y=60,z=870,distance=..5,limit=1] Totems")
+            gcmd("data get entity @e[type=netheritesupremo:parasite_player,x=1320,y=60,z=870,distance=..5,limit=1] PotionKit")
             annotate("notice", "anomalocaris e guardiao", g4)
             # escavador, automato, tartaruga ancestral
             t5 = []

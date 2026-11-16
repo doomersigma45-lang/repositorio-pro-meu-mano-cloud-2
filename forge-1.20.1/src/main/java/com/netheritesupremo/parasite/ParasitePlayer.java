@@ -7,7 +7,19 @@ import java.util.EnumSet;
 import java.util.List;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.projectile.ThrownPotion;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -64,6 +76,15 @@ public class ParasitePlayer extends Monster implements ParasiteMob {
     private int placeCooldown;
     private int breakCooldown;
     private ItemStack stored = ItemStack.EMPTY;
+    // consumiveis: totens da imortalidade, macas douradas (comuns e encantadas) e pocoes (beber ou arremessar)
+    private int totems;
+    private boolean totemsInit;
+    private int goldenApples;
+    private int enchApples;
+    private final java.util.List<ItemStack> kit = new java.util.ArrayList<>();
+    private int eatCooldown;
+    private int drinkCooldown;
+    private int throwCooldown;
 
     public ParasitePlayer(EntityType<? extends ParasitePlayer> type, Level level) {
         super(type, level);
@@ -144,6 +165,53 @@ public class ParasitePlayer extends Monster implements ParasiteMob {
         for (EquipmentSlot slot : EquipmentSlot.values()) {
             this.setDropChance(slot, slot == EquipmentSlot.OFFHAND ? 0.0F : 0.08F);
         }
+        this.setKit(phase);
+    }
+
+    private static ItemStack potion(net.minecraft.world.item.alchemy.Potion type, boolean splash) {
+        return PotionUtils.setPotion(new ItemStack(splash ? Items.SPLASH_POTION : Items.POTION), type);
+    }
+
+    /** Kit padrao por fase: pocoes de beber e de arremessar, macas douradas; 1 ou 2 totens sorteados uma unica vez. */
+    private void setKit(int phase) {
+        if (!this.totemsInit) {
+            this.totems = 1 + this.random.nextInt(2);
+            this.totemsInit = true;
+        }
+        this.kit.clear();
+        if (phase <= 1) {
+            this.goldenApples = 2;
+            this.enchApples = 0;
+            this.kit.add(potion(Potions.HEALING, false));
+            this.kit.add(potion(Potions.SWIFTNESS, false));
+            this.kit.add(potion(Potions.POISON, true));
+            this.kit.add(potion(Potions.SLOWNESS, true));
+        } else if (phase == 2) {
+            this.goldenApples = 3;
+            this.enchApples = 1;
+            this.kit.add(potion(Potions.STRONG_HEALING, false));
+            this.kit.add(potion(Potions.STRENGTH, false));
+            this.kit.add(potion(Potions.SWIFTNESS, false));
+            this.kit.add(potion(Potions.FIRE_RESISTANCE, false));
+            this.kit.add(potion(Potions.HARMING, true));
+            this.kit.add(potion(Potions.HARMING, true));
+            this.kit.add(potion(Potions.POISON, true));
+            this.kit.add(potion(Potions.WEAKNESS, true));
+        } else {
+            this.goldenApples = 4;
+            this.enchApples = 2;
+            this.kit.add(potion(Potions.STRONG_HEALING, false));
+            this.kit.add(potion(Potions.STRONG_HEALING, false));
+            this.kit.add(potion(Potions.STRONG_STRENGTH, false));
+            this.kit.add(potion(Potions.STRONG_SWIFTNESS, false));
+            this.kit.add(potion(Potions.STRONG_REGENERATION, false));
+            this.kit.add(potion(Potions.STRONG_HARMING, true));
+            this.kit.add(potion(Potions.STRONG_HARMING, true));
+            this.kit.add(potion(Potions.STRONG_HARMING, true));
+            this.kit.add(potion(Potions.STRONG_POISON, true));
+            this.kit.add(potion(Potions.SLOWNESS, true));
+            this.kit.add(potion(Potions.WEAKNESS, true));
+        }
     }
 
     private boolean inherited() {
@@ -171,6 +239,32 @@ public class ParasitePlayer extends Monster implements ParasiteMob {
             } else if (melee.isEmpty() && (s.getItem() instanceof net.minecraft.world.item.SwordItem || s.getItem() instanceof net.minecraft.world.item.AxeItem)) {
                 melee = s.copy();
             }
+        }
+        int totemCount = 0;
+        int gold = 0;
+        int ench = 0;
+        this.kit.clear();
+        for (ItemStack s : all) {
+            if (s.is(Items.TOTEM_OF_UNDYING)) {
+                totemCount += s.getCount();
+            } else if (s.is(Items.GOLDEN_APPLE)) {
+                gold += s.getCount();
+            } else if (s.is(Items.ENCHANTED_GOLDEN_APPLE)) {
+                ench += s.getCount();
+            } else if (s.is(Items.POTION) || s.is(Items.SPLASH_POTION) || s.is(Items.LINGERING_POTION)) {
+                for (int i = 0; i < s.getCount() && this.kit.size() < 10; i++) {
+                    ItemStack one = s.copy();
+                    one.setCount(1);
+                    this.kit.add(one);
+                }
+            }
+        }
+        this.totems = Mth.clamp(totemCount, 1, 2);
+        this.totemsInit = true;
+        this.goldenApples = Math.min(gold, 8);
+        this.enchApples = Math.min(ench, 3);
+        if (gold + ench == 0) {
+            this.goldenApples = 1;
         }
         ItemStack main = this.getMainHandItem();
         if (main.isEmpty()) {
@@ -229,6 +323,7 @@ public class ParasitePlayer extends Monster implements ParasiteMob {
         }
         LivingEntity target = this.getTarget();
         this.updateMode(target);
+        this.useItems(level, target);
         if ((phase >= 3 || this.inherited()) && this.tickCount % 5 == 0) {
             double d = target == null ? 99.0D : this.distanceTo(target);
             if (this.holdsGun() && d < 6.0D) {
@@ -254,6 +349,133 @@ public class ParasitePlayer extends Monster implements ParasiteMob {
         if (this.tickCount % 20 == 0) {
             this.rallyFollowers(level, target);
         }
+    }
+
+    // ------------------------------------------------------------------ totens, macas e pocoes
+    private static boolean harmful(java.util.List<MobEffectInstance> fx) {
+        return fx.stream().anyMatch(e -> e.getEffect().getCategory() == MobEffectCategory.HARMFUL);
+    }
+
+    private void useItems(ServerLevel level, LivingEntity target) {
+        if (this.eatCooldown > 0) {
+            this.eatCooldown--;
+        }
+        if (this.drinkCooldown > 0) {
+            this.drinkCooldown--;
+        }
+        if (this.throwCooldown > 0) {
+            this.throwCooldown--;
+        }
+        float hp = this.getHealth() / this.getMaxHealth();
+        if (hp < 0.5F && this.eatCooldown <= 0 && (this.goldenApples > 0 || this.enchApples > 0)) {
+            this.eatApple(level, hp);
+            return;
+        }
+        if (this.drinkCooldown <= 0 && this.drinkPotion(level, hp, target)) {
+            return;
+        }
+        if (target != null && this.aggressiveMode && this.throwCooldown <= 0) {
+            this.throwPotion(level, target);
+        }
+    }
+
+    private void eatApple(ServerLevel level, float hp) {
+        boolean enchanted = this.enchApples > 0 && (hp < 0.3F || this.goldenApples == 0);
+        if (enchanted) {
+            this.enchApples--;
+            this.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 400, 1));
+            this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 6000, 0));
+            this.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 6000, 0));
+            this.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 2400, 3));
+            this.eatCooldown = 400;
+        } else {
+            this.goldenApples--;
+            this.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 100, 1));
+            this.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 2400, 0));
+            this.eatCooldown = 160;
+        }
+        this.swing(InteractionHand.MAIN_HAND);
+        level.playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.GENERIC_EAT, SoundSource.HOSTILE, 1.0F, 1.0F);
+        level.sendParticles(new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(enchanted ? Items.ENCHANTED_GOLDEN_APPLE : Items.GOLDEN_APPLE)),
+                this.getX(), this.getEyeY(), this.getZ(), 8, 0.2D, 0.2D, 0.2D, 0.05D);
+    }
+
+    /** Bebe uma pocao do kit: cura se a vida esta baixa, buffs (forca, velocidade...) quando vai lutar. */
+    private boolean drinkPotion(ServerLevel level, float hp, LivingEntity target) {
+        for (int i = 0; i < this.kit.size(); i++) {
+            java.util.List<MobEffectInstance> fx = PotionUtils.getMobEffects(this.kit.get(i));
+            if (fx.isEmpty() || harmful(fx)) {
+                continue;
+            }
+            boolean healing = fx.stream().anyMatch(e -> e.getEffect() == MobEffects.HEAL || e.getEffect() == MobEffects.REGENERATION
+                    || e.getEffect() == MobEffects.ABSORPTION);
+            boolean ok = healing ? hp < 0.55F
+                    : target != null && this.aggressiveMode && fx.stream().noneMatch(e -> this.hasEffect(e.getEffect()));
+            if (!ok) {
+                continue;
+            }
+            this.kit.remove(i);
+            for (MobEffectInstance e : fx) {
+                if (e.getEffect().isInstantenous()) {
+                    e.getEffect().applyInstantenousEffect(this, this, this, e.getAmplifier(), 1.0D);
+                } else {
+                    this.addEffect(new MobEffectInstance(e));
+                }
+            }
+            this.drinkCooldown = 100;
+            this.swing(InteractionHand.MAIN_HAND);
+            level.playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.GENERIC_DRINK, SoundSource.HOSTILE, 1.0F, 1.0F);
+            level.sendParticles(ParticleTypes.WITCH, this.getX(), this.getEyeY(), this.getZ(), 10, 0.3D, 0.3D, 0.3D, 0.02D);
+            return true;
+        }
+        return false;
+    }
+
+    /** Arremessa uma pocao prejudicial (dano, veneno, lentidao, fraqueza...) no alvo, de 4 a 18 blocos. */
+    private void throwPotion(ServerLevel level, LivingEntity target) {
+        double d = this.distanceTo(target);
+        if (d < 4.0D || d > 18.0D || !this.getSensing().hasLineOfSight(target)) {
+            return;
+        }
+        for (int i = 0; i < this.kit.size(); i++) {
+            ItemStack stack = this.kit.get(i);
+            if (!harmful(PotionUtils.getMobEffects(stack))) {
+                continue;
+            }
+            this.kit.remove(i);
+            ItemStack splash = new ItemStack(Items.SPLASH_POTION);
+            PotionUtils.setPotion(splash, PotionUtils.getPotion(stack));
+            PotionUtils.setCustomEffects(splash, PotionUtils.getCustomEffects(stack));
+            ThrownPotion potion = new ThrownPotion(level, this);
+            potion.setItem(splash);
+            Vec3 v = target.getDeltaMovement();
+            double dx = target.getX() + v.x - this.getX();
+            double dy = target.getEyeY() - 1.1D - this.getY();
+            double dz = target.getZ() + v.z - this.getZ();
+            potion.setXRot(potion.getXRot() + 20.0F);
+            potion.shoot(dx, dy + Math.sqrt(dx * dx + dz * dz) * 0.2D, dz, 0.75F, 8.0F);
+            level.addFreshEntity(potion);
+            this.swing(InteractionHand.MAIN_HAND);
+            level.playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.WITCH_THROW, SoundSource.HOSTILE, 1.0F, 0.8F);
+            this.throwCooldown = 100 + this.random.nextInt(60);
+            return;
+        }
+    }
+
+    /** Totem da imortalidade: gasta um e volta com 1 de vida, regeneracao, absorcao e resistencia ao fogo. */
+    @Override
+    public void die(DamageSource source) {
+        if (this.totems > 0 && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+            this.totems--;
+            this.setHealth(1.0F);
+            this.removeAllEffects();
+            this.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 900, 1));
+            this.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 100, 1));
+            this.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 800, 0));
+            this.level().broadcastEntityEvent(this, (byte) 35);
+            return;
+        }
+        super.die(source);
     }
 
     /** Tocaia: segue o jogador sem atacar ate o momento certo; contra outros alvos ataca direto. */
@@ -523,6 +745,15 @@ public class ParasitePlayer extends Monster implements ParasiteMob {
         super.addAdditionalSaveData(tag);
         tag.putInt("StalkTicks", this.stalkTicks);
         tag.putInt("AggroTicks", this.aggroTicks);
+        tag.putInt("Totems", this.totems);
+        tag.putBoolean("TotemsInit", this.totemsInit);
+        tag.putInt("GoldenApples", this.goldenApples);
+        tag.putInt("EnchApples", this.enchApples);
+        ListTag list = new ListTag();
+        for (ItemStack k : this.kit) {
+            list.add(k.save(new CompoundTag()));
+        }
+        tag.put("PotionKit", list);
     }
 
     @Override
@@ -530,5 +761,13 @@ public class ParasitePlayer extends Monster implements ParasiteMob {
         super.readAdditionalSaveData(tag);
         this.stalkTicks = tag.getInt("StalkTicks");
         this.aggroTicks = tag.getInt("AggroTicks");
+        this.totems = tag.getInt("Totems");
+        this.totemsInit = tag.getBoolean("TotemsInit");
+        this.goldenApples = tag.getInt("GoldenApples");
+        this.enchApples = tag.getInt("EnchApples");
+        this.kit.clear();
+        for (Tag t : tag.getList("PotionKit", Tag.TAG_COMPOUND)) {
+            this.kit.add(ItemStack.of((CompoundTag) t));
+        }
     }
 }

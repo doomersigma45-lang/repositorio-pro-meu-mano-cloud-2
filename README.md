@@ -540,3 +540,11 @@ O cavalo esqueleto dele usava o renderer vanilla, que só tem textura para os ca
 
 **Ajuste 1.73.1 (visual dos dois, a partir do seu print do jogo):** garras bem mais finas (5 por mão, base vermelha e ponta de osso inclinada, em vez da "cortina" grossa), **dentes afiados em 3D** na frente da boca (camada nova, acompanha a cabeça), olhos mais estreitos e inclinados (zangados) com sobrancelha, menos manchas pretas/vermelhas vivas na pele e espinhos de carne nas costas. Continua sendo o modelo do Aldeão Zumbi com camadas extras; **não testado no jogo**.
 
+
+### Jogador Parasita: totens, maçãs douradas e poções (1.74.0)
+**Não testado no jogo.** Números e comportamento feitos por mim (IA).
+- **Totens da imortalidade**: o Jogador Parasita nasce com **1 ou 2 totens** (sorteado uma vez). Ao "morrer" gasta um: volta com 1 de vida, Regeneração II (45 s), Absorção II e Resistência ao Fogo, com a animação do totem. Se herdou o equipamento de um jogador, leva os totens que o jogador tinha (mín. 1, máx. 2). Dano do vazio/`/kill` ignora o totem.
+- **Maçãs douradas**: com menos de 50% de vida ele come uma (cooldown de 8 s): Regeneração II + Absorção I; a **encantada** (Regeneração II, Resistência, Resistência ao Fogo, Absorção IV; cooldown de 20 s) é usada quando a vida está abaixo de 30% ou acabaram as comuns. Quantidade por fase: 2 comuns / 3 + 1 encantada / 4 + 2 encantadas. Herdado: usa as maçãs que o jogador tinha (até 8 comuns e 3 encantadas; mín. 1 comum).
+- **Poções**: **bebe** poções boas (cura/regeneração quando a vida está abaixo de 55%; forca, velocidade, resistência ao fogo etc. ao entrar em combate, sem repetir um efeito que já tem) e **arremessa** poções ruins (dano, veneno, lentidão, fraqueza...) no alvo de 4 a 18 blocos de distância, com linha de visão. O kit cresce por fase (na 3: cura forte x2, força forte, velocidade forte, regeneração forte, dano forte x3, veneno forte, lentidão, fraqueza). Herdado: usa as poções reais que o jogador carregava (até 10).
+- Tudo é salvo no mundo (totens, maçãs, poções). Os itens consumidos não existem de verdade no inventário: são do "kit" interno e não caem ao morrer.
+
