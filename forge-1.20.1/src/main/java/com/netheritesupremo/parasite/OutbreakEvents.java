@@ -127,6 +127,16 @@ public final class OutbreakEvents {
             return;
         }
         MobSpawnType type = event.getSpawnType();
+        if ((type == MobSpawnType.NATURAL || type == MobSpawnType.CHUNK_GENERATION)
+                && (mob instanceof net.minecraft.world.entity.monster.Slime || mob instanceof com.netheritesupremo.entity.Thief)) {
+            // o virus expulsa Ladroes e Slimes: 30% dos spawns somem na fase 1, 70% na fase 2 e todos na fase 3
+            int stage = ParasiteOutbreak.stage();
+            int chance = stage >= 3 ? 100 : (stage == 2 ? 70 : 30);
+            if (mob.getRandom().nextInt(100) < chance) {
+                event.setSpawnCancelled(true);
+            }
+            return;
+        }
         if ((type != MobSpawnType.NATURAL && type != MobSpawnType.CHUNK_GENERATION) || !eligible(mob)) {
             return;
         }

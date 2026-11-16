@@ -1017,7 +1017,7 @@ def main():
             gcmd("damage @e[type=netheritesupremo:strongest_zombie,tag=parasite_test8,limit=1] 1000 minecraft:generic")
             time.sleep(1)
             # 1.72.0: meteoro de sangue, ritual (lider + esqueletos/enderman) e golem feito por parasita
-            r.cmd("forceload add 1210 850 1340 890")
+            r.cmd("forceload add 1210 850 1370 890")
             r.cmd("summon netheritesupremo:parasite_player 1240 60 870")
             for i in range(3):
                 r.cmd(f"summon netheritesupremo:parasite_skeleton {1236 + i * 3} 60 874")
@@ -1047,6 +1047,13 @@ def main():
             time.sleep(3)
             gcmd("data get entity @e[type=netheritesupremo:parasite_player,x=1320,y=60,z=870,distance=..5,limit=1] Totems")
             gcmd("data get entity @e[type=netheritesupremo:parasite_player,x=1320,y=60,z=870,distance=..5,limit=1] PotionKit")
+            # 1.75.0: hunter parasita, robo/precursor imunes
+            r.cmd("summon netheritesupremo:parasite_hunter 1350 60 870 {NoAI:1b}")
+            r.cmd("summon netheritesupremo:robot 1356 60 870 {NoAI:1b,Tags:[\"parasite_test10\"]}")
+            time.sleep(2)
+            gcmd("attribute @e[type=netheritesupremo:parasite_hunter,limit=1] minecraft:generic.max_health get")
+            gcmd("effect give @e[type=netheritesupremo:robot,tag=parasite_test10,limit=1] netheritesupremo:infestation 30 0")
+            gcmd("execute if entity @e[type=netheritesupremo:robot,tag=parasite_test10,nbt={ActiveEffects:[{}]}] run say robo recebeu efeito (deveria ser imune)")
             annotate("notice", "anomalocaris e guardiao", g4)
             # escavador, automato, tartaruga ancestral
             t5 = []

@@ -31,7 +31,7 @@ public final class ParasiteBehavior {
     public static final int PARASITIZED_TICKS = 2400;
 
     /** Presa: qualquer ser vivo que nao seja parasita (nem parasitado), armor stand ou jogador criativo/espectador. */
-    public static final Predicate<LivingEntity> PREY = e -> e.isAlive() && !isParasitic(e)
+    public static final Predicate<LivingEntity> PREY = e -> e.isAlive() && !isParasitic(e) && !isProtected(e)
             && !(e instanceof ArmorStand)
             && !(e instanceof Player p && (p.isCreative() || p.isSpectator()));
 
@@ -127,6 +127,9 @@ public final class ParasiteBehavior {
         if (t == EntityType.SPIDER) {
             return ModEntities.PARASITE_SPIDER.get();
         }
+        if (t == ModEntities.HUNTER.get()) {
+            return ModEntities.PARASITE_HUNTER.get();
+        }
         if (t == EntityType.VILLAGER) {
             return ModEntities.PARASITE_VILLAGER.get();
         }
@@ -164,8 +167,19 @@ public final class ParasiteBehavior {
      * Infecta um mob. Com versao parasita: Infestacao (ao morrer vira a versao parasita).
      * Sem versao: Parasitado (passa a agir como parasita). Nunca afeta jogadores.
      */
+    /** Robos e Precursores: os infectados nao os atacam e eles nunca sao infectados. */
+    public static boolean isProtected(Entity e) {
+        return e instanceof com.netheritesupremo.entity.Robot || e instanceof com.netheritesupremo.entity.FlyingRobot
+                || e instanceof com.netheritesupremo.entity.PrecursorSoldier || e instanceof com.netheritesupremo.entity.PrecursorVillager;
+    }
+
+    /** Quem nunca pode ser infectado: protegidos (robos/precursores), Ladroes e Slimes (esses ultimos os infectados atacam). */
+    public static boolean isImmuneToInfection(Entity e) {
+        return isProtected(e) || e instanceof com.netheritesupremo.entity.Thief || e instanceof net.minecraft.world.entity.monster.Slime;
+    }
+
     public static boolean canInfect(Mob mob) {
-        if (isParasitic(mob) || mob.hasEffect(ModEffects.INFESTATION.get())) {
+        if (isImmuneToInfection(mob) || isParasitic(mob) || mob.hasEffect(ModEffects.INFESTATION.get())) {
             return false;
         }
         if (versionFor(mob.getType()) != null) {

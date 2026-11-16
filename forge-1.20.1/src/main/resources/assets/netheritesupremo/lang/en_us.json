@@ -308,5 +308,7 @@
   "entity.netheritesupremo.parasite_villager": "Parasite Villager",
   "item.netheritesupremo.parasite_villager_spawn_egg": "Parasite Villager Spawn Egg",
   "entity.netheritesupremo.parasite_wandering_trader": "Parasite Wandering Trader",
-  "item.netheritesupremo.parasite_wandering_trader_spawn_egg": "Parasite Wandering Trader Spawn Egg"
+  "item.netheritesupremo.parasite_wandering_trader_spawn_egg": "Parasite Wandering Trader Spawn Egg",
+  "entity.netheritesupremo.parasite_hunter": "Parasite Hunter",
+  "item.netheritesupremo.parasite_hunter_spawn_egg": "Parasite Hunter Spawn Egg"
 }

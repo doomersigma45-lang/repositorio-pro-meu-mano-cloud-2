@@ -28,6 +28,7 @@ public class ParasiteTextures implements ResourceManagerReloadListener {
     public static final ResourceLocation SHEEP = gen("parasite_sheep_generated");
     public static final ResourceLocation WOLF = gen("parasite_wolf_generated");
     public static final ResourceLocation STRONG_ZOMBIE = gen("parasite_strongest_zombie_generated");
+    public static final ResourceLocation HUNTER = gen("parasite_hunter_generated");
     public static final ResourceLocation VILLAGER = gen("parasite_villager_generated");
     public static final ResourceLocation VILLAGER_EYES = gen("parasite_villager_eyes_generated");
     public static final ResourceLocation TRADER = gen("parasite_trader_generated");
@@ -49,6 +50,7 @@ public class ParasiteTextures implements ResourceManagerReloadListener {
         build(manager, new ResourceLocation(NetheriteSupremo.MODID, "textures/entity/strongest_zombie.png"), STRONG_ZOMBIE, 0);
         build(manager, new ResourceLocation("textures/entity/zombie_villager/zombie_villager.png"), VILLAGER, 5);
         build(manager, new ResourceLocation("textures/entity/zombie_villager/zombie_villager.png"), TRADER, 6);
+        build(manager, new ResourceLocation(NetheriteSupremo.MODID, "textures/entity/hunter.png"), HUNTER, 0);
         buildEyes();
         buildClaws();
     }

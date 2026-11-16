@@ -257,6 +257,18 @@ public final class ParasiteRenderers {
             return r;
         });
         event.registerEntityRenderer(ModEntities.PARASITE_WARDEN.get(), ParasiteWardenRenderer::new);
+        event.<com.netheritesupremo.mob.Hunter>registerEntityRenderer(ModEntities.PARASITE_HUNTER.get(), ctx -> {
+            PlayerRobotRenderer<com.netheritesupremo.mob.Hunter> r = new PlayerRobotRenderer<com.netheritesupremo.mob.Hunter>(ctx,
+                    ParasiteTextures.HUNTER, 1.0F) {
+                @Override
+                protected void scale(com.netheritesupremo.mob.Hunter mob, PoseStack pose, float partialTick) {
+                    super.scale(mob, pose, partialTick);
+                    deform(pose, phase(mob));
+                }
+            };
+            spikes(r, ctx, ParasiteSpikesModel.HUMANOID);
+            return r;
+        });
         event.<ZombieVillager>registerEntityRenderer(ModEntities.PARASITE_VILLAGER.get(), ctx -> villagerRenderer(ctx, ParasiteTextures.VILLAGER, 1.0F));
         event.<ZombieVillager>registerEntityRenderer(ModEntities.PARASITE_WANDERING_TRADER.get(), ctx -> villagerRenderer(ctx, ParasiteTextures.TRADER, 1.15F));
         event.registerEntityRenderer(ModEntities.PARASITE_METEOR.get(),

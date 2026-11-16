@@ -32,7 +32,7 @@ public final class ParasiteEvents {
         MobEffect effect = event.getEffectInstance().getEffect();
         if (effect == ModEffects.INFESTATION.get() || effect == ModEffects.PARASITIZED.get()) {
             LivingEntity entity = event.getEntity();
-            if (!(entity instanceof Mob) || entity instanceof ParasiteMob) {
+            if (!(entity instanceof Mob) || entity instanceof ParasiteMob || ParasiteBehavior.isImmuneToInfection(entity)) {
                 event.setResult(Event.Result.DENY);
             }
         }

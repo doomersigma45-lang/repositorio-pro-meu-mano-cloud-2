@@ -548,3 +548,10 @@ O cavalo esqueleto dele usava o renderer vanilla, que só tem textura para os ca
 - **Poções**: **bebe** poções boas (cura/regeneração quando a vida está abaixo de 55%; forca, velocidade, resistência ao fogo etc. ao entrar em combate, sem repetir um efeito que já tem) e **arremessa** poções ruins (dano, veneno, lentidão, fraqueza...) no alvo de 4 a 18 blocos de distância, com linha de visão. O kit cresce por fase (na 3: cura forte x2, força forte, velocidade forte, regeneração forte, dano forte x3, veneno forte, lentidão, fraqueza). Herdado: usa as poções reais que o jogador carregava (até 10).
 - Tudo é salvo no mundo (totens, maçãs, poções). Os itens consumidos não existem de verdade no inventário: são do "kit" interno e não caem ao morrer.
 
+
+### Hunter Parasita e proteção de Robôs, Precursores, Ladrões e Slimes (1.75.0)
+**Não testado no jogo.** Números e visual meus (IA); a textura do Hunter Parasita é gerada na hora a partir da skin do Hunter (carne/sangue) e usa os espinhos de carne.
+- **Hunter Parasita**: 400 HP, 10 de dano, mais rápido (0,38). Mantém Old Gun de longe, espada de perto, escalar paredes e quebrar vidro/portas, mas **caça qualquer não parasita** e **não fica preso a 24 blocos da cabana**. Um Hunter comum infectado vira este ao morrer. Ovo de geração e drops incluídos.
+- **Robôs e Precursores**: Robot, robôs voadores (Bomba, Netherbot, Boss Arco-íris, Precursor), Soldado Precursor e Aldeão Precursor (e o Híbrido) **não podem ser infectados** (nem pelo líquido, mordida, ar ou efeitos) e **os infectados não os escolhem como alvo** (só revidam se forem atacados por eles).
+- **Ladrões e Slimes**: também **não podem ser infectados**, mas os infectados **os atacam**. Durante um surto o vírus os expulsa: o **spawn natural** (e na geração do mundo) deles é **cancelado em 30% na fase 1, 70% na fase 2 e 100% na fase 3**. Slimes pequenos que nascem de uma divisão e Ladrões de estruturas/ovos não são afetados.
+

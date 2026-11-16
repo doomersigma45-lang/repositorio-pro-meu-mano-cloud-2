@@ -541,6 +541,12 @@ public final class ModEntities {
                     .sized(0.7F, 2.25F).clientTrackingRange(10)
                     .build("parasite_wandering_trader"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasiteHunter>> PARASITE_HUNTER = ENTITIES.register(
+            "parasite_hunter",
+            () -> EntityType.Builder.<com.netheritesupremo.parasite.ParasiteHunter>of(com.netheritesupremo.parasite.ParasiteHunter::new, MobCategory.MONSTER)
+                    .sized(0.6F, 1.95F).clientTrackingRange(10)
+                    .build("parasite_hunter"));
+
     public static final RegistryObject<EntityType<com.netheritesupremo.mob.HeadlessHorseman>> HEADLESS_HORSEMAN = ENTITIES.register(
             "headless_horseman",
             () -> EntityType.Builder.of(com.netheritesupremo.mob.HeadlessHorseman::new, MobCategory.MONSTER)
