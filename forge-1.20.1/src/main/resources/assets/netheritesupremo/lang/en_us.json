@@ -304,5 +304,9 @@
   "item.netheritesupremo.parasite_wolf_spawn_egg": "Parasite Wolf Spawn Egg",
   "entity.netheritesupremo.parasite_strongest_zombie": "Parasite Strongest Zombie",
   "item.netheritesupremo.parasite_strongest_zombie_spawn_egg": "Parasite Strongest Zombie Spawn Egg",
-  "entity.netheritesupremo.parasite_meteor": "Parasite Meteor"
+  "entity.netheritesupremo.parasite_meteor": "Parasite Meteor",
+  "entity.netheritesupremo.parasite_villager": "Parasite Villager",
+  "item.netheritesupremo.parasite_villager_spawn_egg": "Parasite Villager Spawn Egg",
+  "entity.netheritesupremo.parasite_wandering_trader": "Parasite Wandering Trader",
+  "item.netheritesupremo.parasite_wandering_trader_spawn_egg": "Parasite Wandering Trader Spawn Egg"
 }

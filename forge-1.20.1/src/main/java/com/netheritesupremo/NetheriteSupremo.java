@@ -104,6 +104,8 @@ public class NetheriteSupremo {
             event.accept(ModItems.PARASITE_SHEEP_SPAWN_EGG);
             event.accept(ModItems.PARASITE_WOLF_SPAWN_EGG);
             event.accept(ModItems.PARASITE_STRONGEST_ZOMBIE_SPAWN_EGG);
+            event.accept(ModItems.PARASITE_VILLAGER_SPAWN_EGG);
+            event.accept(ModItems.PARASITE_WANDERING_TRADER_SPAWN_EGG);
             event.accept(ModItems.ANCIENT_WOOD_SPAWN_EGG);
             event.accept(ModItems.FUNGUS_STALKER_SPAWN_EGG);
             event.accept(ModItems.ANCESTRAL_GUARDIAN_SPAWN_EGG);

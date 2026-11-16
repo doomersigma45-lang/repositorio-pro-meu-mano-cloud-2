@@ -24,6 +24,12 @@ import net.minecraft.client.renderer.entity.PigRenderer;
 import net.minecraft.client.renderer.entity.SkeletonRenderer;
 import net.minecraft.client.renderer.entity.SpiderRenderer;
 import net.minecraft.client.renderer.entity.ZombieRenderer;
+import net.minecraft.client.renderer.entity.ZombieVillagerRenderer;
+import net.minecraft.client.model.ZombieVillagerModel;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.layers.EyesLayer;
+import net.minecraft.client.renderer.entity.layers.VillagerProfessionLayer;
+import net.minecraft.world.entity.monster.ZombieVillager;
 import net.minecraft.client.renderer.entity.SheepRenderer;
 import net.minecraft.client.renderer.entity.WolfRenderer;
 import net.minecraft.world.entity.animal.Sheep;
@@ -82,6 +88,35 @@ public final class ParasiteRenderers {
     private static <T extends LivingEntity, M extends EntityModel<T>> void spikes(LivingEntityRenderer<T, M> renderer,
             EntityRendererProvider.Context ctx, ModelLayerLocation layer) {
         renderer.addLayer(new ParasiteSpikesLayer<T, M>(renderer, ctx, layer, SPIKES));
+    }
+
+    /** Aldeao parasita: modelo do Aldeao Zumbi, sem a roupa de profissao, com garras e olhos brilhantes. */
+    private static ZombieVillagerRenderer villagerRenderer(EntityRendererProvider.Context ctx, ResourceLocation texture, float size) {
+        ZombieVillagerRenderer r = new ZombieVillagerRenderer(ctx) {
+            @Override
+            public ResourceLocation getTextureLocation(ZombieVillager entity) {
+                return texture;
+            }
+
+            @Override
+            protected void scale(ZombieVillager entity, PoseStack pose, float partialTick) {
+                super.scale(entity, pose, partialTick);
+                pose.scale(size, size, size);
+                deform(pose, phase(entity));
+            }
+
+            { // sem a roupa de profissao do Aldeao Zumbi
+                this.layers.removeIf(l -> l instanceof VillagerProfessionLayer<?, ?>);
+            }
+        };
+        r.addLayer(new ParasiteClawsLayer<ZombieVillager, ZombieVillagerModel<ZombieVillager>>(r, ctx));
+        r.addLayer(new EyesLayer<ZombieVillager, ZombieVillagerModel<ZombieVillager>>(r) {
+            @Override
+            public RenderType renderType() {
+                return RenderType.eyes(ParasiteTextures.VILLAGER_EYES);
+            }
+        });
+        return r;
     }
 
     public static void register(EntityRenderersEvent.RegisterRenderers event) {
@@ -220,6 +255,8 @@ public final class ParasiteRenderers {
             return r;
         });
         event.registerEntityRenderer(ModEntities.PARASITE_WARDEN.get(), ParasiteWardenRenderer::new);
+        event.<ZombieVillager>registerEntityRenderer(ModEntities.PARASITE_VILLAGER.get(), ctx -> villagerRenderer(ctx, ParasiteTextures.VILLAGER, 1.0F));
+        event.<ZombieVillager>registerEntityRenderer(ModEntities.PARASITE_WANDERING_TRADER.get(), ctx -> villagerRenderer(ctx, ParasiteTextures.TRADER, 1.15F));
         event.registerEntityRenderer(ModEntities.PARASITE_METEOR.get(),
                 ctx -> new net.minecraft.client.renderer.entity.ThrownItemRenderer<com.netheritesupremo.parasite.ParasiteMeteor>(ctx, 4.0F, true));
         event.<Sheep>registerEntityRenderer(ModEntities.PARASITE_SHEEP.get(), ctx -> new SheepRenderer(ctx) {

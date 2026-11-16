@@ -529,6 +529,18 @@ public final class ModEntities {
                     .sized(1.2F, 1.2F).clientTrackingRange(16).updateInterval(1).fireImmune()
                     .build("parasite_meteor"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasiteVillager>> PARASITE_VILLAGER = ENTITIES.register(
+            "parasite_villager",
+            () -> EntityType.Builder.<com.netheritesupremo.parasite.ParasiteVillager>of(com.netheritesupremo.parasite.ParasiteVillager::new, MobCategory.MONSTER)
+                    .sized(0.6F, 1.95F).clientTrackingRange(8)
+                    .build("parasite_villager"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasiteWanderingTrader>> PARASITE_WANDERING_TRADER = ENTITIES.register(
+            "parasite_wandering_trader",
+            () -> EntityType.Builder.<com.netheritesupremo.parasite.ParasiteWanderingTrader>of(com.netheritesupremo.parasite.ParasiteWanderingTrader::new, MobCategory.MONSTER)
+                    .sized(0.7F, 2.25F).clientTrackingRange(10)
+                    .build("parasite_wandering_trader"));
+
     public static final RegistryObject<EntityType<com.netheritesupremo.mob.HeadlessHorseman>> HEADLESS_HORSEMAN = ENTITIES.register(
             "headless_horseman",
             () -> EntityType.Builder.of(com.netheritesupremo.mob.HeadlessHorseman::new, MobCategory.MONSTER)

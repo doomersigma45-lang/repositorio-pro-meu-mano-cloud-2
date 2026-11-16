@@ -111,6 +111,7 @@ public final class ClientEvents {
         event.registerLayerDefinition(ParasiteSpikesModel.CREEPER, ParasiteSpikesModel::creeper);
         event.registerLayerDefinition(ParasiteSpikesModel.ENDER, ParasiteSpikesModel::ender);
         event.registerLayerDefinition(ParasiteSpikesModel.GOLEM, ParasiteSpikesModel::golem);
+        event.registerLayerDefinition(ParasiteClawsLayer.LAYER, ParasiteClawsLayer::createLayer);
         event.registerLayerDefinition(WarTankRenderer.LAYER, WarTankModel::createLayer);
         event.registerLayerDefinition(GooseRenderer.LAYER, GooseModel::createLayer);
         event.registerLayerDefinition(DiggerRenderer.LAYER, DiggerModel::createLayer);

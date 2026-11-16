@@ -28,6 +28,10 @@ public class ParasiteTextures implements ResourceManagerReloadListener {
     public static final ResourceLocation SHEEP = gen("parasite_sheep_generated");
     public static final ResourceLocation WOLF = gen("parasite_wolf_generated");
     public static final ResourceLocation STRONG_ZOMBIE = gen("parasite_strongest_zombie_generated");
+    public static final ResourceLocation VILLAGER = gen("parasite_villager_generated");
+    public static final ResourceLocation VILLAGER_EYES = gen("parasite_villager_eyes_generated");
+    public static final ResourceLocation TRADER = gen("parasite_trader_generated");
+    public static final ResourceLocation CLAWS = gen("parasite_claws_generated");
 
     private static ResourceLocation gen(String name) {
         return new ResourceLocation(NetheriteSupremo.MODID, "textures/entity/" + name);
@@ -43,6 +47,10 @@ public class ParasiteTextures implements ResourceManagerReloadListener {
         build(manager, new ResourceLocation("textures/entity/sheep/sheep.png"), SHEEP, 0);
         build(manager, new ResourceLocation("textures/entity/wolf/wolf.png"), WOLF, 0);
         build(manager, new ResourceLocation(NetheriteSupremo.MODID, "textures/entity/strongest_zombie.png"), STRONG_ZOMBIE, 0);
+        build(manager, new ResourceLocation("textures/entity/zombie_villager/zombie_villager.png"), VILLAGER, 5);
+        build(manager, new ResourceLocation("textures/entity/zombie_villager/zombie_villager.png"), TRADER, 6);
+        buildEyes();
+        buildClaws();
     }
 
     private static void build(ResourceManager manager, ResourceLocation source, ResourceLocation target, int style) {
@@ -54,6 +62,9 @@ public class ParasiteTextures implements ResourceManagerReloadListener {
             return;
         }
         recolor(image, style);
+        if (style >= 5) {
+            decorateVillager(image, style);
+        }
         Minecraft.getInstance().getTextureManager().register(target, new DynamicTexture(image));
     }
 
@@ -151,6 +162,54 @@ public class ParasiteTextures implements ResourceManagerReloadListener {
                         ng = (int) (20 + lum * 40);
                         nb = (int) (24 + lum * 36);
                     }
+                    case 5, 6 -> { // aldeao: pele de carne, roupa marrom (5) ou azul do vendedor (6)
+                        boolean skinZone = x < 32 && y < 18;
+                        boolean green = g > r + 6;
+                        if (green || skinZone) {
+                            if (lum < 0.22F) {
+                                nr = 42;
+                                ng = 24;
+                                nb = 26;
+                            } else {
+                                nr = (int) (110 + lum * 120);
+                                ng = (int) (70 + lum * 80);
+                                nb = (int) (62 + lum * 70);
+                            }
+                            if (h2 % 7 == 0) {
+                                nr = 150 + (h % 40);
+                                ng = 20;
+                                nb = 26;
+                            }
+                            if (h % 23 == 0) {
+                                nr = 60;
+                                ng = 20;
+                                nb = 22;
+                            }
+                        } else if (style == 5) {
+                            nr = (int) (60 + lum * 90);
+                            ng = (int) (44 + lum * 60);
+                            nb = (int) (38 + lum * 50);
+                            if (h2 % 6 == 0) {
+                                nr = 120 + (h % 40);
+                                ng = 16;
+                                nb = 20;
+                            }
+                        } else {
+                            nr = (int) (24 + lum * 60);
+                            ng = (int) (40 + lum * 80);
+                            nb = (int) (96 + lum * 120);
+                            if (h2 % 8 == 0) {
+                                nr = 120 + (h % 40);
+                                ng = 16;
+                                nb = 20;
+                            }
+                        }
+                        if (h % 31 == 0) {
+                            nr = 14;
+                            ng = 12;
+                            nb = 14;
+                        }
+                    }
                     default -> { // wither: osso sujo, carne e preto
                         if (lum > 0.6F) {
                             nr = 200 - (h % 36);
@@ -175,6 +234,74 @@ public class ParasiteTextures implements ResourceManagerReloadListener {
                 image.setPixelRGBA(x, y, pack(alpha, nr, ng, nb));
             }
         }
+    }
+
+    private static void px(NativeImage image, int x, int y, int r, int g, int b) {
+        image.setPixelRGBA(x, y, pack(255, r, g, b));
+    }
+
+    /** Boca de dentes afiados, olhos vermelhos e, no vendedor, o capuz azul (pintados direto na cabeca do modelo). */
+    private static void decorateVillager(NativeImage image, int style) {
+        if (style == 6) { // capuz: topo e nuca inteiros, laterais ate a linha 13, testa ate a linha 10
+            for (int y = 0; y < 18; y++) {
+                for (int x = 0; x < 32; x++) {
+                    boolean top = x >= 8 && x < 16 && y < 8;
+                    boolean back = x >= 24 && y >= 8;
+                    boolean side = (x < 8 || x >= 16 && x < 24) && y >= 8 && y <= 13;
+                    boolean front = x >= 8 && x < 16 && y >= 8 && y <= 10;
+                    if (top || back || side || front) {
+                        int h = hash(x, y) % 16;
+                        boolean trim = (side && y == 13) || (front && y == 10);
+                        if (trim) {
+                            px(image, x, y, 96 + h, 120 + h, 200);
+                        } else {
+                            px(image, x, y, 38 + h, 56 + h, 140 + h);
+                        }
+                    }
+                }
+            }
+        }
+        // face frontal: x 8..15, y 8..17. Olhos nas linhas 12-13, sobrancelhas na 11, boca nas 15-17
+        for (int x = 8; x <= 15; x++) {
+            if ((x >= 8 && x <= 10) || (x >= 13 && x <= 15)) {
+                px(image, x, 11, 36, 8, 10);
+            }
+            px(image, x, 15, 46, 6, 10);
+            if (x % 2 == 1) {
+                px(image, x, 16, 232, 226, 214);
+                px(image, x, 17, 46, 6, 10);
+            } else {
+                px(image, x, 16, 46, 6, 10);
+                px(image, x, 17, 232, 226, 214);
+            }
+        }
+        for (int dy = 12; dy <= 13; dy++) {
+            for (int x : new int[] {9, 10, 13, 14}) {
+                px(image, x, dy, 255, 40, 40);
+            }
+        }
+    }
+
+    /** Textura so com os olhos, desenhada com brilho total por cima do modelo. */
+    private static void buildEyes() {
+        NativeImage image = new NativeImage(64, 64, true);
+        for (int dy = 12; dy <= 13; dy++) {
+            for (int x : new int[] {9, 10, 13, 14}) {
+                image.setPixelRGBA(x, dy, pack(255, 255, 60, 60));
+            }
+        }
+        Minecraft.getInstance().getTextureManager().register(VILLAGER_EYES, new DynamicTexture(image));
+    }
+
+    private static void buildClaws() {
+        NativeImage image = new NativeImage(16, 16, true);
+        for (int y = 0; y < 16; y++) {
+            for (int x = 0; x < 16; x++) {
+                int h = hash(x, y) % 24;
+                image.setPixelRGBA(x, y, pack(255, 96 + h, 14, 18));
+            }
+        }
+        Minecraft.getInstance().getTextureManager().register(CLAWS, new DynamicTexture(image));
     }
 
     private static int hash(int x, int y) {

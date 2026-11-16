@@ -127,6 +127,12 @@ public final class ParasiteBehavior {
         if (t == EntityType.SPIDER) {
             return ModEntities.PARASITE_SPIDER.get();
         }
+        if (t == EntityType.VILLAGER) {
+            return ModEntities.PARASITE_VILLAGER.get();
+        }
+        if (t == EntityType.WANDERING_TRADER) {
+            return ModEntities.PARASITE_WANDERING_TRADER.get();
+        }
         if (t == EntityType.SHEEP) {
             return ModEntities.PARASITE_SHEEP.get();
         }

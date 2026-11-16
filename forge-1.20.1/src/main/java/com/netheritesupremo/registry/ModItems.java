@@ -427,6 +427,14 @@ public final class ModItems {
             "parasite_strongest_zombie_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.PARASITE_STRONGEST_ZOMBIE, 0x2A5A3A, 0xC02028, new Item.Properties()));
 
+    public static final RegistryObject<Item> PARASITE_VILLAGER_SPAWN_EGG = ITEMS.register(
+            "parasite_villager_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.PARASITE_VILLAGER, 0x5A4636, 0xFF2020, new Item.Properties()));
+
+    public static final RegistryObject<Item> PARASITE_WANDERING_TRADER_SPAWN_EGG = ITEMS.register(
+            "parasite_wandering_trader_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.PARASITE_WANDERING_TRADER, 0x2E4A9A, 0xFF2020, new Item.Properties()));
+
     public static final RegistryObject<Item> HORSEMAN_SWORD = ITEMS.register(
             "horseman_sword",
             () -> new com.netheritesupremo.item.HorsemanSwordItem());
