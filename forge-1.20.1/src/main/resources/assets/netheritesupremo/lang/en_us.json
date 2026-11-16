@@ -312,5 +312,11 @@
   "entity.netheritesupremo.parasite_hunter": "Parasite Hunter",
   "item.netheritesupremo.parasite_hunter_spawn_egg": "Parasite Hunter Spawn Egg",
   "item.netheritesupremo.parasite_accelerator_serum": "Parasite Accelerator Serum",
-  "item.netheritesupremo.parasite_retarder_serum": "Parasite Retarder Serum"
+  "item.netheritesupremo.parasite_retarder_serum": "Parasite Retarder Serum",
+  "entity.netheritesupremo.parasite_crawler": "Parasite Crawler",
+  "item.netheritesupremo.parasite_crawler_spawn_egg": "Parasite Crawler Spawn Egg",
+  "entity.netheritesupremo.parasite_hound": "Parasite Hound",
+  "item.netheritesupremo.parasite_hound_spawn_egg": "Parasite Hound Spawn Egg",
+  "entity.netheritesupremo.parasite_brood_mother": "Parasite Brood Mother",
+  "item.netheritesupremo.parasite_brood_mother_spawn_egg": "Parasite Brood Mother Spawn Egg"
 }

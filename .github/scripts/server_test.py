@@ -1062,6 +1062,13 @@ def main():
             gcmd("execute positioned 1400 60 870 run parasite meteor")
             time.sleep(10)
             gcmd("execute if entity @e[type=netheritesupremo:parasite_worm,x=1420,y=60,z=890,distance=..40] run say meteoro soltou vermes")
+            # 1.77.0: parasitas novos (rastejador, cao, matriarca)
+            r.cmd("forceload add 1430 850 1480 890")
+            for i, ty in enumerate(("crawler", "hound", "brood_mother")):
+                r.cmd(f"summon netheritesupremo:parasite_{ty} {1440 + i * 8} 60 870 {{NoAI:1b}}")
+            time.sleep(2)
+            for ty in ("crawler", "hound", "brood_mother"):
+                gcmd(f"attribute @e[type=netheritesupremo:parasite_{ty},limit=1] minecraft:generic.max_health get")
             annotate("notice", "anomalocaris e guardiao", g4)
             # escavador, automato, tartaruga ancestral
             t5 = []

@@ -561,3 +561,12 @@ O cavalo esqueleto dele usava o renderer vanilla, que só tem textura para os ca
 - **Meteoro**: explosão bem maior (poder 9, antes 4; ainda sem fogo nem dano em blocos), cratera de raio ~6 (só com mobGriefing), até 16 fontes de líquido vermelho e infecção de mobs num raio de 10 blocos. Agora **libera parasitas**: 3 vermes + 4 parasitas (6 na fase 2 do surto, 8 na fase 3), já na fase do surto. Tipos: zumbi, esqueleto, aranha e creeper; a partir da fase 2 também Enderman, Aldeão e Lobo; na fase 3 também Jogador Parasita.
 - **Soro Acelerador Parasita**: leva o parasita para o **começo da fase seguinte** (a 3 é a última). **Soro Retardador Parasita**: **volta uma fase** (a 1 é a primeira). Clique num parasita (afeta só ele) ou use no ar (afeta todos num raio de 6 blocos). Consome 1 item no survival. Receitas (sem forma): garrafa de vidro + bola de slime + olho de aranha fermentado + redstone (acelerador); garrafa de vidro + bola de slime + cenoura dourada + farinha de osso (retardador). Ao mudar de fase para cima o parasita é curado por completo (regra existente das fases).
 
+
+### Parasitas novos: Rastejador, Cão Parasita e Matriarca (1.77.0)
+**Não testado no jogo.** São **modelos originais feitos por mim (IA)**, com textura gerada na hora (carne, osso, boca escura) e olhos que brilham; não copiei nada de outro mod. Seguem as fases (deformação), vermes ao morrer e infecção como os outros.
+- **Rastejador** (aranha + zumbi): tronco, cabeça e braços de zumbi com garra sobre um corpo de aranha de 8 patas. 70 HP, 9 de dano; **escala paredes**, pula no alvo e a mordida **envenena**.
+- **Cão Parasita** (lobo + creeper): quadrúpede veloz com presas e espinhos nas costas. 45 HP, corre e pula no alvo; **infla e explode como um creeper** (a explosão infecta quem for atingido) e ainda solta 3 vermes, poças de sangue e infecta mobs a 8 blocos.
+- **Matriarca** (massa de carne com tentáculos): grande, lenta, 400 HP, 18 de dano, imune a empurrão. Com alvo por perto "choca" **2 vermes + 1 parasita** a cada 10 s (até 12 parasitas por perto), **regenera os parasitas** num raio de 12 blocos e solta 6 vermes ao morrer.
+- Nascem por ovo de geração, **sozinhos durante um surto** (Rastejador e Cão a partir da fase 2; Matriarca rara na fase 3) e **dos meteoros** (fase 2 em diante). Drops incluídos.
+- Limitações: animação simples (pernas/tentáculos/braços), os tamanhos de colisão são estimados e podem precisar de ajuste visual.
+

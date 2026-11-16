@@ -103,7 +103,7 @@ public class ParasiteMeteor extends Fireball {
     }
 
     private static net.minecraft.world.entity.EntityType<? extends Mob> pick(net.minecraft.util.RandomSource r, int stage) {
-        int n = r.nextInt(stage >= 3 ? 9 : (stage == 2 ? 7 : 4));
+        int n = r.nextInt(stage >= 3 ? 12 : (stage == 2 ? 9 : 4));
         return switch (n) {
             case 0 -> ModEntities.PARASITE_ZOMBIE.get();
             case 1 -> ModEntities.PARASITE_SKELETON.get();
@@ -112,7 +112,10 @@ public class ParasiteMeteor extends Fireball {
             case 4 -> ModEntities.PARASITE_ENDERMAN.get();
             case 5 -> ModEntities.PARASITE_VILLAGER.get();
             case 6 -> ModEntities.PARASITE_WOLF.get();
-            case 7 -> ModEntities.PARASITE_PLAYER.get();
+            case 7 -> ModEntities.PARASITE_CRAWLER.get();
+            case 8 -> ModEntities.PARASITE_HOUND.get();
+            case 9 -> ModEntities.PARASITE_PLAYER.get();
+            case 10 -> ModEntities.PARASITE_BROOD_MOTHER.get();
             default -> ModEntities.PARASITE_ZOMBIE.get();
         };
     }

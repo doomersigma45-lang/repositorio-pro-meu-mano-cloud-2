@@ -257,6 +257,23 @@ public final class ParasiteRenderers {
             return r;
         });
         event.registerEntityRenderer(ModEntities.PARASITE_WARDEN.get(), ParasiteWardenRenderer::new);
+        event.registerEntityRenderer(ModEntities.PARASITE_CRAWLER.get(), ctx -> new ParasiteBeastRenderer<com.netheritesupremo.parasite.ParasiteCrawler>(ctx,
+                new ParasiteBeastModels.Crawler<com.netheritesupremo.parasite.ParasiteCrawler>(ctx.bakeLayer(ParasiteBeastModels.CRAWLER)), 0.9F, ParasiteTextures.HYBRID_CRAWLER, 1.0F));
+        event.registerEntityRenderer(ModEntities.PARASITE_HOUND.get(), ctx -> new ParasiteBeastRenderer<com.netheritesupremo.parasite.ParasiteHound>(ctx,
+                new ParasiteBeastModels.Hound<com.netheritesupremo.parasite.ParasiteHound>(ctx.bakeLayer(ParasiteBeastModels.HOUND)), 0.5F, ParasiteTextures.HYBRID_HOUND, 1.0F) {
+            @Override
+            protected void scale(com.netheritesupremo.parasite.ParasiteHound hound, PoseStack pose, float partialTick) {
+                super.scale(hound, pose, partialTick);
+                float f = hound.getSwelling(partialTick); // infla antes de explodir, como o creeper
+                float g = 1.0F + net.minecraft.util.Mth.sin(f * 100.0F) * f * 0.01F;
+                f = net.minecraft.util.Mth.clamp(f, 0.0F, 1.0F);
+                f *= f;
+                f *= f;
+                pose.scale((1.0F + f * 0.4F) * g, (1.0F + f * 0.1F) / g, (1.0F + f * 0.4F) * g);
+            }
+        });
+        event.registerEntityRenderer(ModEntities.PARASITE_BROOD_MOTHER.get(), ctx -> new ParasiteBeastRenderer<com.netheritesupremo.parasite.ParasiteBroodMother>(ctx,
+                new ParasiteBeastModels.Mother<com.netheritesupremo.parasite.ParasiteBroodMother>(ctx.bakeLayer(ParasiteBeastModels.MOTHER)), 1.6F, ParasiteTextures.HYBRID_MOTHER, 1.4F));
         event.<com.netheritesupremo.mob.Hunter>registerEntityRenderer(ModEntities.PARASITE_HUNTER.get(), ctx -> {
             PlayerRobotRenderer<com.netheritesupremo.mob.Hunter> r = new PlayerRobotRenderer<com.netheritesupremo.mob.Hunter>(ctx,
                     ParasiteTextures.HUNTER, 1.0F) {

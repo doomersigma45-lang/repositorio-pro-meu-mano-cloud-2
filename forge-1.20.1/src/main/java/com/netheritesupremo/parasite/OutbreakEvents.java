@@ -75,6 +75,7 @@ public final class OutbreakEvents {
         }
         if (tick % 200 == 0 && ParasiteOutbreak.active && ParasiteOutbreak.stage() >= 2) {
             trySpawnAirborne(server);
+            trySpawnHybrid(server);
         }
     }
 
@@ -110,6 +111,47 @@ public final class OutbreakEvents {
             p.moveTo(x + 0.5D, y, z + 0.5D, level.random.nextFloat() * 360.0F, 0.0F);
             stampStage(p, stage);
             level.addFreshEntity(p);
+        }
+    }
+
+    /** Rastejador, Cao e (so na fase 3, raro) Matriarca: 1 chance em 70 (fase 2) ou 30 (fase 3) por jogador a cada 10 s. */
+    private static void trySpawnHybrid(MinecraftServer server) {
+        ServerLevel level = server.overworld();
+        int stage = ParasiteOutbreak.stage();
+        for (ServerPlayer player : level.players()) {
+            if (level.random.nextInt(stage >= 3 ? 30 : 70) != 0) {
+                continue;
+            }
+            int near = level.getEntitiesOfClass(Mob.class, player.getBoundingBox().inflate(96.0D),
+                    e -> e instanceof ParasiteCrawler || e instanceof ParasiteHound || e instanceof ParasiteBroodMother).size();
+            if (near >= (stage >= 3 ? 5 : 3)) {
+                continue;
+            }
+            double angle = level.random.nextDouble() * Math.PI * 2.0D;
+            double dist = 28.0D + level.random.nextDouble() * 24.0D;
+            int x = (int) Math.floor(player.getX() + Math.cos(angle) * dist);
+            int z = (int) Math.floor(player.getZ() + Math.sin(angle) * dist);
+            if (!level.hasChunkAt(new BlockPos(x, 64, z))) {
+                continue;
+            }
+            int y = level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, x, z);
+            BlockPos pos = new BlockPos(x, y, z);
+            if (!level.getFluidState(pos).isEmpty() || !level.getFluidState(pos.below()).isEmpty()) {
+                continue;
+            }
+            int roll = level.random.nextInt(stage >= 3 ? 4 : 2);
+            EntityType<? extends Mob> type = roll == 0 ? ModEntities.PARASITE_CRAWLER.get()
+                    : (roll == 1 ? ModEntities.PARASITE_HOUND.get() : (roll == 2 ? ModEntities.PARASITE_HOUND.get() : ModEntities.PARASITE_BROOD_MOTHER.get()));
+            if (type == ModEntities.PARASITE_BROOD_MOTHER.get() && level.random.nextInt(3) != 0) {
+                type = ModEntities.PARASITE_CRAWLER.get();
+            }
+            Mob m = type.create(level);
+            if (m == null) {
+                continue;
+            }
+            m.moveTo(x + 0.5D, y, z + 0.5D, level.random.nextFloat() * 360.0F, 0.0F);
+            stampStage(m, stage);
+            level.addFreshEntity(m);
         }
     }
 

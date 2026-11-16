@@ -445,6 +445,18 @@ public final class ModItems {
     public static final RegistryObject<Item> PARASITE_RETARDER_SERUM = ITEMS.register("parasite_retarder_serum",
             () -> new com.netheritesupremo.parasite.ParasiteSerumItem(new Item.Properties().stacksTo(16), false));
 
+    public static final RegistryObject<Item> PARASITE_CRAWLER_SPAWN_EGG = ITEMS.register(
+            "parasite_crawler_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.PARASITE_CRAWLER, 0x6E5A52, 0xFF2020, new Item.Properties()));
+
+    public static final RegistryObject<Item> PARASITE_HOUND_SPAWN_EGG = ITEMS.register(
+            "parasite_hound_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.PARASITE_HOUND, 0x5A2C26, 0xFF2020, new Item.Properties()));
+
+    public static final RegistryObject<Item> PARASITE_BROOD_MOTHER_SPAWN_EGG = ITEMS.register(
+            "parasite_brood_mother_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.PARASITE_BROOD_MOTHER, 0x4A1E3A, 0xFF2020, new Item.Properties()));
+
     public static final RegistryObject<Item> HORSEMAN_SWORD = ITEMS.register(
             "horseman_sword",
             () -> new com.netheritesupremo.item.HorsemanSwordItem());

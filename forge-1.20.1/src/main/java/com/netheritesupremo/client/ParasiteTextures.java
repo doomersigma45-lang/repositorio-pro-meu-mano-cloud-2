@@ -29,6 +29,10 @@ public class ParasiteTextures implements ResourceManagerReloadListener {
     public static final ResourceLocation WOLF = gen("parasite_wolf_generated");
     public static final ResourceLocation STRONG_ZOMBIE = gen("parasite_strongest_zombie_generated");
     public static final ResourceLocation HUNTER = gen("parasite_hunter_generated");
+    public static final ResourceLocation HYBRID_CRAWLER = gen("parasite_crawler_generated");
+    public static final ResourceLocation HYBRID_HOUND = gen("parasite_hound_generated");
+    public static final ResourceLocation HYBRID_MOTHER = gen("parasite_mother_generated");
+    public static final ResourceLocation HYBRID_GLOW = gen("parasite_hybrid_glow_generated");
     public static final ResourceLocation VILLAGER = gen("parasite_villager_generated");
     public static final ResourceLocation VILLAGER_EYES = gen("parasite_villager_eyes_generated");
     public static final ResourceLocation TRADER = gen("parasite_trader_generated");
@@ -51,6 +55,10 @@ public class ParasiteTextures implements ResourceManagerReloadListener {
         build(manager, new ResourceLocation("textures/entity/zombie_villager/zombie_villager.png"), VILLAGER, 5);
         build(manager, new ResourceLocation("textures/entity/zombie_villager/zombie_villager.png"), TRADER, 6);
         build(manager, new ResourceLocation(NetheriteSupremo.MODID, "textures/entity/hunter.png"), HUNTER, 0);
+        buildHybrid(HYBRID_CRAWLER, 128, 92, 84);
+        buildHybrid(HYBRID_HOUND, 104, 50, 44);
+        buildHybrid(HYBRID_MOTHER, 92, 36, 62);
+        buildHybridGlow();
         buildEyes();
         buildClaws();
     }
@@ -291,6 +299,53 @@ public class ParasiteTextures implements ResourceManagerReloadListener {
             image.setPixelRGBA(e[0], e[1], pack(255, 255, 60, 60));
         }
         Minecraft.getInstance().getTextureManager().register(VILLAGER_EYES, new DynamicTexture(image));
+    }
+
+    private static void fill(NativeImage image, int x0, int y0, int w, int h, int r, int g, int b) {
+        for (int y = y0; y < y0 + h; y++) {
+            for (int x = x0; x < x0 + w; x++) {
+                image.setPixelRGBA(x, y, pack(255, r, g, b));
+            }
+        }
+    }
+
+    /** Carne manchada (128x128) com tres retalhos lisos no canto: olho (x120), osso (x112) e boca escura (x104). */
+    private static void buildHybrid(ResourceLocation target, int br, int bg, int bb) {
+        NativeImage image = new NativeImage(128, 128, true);
+        for (int y = 0; y < 128; y++) {
+            for (int x = 0; x < 128; x++) {
+                int h = hash(x, y);
+                int h2 = hash(x / 3, y / 3);
+                int v = (h % 30) - 15;
+                int r = br + v;
+                int g = bg + v / 2;
+                int b = bb + v / 2;
+                if (h2 % 6 == 0) {
+                    r = (int) (r * 0.55F);
+                    g = (int) (g * 0.5F);
+                    b = (int) (b * 0.5F);
+                } else if (h2 % 9 == 1) {
+                    r += 50;
+                    g = Math.max(0, g - 10);
+                }
+                if (h % 47 == 0) {
+                    r = 40;
+                    g = 10;
+                    b = 14;
+                }
+                image.setPixelRGBA(x, y, pack(255, r, g, b));
+            }
+        }
+        fill(image, 120, 0, 8, 8, 255, 50, 50);
+        fill(image, 112, 0, 8, 8, 226, 218, 200);
+        fill(image, 104, 0, 8, 8, 30, 6, 10);
+        Minecraft.getInstance().getTextureManager().register(target, new DynamicTexture(image));
+    }
+
+    private static void buildHybridGlow() {
+        NativeImage image = new NativeImage(128, 128, true);
+        fill(image, 120, 0, 8, 8, 255, 60, 60);
+        Minecraft.getInstance().getTextureManager().register(HYBRID_GLOW, new DynamicTexture(image));
     }
 
     private static void buildClaws() {
