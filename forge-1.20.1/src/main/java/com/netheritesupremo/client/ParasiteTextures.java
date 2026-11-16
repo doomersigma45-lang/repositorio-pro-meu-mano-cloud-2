@@ -175,15 +175,15 @@ public class ParasiteTextures implements ResourceManagerReloadListener {
                                 ng = (int) (70 + lum * 80);
                                 nb = (int) (62 + lum * 70);
                             }
-                            if (h2 % 7 == 0) {
-                                nr = 150 + (h % 40);
-                                ng = 20;
-                                nb = 26;
+                            if (h2 % 11 == 0) {
+                                nr = 112 + (h % 30);
+                                ng = 24;
+                                nb = 30;
                             }
-                            if (h % 23 == 0) {
-                                nr = 60;
-                                ng = 20;
-                                nb = 22;
+                            if (h % 41 == 0) {
+                                nr = 70;
+                                ng = 16;
+                                nb = 20;
                             }
                         } else if (style == 5) {
                             nr = (int) (60 + lum * 90);
@@ -204,9 +204,9 @@ public class ParasiteTextures implements ResourceManagerReloadListener {
                                 nb = 20;
                             }
                         }
-                        if (h % 31 == 0) {
-                            nr = 14;
-                            ng = 12;
+                        if (h % 53 == 0) {
+                            nr = 40;
+                            ng = 10;
                             nb = 14;
                         }
                     }
@@ -261,34 +261,32 @@ public class ParasiteTextures implements ResourceManagerReloadListener {
                 }
             }
         }
-        // face frontal: x 8..15, y 8..17. Olhos nas linhas 12-13, sobrancelhas na 11, boca nas 15-17
-        for (int x = 8; x <= 15; x++) {
-            if ((x >= 8 && x <= 10) || (x >= 13 && x <= 15)) {
-                px(image, x, 11, 36, 8, 10);
-            }
-            px(image, x, 15, 46, 6, 10);
-            if (x % 2 == 1) {
-                px(image, x, 16, 232, 226, 214);
-                px(image, x, 17, 46, 6, 10);
-            } else {
-                px(image, x, 16, 46, 6, 10);
-                px(image, x, 17, 232, 226, 214);
-            }
+        // face frontal: x 8..15, y 8..17. Sobrancelhas inclinadas na linha 11, olhos nas 12-13, boca nas 15-17
+        for (int x : new int[] {8, 9, 10, 13, 14, 15}) {
+            px(image, x, 11, 36, 8, 10);
         }
-        for (int dy = 12; dy <= 13; dy++) {
-            for (int x : new int[] {9, 10, 13, 14}) {
-                px(image, x, dy, 255, 40, 40);
-            }
+        px(image, 9, 12, 30, 6, 8);
+        px(image, 14, 12, 30, 6, 8);
+        for (int[] e : EYES) {
+            px(image, e[0], e[1], 255, 40, 40);
+        }
+        for (int x = 8; x <= 15; x++) { // boca escura, fileira de dentes em cima e presas
+            px(image, x, 15, 232, 226, 214);
+            boolean fang = x == 8 || x == 10 || x == 13 || x == 15;
+            px(image, x, 16, fang ? 232 : 46, fang ? 226 : 6, fang ? 214 : 10);
+            boolean low = x == 9 || x == 14;
+            px(image, x, 17, low ? 232 : 46, low ? 226 : 6, low ? 214 : 10);
         }
     }
+
+    /** Olhos inclinados (zangados): 3 pixels cada, o canto interno mais baixo. */
+    private static final int[][] EYES = {{10, 12}, {9, 13}, {10, 13}, {13, 12}, {13, 13}, {14, 13}};
 
     /** Textura so com os olhos, desenhada com brilho total por cima do modelo. */
     private static void buildEyes() {
         NativeImage image = new NativeImage(64, 64, true);
-        for (int dy = 12; dy <= 13; dy++) {
-            for (int x : new int[] {9, 10, 13, 14}) {
-                image.setPixelRGBA(x, dy, pack(255, 255, 60, 60));
-            }
+        for (int[] e : EYES) {
+            image.setPixelRGBA(e[0], e[1], pack(255, 255, 60, 60));
         }
         Minecraft.getInstance().getTextureManager().register(VILLAGER_EYES, new DynamicTexture(image));
     }
@@ -298,7 +296,8 @@ public class ParasiteTextures implements ResourceManagerReloadListener {
         for (int y = 0; y < 16; y++) {
             for (int x = 0; x < 16; x++) {
                 int h = hash(x, y) % 24;
-                image.setPixelRGBA(x, y, pack(255, 96 + h, 14, 18));
+                // linhas 0-7: vermelho escuro (base das garras); 8-15: osso (pontas das garras e dentes)
+                image.setPixelRGBA(x, y, y < 8 ? pack(255, 96 + h, 14, 18) : pack(255, 214 - h, 204 - h, 184 - h));
             }
         }
         Minecraft.getInstance().getTextureManager().register(CLAWS, new DynamicTexture(image));

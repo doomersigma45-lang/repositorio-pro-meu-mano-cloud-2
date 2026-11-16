@@ -34,23 +34,29 @@ public class ParasiteClawsLayer<T extends LivingEntity, M extends HumanoidModel<
         this.leftClaws = root.getChild("left_claws");
     }
 
+    /** Garra: base vermelha escura e ponta de osso inclinada para frente. xs = posicoes em x; z fixo por garra. */
+    private static void claw(PartDefinition arm, String name, float x, float z, float zRot) {
+        PartDefinition c = arm.addOrReplaceChild(name, CubeListBuilder.create().texOffs(0, 0)
+                .addBox(-0.5F, 0.0F, -0.5F, 1.0F, 3.5F, 1.0F), PartPose.offsetAndRotation(x, 10.0F, z, -0.2F, 0.0F, zRot));
+        c.addOrReplaceChild(name + "_tip", CubeListBuilder.create().texOffs(0, 8)
+                .addBox(-0.3F, 0.0F, -0.3F, 0.6F, 3.5F, 0.6F), PartPose.offsetAndRotation(0.0F, 3.5F, 0.0F, -0.5F, 0.0F, 0.0F));
+    }
+
     public static LayerDefinition createLayer() {
         MeshDefinition mesh = new MeshDefinition();
         PartDefinition root = mesh.getRoot();
-        // coordenadas locais do braco: o bloco do braco vai de y=-2 a y=10; as garras saem da ponta (y=10)
-        CubeListBuilder right = CubeListBuilder.create().texOffs(0, 0);
-        CubeListBuilder left = CubeListBuilder.create().texOffs(0, 0);
-        float[] xr = {-3.0F, -1.5F, 0.0F};
-        float[] xl = {-1.0F, 0.5F, 2.0F};
-        float[] zs = {-1.5F, 0.5F};
+        // coordenadas locais do braco: o bloco vai de y=-2 a y=10; as garras saem da ponta (y=10). Direito: x -3..1.
+        PartDefinition right = root.addOrReplaceChild("right_claws", CubeListBuilder.create(), PartPose.ZERO);
+        PartDefinition left = root.addOrReplaceChild("left_claws", CubeListBuilder.create(), PartPose.ZERO);
+        float[] xr = {-2.4F, -1.0F, 0.4F};
         for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 2; j++) {
-                right.addBox(xr[i], 10.0F, zs[j], 1.0F, 7.0F, 1.0F);
-                left.addBox(xl[i], 10.0F, zs[j], 1.0F, 7.0F, 1.0F);
-            }
+            claw(right, "r" + i, xr[i], -1.2F, -0.05F * (i - 1));
+            claw(left, "l" + i, -xr[i], -1.2F, 0.05F * (i - 1));
         }
-        root.addOrReplaceChild("right_claws", right, PartPose.ZERO);
-        root.addOrReplaceChild("left_claws", left, PartPose.ZERO);
+        claw(right, "r3", -1.7F, 1.2F, 0.0F);
+        claw(right, "r4", -0.3F, 1.2F, 0.0F);
+        claw(left, "l3", 1.7F, 1.2F, 0.0F);
+        claw(left, "l4", 0.3F, 1.2F, 0.0F);
         return LayerDefinition.create(mesh, 16, 16);
     }
 

@@ -110,6 +110,8 @@ public final class ParasiteRenderers {
             }
         };
         r.addLayer(new ParasiteClawsLayer<ZombieVillager, ZombieVillagerModel<ZombieVillager>>(r, ctx));
+        r.addLayer(new ParasiteMawLayer<ZombieVillager, ZombieVillagerModel<ZombieVillager>>(r, ctx));
+        spikes(r, ctx, ParasiteSpikesModel.HUMANOID);
         r.addLayer(new EyesLayer<ZombieVillager, ZombieVillagerModel<ZombieVillager>>(r) {
             @Override
             public RenderType renderType() {
