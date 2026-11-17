@@ -96,7 +96,7 @@ public class ParasiteMeteor extends Fireball {
             }
         }
         // 1 chance em 3 de plantar o coracao de uma Arvore Parasita no fundo da cratera
-        if (level.random.nextInt(3) == 0 && ForgeEventFactory.getMobGriefingEvent(level, this)) {
+        if (level.random.nextInt(this.getPersistentData().getBoolean("Light") ? 8 : 3) == 0 && ForgeEventFactory.getMobGriefingEvent(level, this)) {
             for (int dy = 1; dy >= -8; dy--) {
                 BlockPos hp = c.offset(0, dy, 0);
                 if (level.getBlockState(hp).isAir() && level.getFluidState(hp).isEmpty()
@@ -134,9 +134,11 @@ public class ParasiteMeteor extends Fireball {
     /** O impacto libera parasitas (4 na fase 1 do surto, 6 na 2 e 8 na 3) e 3 vermes, ja na fase do surto. */
     private void spawnParasites(ServerLevel level, BlockPos c) {
         int stage = ParasiteOutbreak.active ? ParasiteOutbreak.stage() : 1;
-        int count = stage >= 3 ? 8 : (stage == 2 ? 6 : 4);
-        for (int i = 0; i < count + 3; i++) {
-            net.minecraft.world.entity.EntityType<? extends Mob> type = i < 3 ? ModEntities.PARASITE_WORM.get() : pick(level.random, stage);
+        boolean light = this.getPersistentData().getBoolean("Light");
+        int count = light ? 1 : (stage >= 3 ? 8 : (stage == 2 ? 6 : 4));
+        int worms = light ? 1 : 3;
+        for (int i = 0; i < count + worms; i++) {
+            net.minecraft.world.entity.EntityType<? extends Mob> type = i < worms ? ModEntities.PARASITE_WORM.get() : pick(level.random, stage);
             Mob m = type.create(level);
             if (m == null) {
                 continue;

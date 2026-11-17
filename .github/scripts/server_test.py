@@ -1107,6 +1107,20 @@ def main():
             time.sleep(2)
             gcmd("execute if entity @e[type=netheritesupremo:parasite_villager,x=1545,y=62,z=880,distance=..6] run say guerreiro virou aldeao parasita")
             gcmd("execute if entity @e[type=netheritesupremo:parasite_wandering_trader,x=1551,y=62,z=880,distance=..6] run say umbral/chefe viraram vendedor parasita")
+            # 1.81.0: estruturas de ritual e chuva de meteoros
+            r.cmd("forceload add 1590 850 1655 890")
+            time.sleep(1)
+            for i in range(4):
+                gcmd(f"execute positioned {1600 + i * 15} 62 870 run parasite structure {i}")
+            time.sleep(3)
+            gcmd("execute if block 1599 62 870 minecraft:hay_block run say efigie de palha montada")
+            gcmd("execute if entity @e[type=minecraft:villager,x=1598,y=62,z=872,distance=..4] run say aldeao dentro do cercado")
+            gcmd("execute if block 1615 63 870 minecraft:wither_skeleton_skull run say circulo de velas montado")
+            gcmd("execute if block 1630 62 870 minecraft:bone_block run say totem de ossos montado")
+            gcmd("execute if block 1645 62 870 minecraft:soul_campfire run say circulo de espantalhos montado")
+            gcmd("execute positioned 1600 60 870 run parasite shower")
+            time.sleep(5)
+            gcmd("execute if entity @e[type=netheritesupremo:parasite_meteor] run say meteoros da chuva em queda")
             annotate("notice", "anomalocaris e guardiao", g4)
             # escavador, automato, tartaruga ancestral
             t5 = []

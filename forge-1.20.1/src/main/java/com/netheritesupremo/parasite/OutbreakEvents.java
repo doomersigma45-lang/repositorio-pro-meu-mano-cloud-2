@@ -76,6 +76,7 @@ public final class OutbreakEvents {
         if (tick % 200 == 0 && ParasiteOutbreak.active && ParasiteOutbreak.stage() >= 2) {
             trySpawnAirborne(server);
             trySpawnHybrid(server);
+            RitualStructures.tick(server);
         }
     }
 
@@ -235,6 +236,18 @@ public final class OutbreakEvents {
                     ctx.getSource().sendSuccess(() -> Component.literal(ok ? "Meteoro a caminho." : "Nao foi possivel (chunk descarregado ou sem altura)."), false);
                     return Command.SINGLE_SUCCESS;
                 }))
+                .then(Commands.literal("shower").executes(ctx -> {
+                    net.minecraft.world.phys.Vec3 at = ctx.getSource().getPosition();
+                    int n = ParasiteMeteorEvents.shower(ctx.getSource().getLevel(), at.x + 20.0D, at.z + 20.0D, 5 + ctx.getSource().getLevel().random.nextInt(16));
+                    ctx.getSource().sendSuccess(() -> Component.literal("Chuva de " + n + " meteoros a caminho."), false);
+                    return Command.SINGLE_SUCCESS;
+                }))
+                .then(Commands.literal("structure").then(Commands.argument("tipo", com.mojang.brigadier.arguments.IntegerArgumentType.integer(0, RitualStructures.TYPES - 1)).executes(ctx -> {
+                    net.minecraft.core.BlockPos at = net.minecraft.core.BlockPos.containing(ctx.getSource().getPosition());
+                    RitualStructures.build(ctx.getSource().getLevel(), com.mojang.brigadier.arguments.IntegerArgumentType.getInteger(ctx, "tipo"), at);
+                    ctx.getSource().sendSuccess(() -> Component.literal("Estrutura de ritual montada."), false);
+                    return Command.SINGLE_SUCCESS;
+                })))
                 .then(Commands.literal("ritual").executes(ctx -> {
                     String msg = ParasiteRituals.forceStart(ctx.getSource().getLevel(), ctx.getSource().getPosition());
                     ctx.getSource().sendSuccess(() -> Component.literal("Ritual: " + msg + " (ativos: " + ParasiteRituals.activeCount() + ")"), false);

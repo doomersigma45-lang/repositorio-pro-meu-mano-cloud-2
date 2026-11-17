@@ -596,3 +596,13 @@ O cavalo esqueleto dele usava o renderer vanilla, que só tem textura para os ca
 - **Umbral Merchant** e **Chefe Villager** infectados → **Vendedor Ambulante Parasita** (mini boss). A armadura é copiada.
 - O Filhote do Chefe não foi incluído (não foi pedido).
 
+### Estruturas de ritual e chuva de meteoros (1.81.0)
+**Não testado no jogo.** Estruturas montadas por código (blocos vanilla), desenhos meus (IA); tamanhos, frequências e quantidades são estimados.
+- **Estruturas de ritual**, só a partir da **fase 2 do surto** (a cada 10 s, 1 chance em 12 por jogador de montar uma a 40–90 blocos dele, em terreno firme, seco e quase plano e com chunks carregados; sempre a 80+ blocos de outra, posições salvas no mundo). Elas limpam árvores/plantas da área e deixam o chão de terra grossa:
+  - **Estátua de palha**: boneco grande de fardos de feno (braços abertos, cabeça de abóbora, chifres de osso, peito de lã vermelha) dentro de um **cercado de cerca escura** com lanternas de alma, com **um Aldeão e um animal (vaca, porco ou ovelha) não infectados** presos dentro.
+  - **Círculo de velas**: anel de velas vermelhas acesas (1 a 4 por bloco) em volta de um altar de blackstone com caveira de wither esqueleto.
+  - **Totem de ossos**: poste de blocos de osso com caveira e cruzeta, e 6 tocos de osso em volta (velas ou caveiras).
+  - **Círculo de espantalhos**: 6 espantalhos (cerca, feno e abóbora virada para o centro) em volta de uma fogueira de almas, com 2 animais no meio.
+- **Chuva de meteoros**: o evento aleatório agora solta **5 a 20 meteoros** espalhados num raio de 36 blocos, caindo ao longo de ~15 s (surto: ~1 chuva a cada 13 min em média; sem surto: ~40 min). Cada meteoro da chuva solta só 1 verme + 1 parasita e tem 1 chance em 8 de plantar uma árvore (o meteoro solitário do comando `/parasite meteor` continua com o efeito completo).
+- Comandos de teste (op): `/parasite shower` e `/parasite structure <0-3>` (monta no lugar onde você está).
+
