@@ -1097,6 +1097,16 @@ def main():
             r.cmd("setblock 1556 60 875 netheritesupremo:parasite_blood")
             time.sleep(40)
             gcmd("execute if block 1555 60 875 netheritesupremo:parasite_tree run say sangue encostou na madeira e nasceu arvore")
+            # 1.80.0: guerreiro -> aldeao parasita; umbral e chefe -> vendedor parasita
+            for i, ty in enumerate(("guerreiro_villager", "umbral_merchant", "chefe_villager")):
+                r.cmd(f"summon netheritesupremo:{ty} {1545 + i * 3} 62 880 {{NoAI:1b,Tags:[\"asm{i}\"]}}")
+            time.sleep(1)
+            for i in range(3):
+                gcmd(f"effect give @e[tag=asm{i},limit=1] netheritesupremo:infestation 60 0")
+                gcmd(f"kill @e[tag=asm{i},limit=1]")
+            time.sleep(2)
+            gcmd("execute if entity @e[type=netheritesupremo:parasite_villager,x=1545,y=62,z=880,distance=..6] run say guerreiro virou aldeao parasita")
+            gcmd("execute if entity @e[type=netheritesupremo:parasite_wandering_trader,x=1551,y=62,z=880,distance=..6] run say umbral/chefe viraram vendedor parasita")
             annotate("notice", "anomalocaris e guardiao", g4)
             # escavador, automato, tartaruga ancestral
             t5 = []

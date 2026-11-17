@@ -590,3 +590,9 @@ O cavalo esqueleto dele usava o renderer vanilla, que só tem textura para os ca
 - **Mais grotescos**: a deformação das fases 2 e 3 agora é **assimétrica e diferente em cada criatura** (inclinação, corcunda e proporções sorteadas), com **pulsação** na fase 3, e humanoides ganham **caroços de carne** nas costas, ombros, cabeça e barriga a partir da fase 2.
 - Limitações: os caroços são estáticos (não seguem braços/pernas), a pulsação é só de escala, e as novas criaturas reusam modelos existentes (só tamanho/textura/comportamento novos).
 
+### Infecção da Vila de Ferro (1.80.0)
+**Não testado no jogo.** Mesma infecção de sempre (Infestação; ao morrer/terminar vira a versão parasita):
+- **Guerreiro Villager** infectado → **Aldeão Parasita**.
+- **Umbral Merchant** e **Chefe Villager** infectados → **Vendedor Ambulante Parasita** (mini boss). A armadura é copiada.
+- O Filhote do Chefe não foi incluído (não foi pedido).
+

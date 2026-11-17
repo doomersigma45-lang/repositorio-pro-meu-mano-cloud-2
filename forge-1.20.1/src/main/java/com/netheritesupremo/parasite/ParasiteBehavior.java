@@ -133,7 +133,11 @@ public final class ParasiteBehavior {
         if (t == EntityType.VILLAGER) {
             return ModEntities.PARASITE_VILLAGER.get();
         }
-        if (t == EntityType.WANDERING_TRADER) {
+        if (t == com.netheritesupremo.viladeferro.VilaDeFerro.FIGHTER.get()) { // Guerreiro Villager -> Aldeao Parasita
+            return ModEntities.PARASITE_VILLAGER.get();
+        }
+        if (t == EntityType.WANDERING_TRADER || t == ModEntities.UMBRAL_MERCHANT.get()
+                || t == com.netheritesupremo.viladeferro.VilaDeFerro.CHIEF.get()) { // Umbral e Chefe -> Vendedor Ambulante Parasita
             return ModEntities.PARASITE_WANDERING_TRADER.get();
         }
         if (t == EntityType.SHEEP) {
