@@ -297,16 +297,16 @@ public final class ParasiteRenderers {
                         deform(pose, phase(entity), entity, partialTick);
                     }
                 });
-        event.<net.minecraft.world.entity.animal.GlowSquid>registerEntityRenderer(ModEntities.PARASITE_GLOW_SQUID.get(),
+        event.<net.minecraft.world.entity.GlowSquid>registerEntityRenderer(ModEntities.PARASITE_GLOW_SQUID.get(),
                 ctx -> new net.minecraft.client.renderer.entity.GlowSquidRenderer(ctx,
-                        new net.minecraft.client.model.SquidModel<net.minecraft.world.entity.animal.GlowSquid>(ctx.bakeLayer(ModelLayers.GLOW_SQUID))) {
+                        new net.minecraft.client.model.SquidModel<net.minecraft.world.entity.GlowSquid>(ctx.bakeLayer(ModelLayers.GLOW_SQUID))) {
                     @Override
-                    public ResourceLocation getTextureLocation(net.minecraft.world.entity.animal.GlowSquid entity) {
+                    public ResourceLocation getTextureLocation(net.minecraft.world.entity.GlowSquid entity) {
                         return ParasiteTextures.GLOW_SQUID;
                     }
 
                     @Override
-                    protected void scale(net.minecraft.world.entity.animal.GlowSquid entity, PoseStack pose, float partialTick) {
+                    protected void scale(net.minecraft.world.entity.GlowSquid entity, PoseStack pose, float partialTick) {
                         super.scale(entity, pose, partialTick);
                         deform(pose, phase(entity), entity, partialTick);
                     }

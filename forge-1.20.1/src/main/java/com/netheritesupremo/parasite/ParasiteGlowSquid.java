@@ -3,7 +3,7 @@ package com.netheritesupremo.parasite;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.animal.GlowSquid;
+import net.minecraft.world.entity.GlowSquid;
 import net.minecraft.world.level.Level;
 
 /** Lula brilhante parasita: igual a Lula Parasita, mas mais forte e continua brilhando. */
