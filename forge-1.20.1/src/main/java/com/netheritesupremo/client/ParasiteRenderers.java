@@ -73,21 +73,36 @@ public final class ParasiteRenderers {
         return e == null ? 1 : Math.min(3, e.getAmplifier() + 2);
     }
 
-    /** Fase 2: mais magro e torto. Fase 3: ainda mais esticado, torto e curvado. */
-    static void deform(PoseStack pose, int phase) {
+    /**
+     * Deformacao das fases: fase 2 magro e torto, fase 3 esticado, curvado e assimetrico. Cada criatura tem seu proprio
+     * jeito torto (sorteado pelo id) e, na fase 3, o corpo pulsa como se algo se mexesse por dentro.
+     */
+    static void deform(PoseStack pose, int phase, LivingEntity e, float pt) {
+        if (phase < 2) {
+            return;
+        }
+        int id = e.getId();
+        float a = (Math.floorMod(id * 37, 11) - 5) / 5.0F;
+        float b = (Math.floorMod(id * 53, 9) - 4) / 4.0F;
+        float side = a >= 0.0F ? 1.0F : -1.0F;
+        float pulse = net.minecraft.util.Mth.sin((e.tickCount + pt) * 0.18F + id) * (phase >= 3 ? 0.04F : 0.015F);
         if (phase == 2) {
-            pose.scale(0.9F, 1.1F, 0.9F);
-            pose.mulPose(Axis.ZP.rotationDegrees(5.0F));
-        } else if (phase >= 3) {
-            pose.scale(0.82F, 1.22F, 0.82F);
-            pose.mulPose(Axis.ZP.rotationDegrees(11.0F));
-            pose.mulPose(Axis.XP.rotationDegrees(7.0F));
+            pose.scale(0.9F + 0.06F * a + pulse, 1.1F + 0.06F * b - pulse * 0.5F, 0.9F - 0.05F * a + pulse);
+            pose.mulPose(Axis.ZP.rotationDegrees(6.0F * side + 3.0F * a));
+            pose.mulPose(Axis.XP.rotationDegrees(5.0F));
+        } else {
+            pose.scale(0.8F + 0.1F * a + pulse, 1.25F + 0.1F * b - pulse, 0.78F - 0.08F * a + pulse);
+            pose.mulPose(Axis.ZP.rotationDegrees(12.0F * side + 5.0F * a));
+            pose.mulPose(Axis.XP.rotationDegrees(12.0F + 4.0F * b));
         }
     }
 
     private static <T extends LivingEntity, M extends EntityModel<T>> void spikes(LivingEntityRenderer<T, M> renderer,
             EntityRendererProvider.Context ctx, ModelLayerLocation layer) {
         renderer.addLayer(new ParasiteSpikesLayer<T, M>(renderer, ctx, layer, SPIKES));
+        if (layer == ParasiteSpikesModel.HUMANOID) { // tumores de carne a partir da fase 2
+            renderer.addLayer(new ParasiteSpikesLayer<T, M>(renderer, ctx, ParasiteSpikesModel.TUMORS, SPIKES, 2));
+        }
     }
 
     /** Aldeao parasita: modelo do Aldeao Zumbi, sem a roupa de profissao, com garras e olhos brilhantes. */
@@ -102,7 +117,7 @@ public final class ParasiteRenderers {
             protected void scale(ZombieVillager entity, PoseStack pose, float partialTick) {
                 super.scale(entity, pose, partialTick);
                 pose.scale(size, size, size);
-                deform(pose, phase(entity));
+                deform(pose, phase(entity), entity, partialTick);
             }
 
             { // sem a roupa de profissao do Aldeao Zumbi
@@ -141,7 +156,7 @@ public final class ParasiteRenderers {
             @Override
             protected void scale(Endermite entity, PoseStack pose, float partialTick) {
                 super.scale(entity, pose, partialTick);
-                deform(pose, phase(entity));
+                deform(pose, phase(entity), entity, partialTick);
             }
         });
         event.<Cow>registerEntityRenderer(ModEntities.PARASITE_COW.get(), ctx -> new CowRenderer(ctx) {
@@ -153,7 +168,7 @@ public final class ParasiteRenderers {
             @Override
             protected void scale(Cow entity, PoseStack pose, float partialTick) {
                 super.scale(entity, pose, partialTick);
-                deform(pose, phase(entity));
+                deform(pose, phase(entity), entity, partialTick);
             }
         });
         event.<Pig>registerEntityRenderer(ModEntities.PARASITE_PIG.get(), ctx -> new PigRenderer(ctx) {
@@ -165,7 +180,7 @@ public final class ParasiteRenderers {
             @Override
             protected void scale(Pig entity, PoseStack pose, float partialTick) {
                 super.scale(entity, pose, partialTick);
-                deform(pose, phase(entity));
+                deform(pose, phase(entity), entity, partialTick);
             }
         });
         event.<Chicken>registerEntityRenderer(ModEntities.PARASITE_CHICKEN.get(), ctx -> new ChickenRenderer(ctx) {
@@ -177,7 +192,7 @@ public final class ParasiteRenderers {
             @Override
             protected void scale(Chicken entity, PoseStack pose, float partialTick) {
                 super.scale(entity, pose, partialTick);
-                deform(pose, phase(entity));
+                deform(pose, phase(entity), entity, partialTick);
             }
         });
         event.<Zombie>registerEntityRenderer(ModEntities.PARASITE_ZOMBIE.get(), ctx -> {
@@ -190,7 +205,7 @@ public final class ParasiteRenderers {
             @Override
             protected void scale(Zombie entity, PoseStack pose, float partialTick) {
                 super.scale(entity, pose, partialTick);
-                deform(pose, phase(entity));
+                deform(pose, phase(entity), entity, partialTick);
             }
             };
             spikes(r, ctx, ParasiteSpikesModel.HUMANOID);
@@ -206,7 +221,7 @@ public final class ParasiteRenderers {
             @Override
             protected void scale(AbstractSkeleton entity, PoseStack pose, float partialTick) {
                 super.scale(entity, pose, partialTick);
-                deform(pose, phase(entity));
+                deform(pose, phase(entity), entity, partialTick);
             }
             };
             spikes(r, ctx, ParasiteSpikesModel.HUMANOID);
@@ -222,7 +237,7 @@ public final class ParasiteRenderers {
             @Override
             protected void scale(Creeper entity, PoseStack pose, float partialTick) {
                 super.scale(entity, pose, partialTick);
-                deform(pose, phase(entity));
+                deform(pose, phase(entity), entity, partialTick);
             }
             };
             spikes(r, ctx, ParasiteSpikesModel.CREEPER);
@@ -237,7 +252,7 @@ public final class ParasiteRenderers {
             @Override
             protected void scale(Spider entity, PoseStack pose, float partialTick) {
                 super.scale(entity, pose, partialTick);
-                deform(pose, phase(entity));
+                deform(pose, phase(entity), entity, partialTick);
             }
         });
         event.<EnderMan>registerEntityRenderer(ModEntities.PARASITE_ENDERMAN.get(), ctx -> {
@@ -250,13 +265,18 @@ public final class ParasiteRenderers {
             @Override
             protected void scale(EnderMan entity, PoseStack pose, float partialTick) {
                 super.scale(entity, pose, partialTick);
-                deform(pose, phase(entity));
+                deform(pose, phase(entity), entity, partialTick);
             }
             };
             spikes(r, ctx, ParasiteSpikesModel.ENDER);
             return r;
         });
         event.registerEntityRenderer(ModEntities.PARASITE_WARDEN.get(), ParasiteWardenRenderer::new);
+        event.registerEntityRenderer(ModEntities.PARASITE_CHIMERA.get(), ctx -> new ParasiteBeastRenderer<com.netheritesupremo.parasite.ParasiteChimera>(ctx,
+                new ParasiteBeastModels.Hound<com.netheritesupremo.parasite.ParasiteChimera>(ctx.bakeLayer(ParasiteBeastModels.HOUND)), 0.9F, ParasiteTextures.HYBRID_CHIMERA, 1.5F));
+        event.registerEntityRenderer(ModEntities.PARASITE_AMALGAM.get(), ctx -> new ParasiteBeastRenderer<com.netheritesupremo.parasite.ParasiteAmalgam>(ctx,
+                new ParasiteBeastModels.Mother<com.netheritesupremo.parasite.ParasiteAmalgam>(ctx.bakeLayer(ParasiteBeastModels.MOTHER)), 1.4F, ParasiteTextures.HYBRID_AMALGAM, 1.1F));
+        event.<ZombieVillager>registerEntityRenderer(ModEntities.PARASITE_ABOMINATION.get(), ctx -> villagerRenderer(ctx, ParasiteTextures.VILLAGER, 1.45F));
         event.registerEntityRenderer(ModEntities.PARASITE_CRAWLER.get(), ctx -> new ParasiteBeastRenderer<com.netheritesupremo.parasite.ParasiteCrawler>(ctx,
                 new ParasiteBeastModels.Crawler<com.netheritesupremo.parasite.ParasiteCrawler>(ctx.bakeLayer(ParasiteBeastModels.CRAWLER)), 0.9F, ParasiteTextures.HYBRID_CRAWLER, 1.0F));
         event.registerEntityRenderer(ModEntities.PARASITE_HOUND.get(), ctx -> new ParasiteBeastRenderer<com.netheritesupremo.parasite.ParasiteHound>(ctx,
@@ -280,7 +300,7 @@ public final class ParasiteRenderers {
                 @Override
                 protected void scale(com.netheritesupremo.mob.Hunter mob, PoseStack pose, float partialTick) {
                     super.scale(mob, pose, partialTick);
-                    deform(pose, phase(mob));
+                    deform(pose, phase(mob), mob, partialTick);
                 }
             };
             spikes(r, ctx, ParasiteSpikesModel.HUMANOID);
@@ -299,7 +319,7 @@ public final class ParasiteRenderers {
             @Override
             protected void scale(Sheep entity, PoseStack pose, float partialTick) {
                 super.scale(entity, pose, partialTick);
-                deform(pose, phase(entity));
+                deform(pose, phase(entity), entity, partialTick);
             }
         });
         event.<Wolf>registerEntityRenderer(ModEntities.PARASITE_WOLF.get(), ctx -> new WolfRenderer(ctx) {
@@ -311,7 +331,7 @@ public final class ParasiteRenderers {
             @Override
             protected void scale(Wolf entity, PoseStack pose, float partialTick) {
                 super.scale(entity, pose, partialTick);
-                deform(pose, phase(entity));
+                deform(pose, phase(entity), entity, partialTick);
             }
         });
         event.<Zombie>registerEntityRenderer(ModEntities.PARASITE_STRONGEST_ZOMBIE.get(), ctx -> {
@@ -324,7 +344,7 @@ public final class ParasiteRenderers {
                 @Override
                 protected void scale(Zombie entity, PoseStack pose, float partialTick) {
                     pose.scale(1.5F, 1.5F, 1.5F);
-                    deform(pose, phase(entity));
+                    deform(pose, phase(entity), entity, partialTick);
                 }
             };
             spikes(r, ctx, ParasiteSpikesModel.HUMANOID);
@@ -339,7 +359,7 @@ public final class ParasiteRenderers {
             @Override
             protected void scale(WitherBoss entity, PoseStack pose, float partialTick) {
                 super.scale(entity, pose, partialTick);
-                deform(pose, phase(entity));
+                deform(pose, phase(entity), entity, partialTick);
             }
         });
         event.<IronGolem>registerEntityRenderer(ModEntities.PARASITE_IRON_GOLEM.get(), ctx -> {
@@ -352,7 +372,7 @@ public final class ParasiteRenderers {
                 @Override
                 protected void scale(IronGolem entity, PoseStack pose, float partialTick) {
                     super.scale(entity, pose, partialTick);
-                    deform(pose, phase(entity));
+                    deform(pose, phase(entity), entity, partialTick);
                 }
             };
             spikes(r, ctx, ParasiteSpikesModel.GOLEM);
@@ -368,7 +388,7 @@ public final class ParasiteRenderers {
                 @Override
                 protected void scale(IronGolem entity, PoseStack pose, float partialTick) {
                     pose.scale(1.25F, 1.25F, 1.25F);
-                    deform(pose, phase(entity));
+                    deform(pose, phase(entity), entity, partialTick);
                 }
             };
             spikes(r, ctx, ParasiteSpikesModel.GOLEM);

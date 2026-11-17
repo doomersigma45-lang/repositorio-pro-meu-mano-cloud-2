@@ -25,7 +25,7 @@ public class ParasiteWardenRenderer extends MobRenderer<ParasiteWarden, WardenMo
     @Override
     protected void scale(ParasiteWarden entity, PoseStack pose, float partialTick) {
         super.scale(entity, pose, partialTick);
-        ParasiteRenderers.deform(pose, ParasiteRenderers.phase(entity));
+        ParasiteRenderers.deform(pose, ParasiteRenderers.phase(entity), entity, partialTick);
     }
 
     @Override

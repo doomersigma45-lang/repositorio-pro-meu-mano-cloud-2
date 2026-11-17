@@ -1085,6 +1085,18 @@ def main():
             gcmd("execute if block 1500 59 870 netheritesupremo:parasite_dirt run say terra virou parasita")
             gcmd("execute if block 1505 59 865 netheritesupremo:parasite_blood run say agua virou sangue")
             gcmd("data get block 1500 60 870 Consumed")
+            # 1.79.0: assimilados (quimera, abominacao, amalgama), arvore nasce do sangue + madeira
+            r.cmd("forceload add 1540 850 1580 890")
+            for i, ty in enumerate(("chimera", "abomination", "amalgam")):
+                r.cmd(f"summon netheritesupremo:parasite_{ty} {1545 + i * 8} 60 870 {{NoAI:1b}}")
+            time.sleep(2)
+            for ty in ("chimera", "abomination", "amalgam"):
+                gcmd(f"attribute @e[type=netheritesupremo:parasite_{ty},limit=1] minecraft:generic.max_health get")
+            r.cmd("fill 1540 56 855 1560 59 885 minecraft:dirt")
+            r.cmd("setblock 1555 60 875 minecraft:oak_log")
+            r.cmd("setblock 1556 60 875 netheritesupremo:parasite_blood")
+            time.sleep(40)
+            gcmd("execute if block 1555 60 875 netheritesupremo:parasite_tree run say sangue encostou na madeira e nasceu arvore")
             annotate("notice", "anomalocaris e guardiao", g4)
             # escavador, automato, tartaruga ancestral
             t5 = []

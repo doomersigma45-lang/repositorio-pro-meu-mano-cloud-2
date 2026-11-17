@@ -29,7 +29,7 @@ public class ParasiteBeastRenderer<T extends Mob> extends MobRenderer<T, EntityM
     @Override
     protected void scale(T entity, PoseStack pose, float partialTick) {
         pose.scale(this.size, this.size, this.size);
-        ParasiteRenderers.deform(pose, ParasiteRenderers.phase(entity));
+        ParasiteRenderers.deform(pose, ParasiteRenderers.phase(entity), entity, partialTick);
     }
 
     @Override

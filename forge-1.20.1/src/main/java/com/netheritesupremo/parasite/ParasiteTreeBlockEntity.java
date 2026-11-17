@@ -263,15 +263,17 @@ public class ParasiteTreeBlockEntity extends BlockEntity {
     // ---------------------------------------------------------------- parasitas
 
     private static EntityType<? extends Mob> pickPhase2(RandomSource r) {
-        return switch (r.nextInt(8)) {
+        return switch (r.nextInt(12)) {
             case 0 -> ModEntities.PARASITE_ZOMBIE.get();
             case 1 -> ModEntities.PARASITE_SKELETON.get();
             case 2 -> ModEntities.PARASITE_SPIDER.get();
             case 3 -> ModEntities.PARASITE_CREEPER.get();
             case 4 -> ModEntities.PARASITE_VILLAGER.get();
             case 5 -> ModEntities.PARASITE_WOLF.get();
-            case 6 -> ModEntities.PARASITE_CRAWLER.get();
-            default -> ModEntities.PARASITE_HOUND.get();
+            case 6, 7 -> ModEntities.PARASITE_CRAWLER.get();
+            case 8, 9 -> ModEntities.PARASITE_HOUND.get();
+            case 10 -> ModEntities.PARASITE_BLOOM.get();
+            default -> ModEntities.PARASITE_CHIMERA.get();
         };
     }
 
@@ -279,17 +281,21 @@ public class ParasiteTreeBlockEntity extends BlockEntity {
         if (r.nextInt(20) == 0) {
             return ModEntities.PARASITE_WITHER.get();
         }
-        return switch (r.nextInt(11)) {
-            case 0 -> ModEntities.PARASITE_WARDEN.get();
-            case 1, 2 -> ModEntities.PARASITE_PLAYER.get();
-            case 3 -> ModEntities.PARASITE_ENDERMAN.get();
-            case 4 -> ModEntities.PARASITE_HUNTER.get();
-            case 5 -> ModEntities.PARASITE_IRON_GOLEM.get();
-            case 6 -> ModEntities.PARASITE_CRAWLER.get();
-            case 7 -> ModEntities.PARASITE_HOUND.get();
-            case 8 -> ModEntities.PARASITE_BROOD_MOTHER.get();
-            case 9 -> ModEntities.PARASITE_STRONGEST_ZOMBIE.get();
-            default -> ModEntities.PARASITE_WARDEN.get();
+        return switch (r.nextInt(16)) {
+            case 0, 1 -> ModEntities.PARASITE_WARDEN.get();
+            case 2, 3 -> ModEntities.PARASITE_PLAYER.get();
+            case 4 -> ModEntities.PARASITE_ENDERMAN.get();
+            case 5 -> ModEntities.PARASITE_HUNTER.get();
+            case 6 -> ModEntities.PARASITE_IRON_GOLEM.get();
+            case 7 -> ModEntities.PARASITE_CRAWLER.get();
+            case 8 -> ModEntities.PARASITE_HOUND.get();
+            case 9 -> ModEntities.PARASITE_BROOD_MOTHER.get();
+            case 10 -> ModEntities.PARASITE_STRONGEST_ZOMBIE.get();
+            case 11 -> ModEntities.PARASITE_TOTEM.get();
+            case 12 -> ModEntities.PARASITE_BLOOM.get();
+            case 13 -> ModEntities.PARASITE_ABOMINATION.get();
+            case 14 -> ModEntities.PARASITE_AMALGAM.get();
+            default -> ModEntities.PARASITE_CHIMERA.get();
         };
     }
 

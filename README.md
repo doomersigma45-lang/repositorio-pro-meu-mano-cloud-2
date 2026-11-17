@@ -579,3 +579,14 @@ O cavalo esqueleto dele usava o renderer vanilla, que só tem textura para os ca
 - Botão direito no coração mostra fase, blocos parasitados, raio e altura. Os blocos dropam a si mesmos (folhas dropam 0–2 carne podre). Os **meteoros** têm 1 chance em 3 de plantar uma árvore na cratera.
 - Limitações: troncos/folhas são cubos simples (sem eixo/decaimento), a conversão não é desfeita se o coração for quebrado, e o ritmo/raio/limites são estimados e podem precisar de ajuste.
 
+### Árvore gera mais parasitas, assimilados e deformação (1.79.0)
+**Não testado no jogo.** Modelos reaproveitados (cão, matriarca, aldeão) com texturas geradas por mim (IA); números estimados.
+- **A árvore agora gera também** Flor e Totem Parasita (Flor na fase 2; Totem e Flor na fase 3), com **Rastejador e Cão em maior peso** nas duas fases.
+- **A árvore nasce sozinha**: Líquido Parasita (fonte ou fluxo) encostando em **tronco de madeira** transforma o tronco no coração de uma Árvore Parasita (checagem aleatória, 1 em 3 por tick aleatório; não nasce outra a 6 blocos de uma existente). Pode levar alguns segundos.
+- **Parasitas assimilados** (surgem quando um parasita **infecta de novo um mob que já estava infectado**, 30% por ataque; já nascem na fase 3 e a árvore também os gera na fase 3; têm ovo e drops):
+  - **Quimera Parasita** (de animais ou mobs pequenos): modelo do Cão em tamanho 1,5×, 130 HP, 14 de dano, rápida, pula no alvo, mordida dá Fraqueza II.
+  - **Abominação Parasita** (de aldeões, zumbis, esqueletos, illagers, bruxas): Aldeão Parasita gigante (1,45×), 220 HP, 16 de dano, mordida dá Lentidão II.
+  - **Amálgama Parasita** (de mobs grandes, golems etc.): modelo da Matriarca, 260 HP, 20 de dano, armadura 8, mordida dá Wither, infecta mobs a 8 blocos e solta 4 vermes ao morrer.
+- **Mais grotescos**: a deformação das fases 2 e 3 agora é **assimétrica e diferente em cada criatura** (inclinação, corcunda e proporções sorteadas), com **pulsação** na fase 3, e humanoides ganham **caroços de carne** nas costas, ombros, cabeça e barriga a partir da fase 2.
+- Limitações: os caroços são estáticos (não seguem braços/pernas), a pulsação é só de escala, e as novas criaturas reusam modelos existentes (só tamanho/textura/comportamento novos).
+

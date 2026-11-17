@@ -322,5 +322,11 @@
   "entity.netheritesupremo.parasite_hound": "Parasite Hound",
   "item.netheritesupremo.parasite_hound_spawn_egg": "Parasite Hound Spawn Egg",
   "entity.netheritesupremo.parasite_brood_mother": "Parasite Brood Mother",
-  "item.netheritesupremo.parasite_brood_mother_spawn_egg": "Parasite Brood Mother Spawn Egg"
+  "item.netheritesupremo.parasite_brood_mother_spawn_egg": "Parasite Brood Mother Spawn Egg",
+  "entity.netheritesupremo.parasite_chimera": "Parasite Chimera",
+  "item.netheritesupremo.parasite_chimera_spawn_egg": "Parasite Chimera Spawn Egg",
+  "entity.netheritesupremo.parasite_abomination": "Parasite Abomination",
+  "item.netheritesupremo.parasite_abomination_spawn_egg": "Parasite Abomination Spawn Egg",
+  "entity.netheritesupremo.parasite_amalgam": "Parasite Amalgam",
+  "item.netheritesupremo.parasite_amalgam_spawn_egg": "Parasite Amalgam Spawn Egg"
 }

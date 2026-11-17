@@ -2,7 +2,13 @@ package com.netheritesupremo.parasite;
 
 import com.netheritesupremo.NetheriteSupremo;
 import java.util.function.Consumer;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -51,9 +57,29 @@ public final class ParasiteBlood {
             });
 
     public static final RegistryObject<FlowingFluid> SOURCE = FLUIDS.register("parasite_blood",
-            () -> new ForgeFlowingFluid.Source(ParasiteBlood.PROPERTIES));
+            () -> new ForgeFlowingFluid.Source(ParasiteBlood.PROPERTIES) {
+                @Override
+                protected boolean isRandomlyTicking() {
+                    return true;
+                }
+
+                @Override
+                protected void randomTick(Level level, BlockPos pos, FluidState state, RandomSource random) {
+                    touchWood(level, pos, random);
+                }
+            });
     public static final RegistryObject<FlowingFluid> FLOWING = FLUIDS.register("flowing_parasite_blood",
-            () -> new ForgeFlowingFluid.Flowing(ParasiteBlood.PROPERTIES));
+            () -> new ForgeFlowingFluid.Flowing(ParasiteBlood.PROPERTIES) {
+                @Override
+                protected boolean isRandomlyTicking() {
+                    return true;
+                }
+
+                @Override
+                protected void randomTick(Level level, BlockPos pos, FluidState state, RandomSource random) {
+                    touchWood(level, pos, random);
+                }
+            });
     public static final RegistryObject<LiquidBlock> BLOCK = BLOCKS.register("parasite_blood",
             () -> new LiquidBlock(ParasiteBlood.SOURCE, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED)
                     .replaceable().noCollission().strength(100.0F).pushReaction(PushReaction.DESTROY)
@@ -73,5 +99,26 @@ public final class ParasiteBlood {
         FLUIDS.register(bus);
         BLOCKS.register(bus);
         ITEMS.register(bus);
+    }
+
+    /** Sangue parasita encostando em madeira (tronco) faz nascer uma Arvore Parasita no lugar do tronco. */
+    static void touchWood(Level level, BlockPos pos, RandomSource random) {
+        if (level.isClientSide || random.nextInt(3) != 0) {
+            return;
+        }
+        for (Direction d : Direction.values()) {
+            BlockPos n = pos.relative(d);
+            if (!level.getBlockState(n).is(BlockTags.LOGS)) {
+                continue;
+            }
+            for (BlockPos q : BlockPos.betweenClosed(n.offset(-6, -3, -6), n.offset(6, 3, 6))) {
+                if (level.getBlockState(q).is(ParasiteTree.HEART.get())) {
+                    return; // ja existe uma arvore parasita aqui perto
+                }
+            }
+            level.setBlock(n, ParasiteTree.HEART.get().defaultBlockState(), 3);
+            level.playSound(null, n, net.minecraft.sounds.SoundEvents.SLIME_SQUISH, net.minecraft.sounds.SoundSource.BLOCKS, 1.2F, 0.5F);
+            return;
+        }
     }
 }

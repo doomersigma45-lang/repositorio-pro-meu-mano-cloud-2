@@ -111,6 +111,9 @@ public class NetheriteSupremo {
             event.accept(ModItems.PARASITE_CRAWLER_SPAWN_EGG);
             event.accept(ModItems.PARASITE_HOUND_SPAWN_EGG);
             event.accept(ModItems.PARASITE_BROOD_MOTHER_SPAWN_EGG);
+            event.accept(ModItems.PARASITE_CHIMERA_SPAWN_EGG);
+            event.accept(ModItems.PARASITE_ABOMINATION_SPAWN_EGG);
+            event.accept(ModItems.PARASITE_AMALGAM_SPAWN_EGG);
             event.accept(ModItems.PARASITE_ACCELERATOR_SERUM);
             event.accept(ModItems.PARASITE_RETARDER_SERUM);
             event.accept(ModItems.ANCIENT_WOOD_SPAWN_EGG);

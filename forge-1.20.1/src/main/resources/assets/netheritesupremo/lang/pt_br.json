@@ -322,5 +322,11 @@
   "entity.netheritesupremo.parasite_hound": "Cão Parasita",
   "item.netheritesupremo.parasite_hound_spawn_egg": "Ovo de Geração de Cão Parasita",
   "entity.netheritesupremo.parasite_brood_mother": "Matriarca Parasita",
-  "item.netheritesupremo.parasite_brood_mother_spawn_egg": "Ovo de Geração de Matriarca Parasita"
+  "item.netheritesupremo.parasite_brood_mother_spawn_egg": "Ovo de Geração de Matriarca Parasita",
+  "entity.netheritesupremo.parasite_chimera": "Quimera Parasita",
+  "item.netheritesupremo.parasite_chimera_spawn_egg": "Ovo de Geração de Quimera Parasita",
+  "entity.netheritesupremo.parasite_abomination": "Abominação Parasita",
+  "item.netheritesupremo.parasite_abomination_spawn_egg": "Ovo de Geração de Abominação Parasita",
+  "entity.netheritesupremo.parasite_amalgam": "Amálgama Parasita",
+  "item.netheritesupremo.parasite_amalgam_spawn_egg": "Ovo de Geração de Amálgama Parasita"
 }

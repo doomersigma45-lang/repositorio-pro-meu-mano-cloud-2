@@ -565,6 +565,24 @@ public final class ModEntities {
                     .sized(2.2F, 2.6F).clientTrackingRange(10)
                     .build("parasite_brood_mother"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasiteChimera>> PARASITE_CHIMERA = ENTITIES.register(
+            "parasite_chimera",
+            () -> EntityType.Builder.<com.netheritesupremo.parasite.ParasiteChimera>of(com.netheritesupremo.parasite.ParasiteChimera::new, MobCategory.MONSTER)
+                    .sized(1.3F, 1.3F).clientTrackingRange(10)
+                    .build("parasite_chimera"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasiteAbomination>> PARASITE_ABOMINATION = ENTITIES.register(
+            "parasite_abomination",
+            () -> EntityType.Builder.<com.netheritesupremo.parasite.ParasiteAbomination>of(com.netheritesupremo.parasite.ParasiteAbomination::new, MobCategory.MONSTER)
+                    .sized(0.9F, 2.8F).clientTrackingRange(10)
+                    .build("parasite_abomination"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasiteAmalgam>> PARASITE_AMALGAM = ENTITIES.register(
+            "parasite_amalgam",
+            () -> EntityType.Builder.<com.netheritesupremo.parasite.ParasiteAmalgam>of(com.netheritesupremo.parasite.ParasiteAmalgam::new, MobCategory.MONSTER)
+                    .sized(2.0F, 2.2F).clientTrackingRange(10)
+                    .build("parasite_amalgam"));
+
     public static final RegistryObject<EntityType<com.netheritesupremo.mob.HeadlessHorseman>> HEADLESS_HORSEMAN = ENTITIES.register(
             "headless_horseman",
             () -> EntityType.Builder.of(com.netheritesupremo.mob.HeadlessHorseman::new, MobCategory.MONSTER)

@@ -202,6 +202,9 @@ public final class ParasiteBehavior {
         if (!(victim instanceof Mob mob) || mob.level().isClientSide) {
             return false;
         }
+        if (tryAssimilate(mob)) {
+            return true;
+        }
         if (!canInfect(mob)) {
             return false;
         }
@@ -266,5 +269,41 @@ public final class ParasiteBehavior {
         sl.sendParticles(ParticleTypes.SNEEZE, p.getX(), p.getY() + p.getBbHeight() * 0.5D, p.getZ(),
                 30, p.getBbWidth() * 0.6D, p.getBbHeight() * 0.4D, p.getBbWidth() * 0.6D, 0.05D);
         sl.playSound(null, p.getX(), p.getY(), p.getZ(), SoundEvents.SLIME_SQUISH, SoundSource.HOSTILE, 1.3F, 0.55F);
+    }
+
+    /** Mob que ja carrega a infeccao e e infectado de novo (30%) vira um parasita assimilado: Quimera, Abominacao ou Amalgama. */
+    private static boolean tryAssimilate(Mob mob) {
+        if (!(mob.level() instanceof ServerLevel sl)) {
+            return false;
+        }
+        if (!(mob.hasEffect(ModEffects.INFESTATION.get()) || mob.hasEffect(ModEffects.PARASITIZED.get()))
+                || isImmuneToInfection(mob) || isParasitic(mob) || mob instanceof EnderDragon || mob instanceof WitherBoss
+                || mob.getMaxHealth() > 400.0F || mob.getRandom().nextInt(10) >= 3) {
+            return false;
+        }
+        EntityType<? extends Mob> type;
+        if (mob instanceof net.minecraft.world.entity.animal.Animal || mob.getMaxHealth() < 20.0F) {
+            type = ModEntities.PARASITE_CHIMERA.get();
+        } else if (mob instanceof net.minecraft.world.entity.npc.AbstractVillager || mob instanceof net.minecraft.world.entity.monster.Zombie
+                || mob instanceof net.minecraft.world.entity.monster.AbstractIllager || mob instanceof net.minecraft.world.entity.monster.AbstractSkeleton
+                || mob instanceof net.minecraft.world.entity.monster.Witch) {
+            type = ModEntities.PARASITE_ABOMINATION.get();
+        } else {
+            type = ModEntities.PARASITE_AMALGAM.get();
+        }
+        Mob p = type.create(sl);
+        if (p == null) {
+            return false;
+        }
+        p.moveTo(mob.getX(), mob.getY(), mob.getZ(), mob.getYRot(), mob.getXRot());
+        p.setYHeadRot(mob.getYHeadRot());
+        if (mob.hasCustomName()) {
+            p.setCustomName(mob.getCustomName());
+        }
+        OutbreakEvents.stampStage(p, 3);
+        sl.addFreshEntity(p);
+        burst(sl, p);
+        mob.discard();
+        return true;
     }
 }

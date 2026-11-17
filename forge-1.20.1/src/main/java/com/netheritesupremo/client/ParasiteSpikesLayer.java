@@ -17,10 +17,17 @@ import net.minecraft.world.entity.LivingEntity;
 public class ParasiteSpikesLayer<T extends LivingEntity, M extends EntityModel<T>> extends RenderLayer<T, M> {
     private final ParasiteSpikesModel<T> model;
     private final ResourceLocation texture;
+    private final int minPhase;
 
     public ParasiteSpikesLayer(RenderLayerParent<T, M> parent, EntityRendererProvider.Context context,
                                ModelLayerLocation layer, ResourceLocation texture) {
+        this(parent, context, layer, texture, 1);
+    }
+
+    public ParasiteSpikesLayer(RenderLayerParent<T, M> parent, EntityRendererProvider.Context context,
+                               ModelLayerLocation layer, ResourceLocation texture, int minPhase) {
         super(parent);
+        this.minPhase = minPhase;
         this.model = new ParasiteSpikesModel<T>(context.bakeLayer(layer));
         this.texture = texture;
     }
@@ -28,7 +35,7 @@ public class ParasiteSpikesLayer<T extends LivingEntity, M extends EntityModel<T
     @Override
     public void render(PoseStack pose, MultiBufferSource buffer, int light, T entity, float limbSwing,
                        float limbSwingAmount, float partialTick, float ageInTicks, float netHeadYaw, float headPitch) {
-        if (entity.isInvisible()) {
+        if (entity.isInvisible() || ParasiteRenderers.phase(entity) < this.minPhase) {
             return;
         }
         VertexConsumer vc = buffer.getBuffer(RenderType.entityCutoutNoCull(this.texture));
