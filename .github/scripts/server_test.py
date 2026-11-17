@@ -1069,6 +1069,22 @@ def main():
             time.sleep(2)
             for ty in ("crawler", "hound", "brood_mother"):
                 gcmd(f"attribute @e[type=netheritesupremo:parasite_{ty},limit=1] minecraft:generic.max_health get")
+            # 1.78.0: arvore parasita (coracao, conversao de terra/agua, fases e crescimento)
+            r.cmd("forceload add 1490 850 1530 890")
+            time.sleep(1)
+            r.cmd("fill 1490 56 855 1520 59 885 minecraft:dirt")
+            r.cmd("fill 1490 60 855 1520 75 885 minecraft:air")
+            r.cmd("fill 1503 59 863 1507 59 867 minecraft:water")
+            r.cmd("setblock 1500 60 870 netheritesupremo:parasite_tree")
+            time.sleep(25)
+            gcmd("data get block 1500 60 870 Consumed")
+            gcmd("execute if block 1500 61 870 netheritesupremo:parasite_log run say arvore fase 1 tem tronco")
+            gcmd("data modify block 1500 60 870 Consumed set value 2600")
+            time.sleep(8)
+            gcmd("execute if block 1500 64 870 netheritesupremo:parasite_log run say arvore fase 3 cresceu")
+            gcmd("execute if block 1500 59 870 netheritesupremo:parasite_dirt run say terra virou parasita")
+            gcmd("execute if block 1505 59 865 netheritesupremo:parasite_blood run say agua virou sangue")
+            gcmd("data get block 1500 60 870 Consumed")
             annotate("notice", "anomalocaris e guardiao", g4)
             # escavador, automato, tartaruga ancestral
             t5 = []

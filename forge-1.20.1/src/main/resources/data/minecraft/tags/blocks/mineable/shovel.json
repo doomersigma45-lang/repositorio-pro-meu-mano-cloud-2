@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "netheritesupremo:black_soil"
+    "netheritesupremo:black_soil",
+    "netheritesupremo:parasite_dirt"
   ]
 }

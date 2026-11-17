@@ -95,6 +95,17 @@ public class ParasiteMeteor extends Fireball {
                 placed++;
             }
         }
+        // 1 chance em 3 de plantar o coracao de uma Arvore Parasita no fundo da cratera
+        if (level.random.nextInt(3) == 0 && ForgeEventFactory.getMobGriefingEvent(level, this)) {
+            for (int dy = 1; dy >= -8; dy--) {
+                BlockPos hp = c.offset(0, dy, 0);
+                if (level.getBlockState(hp).isAir() && level.getFluidState(hp).isEmpty()
+                        && level.getBlockState(hp.below()).isFaceSturdy(level, hp.below(), Direction.UP)) {
+                    level.setBlock(hp, ParasiteTree.HEART.get().defaultBlockState(), 3);
+                    break;
+                }
+            }
+        }
         for (Mob m : level.getEntitiesOfClass(Mob.class, this.getBoundingBox().inflate(10.0D), e -> !(e instanceof ParasiteMob))) {
             ParasiteBehavior.infect(m);
         }

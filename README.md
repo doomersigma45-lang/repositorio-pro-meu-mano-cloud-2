@@ -570,3 +570,12 @@ O cavalo esqueleto dele usava o renderer vanilla, que só tem textura para os ca
 - Nascem por ovo de geração, **sozinhos durante um surto** (Rastejador e Cão a partir da fase 2; Matriarca rara na fase 3) e **dos meteoros** (fase 2 em diante). Drops incluídos.
 - Limitações: animação simples (pernas/tentáculos/braços), os tamanhos de colisão são estimados e podem precisar de ajuste visual.
 
+### Árvore Parasita (1.78.0)
+**Não testado no jogo.** Texturas (16x16) e números feitos por mim (IA); as imagens que você mandou serviram só de inspiração de estilo.
+- **Árvore Parasita** (bloco coração, aba Ferramentas): ao ser colocada, **contamina o bioma em volta** — a cada segundo converte colunas aleatórias do raio: **água → Líquido Parasita (sangue)**, **terra/areia/cascalho/argila/grama → Terra Parasita** (cinza escura), **árvores → Troncos e Folhas Parasitas** (plantas pequenas somem). O raio cresce com o consumo (8 + blocos/35, máx. 72) e só atua em chunks carregados.
+- **Fase 1** (0–499 blocos parasitados): 2 blocos de altura (coração + tronco, com folhas em volta).
+- **Fase 2** (500+): 5 blocos de altura, copa maior e **começa a gerar parasitas** no bioma parasitado (zumbi, esqueleto, aranha, creeper, aldeão, lobo, rastejador, cão) — até 6 por perto, só com jogador a menos de 80 blocos.
+- **Fase 3** (2500+): 9 a 15 blocos de altura (cresce com o consumo), copa grande com galhos e **parasitas fortes**: Warden, jogador parasitado, Enderman, Hunter, Golem, Matriarca, Zumbi Forte, Cão/Rastejador e Wither raro — até 12 por perto.
+- Botão direito no coração mostra fase, blocos parasitados, raio e altura. Os blocos dropam a si mesmos (folhas dropam 0–2 carne podre). Os **meteoros** têm 1 chance em 3 de plantar uma árvore na cratera.
+- Limitações: troncos/folhas são cubos simples (sem eixo/decaimento), a conversão não é desfeita se o coração for quebrado, e o ritmo/raio/limites são estimados e podem precisar de ajuste.
+
