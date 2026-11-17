@@ -328,5 +328,13 @@
   "entity.netheritesupremo.parasite_abomination": "Parasite Abomination",
   "item.netheritesupremo.parasite_abomination_spawn_egg": "Parasite Abomination Spawn Egg",
   "entity.netheritesupremo.parasite_amalgam": "Parasite Amalgam",
-  "item.netheritesupremo.parasite_amalgam_spawn_egg": "Parasite Amalgam Spawn Egg"
+  "item.netheritesupremo.parasite_amalgam_spawn_egg": "Parasite Amalgam Spawn Egg",
+  "entity.netheritesupremo.parasite_squid": "Parasite Squid",
+  "item.netheritesupremo.parasite_squid_spawn_egg": "Parasite Squid Spawn Egg",
+  "entity.netheritesupremo.parasite_glow_squid": "Parasite Glow Squid",
+  "item.netheritesupremo.parasite_glow_squid_spawn_egg": "Parasite Glow Squid Spawn Egg",
+  "entity.netheritesupremo.parasite_burster": "Parasite Burster",
+  "item.netheritesupremo.parasite_burster_spawn_egg": "Parasite Burster Spawn Egg",
+  "entity.netheritesupremo.parasite_silverfish": "Parasite Silverfish",
+  "item.netheritesupremo.parasite_silverfish_spawn_egg": "Parasite Silverfish Spawn Egg"
 }

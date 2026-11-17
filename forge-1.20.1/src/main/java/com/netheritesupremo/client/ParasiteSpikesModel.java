@@ -21,6 +21,8 @@ public class ParasiteSpikesModel<T extends LivingEntity> extends EntityModel<T> 
     public static final ModelLayerLocation ENDER = loc("ender");
     public static final ModelLayerLocation GOLEM = loc("golem");
     public static final ModelLayerLocation TUMORS = loc("tumors");
+    public static final ModelLayerLocation TUMORS_CREEPER = loc("tumors_creeper");
+    public static final ModelLayerLocation TUMORS_ENDER = loc("tumors_ender");
 
     private final ModelPart root;
 
@@ -116,15 +118,31 @@ public class ParasiteSpikesModel<T extends LivingEntity> extends EntityModel<T> 
             {4.5F, 0.0F, 1.0F, 2F, 6F, 2F},
             {-4.0F, 11.0F, -2.0F, 3F, 4F, 3F},
             {-1.0F, -3.0F, 4.0F, 2F, 2F, 2F},
+            {-3.5F, 5.0F, -2.8F, 3F, 3F, 2F},
+            {3.0F, 0.5F, -2.5F, 3F, 2F, 2F},
+            {-6.5F, 7.0F, 0.5F, 2F, 3F, 3F},
+            {2.0F, -6.0F, 2.0F, 3F, 3F, 3F},
     };
 
     public static LayerDefinition tumors() {
+        return tumors(0.0F);
+    }
+
+    public static LayerDefinition tumorsCreeper() {
+        return tumors(6.0F);
+    }
+
+    public static LayerDefinition tumorsEnder() {
+        return tumors(-12.0F);
+    }
+
+    private static LayerDefinition tumors(float yOff) {
         MeshDefinition mesh = new MeshDefinition();
         PartDefinition root = mesh.getRoot();
         for (int i = 0; i < LUMPS.length; i++) {
             float[] l = LUMPS[i];
             root.addOrReplaceChild("lump" + i, CubeListBuilder.create().texOffs(0, 0).addBox(0.0F, 0.0F, 0.0F, l[3], l[4], l[5]),
-                    PartPose.offset(l[0], l[1], l[2]));
+                    PartPose.offset(l[0], l[1] + yOff, l[2]));
         }
         return LayerDefinition.create(mesh, 64, 16);
     }

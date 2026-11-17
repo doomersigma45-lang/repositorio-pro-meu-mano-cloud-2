@@ -28,6 +28,15 @@ public class ParasitizedEffect extends MobEffect {
             sl.sendParticles(ParticleTypes.SNEEZE, entity.getX(), entity.getY() + entity.getBbHeight() * 0.6D,
                     entity.getZ(), 3, entity.getBbWidth() * 0.4D, entity.getBbHeight() * 0.3D,
                     entity.getBbWidth() * 0.4D, 0.01D);
+            // sem versao parasita: perde 5% da vida maxima a cada 10 s (esta funcao roda a cada 1 s)
+            int n = entity.getPersistentData().getInt("ParasitizedHurt") + 1;
+            if (n >= 10) {
+                n = 0;
+                if (entity.isAlive()) {
+                    entity.hurt(entity.damageSources().magic(), entity.getMaxHealth() * 0.05F);
+                }
+            }
+            entity.getPersistentData().putInt("ParasitizedHurt", n);
         }
     }
 }

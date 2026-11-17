@@ -263,7 +263,7 @@ public class ParasiteTreeBlockEntity extends BlockEntity {
     // ---------------------------------------------------------------- parasitas
 
     private static EntityType<? extends Mob> pickPhase2(RandomSource r) {
-        return switch (r.nextInt(12)) {
+        return switch (r.nextInt(14)) {
             case 0 -> ModEntities.PARASITE_ZOMBIE.get();
             case 1 -> ModEntities.PARASITE_SKELETON.get();
             case 2 -> ModEntities.PARASITE_SPIDER.get();
@@ -273,6 +273,7 @@ public class ParasiteTreeBlockEntity extends BlockEntity {
             case 6, 7 -> ModEntities.PARASITE_CRAWLER.get();
             case 8, 9 -> ModEntities.PARASITE_HOUND.get();
             case 10 -> ModEntities.PARASITE_BLOOM.get();
+            case 12, 13 -> ModEntities.PARASITE_BURSTER.get();
             default -> ModEntities.PARASITE_CHIMERA.get();
         };
     }
@@ -281,7 +282,7 @@ public class ParasiteTreeBlockEntity extends BlockEntity {
         if (r.nextInt(20) == 0) {
             return ModEntities.PARASITE_WITHER.get();
         }
-        return switch (r.nextInt(16)) {
+        return switch (r.nextInt(19)) {
             case 0, 1 -> ModEntities.PARASITE_WARDEN.get();
             case 2, 3 -> ModEntities.PARASITE_PLAYER.get();
             case 4 -> ModEntities.PARASITE_ENDERMAN.get();
@@ -295,6 +296,8 @@ public class ParasiteTreeBlockEntity extends BlockEntity {
             case 12 -> ModEntities.PARASITE_BLOOM.get();
             case 13 -> ModEntities.PARASITE_ABOMINATION.get();
             case 14 -> ModEntities.PARASITE_AMALGAM.get();
+            case 16, 17 -> ModEntities.PARASITE_BURSTER.get();
+            case 18 -> ModEntities.PARASITE_SILVERFISH.get();
             default -> ModEntities.PARASITE_CHIMERA.get();
         };
     }

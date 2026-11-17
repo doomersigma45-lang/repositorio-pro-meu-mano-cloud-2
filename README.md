@@ -606,3 +606,14 @@ O cavalo esqueleto dele usava o renderer vanilla, que só tem textura para os ca
 - **Chuva de meteoros**: o evento aleatório agora solta **5 a 20 meteoros** espalhados num raio de 36 blocos, caindo ao longo de ~15 s (surto: ~1 chuva a cada 13 min em média; sem surto: ~40 min). Cada meteoro da chuva solta só 1 verme + 1 parasita e tem 1 chance em 8 de plantar uma árvore (o meteoro solitário do comando `/parasite meteor` continua com o efeito completo).
 - Comandos de teste (op): `/parasite shower` e `/parasite structure <0-3>` (monta no lugar onde você está).
 
+### Lulas, Estourador, Traça e ajustes (1.82.0)
+**Não testado no jogo.** Texturas geradas por mim (IA) a partir das vanilla; números estimados.
+- **Lula Parasita** e **Lula Brilhante Parasita** (infectar uma lula ou lula brilhante dá a versão parasita): hostis **dentro da água** (nadam até o alvo e mordem); 28 e 34 HP; ovos e drops.
+- **Pillagers** não são mais infectados: são **presa** dos parasitas.
+- **Infecção sem variante parasita**: o mob "Parasitado" agora **perde 5% da vida máxima a cada 10 s** (dano mágico, ignora armadura).
+- **Aranha Parasita**: ganhou **pulo de ataque** (de 3 a 6 blocos do alvo, com linha de visão, recarga de 2 s; morde ao encostar).
+- **Estourador Parasita** (bolsa de carne, tem ovo): se aproxima e infla como um creeper, mas o estouro **não é explosão** (raio 0, sem dano a blocos): solta **4 vermes, 3 Aranhas Parasitas e 1 parasita**, infecta mobs a 6 blocos e envenena/enjoa jogadores por perto. Também estoura ao morrer. A árvore o gera (fase 2 e 3).
+- **Traça Parasita** (mini boss, tem ovo; infectar uma traça dá ela): tamanho 2,4×, 180 HP, 9 de dano, barra de vida; **infecta todos os mobs a 6 blocos a cada 3 s**, bota 3 vermes a cada 10 s (até 14 parasitas por perto) e com menos da metade da vida fica 30% mais rápida. A árvore a gera na fase 3.
+- **Mais magros e com tumores**: corpos mais finos em todas as fases (fase 1 leve, fase 2 e 3 bem mais finos) e **caroços de carne desde a fase 1** nos humanoides, creepers e endermans, além dos ossos expostos.
+- Limitações: lulas só caçam na água; o Estourador usa o modelo da Matriarca (tamanho/textura próprios); os tumores não aparecem em animais quadrúpedes, aranhas, golems e vermes.
+

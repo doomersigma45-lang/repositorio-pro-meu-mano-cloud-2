@@ -73,6 +73,10 @@ public final class ModBusEvents {
         event.put(ModEntities.PARASITE_CHIMERA.get(), com.netheritesupremo.parasite.ParasiteChimera.createAttributes().build());
         event.put(ModEntities.PARASITE_ABOMINATION.get(), com.netheritesupremo.parasite.ParasiteAbomination.createAttributes().build());
         event.put(ModEntities.PARASITE_AMALGAM.get(), com.netheritesupremo.parasite.ParasiteAmalgam.createAttributes().build());
+        event.put(ModEntities.PARASITE_SQUID.get(), com.netheritesupremo.parasite.ParasiteSquid.createAttributes().build());
+        event.put(ModEntities.PARASITE_GLOW_SQUID.get(), com.netheritesupremo.parasite.ParasiteGlowSquid.createAttributes().build());
+        event.put(ModEntities.PARASITE_BURSTER.get(), com.netheritesupremo.parasite.ParasiteBurster.createAttributes().build());
+        event.put(ModEntities.PARASITE_SILVERFISH.get(), com.netheritesupremo.parasite.ParasiteSilverfish.createAttributes().build());
         event.put(ModEntities.PARASITE_HUNTER.get(), com.netheritesupremo.parasite.ParasiteHunter.createAttributes().build());
         event.put(ModEntities.PARASITE_VILLAGER.get(), com.netheritesupremo.parasite.ParasiteVillager.createAttributes().build());
         event.put(ModEntities.PARASITE_WANDERING_TRADER.get(), com.netheritesupremo.parasite.ParasiteWanderingTrader.createAttributes().build());

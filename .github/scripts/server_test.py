@@ -1121,6 +1121,24 @@ def main():
             gcmd("execute positioned 1600 60 870 run parasite shower")
             time.sleep(5)
             gcmd("execute if entity @e[type=netheritesupremo:parasite_meteor] run say meteoros da chuva em queda")
+            # 1.82.0: lulas, estourador, traca mini boss, pillager imune, aranha com pulo
+            r.cmd("forceload add 1660 850 1700 890")
+            for i, ty in enumerate(("squid", "glow_squid", "burster", "silverfish")):
+                r.cmd(f"summon netheritesupremo:parasite_{ty} {1665 + i * 6} 62 870 {{NoAI:1b}}")
+            time.sleep(2)
+            for ty in ("squid", "glow_squid", "burster", "silverfish"):
+                gcmd(f"attribute @e[type=netheritesupremo:parasite_{ty},limit=1] minecraft:generic.max_health get")
+            r.cmd("summon minecraft:pillager 1665 62 880 {NoAI:1b,Tags:[\"pil\"]}")
+            r.cmd("summon minecraft:squid 1672 62 880 {NoAI:1b,Tags:[\"lula\"]}")
+            r.cmd("summon minecraft:silverfish 1678 62 880 {NoAI:1b,Tags:[\"traca\"]}")
+            time.sleep(1)
+            gcmd("effect give @e[tag=pil,limit=1] netheritesupremo:infestation 30 0")
+            gcmd("execute if entity @e[tag=pil,nbt={ActiveEffects:[{}]}] run say pillager recebeu efeito (deveria ser imune)")
+            gcmd("effect give @e[tag=lula,limit=1] netheritesupremo:infestation 30 0")
+            gcmd("kill @e[tag=lula,limit=1]")
+            gcmd("kill @e[tag=traca,limit=1]")
+            time.sleep(2)
+            gcmd("execute if entity @e[type=netheritesupremo:parasite_squid,x=1672,y=62,z=880,distance=..5] run say lula virou lula parasita")
             annotate("notice", "anomalocaris e guardiao", g4)
             # escavador, automato, tartaruga ancestral
             t5 = []

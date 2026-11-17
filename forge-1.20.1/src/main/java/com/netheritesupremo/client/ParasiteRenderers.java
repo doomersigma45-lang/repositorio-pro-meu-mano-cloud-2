@@ -79,6 +79,7 @@ public final class ParasiteRenderers {
      */
     static void deform(PoseStack pose, int phase, LivingEntity e, float pt) {
         if (phase < 2) {
+            pose.scale(0.93F, 1.03F, 0.93F);
             return;
         }
         int id = e.getId();
@@ -87,11 +88,11 @@ public final class ParasiteRenderers {
         float side = a >= 0.0F ? 1.0F : -1.0F;
         float pulse = net.minecraft.util.Mth.sin((e.tickCount + pt) * 0.18F + id) * (phase >= 3 ? 0.04F : 0.015F);
         if (phase == 2) {
-            pose.scale(0.9F + 0.06F * a + pulse, 1.1F + 0.06F * b - pulse * 0.5F, 0.9F - 0.05F * a + pulse);
+            pose.scale(0.8F + 0.05F * a + pulse, 1.12F + 0.05F * b - pulse * 0.5F, 0.8F - 0.04F * a + pulse);
             pose.mulPose(Axis.ZP.rotationDegrees(6.0F * side + 3.0F * a));
             pose.mulPose(Axis.XP.rotationDegrees(5.0F));
         } else {
-            pose.scale(0.8F + 0.1F * a + pulse, 1.25F + 0.1F * b - pulse, 0.78F - 0.08F * a + pulse);
+            pose.scale(0.66F + 0.08F * a + pulse, 1.28F + 0.08F * b - pulse, 0.64F - 0.06F * a + pulse);
             pose.mulPose(Axis.ZP.rotationDegrees(12.0F * side + 5.0F * a));
             pose.mulPose(Axis.XP.rotationDegrees(12.0F + 4.0F * b));
         }
@@ -100,8 +101,13 @@ public final class ParasiteRenderers {
     private static <T extends LivingEntity, M extends EntityModel<T>> void spikes(LivingEntityRenderer<T, M> renderer,
             EntityRendererProvider.Context ctx, ModelLayerLocation layer) {
         renderer.addLayer(new ParasiteSpikesLayer<T, M>(renderer, ctx, layer, SPIKES));
-        if (layer == ParasiteSpikesModel.HUMANOID) { // tumores de carne a partir da fase 2
-            renderer.addLayer(new ParasiteSpikesLayer<T, M>(renderer, ctx, ParasiteSpikesModel.TUMORS, SPIKES, 2));
+        // tumores de carne (alem dos ossos expostos), desde a fase 1
+        if (layer == ParasiteSpikesModel.HUMANOID) {
+            renderer.addLayer(new ParasiteSpikesLayer<T, M>(renderer, ctx, ParasiteSpikesModel.TUMORS, SPIKES, 1));
+        } else if (layer == ParasiteSpikesModel.CREEPER) {
+            renderer.addLayer(new ParasiteSpikesLayer<T, M>(renderer, ctx, ParasiteSpikesModel.TUMORS_CREEPER, SPIKES, 1));
+        } else if (layer == ParasiteSpikesModel.ENDER) {
+            renderer.addLayer(new ParasiteSpikesLayer<T, M>(renderer, ctx, ParasiteSpikesModel.TUMORS_ENDER, SPIKES, 1));
         }
     }
 
@@ -277,6 +283,61 @@ public final class ParasiteRenderers {
         event.registerEntityRenderer(ModEntities.PARASITE_AMALGAM.get(), ctx -> new ParasiteBeastRenderer<com.netheritesupremo.parasite.ParasiteAmalgam>(ctx,
                 new ParasiteBeastModels.Mother<com.netheritesupremo.parasite.ParasiteAmalgam>(ctx.bakeLayer(ParasiteBeastModels.MOTHER)), 1.4F, ParasiteTextures.HYBRID_AMALGAM, 1.1F));
         event.<ZombieVillager>registerEntityRenderer(ModEntities.PARASITE_ABOMINATION.get(), ctx -> villagerRenderer(ctx, ParasiteTextures.VILLAGER, 1.45F));
+        event.<net.minecraft.world.entity.animal.Squid>registerEntityRenderer(ModEntities.PARASITE_SQUID.get(),
+                ctx -> new net.minecraft.client.renderer.entity.SquidRenderer<net.minecraft.world.entity.animal.Squid>(ctx,
+                        new net.minecraft.client.model.SquidModel<net.minecraft.world.entity.animal.Squid>(ctx.bakeLayer(ModelLayers.SQUID))) {
+                    @Override
+                    public ResourceLocation getTextureLocation(net.minecraft.world.entity.animal.Squid entity) {
+                        return ParasiteTextures.SQUID;
+                    }
+
+                    @Override
+                    protected void scale(net.minecraft.world.entity.animal.Squid entity, PoseStack pose, float partialTick) {
+                        super.scale(entity, pose, partialTick);
+                        deform(pose, phase(entity), entity, partialTick);
+                    }
+                });
+        event.<net.minecraft.world.entity.animal.GlowSquid>registerEntityRenderer(ModEntities.PARASITE_GLOW_SQUID.get(),
+                ctx -> new net.minecraft.client.renderer.entity.GlowSquidRenderer(ctx,
+                        new net.minecraft.client.model.SquidModel<net.minecraft.world.entity.animal.GlowSquid>(ctx.bakeLayer(ModelLayers.GLOW_SQUID))) {
+                    @Override
+                    public ResourceLocation getTextureLocation(net.minecraft.world.entity.animal.GlowSquid entity) {
+                        return ParasiteTextures.GLOW_SQUID;
+                    }
+
+                    @Override
+                    protected void scale(net.minecraft.world.entity.animal.GlowSquid entity, PoseStack pose, float partialTick) {
+                        super.scale(entity, pose, partialTick);
+                        deform(pose, phase(entity), entity, partialTick);
+                    }
+                });
+        event.<net.minecraft.world.entity.monster.Silverfish>registerEntityRenderer(ModEntities.PARASITE_SILVERFISH.get(),
+                ctx -> new net.minecraft.client.renderer.entity.SilverfishRenderer(ctx) {
+                    @Override
+                    public ResourceLocation getTextureLocation(net.minecraft.world.entity.monster.Silverfish entity) {
+                        return ParasiteTextures.SILVERFISH;
+                    }
+
+                    @Override
+                    protected void scale(net.minecraft.world.entity.monster.Silverfish entity, PoseStack pose, float partialTick) {
+                        super.scale(entity, pose, partialTick);
+                        pose.scale(2.4F, 2.4F, 2.4F); // mini boss
+                        deform(pose, phase(entity), entity, partialTick);
+                    }
+                });
+        event.registerEntityRenderer(ModEntities.PARASITE_BURSTER.get(), ctx -> new ParasiteBeastRenderer<com.netheritesupremo.parasite.ParasiteBurster>(ctx,
+                new ParasiteBeastModels.Mother<com.netheritesupremo.parasite.ParasiteBurster>(ctx.bakeLayer(ParasiteBeastModels.MOTHER)), 1.0F, ParasiteTextures.HYBRID_BURSTER, 0.8F) {
+            @Override
+            protected void scale(com.netheritesupremo.parasite.ParasiteBurster burster, PoseStack pose, float partialTick) {
+                super.scale(burster, pose, partialTick);
+                float f = burster.getSwelling(partialTick); // infla antes de estourar
+                float g = 1.0F + net.minecraft.util.Mth.sin(f * 100.0F) * f * 0.01F;
+                f = net.minecraft.util.Mth.clamp(f, 0.0F, 1.0F);
+                f *= f;
+                f *= f;
+                pose.scale((1.0F + f * 0.5F) * g, (1.0F + f * 0.3F) / g, (1.0F + f * 0.5F) * g);
+            }
+        });
         event.registerEntityRenderer(ModEntities.PARASITE_CRAWLER.get(), ctx -> new ParasiteBeastRenderer<com.netheritesupremo.parasite.ParasiteCrawler>(ctx,
                 new ParasiteBeastModels.Crawler<com.netheritesupremo.parasite.ParasiteCrawler>(ctx.bakeLayer(ParasiteBeastModels.CRAWLER)), 0.9F, ParasiteTextures.HYBRID_CRAWLER, 1.0F));
         event.registerEntityRenderer(ModEntities.PARASITE_HOUND.get(), ctx -> new ParasiteBeastRenderer<com.netheritesupremo.parasite.ParasiteHound>(ctx,

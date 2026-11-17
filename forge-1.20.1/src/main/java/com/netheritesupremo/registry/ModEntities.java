@@ -583,6 +583,30 @@ public final class ModEntities {
                     .sized(2.0F, 2.2F).clientTrackingRange(10)
                     .build("parasite_amalgam"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasiteSquid>> PARASITE_SQUID = ENTITIES.register(
+            "parasite_squid",
+            () -> EntityType.Builder.<com.netheritesupremo.parasite.ParasiteSquid>of(com.netheritesupremo.parasite.ParasiteSquid::new, MobCategory.WATER_CREATURE)
+                    .sized(0.8F, 0.8F).clientTrackingRange(10)
+                    .build("parasite_squid"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasiteGlowSquid>> PARASITE_GLOW_SQUID = ENTITIES.register(
+            "parasite_glow_squid",
+            () -> EntityType.Builder.<com.netheritesupremo.parasite.ParasiteGlowSquid>of(com.netheritesupremo.parasite.ParasiteGlowSquid::new, MobCategory.WATER_CREATURE)
+                    .sized(0.8F, 0.8F).clientTrackingRange(10)
+                    .build("parasite_glow_squid"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasiteBurster>> PARASITE_BURSTER = ENTITIES.register(
+            "parasite_burster",
+            () -> EntityType.Builder.<com.netheritesupremo.parasite.ParasiteBurster>of(com.netheritesupremo.parasite.ParasiteBurster::new, MobCategory.MONSTER)
+                    .sized(1.2F, 1.4F).clientTrackingRange(10)
+                    .build("parasite_burster"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasiteSilverfish>> PARASITE_SILVERFISH = ENTITIES.register(
+            "parasite_silverfish",
+            () -> EntityType.Builder.<com.netheritesupremo.parasite.ParasiteSilverfish>of(com.netheritesupremo.parasite.ParasiteSilverfish::new, MobCategory.MONSTER)
+                    .sized(1.0F, 0.7F).clientTrackingRange(10)
+                    .build("parasite_silverfish"));
+
     public static final RegistryObject<EntityType<com.netheritesupremo.mob.HeadlessHorseman>> HEADLESS_HORSEMAN = ENTITIES.register(
             "headless_horseman",
             () -> EntityType.Builder.of(com.netheritesupremo.mob.HeadlessHorseman::new, MobCategory.MONSTER)

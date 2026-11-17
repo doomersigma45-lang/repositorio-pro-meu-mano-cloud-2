@@ -136,6 +136,15 @@ public final class ParasiteBehavior {
         if (t == com.netheritesupremo.viladeferro.VilaDeFerro.FIGHTER.get()) { // Guerreiro Villager -> Aldeao Parasita
             return ModEntities.PARASITE_VILLAGER.get();
         }
+        if (t == EntityType.SQUID) {
+            return ModEntities.PARASITE_SQUID.get();
+        }
+        if (t == EntityType.GLOW_SQUID) {
+            return ModEntities.PARASITE_GLOW_SQUID.get();
+        }
+        if (t == EntityType.SILVERFISH) {
+            return ModEntities.PARASITE_SILVERFISH.get();
+        }
         if (t == EntityType.WANDERING_TRADER || t == ModEntities.UMBRAL_MERCHANT.get()
                 || t == com.netheritesupremo.viladeferro.VilaDeFerro.CHIEF.get()) { // Umbral e Chefe -> Vendedor Ambulante Parasita
             return ModEntities.PARASITE_WANDERING_TRADER.get();
@@ -177,9 +186,10 @@ public final class ParasiteBehavior {
                 || e instanceof com.netheritesupremo.entity.PrecursorSoldier || e instanceof com.netheritesupremo.entity.PrecursorVillager;
     }
 
-    /** Quem nunca pode ser infectado: protegidos (robos/precursores), Ladroes e Slimes (esses ultimos os infectados atacam). */
+    /** Quem nunca pode ser infectado: protegidos (robos/precursores), Ladroes, Slimes e Pillagers (esses ultimos os infectados atacam: sao presa). */
     public static boolean isImmuneToInfection(Entity e) {
-        return isProtected(e) || e instanceof com.netheritesupremo.entity.Thief || e instanceof net.minecraft.world.entity.monster.Slime;
+        return isProtected(e) || e instanceof com.netheritesupremo.entity.Thief || e instanceof net.minecraft.world.entity.monster.Slime
+                || e instanceof net.minecraft.world.entity.monster.Pillager;
     }
 
     public static boolean canInfect(Mob mob) {

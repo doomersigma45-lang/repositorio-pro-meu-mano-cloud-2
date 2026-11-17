@@ -114,6 +114,10 @@ public class NetheriteSupremo {
             event.accept(ModItems.PARASITE_CHIMERA_SPAWN_EGG);
             event.accept(ModItems.PARASITE_ABOMINATION_SPAWN_EGG);
             event.accept(ModItems.PARASITE_AMALGAM_SPAWN_EGG);
+            event.accept(ModItems.PARASITE_SQUID_SPAWN_EGG);
+            event.accept(ModItems.PARASITE_GLOW_SQUID_SPAWN_EGG);
+            event.accept(ModItems.PARASITE_BURSTER_SPAWN_EGG);
+            event.accept(ModItems.PARASITE_SILVERFISH_SPAWN_EGG);
             event.accept(ModItems.PARASITE_ACCELERATOR_SERUM);
             event.accept(ModItems.PARASITE_RETARDER_SERUM);
             event.accept(ModItems.ANCIENT_WOOD_SPAWN_EGG);

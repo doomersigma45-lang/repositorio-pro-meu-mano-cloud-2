@@ -328,5 +328,13 @@
   "entity.netheritesupremo.parasite_abomination": "Abominação Parasita",
   "item.netheritesupremo.parasite_abomination_spawn_egg": "Ovo de Geração de Abominação Parasita",
   "entity.netheritesupremo.parasite_amalgam": "Amálgama Parasita",
-  "item.netheritesupremo.parasite_amalgam_spawn_egg": "Ovo de Geração de Amálgama Parasita"
+  "item.netheritesupremo.parasite_amalgam_spawn_egg": "Ovo de Geração de Amálgama Parasita",
+  "entity.netheritesupremo.parasite_squid": "Lula Parasita",
+  "item.netheritesupremo.parasite_squid_spawn_egg": "Ovo de Geração de Lula Parasita",
+  "entity.netheritesupremo.parasite_glow_squid": "Lula Brilhante Parasita",
+  "item.netheritesupremo.parasite_glow_squid_spawn_egg": "Ovo de Geração de Lula Brilhante Parasita",
+  "entity.netheritesupremo.parasite_burster": "Estourador Parasita",
+  "item.netheritesupremo.parasite_burster_spawn_egg": "Ovo de Geração de Estourador Parasita",
+  "entity.netheritesupremo.parasite_silverfish": "Traça Parasita",
+  "item.netheritesupremo.parasite_silverfish_spawn_egg": "Ovo de Geração de Traça Parasita"
 }
