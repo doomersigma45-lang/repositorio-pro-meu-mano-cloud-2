@@ -634,4 +634,5 @@ O cavalo esqueleto dele usava o renderer vanilla, que só tem textura para os ca
 - **Como pegam as armas**: ao nascer, zumbi normal 5% (só se estiver de mãos vazias), esqueleto normal 8% (troca o arco pela arma), zumbi parasita 20%, esqueleto parasita 25%. Quem tem arma solta ela com 8,5% de chance. Sorteio: Uzi 40%, AK 40%, RPG 20%.
 - **Jogador Parasita**: a partir da fase 2 carrega uma arma reserva (fase 2: Uzi/AK/RPG; fase 3: Old Gun, Uzi, AK ou RPG) e troca para ela quando o alvo está longe; ao herdar o equipamento de um jogador morto, também aceita Uzi/AK/RPG que ele tinha.
 - Limitações: o Jogador Parasita só atira com a arma reserva a 8+ blocos; zumbi e esqueleto só a 5+ (mais perto, vão no corpo a corpo).
+- **Endermen (normais e parasitas) agora levam os tiros** da Uzi e do AK: o dano da bala é aplicado como ataque do atirador (e não como "projétil", que o Enderman desvia teletransportando). Efeito colateral: encantamentos de proteção contra projétil não reduzem o dano das balas.
 

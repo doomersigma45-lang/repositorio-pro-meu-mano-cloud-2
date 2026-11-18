@@ -53,7 +53,12 @@ public class GunBullet extends ThrowableItemProjectile {
             return;
         }
         target.invulnerableTime = 0;
-        target.hurt(this.damageSources().thrown(this, this.getOwner()), this.damage);
+        // Dano como ataque do dono (nao "projetil"): Endermen normais e parasitas desviam de qualquer dano de projetil, mas nao desse.
+        Entity owner = this.getOwner();
+        net.minecraft.world.damagesource.DamageSource source = owner instanceof net.minecraft.world.entity.player.Player p
+                ? this.damageSources().playerAttack(p)
+                : (owner instanceof LivingEntity le ? this.damageSources().mobAttack(le) : this.damageSources().generic());
+        target.hurt(source, this.damage);
     }
 
     @Override
