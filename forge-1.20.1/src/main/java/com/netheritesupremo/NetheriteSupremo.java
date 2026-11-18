@@ -118,6 +118,7 @@ public class NetheriteSupremo {
             event.accept(ModItems.PARASITE_GLOW_SQUID_SPAWN_EGG);
             event.accept(ModItems.PARASITE_BURSTER_SPAWN_EGG);
             event.accept(ModItems.PARASITE_SILVERFISH_SPAWN_EGG);
+            event.accept(ModItems.PARASITE_WITCH_SPAWN_EGG);
             event.accept(ModItems.PARASITE_ACCELERATOR_SERUM);
             event.accept(ModItems.PARASITE_RETARDER_SERUM);
             event.accept(ModItems.ANCIENT_WOOD_SPAWN_EGG);
@@ -187,6 +188,9 @@ public class NetheriteSupremo {
             event.accept(ModItems.SPECTRITE_AXE_SPECIAL);
             event.accept(ModItems.SPECTRITE_SHOVEL_SPECIAL);
             event.accept(ModItems.OLD_GUN);
+            event.accept(ModItems.UZI);
+            event.accept(ModItems.AK);
+            event.accept(ModItems.RPG);
             event.accept(ModItems.KATANA);
             event.accept(ModItems.SHURIKEN);
             event.accept(ModItems.KUNAI);

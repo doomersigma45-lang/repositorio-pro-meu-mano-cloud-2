@@ -107,21 +107,17 @@ public class ParasiteSpikesModel<T extends LivingEntity> extends EntityModel<T> 
         return build(ENDER_BODY, -14.0F, 1.0F);
     }
 
-    // x, y, z (canto do cubo), largura, altura, profundidade: caroços de carne assimetricos no corpo e na cabeca
+    // x, y, z (canto do cubo), largura, altura, profundidade: caroços de carne assimetricos no corpo (nenhum na cabeca)
     private static final float[][] LUMPS = {
             {-6.0F, 0.5F, -1.5F, 3F, 4F, 3F},
             {3.5F, 6.0F, 1.0F, 4F, 3F, 3F},
             {-2.5F, 3.0F, 1.8F, 5F, 4F, 3F},
-            {0.5F, -9.5F, -1.5F, 3F, 3F, 3F},
-            {-4.5F, -5.5F, -2.5F, 3F, 3F, 3F},
             {1.5F, 8.5F, -3.5F, 3F, 2F, 2F},
             {4.5F, 0.0F, 1.0F, 2F, 6F, 2F},
             {-4.0F, 11.0F, -2.0F, 3F, 4F, 3F},
-            {-1.0F, -3.0F, 4.0F, 2F, 2F, 2F},
             {-3.5F, 5.0F, -2.8F, 3F, 3F, 2F},
             {3.0F, 0.5F, -2.5F, 3F, 2F, 2F},
             {-6.5F, 7.0F, 0.5F, 2F, 3F, 3F},
-            {2.0F, -6.0F, 2.0F, 3F, 3F, 3F},
     };
 
     public static LayerDefinition tumors() {

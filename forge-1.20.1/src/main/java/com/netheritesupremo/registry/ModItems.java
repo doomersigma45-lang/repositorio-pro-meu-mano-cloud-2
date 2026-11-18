@@ -485,6 +485,21 @@ public final class ModItems {
             "parasite_silverfish_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.PARASITE_SILVERFISH, 0x555560, 0xFF2020, new Item.Properties()));
 
+    public static final RegistryObject<Item> PARASITE_WITCH_SPAWN_EGG = ITEMS.register(
+            "parasite_witch_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.PARASITE_WITCH, 0x3A4A2A, 0xFF2020, new Item.Properties()));
+
+    public static final RegistryObject<Item> UZI = ITEMS.register("uzi",
+            () -> new com.netheritesupremo.weapon.AutoGunItem(new Item.Properties().stacksTo(1), 2, 3.5F, 5.0F, 3.5F, 4, 1.8F,
+                    "tooltip.netheritesupremo.uzi"));
+
+    public static final RegistryObject<Item> AK = ITEMS.register("ak",
+            () -> new com.netheritesupremo.weapon.AutoGunItem(new Item.Properties().stacksTo(1), 4, 7.0F, 1.5F, 4.5F, 2, 1.2F,
+                    "tooltip.netheritesupremo.ak"));
+
+    public static final RegistryObject<Item> RPG = ITEMS.register("rpg",
+            () -> new com.netheritesupremo.weapon.RpgItem(new Item.Properties().stacksTo(1)));
+
     public static final RegistryObject<Item> HORSEMAN_SWORD = ITEMS.register(
             "horseman_sword",
             () -> new com.netheritesupremo.item.HorsemanSwordItem());

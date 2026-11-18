@@ -282,7 +282,7 @@ public class ParasiteTreeBlockEntity extends BlockEntity {
         if (r.nextInt(20) == 0) {
             return ModEntities.PARASITE_WITHER.get();
         }
-        return switch (r.nextInt(19)) {
+        return switch (r.nextInt(20)) {
             case 0, 1 -> ModEntities.PARASITE_WARDEN.get();
             case 2, 3 -> ModEntities.PARASITE_PLAYER.get();
             case 4 -> ModEntities.PARASITE_ENDERMAN.get();
@@ -298,6 +298,7 @@ public class ParasiteTreeBlockEntity extends BlockEntity {
             case 14 -> ModEntities.PARASITE_AMALGAM.get();
             case 16, 17 -> ModEntities.PARASITE_BURSTER.get();
             case 18 -> ModEntities.PARASITE_SILVERFISH.get();
+            case 19 -> ModEntities.PARASITE_WITCH.get();
             default -> ModEntities.PARASITE_CHIMERA.get();
         };
     }

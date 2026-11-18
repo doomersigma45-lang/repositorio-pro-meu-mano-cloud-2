@@ -11,7 +11,7 @@ import net.minecraft.world.level.Level;
 
 /**
  * Enderman parasita: muito mais forte que o comum, nao pega blocos, caca tudo que nao e parasita e infecta o que morde.
- * Se o alvo esta longe (mais de 16 blocos) ele se teletransporta para perto dele.
+ * Se o alvo esta longe (mais de 16 blocos) ele se teletransporta para perto dele, levando junto ate 4 parasitas por perto.
  */
 public class ParasiteEnderman extends EnderMan implements ParasiteMob {
     private int teleportCooldown = 40;
@@ -52,7 +52,9 @@ public class ParasiteEnderman extends EnderMan implements ParasiteMob {
                 double radius = 2.5D + this.random.nextDouble() * 2.0D;
                 double x = target.getX() + Math.cos(angle) * radius;
                 double z = target.getZ() + Math.sin(angle) * radius;
+                java.util.List<net.minecraft.world.entity.Mob> mates = ParasiteGeneralEvents.mates(this);
                 if (this.randomTeleport(x, target.getY(), z, true)) {
+                    ParasiteGeneralEvents.moveMates(mates, this.getX(), this.getY(), this.getZ());
                     this.teleportCooldown = 60;
                     this.level().playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.ENDERMAN_TELEPORT,
                             SoundSource.HOSTILE, 1.0F, 0.7F);

@@ -136,6 +136,9 @@ public final class ParasiteBehavior {
         if (t == com.netheritesupremo.viladeferro.VilaDeFerro.FIGHTER.get()) { // Guerreiro Villager -> Aldeao Parasita
             return ModEntities.PARASITE_VILLAGER.get();
         }
+        if (t == EntityType.WITCH) {
+            return ModEntities.PARASITE_WITCH.get();
+        }
         if (t == EntityType.SQUID) {
             return ModEntities.PARASITE_SQUID.get();
         }

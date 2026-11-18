@@ -65,6 +65,10 @@ public final class ClientEvents {
                 ctx -> new net.minecraft.client.renderer.entity.ThrownItemRenderer<>(ctx, 1.0F, true));
         event.registerEntityRenderer(ModEntities.TANK_SHELL.get(),
                 ctx -> new net.minecraft.client.renderer.entity.ThrownItemRenderer<>(ctx, 1.4F, true));
+        event.registerEntityRenderer(ModEntities.GUN_BULLET.get(),
+                ctx -> new net.minecraft.client.renderer.entity.ThrownItemRenderer<>(ctx, 0.5F, true));
+        event.registerEntityRenderer(ModEntities.ROCKET.get(),
+                ctx -> new net.minecraft.client.renderer.entity.ThrownItemRenderer<>(ctx, 1.0F, true));
         event.registerEntityRenderer(ModEntities.OLD_GUN_BULLET.get(),
                 ctx -> new net.minecraft.client.renderer.entity.ThrownItemRenderer<>(ctx, 0.6F, true));
         event.registerEntityRenderer(ModEntities.BOMB_ROBOT.get(), ctx -> new PlayerRobotRenderer<NetheriteBombRobot>(ctx,

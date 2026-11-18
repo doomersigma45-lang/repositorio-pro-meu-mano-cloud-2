@@ -617,3 +617,14 @@ O cavalo esqueleto dele usava o renderer vanilla, que só tem textura para os ca
 - **Mais magros e com tumores**: corpos mais finos em todas as fases (fase 1 leve, fase 2 e 3 bem mais finos) e **caroços de carne desde a fase 1** nos humanoides, creepers e endermans, além dos ossos expostos.
 - Limitações: lulas só caçam na água; o Estourador usa o modelo da Matriarca (tamanho/textura próprios); os tumores não aparecem em animais quadrúpedes, aranhas, golems e vermes.
 
+### Bruxa Parasita, parasitas sem filhote e armas novas (1.83.0)
+**Não testado no jogo.** Texturas (itens e bruxa) geradas por mim (IA); números estimados.
+- **Tumores**: removidos da cabeça/rosto (ficam só no corpo).
+- **Bruxa Parasita** (mini boss, tem ovo; infectar uma bruxa dá ela; a árvore a gera na fase 3): 160 HP, 1,2× maior, barra de vida. Joga **poções que infectam** todos os mobs a 4 blocos do impacto (e dão Fraqueza + Lentidão a quem não é parasita; veneno em jogadores), a cada 1,5 s; chama 2 aranhas parasitas a cada 15 s (até 12 parasitas por perto); com menos da metade da vida fica 25% mais rápida e joga **2 poções por vez**.
+- **Enderman Parasita** leva **até 4 parasitas por perto** (raio 6) junto quando se teletransporta (tanto no teleporte normal quanto no de aproximação).
+- **Nenhum parasita nasce filhote** (zumbi, aldeão, vaca, porco, ovelha, lobo etc.): se nascer ou carregar do disco como bebê, vira adulto.
+- **Armas novas** (aba Combate; receitas incluídas):
+  - **Uzi**: automática, segure o botão direito; 3,5 de dano por bala, 10 tiros/s, mais imprecisa. **AK**: automática, 7 de dano, 5 tiros/s, precisa. Munição: **Pepita de Ferro** (cada pepita rende 4 tiros na Uzi e 2 no AK; infinita no criativo). Segurar para atirar não deixa o jogador lento.
+  - **RPG**: foguete que explode como **TNT** (potência 4, quebra blocos e machuca quem atirar de perto); munição: **1 TNT** do inventário por tiro; recarga de 2 s (infinita no criativo).
+- Limitações: as armas não têm animação/modelo 3D (item 2D simples), sem som próprio (usam sons do jogo), e o balanceamento é estimado.
+

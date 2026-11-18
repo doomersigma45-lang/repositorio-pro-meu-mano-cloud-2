@@ -1139,6 +1139,17 @@ def main():
             gcmd("kill @e[tag=traca,limit=1]")
             time.sleep(2)
             gcmd("execute if entity @e[type=netheritesupremo:parasite_squid,x=1672,y=62,z=880,distance=..5] run say lula virou lula parasita")
+            # 1.83.0: bruxa parasita, sem filhotes, armas novas
+            r.cmd("summon netheritesupremo:parasite_witch 1690 62 880 {NoAI:1b}")
+            r.cmd("summon netheritesupremo:parasite_zombie 1692 62 870 {IsBaby:1b,NoAI:1b}")
+            r.cmd("summon netheritesupremo:parasite_cow 1694 62 870 {Age:-24000,NoAI:1b}")
+            time.sleep(2)
+            gcmd("attribute @e[type=netheritesupremo:parasite_witch,limit=1] minecraft:generic.max_health get")
+            gcmd("execute if entity @e[type=netheritesupremo:parasite_zombie,nbt={IsBaby:1b}] run say ERRO: zumbi parasita filhote")
+            gcmd("execute if entity @e[type=netheritesupremo:parasite_cow,nbt={Age:-24000}] run say ERRO: vaca parasita filhote")
+            gcmd("give @a netheritesupremo:uzi 1")
+            gcmd("give @a netheritesupremo:ak 1")
+            gcmd("give @a netheritesupremo:rpg 1")
             annotate("notice", "anomalocaris e guardiao", g4)
             # escavador, automato, tartaruga ancestral
             t5 = []

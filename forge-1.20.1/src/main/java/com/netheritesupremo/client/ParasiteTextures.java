@@ -38,6 +38,7 @@ public class ParasiteTextures implements ResourceManagerReloadListener {
     public static final ResourceLocation GLOW_SQUID = gen("parasite_glow_squid_generated");
     public static final ResourceLocation SILVERFISH = gen("parasite_silverfish_generated");
     public static final ResourceLocation HYBRID_BURSTER = gen("parasite_burster_generated");
+    public static final ResourceLocation WITCH = gen("parasite_witch_generated");
     public static final ResourceLocation HYBRID_GLOW = gen("parasite_hybrid_glow_generated");
     public static final ResourceLocation VILLAGER = gen("parasite_villager_generated");
     public static final ResourceLocation VILLAGER_EYES = gen("parasite_villager_eyes_generated");
@@ -70,6 +71,7 @@ public class ParasiteTextures implements ResourceManagerReloadListener {
         build(manager, new ResourceLocation("textures/entity/squid/squid.png"), SQUID, 0);
         build(manager, new ResourceLocation("textures/entity/squid/glow_squid.png"), GLOW_SQUID, 0);
         build(manager, new ResourceLocation("textures/entity/silverfish.png"), SILVERFISH, 0);
+        build(manager, new ResourceLocation("textures/entity/witch.png"), WITCH, 0);
         buildHybridGlow();
         buildEyes();
         buildClaws();

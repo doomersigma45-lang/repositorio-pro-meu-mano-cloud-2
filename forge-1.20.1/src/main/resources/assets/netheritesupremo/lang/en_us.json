@@ -186,6 +186,17 @@
   "item.netheritesupremo.red_steve_spawn_egg": "Red Steve Spawn Egg",
   "block.netheritesupremo.black_soil": "Black Soil",
   "block.netheritesupremo.black_liquid": "Black Liquid",
+  "item.netheritesupremo.uzi": "Uzi",
+  "item.netheritesupremo.ak": "AK",
+  "item.netheritesupremo.rpg": "RPG",
+  "tooltip.netheritesupremo.uzi": "Fully automatic SMG: hold right click. Fast, 3.5 damage per bullet.",
+  "tooltip.netheritesupremo.ak": "Fully automatic rifle: hold right click. 7 damage per bullet, accurate.",
+  "tooltip.netheritesupremo.ammo_nugget": "Ammo: Iron Nugget (several shots each). Infinite in creative.",
+  "tooltip.netheritesupremo.rpg": "Fires a rocket that explodes like TNT. Ammo: 1 TNT per shot.",
+  "message.netheritesupremo.no_ammo_nugget": "No ammo (Iron Nugget)",
+  "message.netheritesupremo.no_ammo_tnt": "No ammo (TNT)",
+  "entity.netheritesupremo.gun_bullet": "Bullet",
+  "entity.netheritesupremo.rocket": "Rocket",
   "item.netheritesupremo.old_gun": "Old Gun",
   "tooltip.netheritesupremo.old_gun": "Fires a projectile dealing 50 to 150 damage. Slow reload (5 s).",
   "entity.netheritesupremo.old_gun_bullet": "Old Gun Bullet",
@@ -336,5 +347,7 @@
   "entity.netheritesupremo.parasite_burster": "Parasite Burster",
   "item.netheritesupremo.parasite_burster_spawn_egg": "Parasite Burster Spawn Egg",
   "entity.netheritesupremo.parasite_silverfish": "Parasite Silverfish",
-  "item.netheritesupremo.parasite_silverfish_spawn_egg": "Parasite Silverfish Spawn Egg"
+  "item.netheritesupremo.parasite_silverfish_spawn_egg": "Parasite Silverfish Spawn Egg",
+  "entity.netheritesupremo.parasite_witch": "Parasite Witch",
+  "item.netheritesupremo.parasite_witch_spawn_egg": "Parasite Witch Spawn Egg"
 }

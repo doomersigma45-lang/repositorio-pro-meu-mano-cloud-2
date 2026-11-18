@@ -186,6 +186,17 @@
   "item.netheritesupremo.red_steve_spawn_egg": "Ovo de Steve Vermelho",
   "block.netheritesupremo.black_soil": "Terra Preta",
   "block.netheritesupremo.black_liquid": "Líquido Negro",
+  "item.netheritesupremo.uzi": "Uzi",
+  "item.netheritesupremo.ak": "AK",
+  "item.netheritesupremo.rpg": "RPG",
+  "tooltip.netheritesupremo.uzi": "Submetralhadora automática: segure o botão direito. Rápida, 3,5 de dano por bala.",
+  "tooltip.netheritesupremo.ak": "Fuzil automático: segure o botão direito. 7 de dano por bala, preciso.",
+  "tooltip.netheritesupremo.ammo_nugget": "Munição: Pepita de Ferro (vários tiros cada). Infinita no criativo.",
+  "tooltip.netheritesupremo.rpg": "Dispara um foguete que explode como TNT. Munição: 1 TNT por tiro.",
+  "message.netheritesupremo.no_ammo_nugget": "Sem munição (Pepita de Ferro)",
+  "message.netheritesupremo.no_ammo_tnt": "Sem munição (TNT)",
+  "entity.netheritesupremo.gun_bullet": "Bala",
+  "entity.netheritesupremo.rocket": "Foguete",
   "item.netheritesupremo.old_gun": "Old Gun",
   "tooltip.netheritesupremo.old_gun": "Dispara um projétil de 50 a 150 de dano. Recarga lenta (5 s).",
   "entity.netheritesupremo.old_gun_bullet": "Projétil da Old Gun",
@@ -336,5 +347,7 @@
   "entity.netheritesupremo.parasite_burster": "Estourador Parasita",
   "item.netheritesupremo.parasite_burster_spawn_egg": "Ovo de Geração de Estourador Parasita",
   "entity.netheritesupremo.parasite_silverfish": "Traça Parasita",
-  "item.netheritesupremo.parasite_silverfish_spawn_egg": "Ovo de Geração de Traça Parasita"
+  "item.netheritesupremo.parasite_silverfish_spawn_egg": "Ovo de Geração de Traça Parasita",
+  "entity.netheritesupremo.parasite_witch": "Bruxa Parasita",
+  "item.netheritesupremo.parasite_witch_spawn_egg": "Ovo de Geração de Bruxa Parasita"
 }

@@ -311,6 +311,20 @@ public final class ParasiteRenderers {
                         deform(pose, phase(entity), entity, partialTick);
                     }
                 });
+        event.<net.minecraft.world.entity.monster.Witch>registerEntityRenderer(ModEntities.PARASITE_WITCH.get(),
+                ctx -> new net.minecraft.client.renderer.entity.WitchRenderer(ctx) {
+                    @Override
+                    public ResourceLocation getTextureLocation(net.minecraft.world.entity.monster.Witch entity) {
+                        return ParasiteTextures.WITCH;
+                    }
+
+                    @Override
+                    protected void scale(net.minecraft.world.entity.monster.Witch entity, PoseStack pose, float partialTick) {
+                        super.scale(entity, pose, partialTick);
+                        pose.scale(1.2F, 1.2F, 1.2F); // mini boss
+                        deform(pose, phase(entity), entity, partialTick);
+                    }
+                });
         event.<net.minecraft.world.entity.monster.Silverfish>registerEntityRenderer(ModEntities.PARASITE_SILVERFISH.get(),
                 ctx -> new net.minecraft.client.renderer.entity.SilverfishRenderer(ctx) {
                     @Override

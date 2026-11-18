@@ -258,6 +258,28 @@ public final class ModEntities {
                     .updateInterval(5)
                     .build("old_gun_bullet"));
 
+    public static final RegistryObject<EntityType<com.netheritesupremo.parasite.ParasiteWitch>> PARASITE_WITCH = ENTITIES.register(
+            "parasite_witch",
+            () -> EntityType.Builder.<com.netheritesupremo.parasite.ParasiteWitch>of(com.netheritesupremo.parasite.ParasiteWitch::new, MobCategory.MONSTER)
+                    .sized(0.6F, 1.95F).clientTrackingRange(10)
+                    .build("parasite_witch"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.weapon.GunBullet>> GUN_BULLET = ENTITIES.register(
+            "gun_bullet",
+            () -> EntityType.Builder.<com.netheritesupremo.weapon.GunBullet>of(com.netheritesupremo.weapon.GunBullet::new, MobCategory.MISC)
+                    .sized(0.25F, 0.25F)
+                    .clientTrackingRange(4)
+                    .updateInterval(1)
+                    .build("gun_bullet"));
+
+    public static final RegistryObject<EntityType<com.netheritesupremo.weapon.RocketProjectile>> ROCKET = ENTITIES.register(
+            "rocket",
+            () -> EntityType.Builder.<com.netheritesupremo.weapon.RocketProjectile>of(com.netheritesupremo.weapon.RocketProjectile::new, MobCategory.MISC)
+                    .sized(0.25F, 0.25F)
+                    .clientTrackingRange(4)
+                    .updateInterval(1)
+                    .build("rocket"));
+
     public static final RegistryObject<EntityType<com.netheritesupremo.entity.WarTank>> WAR_TANK = ENTITIES.register(
             "war_tank",
             () -> EntityType.Builder.of(com.netheritesupremo.entity.WarTank::new, MobCategory.MISC)
