@@ -55,7 +55,10 @@ public class RocketProjectile extends ThrowableItemProjectile {
         if (this.isRemoved()) {
             return;
         }
-        level.explode(this.getOwner() != null ? this.getOwner() : this, this.getX(), this.getY(), this.getZ(), 4.0F, Level.ExplosionInteraction.TNT);
+        // foguete de mob so quebra blocos se o mobGriefing permitir
+        boolean grief = !(this.getOwner() instanceof net.minecraft.world.entity.Mob m) || net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(level, m);
+        level.explode(this.getOwner() != null ? this.getOwner() : this, this.getX(), this.getY(), this.getZ(), 4.0F,
+                grief ? Level.ExplosionInteraction.TNT : Level.ExplosionInteraction.NONE);
         this.discard();
     }
 }

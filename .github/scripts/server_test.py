@@ -1150,6 +1150,13 @@ def main():
             gcmd("give @a netheritesupremo:uzi 1")
             gcmd("give @a netheritesupremo:ak 1")
             gcmd("give @a netheritesupremo:rpg 1")
+            # 1.84.0: zumbis, esqueletos e jogador parasita usam as armas novas
+            r.cmd('summon minecraft:skeleton 1696 62 880 {NoAI:1b,HandItems:[{id:"netheritesupremo:ak",Count:1b},{}],Tags:["skgun"]}')
+            r.cmd('summon minecraft:zombie 1698 62 880 {NoAI:1b,HandItems:[{id:"netheritesupremo:rpg",Count:1b},{}],Tags:["zgun"]}')
+            r.cmd("summon netheritesupremo:parasite_player 1694 62 884 {NoAI:1b}")
+            time.sleep(2)
+            gcmd("execute if entity @e[tag=skgun,nbt={HandItems:[{id:\"netheritesupremo:ak\"}]}] run say esqueleto segura AK")
+            gcmd("execute if entity @e[tag=zgun,nbt={HandItems:[{id:\"netheritesupremo:rpg\"}]}] run say zumbi segura RPG")
             annotate("notice", "anomalocaris e guardiao", g4)
             # escavador, automato, tartaruga ancestral
             t5 = []

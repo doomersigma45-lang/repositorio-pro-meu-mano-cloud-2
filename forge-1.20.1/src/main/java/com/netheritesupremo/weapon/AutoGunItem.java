@@ -40,6 +40,27 @@ public class AutoGunItem extends Item {
         this.tooltip = tooltip;
     }
 
+    public int getInterval() {
+        return this.interval;
+    }
+
+    public float getDamage() {
+        return this.damage;
+    }
+
+    public float getVelocity() {
+        return this.velocity;
+    }
+
+    public float getMobPitch() {
+        return this.pitch;
+    }
+
+    /** Tiros por rajada quando usada por um mob (Uzi 6, AK 4). */
+    public int getMobBurst() {
+        return this.interval <= 2 ? 6 : 4;
+    }
+
     private static boolean hasAmmoItem(Player player) {
         if (player.getAbilities().instabuild) {
             return true;

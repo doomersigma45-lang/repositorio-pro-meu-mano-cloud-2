@@ -628,3 +628,10 @@ O cavalo esqueleto dele usava o renderer vanilla, que só tem textura para os ca
   - **RPG**: foguete que explode como **TNT** (potência 4, quebra blocos e machuca quem atirar de perto); munição: **1 TNT** do inventário por tiro; recarga de 2 s (infinita no criativo).
 - Limitações: as armas não têm animação/modelo 3D (item 2D simples), sem som próprio (usam sons do jogo), e o balanceamento é estimado.
 
+### Mobs usam as armas (1.84.0)
+**Não testado no jogo.** Números estimados.
+- **Zumbi e esqueleto, normais e parasitas**, e o **Jogador Parasita**, sabem atirar com **Uzi, AK e RPG** (munição infinita para eles): ficam a 5–30 blocos do alvo e atiram, os de Uzi/AK em **rajadas** (6 e 4 tiros, pausa de ~2 s) e os de RPG **1 foguete a cada 3,5–5 s**. São menos precisos que o jogador. Foguete de mob só quebra blocos se o mobGriefing permitir.
+- **Como pegam as armas**: ao nascer, zumbi normal 5% (só se estiver de mãos vazias), esqueleto normal 8% (troca o arco pela arma), zumbi parasita 20%, esqueleto parasita 25%. Quem tem arma solta ela com 8,5% de chance. Sorteio: Uzi 40%, AK 40%, RPG 20%.
+- **Jogador Parasita**: a partir da fase 2 carrega uma arma reserva (fase 2: Uzi/AK/RPG; fase 3: Old Gun, Uzi, AK ou RPG) e troca para ela quando o alvo está longe; ao herdar o equipamento de um jogador morto, também aceita Uzi/AK/RPG que ele tinha.
+- Limitações: o Jogador Parasita só atira com a arma reserva a 8+ blocos; zumbi e esqueleto só a 5+ (mais perto, vão no corpo a corpo).
+

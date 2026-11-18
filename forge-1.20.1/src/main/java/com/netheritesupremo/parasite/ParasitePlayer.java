@@ -154,7 +154,10 @@ public class ParasitePlayer extends Monster implements ParasiteMob {
             legs = new ItemStack(ModItems.OBSIDIAN_LEGGINGS.get());
             feet = new ItemStack(ModItems.OBSIDIAN_BOOTS.get());
             sword = new ItemStack(ModItems.OBSIDIAN_SWORD.get());
-            this.stored = new ItemStack(ModItems.OLD_GUN.get());
+            this.stored = com.netheritesupremo.weapon.MobGuns.randomGun(this.random);
+        }
+        if (phase == 2) {
+            this.stored = com.netheritesupremo.weapon.MobGuns.randomNewGun(this.random);
         }
         this.setItemSlot(EquipmentSlot.HEAD, head);
         this.setItemSlot(EquipmentSlot.CHEST, chest);
@@ -234,7 +237,7 @@ public class ParasitePlayer extends Monster implements ParasiteMob {
         List<ItemStack> all = new java.util.ArrayList<>(player.getInventory().items);
         all.addAll(player.getInventory().offhand);
         for (ItemStack s : all) {
-            if (gun.isEmpty() && s.is(ModItems.OLD_GUN.get())) {
+            if (gun.isEmpty() && com.netheritesupremo.weapon.MobGuns.isAnyGun(s)) {
                 gun = s.copy();
             } else if (melee.isEmpty() && (s.getItem() instanceof net.minecraft.world.item.SwordItem || s.getItem() instanceof net.minecraft.world.item.AxeItem)) {
                 melee = s.copy();
@@ -272,11 +275,11 @@ public class ParasitePlayer extends Monster implements ParasiteMob {
             this.setItemSlot(EquipmentSlot.MAINHAND, main.copy());
             this.setDropChance(EquipmentSlot.MAINHAND, 0.0F);
         }
-        this.stored = main.is(ModItems.OLD_GUN.get()) ? melee : gun;
+        this.stored = com.netheritesupremo.weapon.MobGuns.isAnyGun(main) ? melee : gun;
     }
 
     private boolean holdsGun() {
-        return this.getMainHandItem().is(ModItems.OLD_GUN.get());
+        return com.netheritesupremo.weapon.MobGuns.isAnyGun(this.getMainHandItem());
     }
 
     private void swapWeapon() {
@@ -324,7 +327,7 @@ public class ParasitePlayer extends Monster implements ParasiteMob {
         LivingEntity target = this.getTarget();
         this.updateMode(target);
         this.useItems(level, target);
-        if ((phase >= 3 || this.inherited()) && this.tickCount % 5 == 0) {
+        if ((phase >= 2 || this.inherited()) && this.tickCount % 5 == 0) {
             double d = target == null ? 99.0D : this.distanceTo(target);
             if (this.holdsGun() && d < 6.0D) {
                 this.swapWeapon();
@@ -733,9 +736,14 @@ public class ParasitePlayer extends Monster implements ParasiteMob {
                 this.cooldown--;
             }
             if (this.cooldown <= 0 && self.getSensing().hasLineOfSight(t) && self.distanceToSqr(t) <= 40.0D * 40.0D) {
-                SkeletonFaction.fireGun(self, t);
-                self.swing(InteractionHand.MAIN_HAND);
-                this.cooldown = OldGunItem.RELOAD_TICKS + self.getRandom().nextInt(20);
+                ItemStack held = self.getMainHandItem();
+                if (com.netheritesupremo.weapon.MobGuns.isNewGun(held)) {
+                    this.cooldown = com.netheritesupremo.weapon.MobGuns.fire(self, t, held);
+                } else {
+                    SkeletonFaction.fireGun(self, t);
+                    self.swing(InteractionHand.MAIN_HAND);
+                    this.cooldown = OldGunItem.RELOAD_TICKS + self.getRandom().nextInt(20);
+                }
             }
         }
     }
