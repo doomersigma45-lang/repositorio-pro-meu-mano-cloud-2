@@ -1157,6 +1157,32 @@ def main():
             time.sleep(2)
             gcmd("execute if entity @e[tag=skgun,nbt={HandItems:[{id:\"netheritesupremo:ak\"}]}] run say esqueleto segura AK")
             gcmd("execute if entity @e[tag=zgun,nbt={HandItems:[{id:\"netheritesupremo:rpg\"}]}] run say zumbi segura RPG")
+            # 1.85.0: criaturas do covil + novos parasitas (summon sem IA, itens, blocos, efeitos)
+            r.cmd("forceload add 1720 850 1760 890")
+            time.sleep(2)
+            for i, name in enumerate(["imp", "werewolf", "shadow_person", "ghost", "demon", "cambion", "snake", "black_dog",
+                                      "hellhound", "raven", "owl", "toad", "parasite_head", "parasite_gnat", "parasite_bomber",
+                                      "parasite_blaze", "parasite_rooter", "broom"]):
+                r.cmd(f"summon netheritesupremo:{name} {1724 + i * 2} 62 872 {{NoAI:1b}}")
+            time.sleep(2)
+            for name in ["imp", "werewolf", "ghost", "demon", "black_dog", "owl", "toad", "parasite_head", "parasite_rooter", "broom"]:
+                gcmd(f"execute unless entity @e[type=netheritesupremo:{name}] run say ERRO: {name} nao existe")
+            gcmd("give @a netheritesupremo:broom 1")
+            gcmd("give @a netheritesupremo:crystal_ball 1")
+            gcmd("give @a netheritesupremo:biome_purifier 1")
+            gcmd("give @a minecraft:diamond_chestplate{Enchantments:[{id:\"netheritesupremo:magic_protection\",lvl:4}]} 1")
+            for eff in ["curse_solar_hatred", "curse_hydrophobia", "curse_overheating", "curse_lightning_rod", "curse_darkness",
+                        "curse_misfortune", "curse_paranoia"]:
+                gcmd(f"effect give @a netheritesupremo:{eff} 5 0")
+            r.cmd("setblock 1730 62 876 netheritesupremo:crystal_ball")
+            r.cmd("setblock 1740 62 876 netheritesupremo:biome_purifier")
+            time.sleep(3)
+            gcmd("execute if block 1730 62 876 netheritesupremo:crystal_ball run say bola de cristal colocada")
+            gcmd("execute if block 1740 62 876 netheritesupremo:biome_purifier run say purificador colocado")
+            r.cmd("summon minecraft:phantom 1750 70 880 {NoAI:1b,Tags:[\"infph\"]}")
+            r.cmd("summon minecraft:blaze 1752 62 880 {NoAI:1b,Tags:[\"infbl\"]}")
+            r.cmd("summon minecraft:bat 1754 62 880 {NoAI:1b,Tags:[\"infbat\"]}")
+            time.sleep(2)
             annotate("notice", "anomalocaris e guardiao", g4)
             # escavador, automato, tartaruga ancestral
             t5 = []

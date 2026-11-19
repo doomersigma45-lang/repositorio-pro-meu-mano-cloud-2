@@ -30,6 +30,7 @@ public class NetheriteSupremo {
         com.netheritesupremo.skeleton.ModEffects.EFFECTS.register(modBus);
         com.netheritesupremo.parasite.ParasiteBlood.register(modBus);
         com.netheritesupremo.parasite.ParasiteTree.register(modBus);
+        com.netheritesupremo.coven.Coven.register(modBus);
         com.netheritesupremo.viladeferro.VilaDeFerro.register(modBus);
         com.netheritesupremo.network.ModNetwork.register();
         modBus.addListener(this::commonSetup);
@@ -68,6 +69,32 @@ public class NetheriteSupremo {
     }
 
     private void addCreativeTabItems(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
+            event.accept(com.netheritesupremo.coven.Coven.IMP_EGG);
+            event.accept(com.netheritesupremo.coven.Coven.WEREWOLF_EGG);
+            event.accept(com.netheritesupremo.coven.Coven.SHADOW_PERSON_EGG);
+            event.accept(com.netheritesupremo.coven.Coven.GHOST_EGG);
+            event.accept(com.netheritesupremo.coven.Coven.DEMON_EGG);
+            event.accept(com.netheritesupremo.coven.Coven.CAMBION_EGG);
+            event.accept(com.netheritesupremo.coven.Coven.SNAKE_EGG);
+            event.accept(com.netheritesupremo.coven.Coven.BLACK_DOG_EGG);
+            event.accept(com.netheritesupremo.coven.Coven.HELLHOUND_EGG);
+            event.accept(com.netheritesupremo.coven.Coven.RAVEN_EGG);
+            event.accept(com.netheritesupremo.coven.Coven.OWL_EGG);
+            event.accept(com.netheritesupremo.coven.Coven.TOAD_EGG);
+            event.accept(com.netheritesupremo.coven.Coven.PARASITE_HEAD_EGG);
+            event.accept(com.netheritesupremo.coven.Coven.PARASITE_GNAT_EGG);
+            event.accept(com.netheritesupremo.coven.Coven.PARASITE_BOMBER_EGG);
+            event.accept(com.netheritesupremo.coven.Coven.PARASITE_BLAZE_EGG);
+            event.accept(com.netheritesupremo.coven.Coven.PARASITE_ROOTER_EGG);
+        }
+        if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
+            event.accept(com.netheritesupremo.coven.Coven.CRYSTAL_BALL_ITEM);
+            event.accept(com.netheritesupremo.coven.Coven.BIOME_PURIFIER_ITEM);
+        }
+        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
+            event.accept(com.netheritesupremo.coven.Coven.BROOM_ITEM);
+        }
         if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
             event.accept(ModItems.NETHERITE_GOLEM_SPAWN_EGG);
             event.accept(ModItems.NETHERITE_KNIGHT_SPAWN_EGG);

@@ -176,6 +176,15 @@ public final class ParasiteBehavior {
         if (t == EntityType.ENDERMAN) {
             return ModEntities.PARASITE_ENDERMAN.get();
         }
+        if (t == EntityType.BLAZE) {
+            return com.netheritesupremo.coven.Coven.PARASITE_BLAZE.get();
+        }
+        if (t == EntityType.PHANTOM) {
+            return com.netheritesupremo.coven.Coven.PARASITE_BOMBER.get();
+        }
+        if (t == EntityType.BAT) {
+            return com.netheritesupremo.coven.Coven.PARASITE_GNAT.get();
+        }
         return null;
     }
 

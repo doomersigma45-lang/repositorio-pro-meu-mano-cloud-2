@@ -22,6 +22,7 @@ public final class ClientEvents {
     @SubscribeEvent
     public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
         ParasiteRenderers.register(event);
+        CovenRenderers.register(event);
         event.registerEntityRenderer(ModEntities.NETHERITE_GOLEM.get(), NetheriteGolemRenderer::new);
         event.registerEntityRenderer(ModEntities.NETHERITE_KNIGHT.get(), NetheriteKnightRenderer::new);
         event.registerEntityRenderer(ModEntities.NETHER_SPIDER.get(), NetherSpiderRenderer::new);
@@ -123,6 +124,7 @@ public final class ClientEvents {
         event.registerLayerDefinition(ParasiteBeastModels.CRAWLER, ParasiteBeastModels.Crawler::createLayer);
         event.registerLayerDefinition(ParasiteBeastModels.HOUND, ParasiteBeastModels.Hound::createLayer);
         event.registerLayerDefinition(ParasiteBeastModels.MOTHER, ParasiteBeastModels.Mother::createLayer);
+        CovenRenderers.registerLayers(event);
         event.registerLayerDefinition(WarTankRenderer.LAYER, WarTankModel::createLayer);
         event.registerLayerDefinition(GooseRenderer.LAYER, GooseModel::createLayer);
         event.registerLayerDefinition(DiggerRenderer.LAYER, DiggerModel::createLayer);
@@ -148,6 +150,7 @@ public final class ClientEvents {
     public static void onRegisterReloadListeners(RegisterClientReloadListenersEvent event) {
         event.registerReloadListener(new GolemTexture());
         event.registerReloadListener(new ParasiteTextures());
+        event.registerReloadListener(new CovenTextures());
         event.registerReloadListener(new FusionArmorTextures());
     }
 }

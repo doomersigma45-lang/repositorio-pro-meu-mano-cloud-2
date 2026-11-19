@@ -1,0 +1,73 @@
+{
+  "textures": {
+    "orb": "netheritesupremo:block/crystal_ball",
+    "base": "minecraft:block/dark_oak_planks",
+    "particle": "netheritesupremo:block/crystal_ball"
+  },
+  "elements": [
+    {
+      "from": [
+        4,
+        0,
+        4
+      ],
+      "to": [
+        12,
+        3,
+        12
+      ],
+      "faces": {
+        "north": {
+          "texture": "#base"
+        },
+        "south": {
+          "texture": "#base"
+        },
+        "east": {
+          "texture": "#base"
+        },
+        "west": {
+          "texture": "#base"
+        },
+        "up": {
+          "texture": "#base"
+        },
+        "down": {
+          "texture": "#base"
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        3,
+        3
+      ],
+      "to": [
+        13,
+        13,
+        13
+      ],
+      "faces": {
+        "north": {
+          "texture": "#orb"
+        },
+        "south": {
+          "texture": "#orb"
+        },
+        "east": {
+          "texture": "#orb"
+        },
+        "west": {
+          "texture": "#orb"
+        },
+        "up": {
+          "texture": "#orb"
+        },
+        "down": {
+          "texture": "#orb"
+        }
+      }
+    }
+  ]
+}

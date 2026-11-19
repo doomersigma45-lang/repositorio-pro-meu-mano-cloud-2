@@ -263,7 +263,7 @@ public class ParasiteTreeBlockEntity extends BlockEntity {
     // ---------------------------------------------------------------- parasitas
 
     private static EntityType<? extends Mob> pickPhase2(RandomSource r) {
-        return switch (r.nextInt(14)) {
+        return switch (r.nextInt(18)) {
             case 0 -> ModEntities.PARASITE_ZOMBIE.get();
             case 1 -> ModEntities.PARASITE_SKELETON.get();
             case 2 -> ModEntities.PARASITE_SPIDER.get();
@@ -274,6 +274,9 @@ public class ParasiteTreeBlockEntity extends BlockEntity {
             case 8, 9 -> ModEntities.PARASITE_HOUND.get();
             case 10 -> ModEntities.PARASITE_BLOOM.get();
             case 12, 13 -> ModEntities.PARASITE_BURSTER.get();
+            case 14 -> com.netheritesupremo.coven.Coven.PARASITE_ROOTER.get();
+            case 15 -> com.netheritesupremo.coven.Coven.PARASITE_HEAD.get();
+            case 16, 17 -> com.netheritesupremo.coven.Coven.PARASITE_GNAT.get();
             default -> ModEntities.PARASITE_CHIMERA.get();
         };
     }
@@ -282,7 +285,7 @@ public class ParasiteTreeBlockEntity extends BlockEntity {
         if (r.nextInt(20) == 0) {
             return ModEntities.PARASITE_WITHER.get();
         }
-        return switch (r.nextInt(20)) {
+        return switch (r.nextInt(24)) {
             case 0, 1 -> ModEntities.PARASITE_WARDEN.get();
             case 2, 3 -> ModEntities.PARASITE_PLAYER.get();
             case 4 -> ModEntities.PARASITE_ENDERMAN.get();
@@ -299,6 +302,9 @@ public class ParasiteTreeBlockEntity extends BlockEntity {
             case 16, 17 -> ModEntities.PARASITE_BURSTER.get();
             case 18 -> ModEntities.PARASITE_SILVERFISH.get();
             case 19 -> ModEntities.PARASITE_WITCH.get();
+            case 20, 21 -> com.netheritesupremo.coven.Coven.PARASITE_BOMBER.get();
+            case 22 -> com.netheritesupremo.coven.Coven.PARASITE_ROOTER.get();
+            case 23 -> com.netheritesupremo.coven.Coven.PARASITE_BLAZE.get();
             default -> ModEntities.PARASITE_CHIMERA.get();
         };
     }
